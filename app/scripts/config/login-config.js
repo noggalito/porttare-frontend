@@ -8,7 +8,8 @@
       emailSignInPath: '/auth/user/sign_in',
       tokenValidationPath: '/auth/user/validate_token',
       storage: 'localStorage',
-      emailRegistrationPath: '/auth/user'
+      emailRegistrationPath: '/auth/user',
+      passwordResetPath: '/auth/user/password',
     });
   });
 })();
