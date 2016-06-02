@@ -36,9 +36,9 @@
     }
 
     function resetPassword() {
-      loginVm.resetPassword = {};
+      loginVm.resetPasswordForm = {};
       var resetPasswordPopup = $ionicPopup.show({
-        template: '<input type="email" ng-model="loginVm.resetPassword.email"' +
+        template: '<input type="email" ng-model="loginVm.resetPasswordForm.email"' +
         'placeholder="Ingresa tu correo electrónico">',
         title: 'Restablecer Contraseña',
         scope: $scope,
@@ -48,10 +48,10 @@
             text: '<b>Enviar</b>',
             type: 'button-positive',
             onTap: function (e) {
-              if (!loginVm.resetPassword.email) {
+              if (!loginVm.resetPasswordForm.email) {
                 e.preventDefault();
               } else {
-                return loginVm.resetPassword.email;
+                return loginVm.resetPasswordForm.email;
               }
             }
           }
