@@ -67,7 +67,7 @@
               duration: 2000
             });
           })
-          .catch(function (resp) {
+          .catch(function () {
             $ionicPopup.alert({
               title: 'Error',
               template: 'Hubo un error enviando la información.'

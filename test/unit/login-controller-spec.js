@@ -7,6 +7,7 @@
         deferredLogin,
         $auth,
         $state,
+        $scope,
         $ionicPopup,
         $ionicLoading;
 
@@ -30,7 +31,8 @@
         '$ionicPopup': $ionicPopup,
         '$ionicLoading': $ionicLoading,
         '$state': $state,
-        '$auth': $auth
+        '$auth': $auth,
+        '$scope': $scope
       });
     }));
 
