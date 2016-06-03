@@ -50,6 +50,9 @@
             onTap: function (e) {
               if (!loginVm.resetPasswordForm.email) {
                 e.preventDefault();
+                $ionicPopup.alert({
+                  title: 'El correo electrónico ingresado es inválido.'
+                });
               } else {
                 return loginVm.resetPasswordForm.email;
               }
