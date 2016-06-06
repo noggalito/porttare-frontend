@@ -54,15 +54,15 @@
                   title: 'El correo electrónico ingresado es inválido.'
                 });
               } else {
-                return loginVm.resetPasswordForm.email;
+                return loginVm.resetPasswordForm;
               }
             }
           }
         ]
       });
 
-      resetPasswordPopup.then(function (email) {
-        $auth.requestPasswordReset(email)
+      resetPasswordPopup.then(function (resetPasswordForm) {
+        $auth.requestPasswordReset(resetPasswordForm)
           .then(function () {
             $ionicLoading.show({
               template: 'Se enviaron las intrucciones al correo.',
