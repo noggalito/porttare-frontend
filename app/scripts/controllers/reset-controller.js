@@ -7,6 +7,7 @@
 
   function ResetController($ionicLoading, $auth, $ionicPopup, $state, $rootScope, $window) {
     var resetVm = this;
+    resetVm.updatePassword = updatePassword;
     resetVm.updatePasswordForm = {};
     var successState = 'app.playlists';
 
@@ -21,7 +22,7 @@
       $window.location.href = '/' + $state.href(successState);
     });
 
-    resetVm.updatePassword = function () {
+    function updatePassword() {
       $ionicLoading.show({
         template: 'cargando...'
       });
