@@ -1,0 +1,29 @@
+ion-view(
+  view-title="Cambiar contraseña",
+  hide-nav-bar="true"
+)
+  ion-content(scroll="false")
+    .row.form-container
+      form(ng-submit='resetVm.updatePassword()')
+        .login-title Cambiar contraseña
+        .list.list-inset
+          label.item.item-input
+            input(
+              type='password',
+              ng-model='resetVm.updatePasswordForm.password',
+              required='required',
+              placeholder="Nueva contraseña"
+            )
+          label.item.item-input
+            input(
+              type='password',
+              ng-model='resetVm.updatePasswordForm.password_confirmation',
+              required='required',
+              placeholder="Confirmar nueva contraseña"
+            )
+        .row.button-actions
+          .col
+            input(
+              type='submit',
+              value="Enviar"
+            ).button

@@ -40,6 +40,13 @@
       templateUrl: 'templates/register/register.html'
     })
 
+    .state('reset', {
+      url: '/reset',
+      controller: 'ResetController',
+      controllerAs: 'resetVm',
+      templateUrl: 'templates/reset/reset.html'
+    })
+
     .state('app', {
       url: '/app',
       abstract: true,
@@ -94,7 +101,18 @@
       }
     });
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/login');
+    $urlRouterProvider.otherwise(function ($injector, $location) {
+      if (isResetPassword($location.absUrl())) {
+        return '/reset';
+      } else {
+        return '/login';
+      }
+    });
+
+    function isResetPassword(href) {
+      var param = href.match(/reset_password=([^&]+)/);
+      return (param && param[1] === 'true') ? true : false;
+    }
   });
 
   angular.module('porttare.config', []);

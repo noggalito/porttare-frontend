@@ -10,6 +10,8 @@
       storage: 'localStorage',
       emailRegistrationPath: '/auth/user',
       passwordResetPath: '/auth/user/password',
+      passwordUpdatePath: '/auth/user/password',
+      passwordResetSuccessUrl: window.location.origin
     });
   });
 })();
