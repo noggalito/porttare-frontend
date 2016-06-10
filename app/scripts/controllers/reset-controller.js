@@ -30,6 +30,6 @@
         .finally(function () {
           $ionicLoading.hide();
         });
-    };
+    }
   }
 })();
