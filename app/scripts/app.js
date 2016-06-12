@@ -4,7 +4,8 @@
     'ionic',
     'ng-token-auth',
     'porttare.config',
-    'porttare.controllers'
+    'porttare.controllers',
+    'ngCordova'
   ])
 
   .run(function($ionicPlatform) {
@@ -102,6 +103,16 @@
         'menuContent': {
           templateUrl: 'templates/playlist.html',
           controller: 'PlaylistCtrl'
+        }
+      }
+    })
+    .state('app.map', {
+      url: '/map',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/map/map.html',
+          controller: 'MapController',
+          controllerAs: 'mapVm',
         }
       }
     });
