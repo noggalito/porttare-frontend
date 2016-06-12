@@ -5,7 +5,7 @@
     .module('porttare.controllers')
     .controller('MapController', MapController);
 
-  function MapController($cordovaGeolocation, $ionicLoading) {
+  function MapController($cordovaGeolocation, $ionicLoading, $ionicPopup) {
     var mapVm = this;
 
     $ionicLoading.show({
@@ -24,24 +24,32 @@
         var lat = position.coords.latitude;
         var long = position.coords.longitude;
 
-        var myLatlng = new google.maps.LatLng(lat, long);
+        var latLng = new google.maps.LatLng(lat, long);
 
         var mapOptions = {
-          center: myLatlng,
-          zoom: 16,
+          center: latLng,
+          zoom: 17,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
 
         var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-
         mapVm.map = map;
+
+        new google.maps.Marker({
+          position: latLng,
+          map: map
+
+        });
+
         $ionicLoading.hide();
 
-      }, function error(err) {
+      }, function error() {
         $ionicLoading.hide();
-        console.log(err);
+        $ionicPopup.alert({
+          title: 'Error',
+          template: 'Hubo un error al cargar el mapa.'
+        });
       });
-
 
   }
 })();
