@@ -5,21 +5,15 @@
     .module('porttare.controllers')
     .controller('MapController', MapController);
 
-  function MapController($cordovaGeolocation, $ionicLoading, $ionicPopup) {
+  function MapController($ionicLoading, $ionicPopup, GeolocationService) {
     var mapVm = this;
 
     $ionicLoading.show({
       template: 'cargando...'
     });
 
-    var posOptions = {
-      enableHighAccuracy: true,
-      timeout: 20000,
-      maximumAge: 0
-    };
-
-    $cordovaGeolocation
-      .getCurrentPosition(posOptions)
+    GeolocationService
+      .getCurrentPosition()
       .then(function success(position) {
         var lat = position.coords.latitude;
         var long = position.coords.longitude;
@@ -38,7 +32,6 @@
         new google.maps.Marker({
           position: latLng,
           map: map
-
         });
 
         $ionicLoading.hide();

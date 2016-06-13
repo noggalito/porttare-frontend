@@ -5,6 +5,7 @@
     'ng-token-auth',
     'porttare.config',
     'porttare.controllers',
+    'porttare.services',
     'ngCordova'
   ])
 
