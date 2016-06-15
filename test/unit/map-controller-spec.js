@@ -18,7 +18,29 @@
         deferredGeolocation = $q.defer();
         $ionicPopup = { alert: sinon.stub() };
         $ionicLoading = { show: sinon.stub(), hide: sinon.stub() };
-        GeolocationService = { getCurrentPosition: sinon.stub().returns(deferredGeolocation.promise) }
+        GeolocationService = { getCurrentPosition: sinon.stub().returns(deferredGeolocation.promise) };
+        window.google = {
+          maps: {
+            MapTypeId: {
+              ROADMAP: 'ROADMAP'
+            },
+            LatLng: function (lat, lng) {
+              return {
+                latitude: parseFloat(lat),
+                longitude: parseFloat(lng),
+
+                lat: function () { return this.latitude; },
+                lng: function () { return this.longitude; }
+              };
+            },
+            Marker: function () {
+              return {};
+            },
+            Map: function () {
+              return {};
+            }
+          }
+        };
 
         controller = $controller('MapController', {
           '$ionicPopup': $ionicPopup,
@@ -31,24 +53,15 @@
 
       beforeEach(inject(function (_$rootScope_) {
         $rootScope = _$rootScope_;
-        GeolocationService.getCurrentPosition();
       }));
 
       it('ionicLoading.show should be called', function () {
         sinon.assert.calledOnce($ionicLoading.show);
       });
 
-      describe('when map is loaded', function () {
+      describe('when MapController is loaded', function () {
 
-        it('DOM element with #map ID', function () {
-          expect('#map').to.exist;
-        });
-
-        it('if successful, should ', function () {
-          var mapElement = document.createElement('div');
-          sinon.stub(document, 'getElementById');
-          document.getElementById.withArgs('map').returns(mapElement);
-
+        it('if successful, should create map', function () {
           deferredGeolocation.resolve({
             coords:
             {
@@ -57,12 +70,14 @@
             }
           });
           $rootScope.$digest();
-          expect(controller.map).to.exist;
+          sinon.assert.calledOnce(GeolocationService.getCurrentPosition);
+          expect(controller.map).to.be.exists;
         });
 
         it('if unsuccessful, should show a popup', function () {
           deferredGeolocation.reject();
           $rootScope.$digest();
+          sinon.assert.calledOnce(GeolocationService.getCurrentPosition);
           sinon.assert.calledOnce($ionicPopup.alert);
         });
       });

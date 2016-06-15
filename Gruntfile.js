@@ -235,7 +235,6 @@ module.exports = function (grunt) {
         frameworks: ['mocha', 'chai', 'sinon'],
         files: [
           'node_modules/phantomjs-polyfill/bind-polyfill.js',
-          'http://maps.google.com/maps/api/js',
           '<%= yeoman.app %>/bower_components/angular/angular.js',
           '<%= yeoman.app %>/bower_components/angular-mocks/angular-mocks.js',
           '<%= yeoman.app %>/bower_components/angular-animate/angular-animate.js',
