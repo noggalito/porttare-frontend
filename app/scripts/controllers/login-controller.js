@@ -9,8 +9,10 @@
     var loginVm = this;
     loginVm.login = login;
     loginVm.resetPassword = resetPassword;
+    loginVm.logout = logout;
     loginVm.loginForm = {};
     var successState = 'app.playlists';
+    var loginState = 'login';
 
     $rootScope.$on('auth:validation-success', function () {
       $state.go(successState);
@@ -85,8 +87,20 @@
             });
           });
       });
-
-
     }
+
+    function logout() {
+      $auth.signOut()
+        .then(function () {
+          $state.go(loginState);
+        })
+        .catch(function () {
+          $ionicPopup.alert({
+            title: 'Error',
+            template: 'Hubo un error, intentalo nuevamente.'
+          });
+        });
+    }
+
   }
 })();
