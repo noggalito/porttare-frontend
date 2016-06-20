@@ -12,6 +12,9 @@
       emailRegistrationPath: '/auth/user',
       passwordResetPath: '/auth/user/password',
       passwordUpdatePath: '/auth/user/password',
+      authProviderPaths: {
+        facebook: '/auth/user/facebook'
+      },
       passwordResetSuccessUrl: window.location.origin
     });
   });

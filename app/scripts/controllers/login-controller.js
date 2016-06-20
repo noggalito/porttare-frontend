@@ -17,6 +17,7 @@
     loginVm.login = login;
     loginVm.resetPassword = resetPassword;
     loginVm.logout = logout;
+    loginVm.loginWithFB = loginWithFB;
     loginVm.loginForm = {};
     var successState = 'app.playlists';
     var loginState = 'login';
@@ -117,5 +118,14 @@
         });
     }
 
+    function loginWithFB() {
+      $auth.authenticate('facebook')
+        .then(function () {
+          $state.go(successState);
+        })
+        .catch(function () {
+          alert('grr');
+        });
+    }
   }
 })();
