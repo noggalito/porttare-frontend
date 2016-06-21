@@ -5,7 +5,14 @@
     .module('porttare.controllers')
     .controller('LoginController', LoginController);
 
-  function LoginController($rootScope, $scope, $state, $ionicLoading, $ionicPopup, $auth, $window) {
+  function LoginController( $rootScope,
+                            $scope,
+                            $state,
+                            $ionicLoading,
+                            $ionicPopup,
+                            $auth,
+                            $window,
+                            $ionicHistory) {
     var loginVm = this;
     loginVm.login = login;
     loginVm.resetPassword = resetPassword;
@@ -90,15 +97,23 @@
     }
 
     function logout() {
+      $ionicLoading.show({
+        template: 'Cerrando sesión...'
+      });
       $auth.signOut()
         .then(function () {
-          $state.go(loginState);
+          $ionicHistory.clearCache().then(function () {
+            $state.go(loginState, {}, { location: 'replace' });
+          });
         })
         .catch(function () {
           $ionicPopup.alert({
             title: 'Error',
             template: 'Hubo un error, intentalo nuevamente.'
           });
+        })
+        .finally(function () {
+          $ionicLoading.hide();
         });
     }
 

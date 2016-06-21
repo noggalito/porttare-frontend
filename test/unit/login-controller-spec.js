@@ -10,8 +10,11 @@
         $state,
         $scope,
         $ionicPopup,
+        $ionicHistory,
         $window,
-        $ionicLoading;
+        $ionicLoading,
+        deferredLogout,
+        deferIonicHistory;
 
     beforeEach(module('porttare.controllers'));
 
@@ -22,9 +25,14 @@
 
       deferredLogin     = $q.defer();
       deferPasswordReset= $q.defer();
+      deferredLogout    = $q.defer();
+      deferIonicHistory = $q.defer();
       $ionicPopup       = {
         alert: sinon.stub().returns(deferredLogin.promise),
         show: sinon.stub().returns(deferredLogin.promise)
+      };
+      $ionicHistory     = {
+        clearCache: sinon.stub().returns(deferIonicHistory.promise)
       };
       $ionicLoading     = { show: sinon.stub(), hide: sinon.stub()};
       $state            = { go: sinon.stub() };
@@ -32,7 +40,9 @@
         submitLogin: sinon.stub()
                           .returns(deferredLogin.promise),
         requestPasswordReset: sinon.stub()
-                          .returns(deferPasswordReset.promise)
+                          .returns(deferPasswordReset.promise),
+        signOut: sinon.stub()
+                          .returns(deferredLogout.promise)
       };
       $window           = _$window_;
     }));
@@ -44,6 +54,7 @@
         controller = $controller('LoginController', {
           '$ionicPopup': $ionicPopup,
           '$ionicLoading': $ionicLoading,
+          '$ionicHistory': $ionicHistory,
           '$state': $state,
           '$auth': $auth,
           '$window': $window,
@@ -63,6 +74,7 @@
         controller = $controller('LoginController', {
           '$ionicPopup': $ionicPopup,
           '$ionicLoading': $ionicLoading,
+          '$ionicHistory': $ionicHistory,
           '$state': $state,
           '$auth': $auth,
           '$window': $window,
@@ -119,6 +131,7 @@
         controller = $controller('LoginController', {
           '$ionicPopup': $ionicPopup,
           '$ionicLoading': $ionicLoading,
+          '$ionicHistory': $ionicHistory,
           '$state': $state,
           '$auth': $auth,
           '$window': $window,
@@ -163,6 +176,60 @@
         });
 
       });
+    });
+
+    describe('#logout', function () {
+      beforeEach(inject(function (_$rootScope_, $controller) {
+        controller = $controller('LoginController', {
+          '$ionicPopup': $ionicPopup,
+          '$ionicLoading': $ionicLoading,
+          '$state': $state,
+          '$auth': $auth,
+          '$ionicHistory': $ionicHistory,
+          '$scope': $scope
+        });
+        $rootScope = _$rootScope_;
+        controller.logout();
+      }));
+
+      it('should call signOut on authService', function () {
+        sinon.assert.calledOnce($auth.signOut);
+      });
+
+      describe('when the logout is executed,', function () {
+        var loginState = 'login';
+
+        it('should show loading', function () {
+          sinon.assert.calledOnce($ionicLoading.show);
+        });
+
+        it('if successful, should clear history', function () {
+          deferredLogout.resolve();
+          $rootScope.$digest();
+          sinon.assert.calledOnce($ionicHistory.clearCache);
+        });
+
+        it('if successful, should change state', function () {
+          deferredLogout.promise.then(function () {
+            deferIonicHistory.resolve();
+          });
+          deferredLogout.resolve();
+          $rootScope.$digest();
+
+          sinon.assert.calledWithExactly($state.go,
+            loginState,
+            {},
+            { location: 'replace' });
+        });
+
+        it('if unsuccessful, should show a popup', function () {
+          deferredLogout.reject({ errors: [] });
+          $rootScope.$digest();
+          sinon.assert.calledOnce($ionicPopup.alert);
+        });
+
+      });
+
     });
   });
 })();
