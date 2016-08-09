@@ -4,8 +4,8 @@
 
 ### requirements
 
-- ruby
-- nodejs
+- ruby (<2.1)
+- nodejs (>=0.12.0 <=5.0.0)
 
 ### getting started
 
