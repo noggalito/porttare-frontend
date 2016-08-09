@@ -2,7 +2,7 @@
   'use strict';
 
   describe('IntroController', function () {
-    var ctrl, $controller, dependencies, $ionicSlideBoxDelegate, $state, $window;
+    var ctrl, $controller, dependencies, $ionicSlideBoxDelegate, $state, $localStorage, $window;
 
     beforeEach(module('porttare.controllers'));
 
@@ -10,8 +10,9 @@
       function (_$controller_, _$window_) {
         $controller = _$controller_;
         $window = _$window_;
-        $window.localStorage.setItem = sinon.stub();
-        $window.localStorage.getItem = sinon.stub();
+        $localStorage = {};
+        $localStorage.set = sinon.stub();
+        $localStorage.get = sinon.stub();
         $state = { go: sinon.stub()};
         $ionicSlideBoxDelegate = { previous: sinon.stub(), next: sinon.stub()};
       })
@@ -27,15 +28,15 @@
         dependencies = {
           $ionicSlideBoxDelegate: $ionicSlideBoxDelegate,
           $state: $state,
-          $window: $window
+          $localStorage: $localStorage
         };
 
         ctrl = $controller('IntroController', dependencies);
       });
 
-      it('should call $window.localstorage and $state.go on startApp()', function(){
+      it('should call $localstorage and $state.go on startApp()', function(){
         ctrl.startApp();
-        sinon.assert.calledOnce($window.localStorage.setItem);
+        sinon.assert.calledOnce($localStorage.set);
         sinon.assert.calledOnce($state.go);
       });
 

@@ -5,7 +5,7 @@
     .module('porttare.controllers')
     .controller('IntroController', IntroController);
 
-  function IntroController($state, $ionicSlideBoxDelegate, $window) {
+  function IntroController($state, $ionicSlideBoxDelegate, $localStorage) {
     var introVm = this;
     introVm.startApp = startApp;
     introVm.next = next;
@@ -13,7 +13,7 @@
     introVm.slideChanged = slideChanged;
 
     function startApp() {
-      $window.localStorage.setItem('hasViewedTutorial','true');
+      $localStorage.set('hasViewedTutorial','true');
       $state.go('prelogin');
     }
 

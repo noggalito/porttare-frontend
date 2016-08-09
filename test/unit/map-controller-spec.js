@@ -115,7 +115,7 @@
           deferredGeolocation.reject({ code: errorCode });
           $rootScope.$digest();
           var status = LatLng.calledWith(defaultPosition.coords.latitude, defaultPosition.coords.longitude);
-          expect(status).to.be.true;
+          chai.expect(status).to.be.true; //jshint ignore:line
         });
       });
     });
