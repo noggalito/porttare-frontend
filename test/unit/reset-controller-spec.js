@@ -32,7 +32,7 @@
         $ionicLoading = { show: sinon.stub(), hide: sinon.stub() };
         $state = {
           go: sinon.stub().returns(deferredStateGo.promise),
-          href: sinon.stub().returns('#/app/playlists')
+          href: sinon.stub().returns('#/app/category')
         };
         $auth = {
           updatePassword: sinon.stub()
@@ -108,14 +108,14 @@
       });
 
       describe('when reset password is executed,', function () {
-        var successState = 'app.playlists';
+        var successState = 'app.category';
 
         it('if successful, should change state', function () {
           deferredReset.resolve();
           $rootScope.$digest();
           $rootScope.$emit('auth:password-change-success');
           sinon.assert.alwaysCalledWithExactly($state.href, successState);
-          expect($window.location.href).to.equal('/#/app/playlists');
+          expect($window.location.href).to.equal('/#/app/category');
         });
 
         it('if unsuccessful, should show a popup', function () {

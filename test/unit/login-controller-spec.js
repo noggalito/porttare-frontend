@@ -79,7 +79,7 @@
       });
 
       describe('when the login is executed,', function() {
-        var successState = 'app.playlists';
+        var successState = 'app.category';
 
         it('if successful, should change state', function() {
           deferredLogin.resolve();
