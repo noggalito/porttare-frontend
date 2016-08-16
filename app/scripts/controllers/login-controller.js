@@ -18,7 +18,7 @@
     loginVm.logout = logout;
     loginVm.loginWithFB = LoginService.loginWithFB;
     loginVm.loginForm = {};
-    var successState = 'app.playlists';
+    var successState = 'app.category';
     var loginState = 'login';
 
     $rootScope.$on('auth:validation-success', function () {

@@ -7,7 +7,7 @@ angular
 function PreController($auth, $state, $ionicPopup, $localStorage, LoginService) {
   var preVm = this;
   preVm.loginWithFB = LoginService.loginWithFB;
-  var successState = 'app.playlists';
+  var successState = 'app.category';
 
   function load(){
     if (!$localStorage.get('hasViewedTutorial')) {

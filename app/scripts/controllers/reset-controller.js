@@ -17,7 +17,7 @@
     resetVm.resetPassword = resetPassword;
     resetVm.updatePasswordForm = {};
     resetVm.resetPasswordForm = {};
-    var successState = 'app.playlists';
+    var successState = 'app.category';
     var loginState = 'login';
 
     $rootScope.$on('auth:password-change-error', function (event, data) {

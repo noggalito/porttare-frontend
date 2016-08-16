@@ -7,7 +7,7 @@
 
   function SiteController($rootScope, $ionicLoading, $auth, $state) {
 
-    var successState = 'app.playlists';
+    var successState = 'app.category';
 
     $rootScope.$on('$stateChangeStart', function(){
       $ionicLoading.show({

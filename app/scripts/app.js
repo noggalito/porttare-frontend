@@ -70,7 +70,7 @@
     .state('app', {
       url: '/app',
       abstract: true,
-      templateUrl: 'templates/menu.html',
+      templateUrl: 'templates/menu/menu.html',
       controller: 'AppCtrl',
       //only logged users will allow to go to /app/*
       resolve: {
@@ -83,40 +83,13 @@
           }
         }
     })
-
-    .state('app.search', {
-      url: '/search',
+    .state('app.category', {
+      url: '/category',
       views: {
         'menuContent': {
-          templateUrl: 'templates/search.html'
-        }
-      }
-    })
-
-    .state('app.browse', {
-        url: '/browse',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/browse.html'
-          }
-        }
-      })
-      .state('app.playlists', {
-        url: '/playlists',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/playlists.html',
-            controller: 'PlaylistsCtrl'
-          }
-        }
-      })
-
-    .state('app.single', {
-      url: '/playlists/:playlistId',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/playlist.html',
-          controller: 'PlaylistCtrl'
+          templateUrl: 'templates/category/category.html',
+          controller: 'CategoryController',
+          controllerAs: 'categoryVm',
         }
       }
     })
