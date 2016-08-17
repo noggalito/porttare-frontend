@@ -14,5 +14,7 @@ ion-side-menus(enable-menu-with-back-views='false')
           | Categorías
         ion-item(menu-close='' ui-sref='app.map')
           | Ubicación
+        ion-item(menu-close='' ui-sref='app.provider')
+          | Proveedor
         ion-item(ng-controller='LoginController as loginVm', ng-click='loginVm.logout()')
           | Logout

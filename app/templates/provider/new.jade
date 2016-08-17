@@ -1,0 +1,147 @@
+ion-view(
+  view-title="Nuevo proveedor"
+)
+  ion-content
+    .new-provider-view
+      .row
+        form.form-container(ng-submit='providerVm.createProvider()')
+          .list
+            label.item.item-input.item-stacked-label
+              span.input-label RUC
+              input(
+                type='text',
+                placeholder='1132556783001',
+                ng-model='providerVm.providerForm.ruc',
+                required='required'
+              )
+            label.item.item-input.item-stacked-label
+              span.input-label Razón social
+              input(
+                type='text',
+                placeholder='',
+                ng-model='providerVm.providerForm.razon_social',
+                required='required'
+              )
+            label.item.item-input.item-stacked-label
+              span.input-label Actividad económica
+              input(
+                type='text',
+                placeholder='',
+                ng-model='providerVm.providerForm.actividad_economica',
+                required='required'
+              )
+            label.item.item-input.item-stacked-label
+              span.input-label Tipo de contribuyente
+              input(
+                type='text',
+                placeholder='',
+                ng-model='providerVm.providerForm.tipo_contribuyente'
+              )
+            label.item.item-input.item-stacked-label
+              span.input-label Representante legal
+              input(
+                type='text',
+                placeholder='',
+                ng-model='providerVm.providerForm.representante_legal'
+              )
+            label.item.item-input.item-stacked-label
+              span.input-label Teléfono
+              input(
+                type='text',
+                placeholder='',
+                ng-model='providerVm.providerForm.telefono',
+                required='required'
+              )
+            label.item.item-input.item-stacked-label
+              span.input-label Email
+              input(
+                type='email',
+                placeholder='',
+                ng-model='providerVm.providerForm.email',
+                required='required'
+              )
+            label.item.item-input.item-stacked-label
+              span.input-label Fecha de inicio de actividades
+              input(
+                type='text',
+                placeholder='',
+                ng-model='providerVm.providerForm.fecha_inicio_actividad'
+              )
+            label.item.item-input.item-stacked-label
+              span.input-label Nombre de su banco
+              input(
+                type='text',
+                placeholder='',
+                ng-model='providerVm.providerForm.banco_nombre',
+                required='required'
+              )
+            label.item.item-input.item-stacked-label
+              span.input-label Número de cuenta
+              input(
+                type='text',
+                placeholder='',
+                ng-model='providerVm.providerForm.banco_numero_cuenta',
+                required='required'
+              )
+            label.item.item-input.item-stacked-label
+              span.input-label Identificación de su banco
+              input(
+                type='text',
+                placeholder='',
+                ng-model='providerVm.providerForm.banco_identificacion',
+                required='required'
+              )
+            label.item.item-input.item-stacked-label
+              span.input-label Página web
+              input(
+                type='text',
+                placeholder='',
+                ng-model='providerVm.providerForm.website'
+              )
+            label.item.item-input.item-stacked-label
+              span.input-label Facebook
+              input(
+                type='text',
+                placeholder='',
+                ng-model='providerVm.providerForm.facebook_handle'
+              )
+            label.item.item-input.item-stacked-label
+              span.input-label Twitter
+              input(
+                type='text',
+                placeholder='',
+                ng-model='providerVm.providerForm.twitter_handle'
+              )
+            label.item.item-input.item-stacked-label
+              span.input-label Instagram
+              input(
+                type='text',
+                placeholder='',
+                ng-model='providerVm.providerForm.instagram_handle'
+              )
+            label.item.item-input.item-stacked-label
+              span.input-label Youtube
+              input(
+                type='text',
+                placeholder='',
+                ng-model='providerVm.providerForm.youtube_handle'
+              )
+            label.item.item-input.item-stacked-label
+              span.input-label Mejor artículo
+              input(
+                type='text',
+                placeholder='',
+                ng-model='providerVm.providerForm.mejor_articulo'
+              )
+            label.item.item-input.item-select
+                  .input-label
+                    | Forma de pago
+                  select(ng-model='providerVm.providerForm.forma_de_pago')
+                    option(selected='' value='efectivo') Efectivo
+                    option(value='tarjeta_credito') Tarjeta de crédito
+
+          .button-actions
+            input(
+              type='submit',
+              value="Crear proveedor"
+            ).button.button-primary.button-block

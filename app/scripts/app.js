@@ -103,6 +103,17 @@
           controllerAs: 'mapVm',
         }
       }
+    })
+    // User roles
+    .state('app.provider', {
+      url: '/provider',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/provider/new.html',
+          controller: 'ProviderController',
+          controllerAs: 'providerVm',
+        }
+      }
     });
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise(function ($injector, $location) {
