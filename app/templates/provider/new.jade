@@ -4,37 +4,67 @@ ion-view(
   ion-content
     .new-provider-view
       .row
-        form.form-container(ng-submit='providerVm.createProvider()')
+        form.form-container(name="newProviderForm" ng-submit='providerVm.createProvider()', novalidate='')
+
           .list
+            span.input-label (*) Campo requerido.
+            br
             label.item.item-input.item-stacked-label
-              span.input-label RUC
+              span.input-label *RUC
               input(
                 type='text',
+                name='ruc',
+                pattern='[0-9]*',
                 placeholder='1132556783001',
                 ng-model='providerVm.providerForm.ruc',
-                required='required'
+                required
               )
+              div(
+                ng-messages='newProviderForm.ruc.$error',
+                class='message-error',
+                ng-if='newProviderForm.ruc.$dirty'
+              )
+                div(ng-message='required') {{ providerVm.messages.required }}
+                div(ng-message='pattern') {{ providerVm.messages.onlyNumbers }}
+
             label.item.item-input.item-stacked-label
-              span.input-label Razón social
+              span.input-label *Razón social
               input(
                 type='text',
                 placeholder='',
+                name='razon_social',
                 ng-model='providerVm.providerForm.razon_social',
                 required='required'
               )
+              div(
+                ng-messages='newProviderForm.razon_social.$error',
+                class='message-error',
+                ng-if='newProviderForm.razon_social.$dirty'
+              )
+                div(ng-message='required') {{ providerVm.messages.required }}
+
             label.item.item-input.item-stacked-label
-              span.input-label Actividad económica
+              span.input-label *Actividad económica
               input(
                 type='text',
                 placeholder='',
+                name='actividad_economica',
                 ng-model='providerVm.providerForm.actividad_economica',
                 required='required'
               )
+              div(
+                ng-messages='newProviderForm.actividad_economica.$error',
+                class='message-error',
+                ng-if='newProviderForm.actividad_economica.$dirty'
+              )
+                div(ng-message='required') {{ providerVm.messages.required }}
+
             label.item.item-input.item-stacked-label
               span.input-label Tipo de contribuyente
               input(
                 type='text',
                 placeholder='',
+                name='tipo_contribuyente',
                 ng-model='providerVm.providerForm.tipo_contribuyente'
               )
             label.item.item-input.item-stacked-label
@@ -42,60 +72,106 @@ ion-view(
               input(
                 type='text',
                 placeholder='',
+                name='representante_legal',
                 ng-model='providerVm.providerForm.representante_legal'
               )
             label.item.item-input.item-stacked-label
-              span.input-label Teléfono
+              span.input-label *Teléfono
               input(
                 type='text',
                 placeholder='',
+                name='telefono',
                 ng-model='providerVm.providerForm.telefono',
                 required='required'
+                pattern='[0-9]*'
               )
+              div(
+                ng-messages='newProviderForm.telefono.$error',
+                class='message-error',
+                ng-if='newProviderForm.telefono.$dirty'
+              )
+                div(ng-message='required') {{ providerVm.messages.required }}
+                div(ng-message='pattern') {{ providerVm.messages.onlyNumbers }}
+
             label.item.item-input.item-stacked-label
-              span.input-label Email
+              span.input-label *Email
               input(
                 type='email',
                 placeholder='',
+                name='email',
                 ng-model='providerVm.providerForm.email',
                 required='required'
               )
+              div(
+                ng-messages='newProviderForm.email.$error',
+                class='message-error',
+                ng-if='newProviderForm.email.$dirty'
+              )
+                div(ng-message='required') {{ providerVm.messages.required }}
+                div(ng-message='email') {{ providerVm.messages.invalidEmail }}
+
             label.item.item-input.item-stacked-label
               span.input-label Fecha de inicio de actividades
               input(
                 type='text',
                 placeholder='',
+                name='fecha_inicio_actividad',
                 ng-model='providerVm.providerForm.fecha_inicio_actividad'
               )
             label.item.item-input.item-stacked-label
-              span.input-label Nombre de su banco
+              span.input-label *Nombre de su banco
               input(
                 type='text',
                 placeholder='',
+                name='banco_nombre',
                 ng-model='providerVm.providerForm.banco_nombre',
                 required='required'
               )
+              div(
+                ng-messages='newProviderForm.banco_nombre.$error',
+                class='message-error',
+                ng-if='newProviderForm.banco_nombre.$dirty'
+              )
+                div(ng-message='required') {{ providerVm.messages.required }}
+
             label.item.item-input.item-stacked-label
-              span.input-label Número de cuenta
+              span.input-label *Número de cuenta
               input(
                 type='text',
                 placeholder='',
+                name='banco_numero_cuenta',
                 ng-model='providerVm.providerForm.banco_numero_cuenta',
                 required='required'
               )
+              div(
+                ng-messages='newProviderForm.banco_numero_cuenta.$error',
+                class='message-error',
+                ng-if='newProviderForm.banco_numero_cuenta.$dirty'
+              )
+                div(ng-message='required') {{ providerVm.messages.required }}
+
             label.item.item-input.item-stacked-label
-              span.input-label Identificación de su banco
+              span.input-label *Identificación de su banco
               input(
                 type='text',
                 placeholder='',
+                name='banco_identificacion',
                 ng-model='providerVm.providerForm.banco_identificacion',
                 required='required'
               )
+              div(
+                ng-messages='newProviderForm.banco_identificacion.$error',
+                class='message-error',
+                ng-if='newProviderForm.banco_identificacion.$dirty'
+              )
+                div(ng-message='required') {{ providerVm.messages.required }}
+
             label.item.item-input.item-stacked-label
               span.input-label Página web
               input(
                 type='text',
                 placeholder='',
+                name='website',
                 ng-model='providerVm.providerForm.website'
               )
             label.item.item-input.item-stacked-label
@@ -103,6 +179,7 @@ ion-view(
               input(
                 type='text',
                 placeholder='',
+                name='facebook_handle',
                 ng-model='providerVm.providerForm.facebook_handle'
               )
             label.item.item-input.item-stacked-label
@@ -110,6 +187,7 @@ ion-view(
               input(
                 type='text',
                 placeholder='',
+                name='twitter_handle',
                 ng-model='providerVm.providerForm.twitter_handle'
               )
             label.item.item-input.item-stacked-label
@@ -117,6 +195,7 @@ ion-view(
               input(
                 type='text',
                 placeholder='',
+                name='instagram_handle',
                 ng-model='providerVm.providerForm.instagram_handle'
               )
             label.item.item-input.item-stacked-label
@@ -124,6 +203,7 @@ ion-view(
               input(
                 type='text',
                 placeholder='',
+                name='youtube_handle',
                 ng-model='providerVm.providerForm.youtube_handle'
               )
             label.item.item-input.item-stacked-label
@@ -131,17 +211,22 @@ ion-view(
               input(
                 type='text',
                 placeholder='',
+                name='mejor_articulo',
                 ng-model='providerVm.providerForm.mejor_articulo'
               )
             label.item.item-input.item-select
-                  .input-label
-                    | Forma de pago
-                  select(ng-model='providerVm.providerForm.forma_de_pago')
-                    option(selected='' value='efectivo') Efectivo
-                    option(value='tarjeta_credito') Tarjeta de crédito
+              span.input-label Forma de pago
+              ion-list
+                ion-checkbox(
+                  ng-repeat="method in providerVm.methodsPayment",
+                  ng-checked="providerVm.providerForm.forma_de_pago.indexOf(method.value) != -1"
+                  ng-click="providerVm.toggleCheck(method)"
+                ) {{ method.label }}
+
 
           .button-actions
             input(
               type='submit',
-              value="Crear proveedor"
+              value="Crear proveedor",
+              ng-class='{disabled: newProviderForm.$invalid}'
             ).button.button-primary.button-block

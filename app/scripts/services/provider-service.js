@@ -16,7 +16,7 @@
     function createNewProvider(data) {
       return $http({
         method: 'POST',
-        url: ENV.apiHost + '/api/user/provider_profile',
+        url: ENV.apiHost + '/api/provider/profile',
         data: data
       });
     }
