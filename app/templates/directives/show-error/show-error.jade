@@ -1,0 +1,3 @@
+div(ng-if='seVm.arrayMessages.length > 0')
+  div(ng-repeat='message in seVm.arrayMessages' class='show-errors')
+    span(class='message-error') {{ message }}

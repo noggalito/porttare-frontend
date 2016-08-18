@@ -9,14 +9,9 @@
     var providerVm = this;
     var successState = 'app.category';
     providerVm.createProvider = createProvider;
-    providerVm.providerForm = {
-      forma_de_pago: []
-    };
-    providerVm.messages = {
-      required: 'Este campo es requerido',
-      onlyNumbers: 'Solo se permiten números',
-      invalidEmail: 'Correo electrónico inválido'
-    };
+    providerVm.providerForm = {};
+    providerVm.messages={};
+    providerVm.selections = [];
     providerVm.methodsPayment = [
       {
         value: 'efectivo',
@@ -29,16 +24,17 @@
     ];
 
     providerVm.toggleCheck = function (method) {
-      if (providerVm.providerForm.forma_de_pago
-        .indexOf(method.value) === -1) {
-        providerVm.providerForm.forma_de_pago.push(method.value);
+      if (providerVm.selections.indexOf(method.value) === -1) {
+        providerVm.selections.push(method.value);
       } else {
-        providerVm.providerForm.forma_de_pago
-          .splice(providerVm.providerForm.forma_de_pago.indexOf(method.value), 1);
+        providerVm.selections.splice(providerVm.selections.indexOf(method.value), 1);
       }
     };
 
     function createProvider() {
+      if(providerVm.selections.length > 0){
+        providerVm.providerForm.forma_de_pago = providerVm.selections.join(',');
+      }
       ProviderService.createNewProvider(providerVm.providerForm)
         .then(function success() {
           $state.go(successState).then(function(){
@@ -49,11 +45,15 @@
           });
         },
         function error(resp) {
-          $ionicPopup.alert({
-            title: 'Error',
-            template: resp.data.error ? resp.data.error :
-              'Hubo un error, intentalo nuevamente.'
-          });
+          if (resp.data.errors) {
+            providerVm.messages = resp.data.errors;
+          } else {
+            $ionicPopup.alert({
+              title: 'Error',
+              template: resp.data.error ? resp.data.error :
+                'Hubo un error, intentalo nuevamente.'
+            });
+          }
         });
     }
 

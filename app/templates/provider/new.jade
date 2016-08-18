@@ -5,7 +5,6 @@ ion-view(
     .new-provider-view
       .row
         form.form-container(name="newProviderForm" ng-submit='providerVm.createProvider()', novalidate='')
-
           .list
             span.input-label (*) Campo requerido.
             br
@@ -14,18 +13,10 @@ ion-view(
               input(
                 type='text',
                 name='ruc',
-                pattern='[0-9]*',
                 placeholder='1132556783001',
                 ng-model='providerVm.providerForm.ruc',
-                required
               )
-              div(
-                ng-messages='newProviderForm.ruc.$error',
-                class='message-error',
-                ng-if='newProviderForm.ruc.$dirty'
-              )
-                div(ng-message='required') {{ providerVm.messages.required }}
-                div(ng-message='pattern') {{ providerVm.messages.onlyNumbers }}
+              show-error(array-messages='providerVm.messages.ruc')
 
             label.item.item-input.item-stacked-label
               span.input-label *Razón social
@@ -33,15 +24,9 @@ ion-view(
                 type='text',
                 placeholder='',
                 name='razon_social',
-                ng-model='providerVm.providerForm.razon_social',
-                required='required'
+                ng-model='providerVm.providerForm.razon_social'
               )
-              div(
-                ng-messages='newProviderForm.razon_social.$error',
-                class='message-error',
-                ng-if='newProviderForm.razon_social.$dirty'
-              )
-                div(ng-message='required') {{ providerVm.messages.required }}
+              show-error(array-messages='providerVm.messages.razon_social')
 
             label.item.item-input.item-stacked-label
               span.input-label *Actividad económica
@@ -49,15 +34,9 @@ ion-view(
                 type='text',
                 placeholder='',
                 name='actividad_economica',
-                ng-model='providerVm.providerForm.actividad_economica',
-                required='required'
+                ng-model='providerVm.providerForm.actividad_economica'
               )
-              div(
-                ng-messages='newProviderForm.actividad_economica.$error',
-                class='message-error',
-                ng-if='newProviderForm.actividad_economica.$dirty'
-              )
-                div(ng-message='required') {{ providerVm.messages.required }}
+              show-error(array-messages='providerVm.messages.actividad_economica')
 
             label.item.item-input.item-stacked-label
               span.input-label Tipo de contribuyente
@@ -81,17 +60,9 @@ ion-view(
                 type='text',
                 placeholder='',
                 name='telefono',
-                ng-model='providerVm.providerForm.telefono',
-                required='required'
-                pattern='[0-9]*'
+                ng-model='providerVm.providerForm.telefono'
               )
-              div(
-                ng-messages='newProviderForm.telefono.$error',
-                class='message-error',
-                ng-if='newProviderForm.telefono.$dirty'
-              )
-                div(ng-message='required') {{ providerVm.messages.required }}
-                div(ng-message='pattern') {{ providerVm.messages.onlyNumbers }}
+              show-error(array-messages='providerVm.messages.telefono')
 
             label.item.item-input.item-stacked-label
               span.input-label *Email
@@ -99,16 +70,9 @@ ion-view(
                 type='email',
                 placeholder='',
                 name='email',
-                ng-model='providerVm.providerForm.email',
-                required='required'
+                ng-model='providerVm.providerForm.email'
               )
-              div(
-                ng-messages='newProviderForm.email.$error',
-                class='message-error',
-                ng-if='newProviderForm.email.$dirty'
-              )
-                div(ng-message='required') {{ providerVm.messages.required }}
-                div(ng-message='email') {{ providerVm.messages.invalidEmail }}
+              show-error(array-messages='providerVm.messages.email')
 
             label.item.item-input.item-stacked-label
               span.input-label Fecha de inicio de actividades
@@ -124,15 +88,9 @@ ion-view(
                 type='text',
                 placeholder='',
                 name='banco_nombre',
-                ng-model='providerVm.providerForm.banco_nombre',
-                required='required'
+                ng-model='providerVm.providerForm.banco_nombre'
               )
-              div(
-                ng-messages='newProviderForm.banco_nombre.$error',
-                class='message-error',
-                ng-if='newProviderForm.banco_nombre.$dirty'
-              )
-                div(ng-message='required') {{ providerVm.messages.required }}
+              show-error(array-messages='providerVm.messages.banco_nombre')
 
             label.item.item-input.item-stacked-label
               span.input-label *Número de cuenta
@@ -140,15 +98,9 @@ ion-view(
                 type='text',
                 placeholder='',
                 name='banco_numero_cuenta',
-                ng-model='providerVm.providerForm.banco_numero_cuenta',
-                required='required'
+                ng-model='providerVm.providerForm.banco_numero_cuenta'
               )
-              div(
-                ng-messages='newProviderForm.banco_numero_cuenta.$error',
-                class='message-error',
-                ng-if='newProviderForm.banco_numero_cuenta.$dirty'
-              )
-                div(ng-message='required') {{ providerVm.messages.required }}
+              show-error(array-messages='providerVm.messages.banco_numero_cuenta')
 
             label.item.item-input.item-stacked-label
               span.input-label *Identificación de su banco
@@ -156,15 +108,9 @@ ion-view(
                 type='text',
                 placeholder='',
                 name='banco_identificacion',
-                ng-model='providerVm.providerForm.banco_identificacion',
-                required='required'
+                ng-model='providerVm.providerForm.banco_identificacion'
               )
-              div(
-                ng-messages='newProviderForm.banco_identificacion.$error',
-                class='message-error',
-                ng-if='newProviderForm.banco_identificacion.$dirty'
-              )
-                div(ng-message='required') {{ providerVm.messages.required }}
+              show-error(array-messages='providerVm.messages.banco_identificacion')
 
             label.item.item-input.item-stacked-label
               span.input-label Página web
@@ -219,10 +165,9 @@ ion-view(
               ion-list
                 ion-checkbox(
                   ng-repeat="method in providerVm.methodsPayment",
-                  ng-checked="providerVm.providerForm.forma_de_pago.indexOf(method.value) != -1"
+                  ng-checked="providerVm.selections.indexOf(method.value) != -1"
                   ng-click="providerVm.toggleCheck(method)"
                 ) {{ method.label }}
-
 
           .button-actions
             input(
