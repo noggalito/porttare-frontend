@@ -21,18 +21,6 @@
     var successState = 'app.category';
     var loginState = 'login';
 
-    $rootScope.$on('auth:validation-success', function () {
-      $state.go(successState);
-    });
-
-    function load(){
-      $auth.validateUser().then(function(){
-        $state.go(successState);
-      });
-    }
-
-    load();
-
     function login() {
       $ionicLoading.show({
         template: 'cargando...'
