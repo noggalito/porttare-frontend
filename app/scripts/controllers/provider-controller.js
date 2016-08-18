@@ -5,7 +5,7 @@
     .module('porttare.controllers')
     .controller('ProviderController', ProviderController);
 
-  function ProviderController(ProviderService, $ionicPopup, $state) {
+  function ProviderController(ProviderService, $ionicPopup, $state, $ionicLoading) {
     var providerVm = this;
     var successState = 'app.category';
     providerVm.createProvider = createProvider;
@@ -32,11 +32,15 @@
     };
 
     function createProvider() {
+      $ionicLoading.show({
+        template: 'enviando...'
+      });
       if(providerVm.selections.length > 0){
         providerVm.providerForm.forma_de_pago = providerVm.selections.join(',');
       }
       ProviderService.createNewProvider(providerVm.providerForm)
         .then(function success() {
+          $ionicLoading.hide();
           $state.go(successState).then(function(){
             $ionicPopup.alert({
               title: 'Alerta',
@@ -54,6 +58,7 @@
                 'Hubo un error, intentalo nuevamente.'
             });
           }
+          $ionicLoading.hide();
         });
     }
 
