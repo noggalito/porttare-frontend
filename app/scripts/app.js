@@ -104,18 +104,24 @@
         }
       }
     })
-    .state('app.welcome_provider', {
-      url: '/welcome_provider',
+    .state('app.provider', {
+      url: '/provider',
+      abstract: true
+    })
+    .state('app.provider.welcome', {
+      url: '/welcome',
       views: {
-        'menuContent': {
-          templateUrl: 'templates/provider/welcome.html'
+        'menuContent@app': {
+          templateUrl: 'templates/provider/welcome.html',
+          controller: 'ProviderController',
+          controllerAs: 'providerVm1',
         }
       }
     })
-    .state('app.provider', {
-      url: '/provider',
+    .state('app.provider.new', {
+      url: '/new',
       views: {
-        'menuContent': {
+        'menuContent@app': {
           templateUrl: 'templates/provider/new.html',
           controller: 'ProviderController',
           controllerAs: 'providerVm',
