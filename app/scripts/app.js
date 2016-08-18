@@ -104,7 +104,14 @@
         }
       }
     })
-    // User roles
+    .state('app.welcome_provider', {
+      url: '/welcome_provider',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/provider/welcome.html'
+        }
+      }
+    })
     .state('app.provider', {
       url: '/provider',
       views: {
