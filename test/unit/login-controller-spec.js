@@ -95,12 +95,6 @@
           sinon.assert.calledOnce($ionicPopup.alert);
         });
 
-        it('if already authenticated, change state', function () {
-          $rootScope.$emit('auth:validation-success');
-
-          sinon.assert.alwaysCalledWithExactly($state.go, successState);
-        });
-
       });
 
     });
