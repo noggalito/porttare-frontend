@@ -5,24 +5,31 @@
     .module('porttare.controllers')
     .controller('ProviderController', ProviderController);
 
-  function ProviderController(ProviderService, $ionicPopup, $state, $ionicLoading) {
+  function ProviderController(ProviderService, $translate, $ionicPopup, $state, $ionicLoading) {
     var providerVm = this;
     var successState = 'app.category';
+    var transKeys = [
+      'provider.methods.cash',
+      'provider.methods.creditCard'
+    ];
     providerVm.createProvider = createProvider;
     providerVm.toggleCheck = toggleCheck;
     providerVm.providerForm = {};
     providerVm.messages={};
     providerVm.selections = [];
-    providerVm.methodsPayment = [
-      {
-        value: 'efectivo',
-        label: 'Efecivo'
-      },
-      {
-        value: 'tarjeta_credito',
-        label: 'Tarjeta de crédito'
-      }
-    ];
+    providerVm.methodsPayment = [];
+    $translate(transKeys).then(function (trans) {
+      providerVm.methodsPayment = [
+        {
+          value: 'efectivo',
+          label: trans[transKeys[0]]
+        },
+        {
+          value: 'tarjeta_credito',
+          label: trans[transKeys[1]]
+        }
+      ];
+    });
 
     function toggleCheck(method) {
       if (providerVm.selections.indexOf(method.value) === -1) {

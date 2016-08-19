@@ -11,7 +11,9 @@
       deferCreateProvider,
       deferStateGo,
       $state,
-      $ionicPopup;
+      $ionicPopup,
+      $translate,
+      deferTranslate;
 
     beforeEach(module('porttare.controllers'));
 
@@ -22,6 +24,7 @@
 
         deferCreateProvider = $q.defer();
         deferStateGo = $q.defer();
+        deferTranslate = $q.defer();
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $ionicLoading = {
@@ -34,6 +37,7 @@
         $ionicPopup = {
           alert: sinon.stub()
         };
+        $translate = sinon.stub().returns(deferTranslate.promise);
         ProviderService = {
           createNewProvider: sinon.stub().returns(deferCreateProvider.promise)
         };
@@ -46,7 +50,8 @@
           $ionicLoading: $ionicLoading,
           ProviderService: ProviderService,
           $ionicPopup: $ionicPopup,
-          $state: $state
+          $state: $state,
+          $translate: $translate
         };
 
         ctrl = $controller('ProviderController', dependencies);
@@ -71,7 +76,8 @@
           $ionicLoading: $ionicLoading,
           ProviderService: ProviderService,
           $ionicPopup: $ionicPopup,
-          $state: $state
+          $state: $state,
+          $translate: $translate
         };
 
         ctrl = $controller('ProviderController', dependencies);
@@ -112,7 +118,7 @@
         sinon.assert.calledOnce($ionicPopup.alert);
       });
 
-      it.only('if unsuccessful by validation error, should create a object', function () {
+      it('if unsuccessful by validation error, should create a object', function () {
         ctrl.messages = {};
         var backendErrors = {
           data: {

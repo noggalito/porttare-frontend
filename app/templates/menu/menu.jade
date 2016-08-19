@@ -11,10 +11,10 @@ ion-side-menus(enable-menu-with-back-views='false')
     ion-content
       ion-list
         ion-item(menu-close='' ui-sref='app.category')
-          | Categorías
+          | {{::("menu.category"|translate)}}
         ion-item(menu-close='' ui-sref='app.map')
-          | Ubicación
+          | {{::("menu.location"|translate)}}
         ion-item(menu-close='' ui-sref='app.provider')
-          | Proveedor
+          | {{::("menu.provider"|translate)}}
         ion-item(ng-controller='LoginController as loginVm', ng-click='loginVm.logout()')
-          | Logout
+          | {{::("menu.logout"|translate)}}
