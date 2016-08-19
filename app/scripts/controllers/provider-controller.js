@@ -9,6 +9,7 @@
     var providerVm = this;
     var successState = 'app.category';
     providerVm.createProvider = createProvider;
+    providerVm.toggleCheck = toggleCheck;
     providerVm.providerForm = {};
     providerVm.messages={};
     providerVm.selections = [];
@@ -23,13 +24,13 @@
       }
     ];
 
-    providerVm.toggleCheck = function (method) {
+    function toggleCheck(method) {
       if (providerVm.selections.indexOf(method.value) === -1) {
         providerVm.selections.push(method.value);
       } else {
         providerVm.selections.splice(providerVm.selections.indexOf(method.value), 1);
       }
-    };
+    }
 
     function createProvider() {
       $ionicLoading.show({
