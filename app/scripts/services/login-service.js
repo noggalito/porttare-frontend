@@ -14,7 +14,7 @@
     return service;
 
     function loginWithFB() {
-      var successState = 'app.playlists';
+      var successState = 'app.category';
       $auth.authenticate('facebook')
         .then(function () {
           $state.go(successState);

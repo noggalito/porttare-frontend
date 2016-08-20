@@ -1,8 +1,13 @@
 .row {
   .common-text {
-    font-family: Montserrat-Light;
-    text-align: center;
+    margin: auto;
     color: $base-grey;
+    text-align: center;
+    font-family: Montserrat-Light;
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: inherit;
+    }
   }
 
   .header-text {

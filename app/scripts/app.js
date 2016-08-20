@@ -104,11 +104,24 @@
         }
       }
     })
-    // User roles
     .state('app.provider', {
       url: '/provider',
+      abstract: true
+    })
+    .state('app.provider.welcome', {
+      url: '/welcome',
       views: {
-        'menuContent': {
+        'menuContent@app': {
+          templateUrl: 'templates/provider/welcome.html',
+          controller: 'ProviderController',
+          controllerAs: 'providerVm1',
+        }
+      }
+    })
+    .state('app.provider.new', {
+      url: '/new',
+      views: {
+        'menuContent@app': {
           templateUrl: 'templates/provider/new.html',
           controller: 'ProviderController',
           controllerAs: 'providerVm',
