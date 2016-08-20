@@ -21,7 +21,10 @@
       constants: {
         ENV: {
           name: 'staging',
-          apiHost: 'https://porttare-backend.herokuapp.com'
+          apiHost: 'https://porttare-backend.herokuapp.com',
+          projectId: '57b74bad95ca4e060c00001b',
+          projectKey: 'c27409281900a11da93818458b182608',
+          airbrakeHost: 'https://pangi.shiriculapo.com'
         }
       }
     },

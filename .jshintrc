@@ -22,6 +22,7 @@
     "angular": false,
     "cordova": false,
     "StatusBar": false,
-    "google": false
+    "google": false,
+    "airbrakeJs": false
   }
 }
