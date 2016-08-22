@@ -127,6 +127,20 @@
           controllerAs: 'providerVm',
         }
       }
+    })
+    .state('app.products', {
+      url: '/products',
+      abstract: true
+    })
+    .state('app.products.index', {
+      url: '/',
+      views: {
+        'menuContent@app': {
+          templateUrl: 'templates/products/index.html',
+          controller: 'ProductsController',
+          controllerAs: 'productsVm',
+        }
+      }
     });
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise(function ($injector, $location) {

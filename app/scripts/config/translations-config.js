@@ -20,6 +20,7 @@
         category: 'Categorías',
         location: 'Ubicación',
         provider: 'Proveedor',
+        products: 'Productos',
         logout: 'Cerrar sesión'
       },
       provider: {
