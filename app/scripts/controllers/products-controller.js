@@ -11,7 +11,8 @@
     init();
 
     function init(){
-      ProductsService.getProducts(0).then(function(results){
+      var params = {page: 0};
+      ProductsService.getProducts(params).then(function(results){
         productsVm.products = results.products;
       });
     }

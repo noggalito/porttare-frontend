@@ -11,11 +11,11 @@ function ProductsService($http, ENV, $ionicPopup) {
 
   return service;
 
-  function getProducts(page) {
+  function getProducts(params) {
     return $http({
       method: 'GET',
       url: ENV.apiHost + '/api/products',
-      params: {page: page}
+      params: params
     }).then(function(results){
       return results.data;
     }, function(){

@@ -63,9 +63,9 @@
 
       it('should add/remove element to array', function () {
         ctrl.toggleCheck({ value: 'test' });
-        expect(ctrl.selections).to.not.empty
+        expect(ctrl.selections).to.not.empty; //jshint ignore:line
         ctrl.toggleCheck({ value: 'test' });
-        expect(ctrl.selections).to.be.empty;
+        expect(ctrl.selections).to.be.empty; //jshint ignore:line
       });
 
     });
@@ -129,7 +129,7 @@
         };
         deferCreateProvider.reject(backendErrors);
         $rootScope.$digest();
-        expect(ctrl.messages).to.not.empty
+        expect(ctrl.messages).to.not.empty; //jshint ignore:line
       });
     });
   });
