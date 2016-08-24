@@ -84,10 +84,24 @@
           }
         }
     })
-    .state('app.category', {
-      url: '/category',
+    .state('app.categories', {
+      url: '/categories',
+      abstract: true
+    })
+    .state('app.categories.index', {
+      url: '/',
       views: {
-        'menuContent': {
+        'menuContent@app': {
+          templateUrl: 'templates/category/category.html',
+          controller: 'CategoryController',
+          controllerAs: 'categoryVm',
+        }
+      }
+    })
+    .state('app.categories.show', {
+      url: '/:id',
+      views: {
+        'menuContent@app': {
           templateUrl: 'templates/category/category.html',
           controller: 'CategoryController',
           controllerAs: 'categoryVm',

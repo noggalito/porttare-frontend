@@ -1,5 +1,10 @@
 ion-view(
-  view-title="Categorías"
+  view-title='<div class="title-image"/>'
 )
   ion-content
-    h1 Categorías
+    .grid-parent
+      a.grid-content(ng-repeat="category in categoryVm.categories" 
+                    ng-class="($index+1) % 3 === 0 ? 'grid-100': 'grid-50'"
+                    ui-sref="app.categories.show({id: category.id})"
+                    style="background-image: url('{{category.imagen}}')")
+        .name{{category.name}}

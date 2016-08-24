@@ -6,3 +6,18 @@
     margin-left: 0;
   }
 }
+
+.bar-stable.bar.bar-header {
+  background: $base-yellow;
+
+  .title-image {
+    background-image: url('../images/logo-blanco.png');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .ion-navicon {
+    color: $white;
+  }
+}
