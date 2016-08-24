@@ -42,7 +42,27 @@
           cash: 'Efectivo',
           creditCard: 'Tarjeta de crédito'
         }
-      }
+      },
+      globals: {
+        new: 'Nuevo',
+        save: 'Guardar',
+        list: 'Listar',
+        edit: 'Editar',
+        options: 'Opciones'
+      },
+      item: {
+        item: 'Artículo',
+        items: 'Artículos',
+        offerItem: 'Ofertar artículos',
+        titulo: 'Título',
+        descripcion: 'Descripción',
+        precio: 'Precio',
+        volumen: 'Volumen',
+        peso: 'Peso',
+        imagen: 'Imagen',
+        observaciones: 'Observaciones',
+        unidad_medida: 'Unidad de medida'
+      },
     });
 
     $translateProvider.preferredLanguage('es');

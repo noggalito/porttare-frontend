@@ -3,7 +3,8 @@ input {
 
   &[type=text],
   &[type=password],
-  &[type=email] {
+  &[type=email],
+  &[type=number] {
     padding-left: 40px;
   }
 }

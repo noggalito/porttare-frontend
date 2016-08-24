@@ -1,0 +1,179 @@
+ion-view(
+  view-title='{{::("item.items"|translate)}}'
+)
+  ion-content
+    .row
+      .col.col-75.col-offset-5
+        h4.item-title {{::("item.offerItem"|translate)}}
+      .col.col-15.add-icon
+        i(class='icon ion-plus-circled', ng-click="itemVm.openModal('new')")
+    .row.col.col-offset-5.col-90.col-offset-5
+      .list
+        a(ng-repeat='item in itemVm.items', class='item item-avatar' ng-click='itemVm.showActionSheet()')
+          img(class='square-img', src='http://ecuadoruniversitario.com/wp-content/uploads/2011/09/ecuadoruniversitario_com_logo_unl1-e1412231183155.jpg')
+          h2 {{ item.titulo }} ({{item.id}}) {{hola}}
+          p {{ item.descripcion }}
+  //- Modal for add and edit the item
+  script(id='my-modal-item.html', type='text/ng-template')
+      ion-modal-view
+        ion-header-bar.bar.bar-header.bar-light
+          h4(ng-if="itemVm.action==='new'").title {{::("globals.new"|translate)}} {{::("item.item"|translate)}}
+          h4(ng-if="itemVm.action==='edit'").title {{::("globals.edit"|translate)}} {{::("item.item"|translate)}}
+          button(class='button ion-chevron-left button-clear', ng-click='itemVm.closeModal()')  Cancelar
+        ion-content
+          //- Form for add item
+          .row(ng-if="itemVm.action==='new'")
+            form.item-form-container(name='form', ng-submit='itemVm.newItem()', enctype='multipart/form-data', novalidate)
+              .list
+                span.input-label-lg (*) Campo requerido
+                label.item.item-input.item-stacked-label
+                  span.input-label {{::("item.titulo"|translate|uppercase)}}*
+                  input(
+                    type='text',
+                    ng-model='itemVm.itemForm.titulo',
+                    required='required'
+                  )
+                show-error(array-messages='itemVm.messages.titulo')
+
+                label.item.item-input.item-stacked-label
+                  span.input-label {{::("item.descripcion"|translate|uppercase)}}
+                  input(
+                    type='text',
+                    ng-model='itemVm.itemForm.descripcion'
+                  )
+                show-error(array-messages='itemVm.messages.descripcion')
+
+                label.item.item-input.item-stacked-label
+                  span.input-label {{::("item.precio"|translate|uppercase)}}*
+                  input(
+                    type='number',
+                    ng-model='itemVm.itemForm.precio',
+                    required='required'
+                  )
+                show-error(array-messages='itemVm.messages.precio')
+
+                label.item.item-input.item-stacked-label
+                  span.input-label {{::("item.volumen"|translate|uppercase)}}
+                  input(
+                    type='text',
+                    ng-model='itemVm.itemForm.volumen'
+                  )
+                show-error(array-messages='itemVm.messages.volumen')
+
+                label.item.item-input.item-stacked-label
+                  span.input-label {{::("item.peso"|translate|uppercase)}}
+                  input(
+                    type='text',
+                    ng-model='itemVm.itemForm.peso'
+                  )
+                show-error(array-messages='itemVm.messages.peso')
+                //- Pending upload image
+                label.item.item-input.item-stacked-label
+                  span.input-label {{::("item.imagen"|translate|uppercase)}}
+                  input(
+                    name='imagen',
+                    type='file'
+                  )
+                show-error(array-messages='itemVm.messages.imagen')
+
+                label.item.item-input.item-stacked-label
+                  span.input-label {{::("item.observaciones"|translate|uppercase)}}
+                  input(
+                    type='text',
+                    name='ob',
+                    ng-model='itemVm.itemForm.observacion'
+                  )
+                show-error(array-messages='itemVm.messages.observacion')
+
+                label.item.item-input.item-select
+                      .input-label {{::("item.unidad_medida"|translate|uppercase)}}
+                      select(ng-model='itemVm.itemForm.unidad_medida')
+                        option(selected='' value='volumen') Volumen
+                        option(value='unidades') Unidades
+                        option(value='peso') Peso
+                        option(value='longitud') Longitud
+                show-error(array-messages='itemVm.messages.unidad_medida')
+
+              .button-actions
+                input(
+                  type='submit',
+                  value='{{::("globals.save"|translate)}} {{::("item.item"|translate)}}'
+                ).button.button-primary.button-block
+          //- Form for edit item
+          .row(ng-if="itemVm.action==='edit'")
+            form.item-form-container(name='form', ng-submit='', enctype='multipart/form-data', novalidate)
+              .list
+                span.input-label-lg (*) Campo requerido
+                label.item.item-input.item-stacked-label
+                  span.input-label {{::("item.titulo"|translate|uppercase)}}*
+                  input(
+                    type='text',
+                    ng-model='itemVm.itemForm.titulo',
+                    required='required'
+                  )
+                show-error(array-messages='itemVm.messages.titulo')
+
+                label.item.item-input.item-stacked-label
+                  span.input-label {{::("item.descripcion"|translate|uppercase)}}
+                  input(
+                    type='text',
+                    ng-model='itemVm.itemForm.descripcion'
+                  )
+                show-error(array-messages='itemVm.messages.descripcion')
+
+                label.item.item-input.item-stacked-label
+                  span.input-label {{::("item.precio"|translate|uppercase)}}*
+                  input(
+                    type='number',
+                    ng-model='itemVm.itemForm.precio',
+                    required='required'
+                  )
+                show-error(array-messages='itemVm.messages.precio')
+
+                label.item.item-input.item-stacked-label
+                  span.input-label {{::("item.volumen"|translate|uppercase)}}
+                  input(
+                    type='text',
+                    ng-model='itemVm.itemForm.volumen'
+                  )
+                show-error(array-messages='itemVm.messages.volumen')
+
+                label.item.item-input.item-stacked-label
+                  span.input-label {{::("item.peso"|translate|uppercase)}}
+                  input(
+                    type='text',
+                    ng-model='itemVm.itemForm.peso'
+                  )
+                show-error(array-messages='itemVm.messages.peso')
+                //- Pending upload image
+                label.item.item-input.item-stacked-label
+                  span.input-label {{::("item.imagen"|translate|uppercase)}}
+                  input(
+                    name='imagen',
+                    type='file'
+                  )
+                show-error(array-messages='itemVm.messages.imagen')
+
+                label.item.item-input.item-stacked-label
+                  span.input-label {{::("item.observaciones"|translate|uppercase)}}
+                  input(
+                    type='text',
+                    name='ob',
+                    ng-model='itemVm.itemForm.observacion'
+                  )
+                show-error(array-messages='itemVm.messages.observacion')
+
+                label.item.item-input.item-select
+                      .input-label {{::("item.unidad_medida"|translate|uppercase)}}
+                      select(ng-model='itemVm.itemForm.unidad_medida')
+                        option(selected='' value='volumen') Volumen
+                        option(value='unidades') Unidades
+                        option(value='peso') Peso
+                        option(value='longitud') Longitud
+                show-error(array-messages='itemVm.messages.unidad_medida')
+
+              .button-actions
+                input(
+                  type='submit',
+                  value='{{::("globals.save"|translate)}} {{::("item.item"|translate)}}'
+                ).button.button-primary.button-block
