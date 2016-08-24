@@ -35,8 +35,7 @@
         method: 'PUT',
         url: ENV.apiHost + '/api/provider/items/:id',
         data: id
-      })
+      });
     }
-
   }
 })();

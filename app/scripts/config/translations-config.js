@@ -61,7 +61,7 @@
         peso: 'Peso',
         imagen: 'Imagen',
         observaciones: 'Observaciones',
-        unidad_medida: 'Unidad de medida'
+        unidadMedida: 'Unidad de medida'
       },
     });
 

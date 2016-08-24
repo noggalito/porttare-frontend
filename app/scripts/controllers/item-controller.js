@@ -5,7 +5,13 @@
     .module('porttare.controllers')
     .controller('ItemController', ItemController);
 
-  function ItemController(ItemService, $ionicPopup, $ionicLoading, $ionicModal, $scope, $timeout, $ionicActionSheet) {
+  function ItemController(ItemService,
+                          $ionicPopup,
+                          $ionicLoading,
+                          $ionicModal,
+                          $scope,
+                          $timeout,
+                          $ionicActionSheet) {
     var itemVm = this;
     itemVm.newItem = newItem;
     itemVm.items = items;
@@ -13,7 +19,7 @@
     itemVm.action = '';
     itemVm.showActionSheet = showActionSheet;
 
-    itemVm.modal;
+    itemVm.modal = modal;
     itemVm.openModal = openModal;
     itemVm.closeModal = closeModal;
     itemVm.cleanForm = cleanForm;
@@ -23,23 +29,29 @@
 
     // initialize items
     itemVm.items();
+    itemVm.modal();
 
     // Manage modal item
-    function cleanForm(form) {
+    function cleanForm() {
       itemVm.itemForm = {};
       itemVm.messages = {};
     }
-    $ionicModal.fromTemplateUrl('my-modal-item.html', {
-      scope: $scope,
-      animation: 'slide-in-up'
-    }).then(function(modal){
-      itemVm.modal = modal;
-    });
+
+    function modal(){
+      $ionicModal.fromTemplateUrl('my-modal-item.html', {
+        scope: $scope,
+        animation: 'slide-in-up'
+      }).then(function(modal){
+        itemVm.modal = modal;
+      });
+    }
+
     function openModal(action){
       itemVm.action = action;
       cleanForm();
       itemVm.modal.show();
     }
+
     function closeModal(){
       itemVm.modal.hide();
       itemVm.cleanForm();
@@ -90,7 +102,7 @@
               title: 'Datos Incompletos',
               template: 'Intentalo nuevamente.'
             });
-            itemVm.messages = resp.data.errors
+            itemVm.messages = resp.data.errors;
           } else {
             $ionicPopup.alert({
               title: 'Error',
@@ -109,7 +121,8 @@
     function items() {
       ItemService.items()
         .then(function (resp) {
-          itemVm.items = resp.data.provider_items
+          /*jshint camelcase:false */
+          itemVm.items = resp.data.provider_items;
         })
         .catch(function (resp) {
           $ionicPopup.alert({
@@ -127,7 +140,8 @@
       });
       ItemService.editItem(id)
         .then(function success(resp) {
-          itemVm.items = resp.data.provider_items
+          /*jshint camelcase:false */
+          itemVm.items = resp.data.provider_items;
           $ionicLoading.hide();
           $ionicPopup.alert({
               title: 'Éxito',
@@ -141,7 +155,7 @@
               title: 'Datos Incompletos',
               template: 'Intentalo nuevamente.'
             });
-            itemVm.messages = resp.data.errors
+            itemVm.messages = resp.data.errors;
           } else {
             $ionicPopup.alert({
               title: 'Error',
@@ -155,6 +169,5 @@
           items();
         });
     }
-
   }
 })();
