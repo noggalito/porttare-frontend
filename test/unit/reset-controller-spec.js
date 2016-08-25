@@ -13,6 +13,7 @@
       deferredStateGo,
       $ionicLoading,
       $window,
+      APP,
       $scope;
 
     beforeEach(module('porttare.controllers'));
@@ -43,6 +44,9 @@
         $window = {
           location: { href: '#/reset' }
         };
+        APP = {
+          successState: 'app.categories.index'
+        };
 
         controller = $controller('ResetController', {
           '$ionicPopup': $ionicPopup,
@@ -50,7 +54,8 @@
           '$state': $state,
           '$auth': $auth,
           '$window': $window,
-          '$scope': $scope
+          '$scope': $scope,
+          'APP': APP
         });
       }));
 
@@ -108,7 +113,7 @@
       });
 
       describe('when reset password is executed,', function () {
-        var successState = 'app.category';
+        var successState = 'app.categories.index';
 
         it('if successful, should change state', function () {
           deferredReset.resolve();

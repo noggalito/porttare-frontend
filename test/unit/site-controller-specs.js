@@ -6,6 +6,7 @@
 
     var LoginService,
         deferLoginWithFB,
+        APP,
         $state;
 
     beforeEach(module('porttare.controllers'));
@@ -28,6 +29,9 @@
         LoginService  = {
           loginWithFB: sinon.stub().returns(deferLoginWithFB.promise)
         };
+        APP = {
+          successState: 'app.categories.index'
+        };
       })
     );
 
@@ -39,7 +43,8 @@
           $ionicLoading: $ionicLoading,
           $auth: $auth,
           LoginService: LoginService,
-          $state: $state
+          $state: $state,
+          APP: APP
         };
 
         ctrl = $controller('SiteController', dependencies);
@@ -72,7 +77,8 @@
           $ionicLoading: $ionicLoading,
           $auth: $auth,
           LoginService: LoginService,
-          $state: $state
+          $state: $state,
+          APP: APP
         };
         ctrl = $controller('SiteController', dependencies);
       });

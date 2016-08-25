@@ -5,7 +5,7 @@
     .module('porttare.services')
     .factory('LoginService', LoginService);
 
-  function LoginService($auth, $state, $ionicPopup) {
+  function LoginService($auth, $state, $ionicPopup, APP) {
 
     var service = {
       loginWithFB: loginWithFB
@@ -14,7 +14,7 @@
     return service;
 
     function loginWithFB() {
-      var successState = 'app.category';
+      var successState = APP.successState;
       $auth.authenticate('facebook')
         .then(function () {
           $state.go(successState);

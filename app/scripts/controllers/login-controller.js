@@ -12,13 +12,14 @@
                             $ionicPopup,
                             $auth,
                             $ionicHistory,
+                            APP,
                             LoginService) {
     var loginVm = this;
     loginVm.login = login;
     loginVm.logout = logout;
     loginVm.loginWithFB = LoginService.loginWithFB;
     loginVm.loginForm = {};
-    var successState = 'app.category';
+    var successState = APP.successState;
     var loginState = 'login';
 
     function login() {

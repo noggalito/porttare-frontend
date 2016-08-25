@@ -5,9 +5,14 @@
     .module('porttare.controllers')
     .controller('ProviderController', ProviderController);
 
-  function ProviderController(ProviderService, $translate, $ionicPopup, $state, $ionicLoading) {
+  function ProviderController(ProviderService,
+                              $translate,
+                              $ionicPopup,
+                              $state,
+                              $ionicLoading,
+                              APP) {
     var providerVm = this;
-    var successState = 'app.category';
+    var successState = APP.successState;
     var transKeys = [
       'provider.methods.cash',
       'provider.methods.creditCard'

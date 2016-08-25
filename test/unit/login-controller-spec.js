@@ -15,7 +15,8 @@
         deferredLogout,
         deferIonicHistory,
         LoginService,
-        deferLoginWithFB;
+        deferLoginWithFB,
+        APP;
 
     beforeEach(module('porttare.controllers'));
 
@@ -49,6 +50,9 @@
       LoginService = {
         loginWithFB: sinon.stub().returns(deferLoginWithFB.promise)
       };
+      APP = {
+        successState: 'app.categories.index'
+      };
     }));
 
     describe('#login', function() {
@@ -62,7 +66,8 @@
           '$auth': $auth,
           '$window': $window,
           '$scope': $scope,
-          'LoginService': LoginService
+          'LoginService': LoginService,
+          'APP': APP
         });
         $rootScope = _$rootScope_;
         $window.localStorage.setItem('hasViewedTutorial','true');
@@ -79,7 +84,7 @@
       });
 
       describe('when the login is executed,', function() {
-        var successState = 'app.category';
+        var successState = 'app.categories.index';
 
         it('if successful, should change state', function() {
           deferredLogin.resolve();
@@ -108,7 +113,8 @@
           '$auth': $auth,
           '$ionicHistory': $ionicHistory,
           '$scope': $scope,
-          'LoginService': LoginService
+          'LoginService': LoginService,
+          'APP': APP
         });
         $rootScope = _$rootScope_;
         controller.logout();

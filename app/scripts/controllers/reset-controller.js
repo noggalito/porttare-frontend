@@ -10,14 +10,15 @@
                             $ionicPopup,
                             $state,
                             $rootScope,
-                            $window) {
+                            $window,
+                            APP) {
 
     var resetVm = this;
     resetVm.updatePassword = updatePassword;
     resetVm.resetPassword = resetPassword;
     resetVm.updatePasswordForm = {};
     resetVm.resetPasswordForm = {};
-    var successState = 'app.category';
+    var successState = APP.successState;
     var loginState = 'login';
 
     $rootScope.$on('auth:password-change-error', function (event, data) {
