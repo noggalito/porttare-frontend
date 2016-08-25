@@ -79,14 +79,13 @@
     function newItem() {
       ItemsService.newItem(itemsVm.itemForm)
         .then(function success(resp){
-          if(resp === true){
+          /*jshint camelcase:false */
+          if(resp.provider_item){
+            itemsVm.items.push(resp.provider_item);
             itemsVm.closeModal();
           }else{
-            itemsVm.messages = resp;
+            itemsVm.messages = resp.errors;
           }
-        })
-        .finally(function (){
-          items();
         });
     }
 
@@ -94,7 +93,6 @@
     function items() {
       ItemsService.items()
         .then(function (resp) {
-          /*jshint camelcase:false */
           itemsVm.items = resp;
         });
     }
@@ -103,14 +101,13 @@
     function editItem(id) {
       ItemsService.editItem(id)
         .then(function success(resp) {
-          if(resp === true){
+          /*jshint camelcase:false */
+          if(resp.provider_item){
+            itemsVm.items.push(resp.provider_item);
             itemsVm.closeModal();
           }else{
-            itemsVm.messages = resp;
+            itemsVm.messages = resp.errors;
           }
-        })
-        .finally(function () {
-          items();
         });
     }
   }

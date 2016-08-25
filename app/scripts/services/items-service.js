@@ -8,7 +8,6 @@
   function ItemsService($http,
                         $ionicPopup,
                         $ionicLoading,
-                        $timeout,
                         ENV) {
 
     var service = {
@@ -20,42 +19,40 @@
     return service;
 
     function newItem(data) {
-      $timeout(function() {
-        $ionicLoading.show({
-          template: 'Guardando...'
-        });
+      $ionicLoading.show({
+        template: '{{::("globals.saving"|translate)}}'
       });
       return $http({
         method: 'POST',
         url: ENV.apiHost + '/api/provider/items',
         data: data
       })
-      .then(function () {
-        $ionicLoading.hide();
-        $ionicPopup.alert({
-          title: 'Éxito',
-          template: 'El {{::("item.item"|translate)}} se creo Correctamente!'
+        .then(function (resp) {
+          $ionicLoading.hide();
+          $ionicPopup.alert({
+            title: 'Éxito',
+            template: '{{::("item.successItemSave"|translate)}}'
+          });
+          return resp.data;
+        })
+        .catch(function (resp) {
+          if (resp.data.errors){
+            $ionicPopup.alert({
+              title: 'Faltan datos',
+              template: '{{::("globals.pleaseTryAgain"|translate)}}'
+            });
+            return resp.data;
+          } else {
+            $ionicPopup.alert({
+              title: 'Error',
+              template: resp.data.error ? resp.data :
+                '{{::("globals.pleaseTryAgain"|translate)}}'
+            });
+          }
+        })
+        .finally(function () {
+          $ionicLoading.hide();
         });
-        return true;
-      })
-      .catch(function (resp) {
-        if (resp.data.errors){
-          $ionicPopup.alert({
-            title: 'Datos Incompletos',
-            template: 'Intentalo nuevamente.'
-          });
-          return resp.data.errors;
-        } else {
-          $ionicPopup.alert({
-            title: 'Error',
-            template: resp.data.error ? resp.data :
-              'Hubo un error, intentalo nuevamente.'
-          });
-        }
-      })
-      .finally(function () {
-        $ionicLoading.hide();
-      });
     }
 
     function items() {
@@ -63,57 +60,54 @@
         method: 'GET',
         url: ENV.apiHost + '/api/provider/items'
       })
-      .then(function (resp) {
-        /*jshint camelcase:false */
-        return resp.data.provider_items;
-      })
-      .catch(function (resp) {
-        $ionicPopup.alert({
-          title: 'Error',
-          template: resp.data.error ? resp.data :
-            'Hubo un error, intentalo nuevamente.'
+        .then(function (resp) {
+          /*jshint camelcase:false */
+          return resp.data.provider_items;
+        })
+        .catch(function (resp) {
+          $ionicPopup.alert({
+            title: 'Error',
+            template: resp.data.error ? resp.data :
+              '{{::("globals.pleaseTryAgain"|translate)}}'
+          });
         });
-      });
     }
 
     function editItem(id) {
-      $timeout(function() {
-        $ionicLoading.show({
-          template: 'Actualizando...'
-        });
+      $ionicLoading.show({
+        template: '{{::("globals.updating"|translate)}}'
       });
       return $http({
         method: 'PUT',
         url: ENV.apiHost + '/api/provider/items/:id',
         data: id
       })
-      .then(function success() {
-        $ionicLoading.hide();
-        $ionicPopup.alert({
-          title: 'Éxito',
-          template: 'El {{::("item.item"|translate)}} se actualizó Correctamente!'
+        .then(function success(resp) {
+          $ionicLoading.hide();
+          $ionicPopup.alert({
+            title: 'Éxito',
+            template: '{{::("globals.successUpdateItem"|translate)}}'
+          });
+          return resp.data;
+        })
+        .catch(function (resp) {
+          if (resp.data.errors){
+            $ionicPopup.alert({
+              title: 'Faltan datos',
+              template: '{{::("globals.pleaseTryAgain"|translate)}}'
+            });
+            return resp.data;
+          } else {
+            $ionicPopup.alert({
+              title: 'Error',
+              template: resp.data.error ? resp.data :
+                '{{::("globals.pleaseTryAgain"|translate)}}'
+            });
+          }
+        })
+        .finally(function () {
+          $ionicLoading.hide();
         });
-        /*jshint camelcase:false */
-        return true;
-      })
-      .catch(function (resp) {
-        if (resp.data.errors){
-          $ionicPopup.alert({
-            title: 'Datos Incompletos',
-            template: 'Intentalo nuevamente.'
-          });
-          return resp.data.errors;
-        } else {
-          $ionicPopup.alert({
-            title: 'Error',
-            template: resp.data.error ? resp.data :
-              'Hubo un error, intentalo nuevamente.'
-          });
-        }
-      })
-      .finally(function () {
-        $ionicLoading.hide();
-      });
     }
   }
 })();

@@ -48,12 +48,20 @@
         save: 'Guardar',
         list: 'Listar',
         edit: 'Editar',
-        options: 'Opciones'
+        options: 'Opciones',
+        success: 'Éxito',
+        saving: 'Guardando',
+        updating: 'Actualizando',
+        pleaseTryAgain: 'Intentalo nuevamente',
+        leftData: 'Faltan datos',
+        error: 'Error'
       },
       item: {
         item: 'Artículo',
         items: 'Artículos',
         offerItem: 'Ofertar artículos',
+        successItemSave: 'Artículo guardado éxitosamente',
+        successUpdateItem: 'Artículo actualizado éxitosamente',
         titulo: 'Título',
         descripcion: 'Descripción',
         precio: 'Precio',
