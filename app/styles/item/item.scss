@@ -1,31 +1,3 @@
-.col-15 {
-  -webkit-box-flex: 0;
-  -webkit-flex: 0 0 15%;
-  -moz-box-flex: 0;
-  -moz-flex: 0 0 15%;
-  -ms-flex: 0 0 15%;
-  flex: 0 0 15%;
-  max-width: 15%;
-}
-
-.col-offset-15 {
-  margin-left: 15%;
-}
-
-.col-5 {
-  -webkit-box-flex: 0;
-  -webkit-flex: 0 0 5%;
-  -moz-box-flex: 0;
-  -moz-flex: 0 0 5%;
-  -ms-flex: 0 0 5%;
-  flex: 0 0 5%;
-  max-width: 5%;
-}
-
-.col-offset-5 {
-  margin-left: 5%;
-}
-
 .item-title {
   font-family: Montserrat-Light;
   font-weight: normal;
@@ -35,7 +7,7 @@
   text-transform: uppercase;
 }
 
-.add-icon {
+.item-add-icon {
   cursor: pointer;
   display: flex;
   font-size: 35px;
@@ -50,7 +22,7 @@
   width: 90%;
 }
 
-.input-label-lg {
+.item-input-label-lg {
   display: table;
   padding: 7px 10px 7px 0px;
   max-width: 200px;
@@ -59,6 +31,6 @@
   font-size: 16px;
 }
 
-.square-img {
+.item-square-img {
   width: 40px;
 }

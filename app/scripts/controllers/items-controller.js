@@ -6,56 +6,34 @@
     .controller('ItemsController', ItemsController);
 
   function ItemsController(ItemsService,
-                          $ionicModal,
-                          $scope,
-                          $ionicActionSheet) {
+                           $scope,
+                           $ionicActionSheet) {
     var itemsVm = this;
-    itemsVm.newItem = newItem;
-    itemsVm.items = items;
-    itemsVm.editItem = editItem;
-    itemsVm.action = '';
-    itemsVm.showActionSheet = showActionSheet;
-
-    itemsVm.modal = modal;
+    itemsVm.items = null;
+    itemsVm.item = null;
+    itemsVm.submitProcess = submitProcess;
+    var modalInstance = null;
     itemsVm.openModal = openModal;
     itemsVm.closeModal = closeModal;
-    itemsVm.cleanForm = cleanForm;
+    itemsVm.showActionSheet = showActionSheet;
+    itemsVm.messages = {};
 
-    itemsVm.messages={};
-    itemsVm.itemForm = {};
+    getItems();
 
-    // initialize items
-    itemsVm.items();
-    itemsVm.modal();
-
-    // Manage modal item
-    function modal(){
-      $ionicModal.fromTemplateUrl('my-modal-item.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-      }).then(function(modal){
-        itemsVm.modal = modal;
-      });
-    }
-
-    function openModal(action){
-      itemsVm.action = action;
-      cleanForm();
-      itemsVm.modal.show();
+    function openModal() {
+      ItemsService.modalInstance($scope)
+        .then(function success(modal){
+          modalInstance = modal;
+          modalInstance.show();
+        });
     }
 
     function closeModal(){
-      itemsVm.modal.hide();
-      itemsVm.cleanForm();
+      modalInstance.remove();
+      cleanData();
     }
 
-    function cleanForm() {
-      itemsVm.itemForm = {};
-      itemsVm.messages = {};
-    }
-
-    // Show the action sheet for item options
-    function showActionSheet() {
+    function showActionSheet(item) {
       var hideSheet = $ionicActionSheet.show({
         buttons: [
           { text: 'Editar' }
@@ -68,16 +46,27 @@
         },
         buttonClicked: function(index) {
           if(index === 0) {
-            itemsVm.openModal('edit');
+            itemsVm.item = JSON.parse(JSON.stringify(item));
+            console.log(item);
+            itemsVm.openModal();
             hideSheet();
           }
         }
       });
     }
 
-    // Create a new item from provider
+    function cleanData(){
+      itemsVm.item = null;
+      itemsVm.messages = {};
+    }
+
+    function submitProcess(id){
+      /* jshint expr: true */
+      (id) ? editItem() : newItem();
+    }
+
     function newItem() {
-      ItemsService.newItem(itemsVm.itemForm)
+      ItemsService.newItem(itemsVm.item)
         .then(function success(resp){
           /*jshint camelcase:false */
           if(resp.provider_item){
@@ -89,21 +78,22 @@
         });
     }
 
-    // List all provider items
-    function items() {
-      ItemsService.items()
-        .then(function (resp) {
+    function getItems() {
+      ItemsService.getItems()
+        .then(function success(resp) {
           itemsVm.items = resp;
         });
     }
 
-    // Edit item provider
-    function editItem(id) {
-      ItemsService.editItem(id)
+    function editItem() {
+      ItemsService.editItem(itemsVm.item)
         .then(function success(resp) {
           /*jshint camelcase:false */
           if(resp.provider_item){
-            itemsVm.items.push(resp.provider_item);
+            var indexArray = itemsVm.items.map(function(o){return o.id;});
+            var index = indexArray.indexOf(itemsVm.item.id);
+            itemsVm.items[index] = itemsVm.item;
+            cleanData();
             itemsVm.closeModal();
           }else{
             itemsVm.messages = resp.errors;

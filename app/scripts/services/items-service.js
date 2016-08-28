@@ -8,15 +8,35 @@
   function ItemsService($http,
                         $ionicPopup,
                         $ionicLoading,
+                        $ionicModal,
                         ENV) {
 
     var service = {
       newItem: newItem,
-      items: items,
-      editItem: editItem
+      getItems: getItems,
+      editItem: editItem,
+      modalInstance: modalInstance
     };
 
     return service;
+
+    function modalInstance($scope){
+      return $ionicModal.fromTemplateUrl('my-modal-item.html', {
+        scope: $scope,
+        animation: 'slide-in-up',
+        backdropClickToClose: false,
+        hardwareBackButtonClose: false
+      })
+        .then(function(modal){
+          return modal;
+        },
+        function error(){
+          $ionicPopup.alert({
+            title: 'Error',
+            template: '{{::("globals.pleaseTryAgain"|translate)}}'
+          });
+        });
+    }
 
     function newItem(data) {
       $ionicLoading.show({
@@ -34,8 +54,8 @@
             template: '{{::("item.successItemSave"|translate)}}'
           });
           return resp.data;
-        })
-        .catch(function (resp) {
+        },
+        function error(resp) {
           if (resp.data.errors){
             $ionicPopup.alert({
               title: 'Faltan datos',
@@ -55,16 +75,16 @@
         });
     }
 
-    function items() {
+    function getItems() {
       return $http({
         method: 'GET',
         url: ENV.apiHost + '/api/provider/items'
       })
-        .then(function (resp) {
+        .then(function success(resp) {
           /*jshint camelcase:false */
           return resp.data.provider_items;
-        })
-        .catch(function (resp) {
+        },
+        function error(resp) {
           $ionicPopup.alert({
             title: 'Error',
             template: resp.data.error ? resp.data :
@@ -73,24 +93,24 @@
         });
     }
 
-    function editItem(id) {
+    function editItem(data) {
       $ionicLoading.show({
         template: '{{::("globals.updating"|translate)}}'
       });
       return $http({
         method: 'PUT',
-        url: ENV.apiHost + '/api/provider/items/:id',
-        data: id
+        url: ENV.apiHost + '/api/provider/items/' + data.id,
+        data: data
       })
         .then(function success(resp) {
           $ionicLoading.hide();
           $ionicPopup.alert({
             title: 'Éxito',
-            template: '{{::("globals.successUpdateItem"|translate)}}'
+            template: '{{::("item.successUpdateItem"|translate)}}'
           });
           return resp.data;
-        })
-        .catch(function (resp) {
+        },
+        function error(resp) {
           if (resp.data.errors){
             $ionicPopup.alert({
               title: 'Faltan datos',

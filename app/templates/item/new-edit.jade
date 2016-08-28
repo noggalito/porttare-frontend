@@ -1,12 +1,13 @@
-form.item-form-container(name='form', ng-submit='', enctype='multipart/form-data', novalidate)
+form.item-form-container(name='form', ng-submit='itemsVm.submitProcess(itemsVm.item.id)', enctype='multipart/form-data', novalidate)
   .list
-    span.input-label-lg (*) Campo requerido
+    span.item-input-label-lg (*) Campo requerido
     label.item.item-input.item-stacked-label
       span.input-label {{::("item.titulo"|translate|uppercase)}}*
       input(
         type='text',
-        ng-model='itemsVm.itemForm.titulo',
-        required='required'
+        ng-model='itemsVm.item.titulo',
+        required='required',
+        ng-class='input-error'
       )
     show-error(array-messages='itemsVm.messages.titulo')
 
@@ -14,7 +15,7 @@ form.item-form-container(name='form', ng-submit='', enctype='multipart/form-data
       span.input-label {{::("item.descripcion"|translate|uppercase)}}
       input(
         type='text',
-        ng-model='itemsVm.itemForm.descripcion'
+        ng-model='itemsVm.item.descripcion'
       )
     show-error(array-messages='itemsVm.messages.descripcion')
 
@@ -22,7 +23,7 @@ form.item-form-container(name='form', ng-submit='', enctype='multipart/form-data
       span.input-label {{::("item.precio"|translate|uppercase)}}*
       input(
         type='number',
-        ng-model='itemsVm.itemForm.precio',
+        ng-model='itemsVm.item.precio',
         required='required'
       )
     show-error(array-messages='itemsVm.messages.precio')
@@ -31,7 +32,7 @@ form.item-form-container(name='form', ng-submit='', enctype='multipart/form-data
       span.input-label {{::("item.volumen"|translate|uppercase)}}
       input(
         type='text',
-        ng-model='itemsVm.itemForm.volumen'
+        ng-model='itemsVm.item.volumen'
       )
     show-error(array-messages='itemsVm.messages.volumen')
 
@@ -39,7 +40,7 @@ form.item-form-container(name='form', ng-submit='', enctype='multipart/form-data
       span.input-label {{::("item.peso"|translate|uppercase)}}
       input(
         type='text',
-        ng-model='itemsVm.itemForm.peso'
+        ng-model='itemsVm.item.peso'
       )
     show-error(array-messages='itemsVm.messages.peso')
     //- Pending upload image
@@ -56,13 +57,13 @@ form.item-form-container(name='form', ng-submit='', enctype='multipart/form-data
       input(
         type='text',
         name='ob',
-        ng-model='itemsVm.itemForm.observacion'
+        ng-model='itemsVm.item.observacion'
       )
     show-error(array-messages='itemsVm.messages.observacion')
 
     label.item.item-input.item-select
           .input-label {{::("item.unidadMedida"|translate|uppercase)}}
-          select(ng-model='itemsVm.itemForm.unidad_medida')
+          select(ng-model='itemsVm.item.unidad_medida')
             option(selected='' value='volumen') Volumen
             option(value='unidades') Unidades
             option(value='peso') Peso

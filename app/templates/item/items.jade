@@ -5,23 +5,19 @@ ion-view(
     .row
       .col.col-75.col-offset-5
         h4.item-title {{::("item.offerItem"|translate)}}
-      .col.col-15.add-icon
-        i(class='icon ion-plus-circled', ng-click="itemsVm.openModal('new')")
+      .col.col-15.item-add-icon
+        i(class='icon ion-plus-circled', ng-click="itemsVm.openModal()")
     .row.col.col-offset-5.col-90.col-offset-5
       .list
-        a(ng-repeat='item in itemsVm.items', class='item item-avatar' ng-click='itemsVm.showActionSheet()')
-          img(class='square-img', src='{{item.imagen}}')
+        a(ng-repeat='item in itemsVm.items', class='item item-avatar' ng-click='itemsVm.showActionSheet(item)')
+          img(class='item-square-img', src='{{item.imagen}}')
           h2 {{ item.titulo }}
           p {{ item.descripcion }}
-  //- Modal for add and edit the item
   script(id='my-modal-item.html', type='text/ng-template')
       ion-modal-view
         ion-header-bar.bar.bar-header.bar-light
-          h4(ng-if="itemsVm.action==='new'").title {{::("globals.new"|translate)}} {{::("item.item"|translate)}}
-          h4(ng-if="itemsVm.action==='edit'").title {{::("globals.edit"|translate)}} {{::("item.item"|translate)}}
+          h4(ng-hide="itemsVm.item.id").title {{::("globals.new"|translate)}} {{::("item.item"|translate)}}
+          h4(ng-show="itemsVm.item.id").title {{::("globals.edit"|translate)}} {{::("item.item"|translate)}}
           button(class='button ion-chevron-left button-clear', ng-click='itemsVm.closeModal()')  Cancelar
         ion-content
-          //- Form for new item
-          .row(ng-if="itemsVm.action==='new'", ng-include="'templates/item/new.html'")
-          //- Form for edit item
-          .row(ng-if="itemsVm.action==='edit'", ng-include="'templates/item/edit.html'")
+          .row(ng-include="'templates/item/new-edit.html'")
