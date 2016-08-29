@@ -9,14 +9,11 @@
                            $scope,
                            $ionicActionSheet) {
     var itemsVm = this;
-    itemsVm.items = null;
-    itemsVm.item = null;
     itemsVm.submitProcess = submitProcess;
     var modalInstance = null;
     itemsVm.openModal = openModal;
     itemsVm.closeModal = closeModal;
     itemsVm.showActionSheet = showActionSheet;
-    itemsVm.messages = {};
 
     getItems();
 
@@ -47,7 +44,6 @@
         buttonClicked: function(index) {
           if(index === 0) {
             itemsVm.item = JSON.parse(JSON.stringify(item));
-            console.log(item);
             itemsVm.openModal();
             hideSheet();
           }

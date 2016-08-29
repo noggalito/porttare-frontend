@@ -1,36 +1,38 @@
-.item-title {
-  font-family: Montserrat-Light;
-  font-weight: normal;
-  padding-top: 10px;
-  margin-bottom: 15px;
-  text-align: left;
-  text-transform: uppercase;
-}
+.item-page{
+  .item-title {
+    font-family: Montserrat-Light;
+    font-weight: normal;
+    padding-top: 10px;
+    margin-bottom: 15px;
+    text-align: left;
+    text-transform: uppercase;
+  }
 
-.item-add-icon {
-  cursor: pointer;
-  display: flex;
-  font-size: 35px;
-  justify-content: center;
-  flex-direction: column;
-  text-align: right;
-}
+  .item-add-icon {
+    cursor: pointer;
+    display: flex;
+    font-size: 35px;
+    justify-content: center;
+    flex-direction: column;
+    text-align: right;
+  }
 
-.item-form-container {
-  margin: auto;
-  margin-top: 0px;
-  width: 90%;
-}
+  .item-form-container {
+    margin: auto;
+    margin-top: 0px;
+    width: 90%;
+  }
 
-.item-input-label-lg {
-  display: table;
-  padding: 7px 10px 7px 0px;
-  max-width: 200px;
-  width: 90%;
-  color: #888;
-  font-size: 16px;
-}
+  .item-input-label-lg {
+    display: table;
+    padding: 7px 10px 7px 0px;
+    max-width: 200px;
+    width: 90%;
+    color: #888;
+    font-size: 16px;
+  }
 
-.item-square-img {
-  width: 40px;
+  .item-square-img {
+    width: 40px;
+  }
 }

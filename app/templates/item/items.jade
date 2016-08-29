@@ -1,7 +1,7 @@
 ion-view(
   view-title='{{::("item.items"|translate)}}'
 )
-  ion-content
+  ion-content.item-page
     .row
       .col.col-75.col-offset-5
         h4.item-title {{::("item.offerItem"|translate)}}
@@ -13,11 +13,11 @@ ion-view(
           img(class='item-square-img', src='{{item.imagen}}')
           h2 {{ item.titulo }}
           p {{ item.descripcion }}
-  script(id='my-modal-item.html', type='text/ng-template')
-      ion-modal-view
-        ion-header-bar.bar.bar-header.bar-light
-          h4(ng-hide="itemsVm.item.id").title {{::("globals.new"|translate)}} {{::("item.item"|translate)}}
-          h4(ng-show="itemsVm.item.id").title {{::("globals.edit"|translate)}} {{::("item.item"|translate)}}
-          button(class='button ion-chevron-left button-clear', ng-click='itemsVm.closeModal()')  Cancelar
-        ion-content
-          .row(ng-include="'templates/item/new-edit.html'")
+    script(id='my-modal-item.html', type='text/ng-template')
+        ion-modal-view
+          ion-header-bar.bar.bar-header.bar-light
+            h4(ng-hide="itemsVm.item.id").title {{::("globals.new"|translate)}} {{::("item.item"|translate)}}
+            h4(ng-show="itemsVm.item.id").title {{::("globals.edit"|translate)}} {{::("item.item"|translate)}}
+            button(class='button ion-chevron-left button-clear', ng-click='itemsVm.closeModal()')  Cancelar
+          ion-content.item-page
+            .row(ng-include="'templates/item/new-edit.html'")
