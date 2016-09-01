@@ -6,7 +6,7 @@ ion-view(
   ion-content(class="category-page")
     slick(settings="categoryVm.slickConfig")
       .slick-container(ng-repeat="category in categoryVm.categories")
-        .slick-content
+        .slick-content(ui-sref='app.categories.provider({id_cat: category.id, id: category.provider.id })')
           .img(style="background-image: url('{{category.imagen}}')")
           .nombre {{category.name}}
           .horario {{category.horario}}
