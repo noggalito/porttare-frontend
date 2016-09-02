@@ -55,7 +55,7 @@ ion-view
             label(ng-class="{'item-error': providerVm.messages.telefono}").item.item-input.item-stacked-label
               span.input-label {{::("provider.phone"|translate)}}
               input(
-                type='text',
+                type='tel',
                 placeholder='',
                 name='telefono',
                 ng-model='providerVm.providerForm.telefono'
