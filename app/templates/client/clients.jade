@@ -15,11 +15,3 @@ ion-view(
         a(ng-repeat="client in clientsVm.clients | filter: clientsVm.query", class="item", ng-click="clientsVm.showActionSheet(client)")
           h2 {{ client.nombres }}
           p {{ client.ruc }}
-    script(id='my-modal-client.html', type='text/ng-template')
-        ion-modal-view
-          ion-header-bar.bar.bar-header.bar-light
-            h4(ng-hide="clientsVm.client.id").title {{::("globals.new"|translate)}} {{::("client.client"|translate)}}
-            h4(ng-show="clientsVm.client.id").title {{::("globals.edit"|translate)}} {{::("client.client"|translate)}}
-            button(class='button ion-chevron-left button-clear', ng-click='clientsVm.closeModal()')  Cancelar
-          ion-content.client-page
-            .row(ng-include="'templates/client/new-edit.html'")

@@ -22,7 +22,7 @@
     return service;
 
     function modalInstance($scope){
-      return $ionicModal.fromTemplateUrl('my-modal-client.html', {
+      return $ionicModal.fromTemplateUrl('templates/client/new-edit.html', {
         scope: $scope,
         animation: 'slide-in-up',
         backdropClickToClose: false,
