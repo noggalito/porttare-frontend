@@ -34,28 +34,26 @@
       ClientsService.newClient(clientsVm.client)
         .then(function success(resp){
           /* jshint camelcase:false */
-          if(resp.provider_client){
-            clientsVm.clients.push(resp.provider_client);
-            clientsVm.closeModal();
-          }else{
-            clientsVm.messages = resp.errors;
-          }
+          clientsVm.clients.push(resp.data.provider_client);
+          clientsVm.closeModal();
+        },
+        function error(resp){
+          clientsVm.messages = resp.data.errors;
         });
     }
 
     function editClient() {
       ClientsService.editClient(clientsVm.client)
         .then(function success(resp) {
+          var indexArray = clientsVm.clients.map(function(o){return o.id;});
+          var index = indexArray.indexOf(clientsVm.client.id);
           /* jshint camelcase:false */
-          if(resp.provider_client){
-            var indexArray = clientsVm.clients.map(function(o){return o.id;});
-            var index = indexArray.indexOf(clientsVm.client.id);
-            clientsVm.clients[index] = clientsVm.client;
-            cleanData();
-            clientsVm.closeModal();
-          }else{
-            clientsVm.messages = resp.errors;
-          }
+          clientsVm.clients[index] = resp.data.provider_client;
+          cleanData();
+          clientsVm.closeModal();
+        },
+        function error(resp){
+          clientsVm.messages = resp.errors;
         });
     }
 

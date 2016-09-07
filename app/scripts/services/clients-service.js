@@ -9,6 +9,7 @@
                         $ionicPopup,
                         $ionicLoading,
                         $ionicModal,
+                        $q,
                         ENV) {
 
     var service = {
@@ -57,10 +58,11 @@
     }
 
     function newClient(data) {
+      var deferred = $q.defer();
       $ionicLoading.show({
         template: '{{::("globals.saving"|translate)}}'
       });
-      return $http({
+      $http({
         method: 'POST',
         url: ENV.apiHost + '/api/provider/clients',
         data: data
@@ -71,23 +73,26 @@
             title: 'Éxito',
             template: '{{::("client.successClientSave"|translate)}}'
           });
-          return resp.data;
+          deferred.resolve(resp);
         },
         function error(resp) {
           $ionicPopup.alert({
             title: 'Error',
-            template: '{{::("globals.pleaseTryAgain"|translate)}}'
+            template: resp.status===401 ? resp.data.error:
+              '{{::("globals.pleaseTryAgain"|translate)}}'
           });
           $ionicLoading.hide();
-          return resp.data;
+          deferred.reject(resp);
         });
+      return deferred.promise;
     }
 
     function editClient(data) {
+      var deferred = $q.defer();
       $ionicLoading.show({
         template: '{{::("globals.updating"|translate)}}'
       });
-      return $http({
+      $http({
         method: 'PUT',
         url: ENV.apiHost + '/api/provider/clients/' + data.id,
         data: data
@@ -98,16 +103,18 @@
             title: 'Éxito',
             template: '{{::("client.successUpdateClient"|translate)}}'
           });
-          return resp.data;
+          deferred.resolve(resp);
         },
         function error(resp) {
           $ionicPopup.alert({
             title: 'Error',
-            template: '{{::("globals.pleaseTryAgain"|translate)}}'
+            template: resp.status===401 ? resp.data.error:
+                    '{{::("globals.pleaseTryAgain"|translate)}}'
           });
           $ionicLoading.hide();
           return resp.data;
         });
+      return deferred.promise;
     }
   }
 })();

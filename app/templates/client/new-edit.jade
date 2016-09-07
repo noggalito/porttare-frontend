@@ -14,7 +14,6 @@ form(name='form', class="client-form-container" ng-submit='clientsVm.submitProce
       span.input-label {{::("client.ruc"|translate|uppercase)}}*
       input(
         type='text',
-        pattern='[0-9]{13}',
         ng-model='clientsVm.client.ruc',
         required='required'
       )
@@ -42,7 +41,6 @@ form(name='form', class="client-form-container" ng-submit='clientsVm.submitProce
       span.input-label {{::("client.telefono"|translate|uppercase)}}*
       input(
         type='text',
-        pattern='[0-9-]+',
         ng-model='clientsVm.client.telefono',
         required='required'
       )
