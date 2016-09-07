@@ -112,7 +112,7 @@
                     '{{::("globals.pleaseTryAgain"|translate)}}'
           });
           $ionicLoading.hide();
-          return resp.data;
+          deferred.reject(resp);
         });
       return deferred.promise;
     }

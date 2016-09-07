@@ -53,7 +53,7 @@
           clientsVm.closeModal();
         },
         function error(resp){
-          clientsVm.messages = resp.errors;
+          clientsVm.messages = resp.data.errors;
         });
     }
 
