@@ -1,13 +1,46 @@
 .category-page{
   font-family: Montserrat-Regular;
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: $white;
+  .category-title {
+    font-size: 3em;
+    font-family: Montserrat-Bold;
+    margin-top: 5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    padding: 0 0.5rem;
+  }
+  .category-description {
+    text-align: center;
+    padding: 0 0.5rem;
+  }
   .slick-container{
     margin-top: 30px;
     .slick-content {
       text-align: center;
-      .img {
-        margin: auto;
+      .provider-card {
+        background-color: $white;
         width: 200px;
-        height: 200px;
+        height: 300px;
+        margin: auto;
+        color: $base-grey;
+        .img {
+          margin: auto;
+          width: 200px;
+          height: 80%;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+        &-footer{
+          height: 20%;
+          text-align: left;
+          padding: 0 1rem;
+          .nombre {
+            opacity: 0.7;
+          }
+        }
       }
     }
   }

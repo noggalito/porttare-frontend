@@ -97,6 +97,26 @@
           templateUrl: 'templates/category/index.html',
           controller: 'CategoriesController',
           controllerAs: 'categoryVm',
+          resolve: {
+            data: function (CategoriesService, $q, $ionicLoading, $ionicPopup) {
+              $ionicLoading.show({
+                template: 'cargando...'
+              });
+              return CategoriesService.getCategories()
+                .then(function success(res) {
+                  $ionicLoading.hide();
+                  return res.data;
+                }, function error(res) {
+                  $ionicLoading.hide();
+                  var message = res.data.error ? res.data.error :
+                    'Hubo un error, intentalo nuevamente.';
+                  $ionicPopup.alert({
+                    title: 'Error',
+                    template: message
+                  });
+                });
+            }
+          }
         }
       }
     })
@@ -107,6 +127,30 @@
           templateUrl: 'templates/category/show.html',
           controller: 'CategoryController',
           controllerAs: 'categoryVm',
+          resolve: {
+            data: function () {
+
+              //TODO remove this when we have the endpoint
+              var providers = [
+                {id: 1, 'razon_social': 'Empresa 1', imagen: '../images/ionic.png'},
+                {id: 2, 'razon_social': 'Empresa 2', imagen: '../images/ionic.png'},
+                {id: 3, 'razon_social': 'Empresa 3', imagen: '../images/ionic.png'},
+                {id: 4, 'razon_social': 'Empresa 4', imagen: '../images/ionic.png'},
+                {id: 5, 'razon_social': 'Empresa 5', imagen: '../images/ionic.png'}
+              ];
+              var responsedata = {
+                category: {
+                  titulo: 'Medicinas',
+                  imagen: '../images/bg.png',
+                  descripcion: 'Paracetamol, aspirinas, pastillas de dolor ' +
+                    'de cabeza y muchas más, en un sólo lugar'
+                },
+                providers: providers
+              };
+
+              return responsedata;
+            }
+          }
         }
       },
       resolve: {
