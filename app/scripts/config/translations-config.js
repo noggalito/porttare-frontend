@@ -72,6 +72,11 @@
         observaciones: 'Observaciones',
         unidadMedida: 'Unidad de medida'
       },
+      actions: {
+        showCategory: 'Lista de Categorías',
+        newProvider: 'Nuevo Proveedor'
+
+      }
     });
 
     $translateProvider.preferredLanguage('es');
