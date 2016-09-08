@@ -1,4 +1,6 @@
-ion-view
+ion-view(
+  view-title='{{::("menu.provider"|translate)}}'
+)
   ion-content.pre-application-form
     .row
       .moviggo-logo-2.branding-logo
@@ -6,7 +8,6 @@ ion-view
       .list.common-text
         h1.title Conviértete en proveedor
         p Con moviggo puedes enviar productos y convertirte en proveedor
-
     .row
       .list.common-text
         a.button.button-primary(ui-sref='app.provider.new') Empezar
