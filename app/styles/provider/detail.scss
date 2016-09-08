@@ -1,0 +1,26 @@
+.provider-detail{
+  .format-image{
+    width: 100%;
+    height: 120px;
+  }
+  .details{
+    padding: 20px;
+  }
+  .grid-parent{
+    background: #D8D8D8;
+
+    .grid-33{
+      width: 33.333%;
+    }
+
+    .content{
+      padding: 2px;
+      display: flex;
+
+      .product-detail{
+        background: white;
+        flex-grow: 1;
+      }
+    }
+  }
+}

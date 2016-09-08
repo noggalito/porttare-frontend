@@ -110,7 +110,7 @@
       }
     })
     .state('app.categories.provider', {
-      url: '/:id_cat/provider/:id',
+      url: '/:category_id/provider/:id',
       views: {
         'menuContent@app': {
           templateUrl: 'templates/provider/show.html',

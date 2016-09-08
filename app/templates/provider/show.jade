@@ -1,5 +1,20 @@
-ion-view
+ion-view(
+  view-title='{{::("menu.provider"|translate)}}'
+)
+  ion-nav-title
+    .alt-logo
   ion-content
-  .row
-    h1 {{providerDetVm.provider.name}}
-      
+    .provider-detail
+      .row
+        .col-25
+          img.format-image(src='{{providerDetVm.provider.image}}')
+        .col-75.details
+          .nombre {{providerDetVm.provider.name}}
+          .descripcion {{providerDetVm.provider.description}}
+          .horario {{providerDetVm.provider.horary}}
+      .grid-parent
+        .content.grid-33(ng-repeat="provider in providerDetVm.provider.products")
+            .product-detail
+              img.format-image(src='{{provider.image}}')
+              .descripcion {{provider.description}}
+              .precio {{provider.price}}
