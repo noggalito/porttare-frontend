@@ -5,9 +5,10 @@
     .module('porttare.controllers')
     .controller('CategoryController', CategoryController);
 
-  function CategoryController() {
+  function CategoryController(data) {
     var categoryVm = this;
 
+    categoryVm.categoryName = data.category.titulo;
     //TODO remove this when we have the endpoint
     categoryVm.categories = [{id: 1, name: 'hola1', imagen: '../images/bg.png'},
                             {id: 1, name: 'hola2', imagen: '../images/bg.png'},
