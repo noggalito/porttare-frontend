@@ -54,7 +54,8 @@
         updating: 'Actualizando',
         pleaseTryAgain: 'Inténtalo nuevamente',
         leftData: 'Faltan datos',
-        error: 'Error'
+        error: 'Error',
+        or: 'o'
       },
       item: {
         item: 'Artículo',

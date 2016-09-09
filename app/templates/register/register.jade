@@ -2,27 +2,25 @@ ion-view(
   view-title="Registro",
   hide-nav-bar="true"
 )
-  ion-content.manual-register-view
+  ion-content.login-form
     back-button
     .row
       .col.header-text Crear mi cuenta
     .row
       .col.intro-description Una cuenta, muchos perfiles
 
-    .row
-      form.form-container(
-        ng-submit='registerVm.register()'
-      )
+    .row.width-constraint
+      form(ng-submit='registerVm.register()')
         .list
           label.item.item-input
             span.email-left-icon
             input(
-                type='email',
-                ng-model='registerVm.registerForm.email'
-                required='required'
-                placeholder='Correo electrónico'
-                autosize-input
-              )
+              type='email',
+              ng-model='registerVm.registerForm.email'
+              required='required'
+              placeholder='Correo electrónico'
+              autosize-input
+            )
           label.item.item-input
             span.lock-left-icon
             input(
@@ -39,13 +37,19 @@ ion-view(
               required='required',
               placeholder="Confirmar contraseña"
             )
+
         .button-actions
-            input(
-              type='submit',
-              value="¡Regístrame!"
-            ).button.button-primary.button-block
-    .row.form-container
+          input(
+            type='submit',
+            value="¡Regístrame!"
+          ).button.button-primary.button-block
+      
+    .row.or-option
+      span {{::("globals.or"|translate)}}
+    
+    .row.width-constraint
       .button.facebook-login(ng-click="registerVm.loginWithFB()")
         span.fb-left-icon
         span.fb-copytext Continuar con facebook
+
 .bar.bar-footer.bar-footer-yellow-stripe

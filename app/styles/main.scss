@@ -5,16 +5,17 @@
 @import "colors/colors";
 @import "common/rows";
 @import "common/mixins";
-@import "common/inputs";
 @import "common/buttons";
 @import "common/bar-footer";
 @import "common/input_icons";
 @import "common/grid";
+@import "forms/general";
+@import "forms/inputs";
 
 @import "intro";
-@import "login";
-@import "register";
 @import "branding-logos";
+@import "login/general";
+@import "login/register";
 @import "applications/form";
 @import "map/map";
 @import "provider/new";

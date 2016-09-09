@@ -2,7 +2,7 @@ ion-view
   ion-content
     .new-provider-view
       .row
-        form.form-container(name="newProviderForm" ng-submit='providerVm.createProvider()', novalidate='')
+        form(name="newProviderForm" ng-submit='providerVm.createProvider()', novalidate='')
           .list
             .item.item-input.item-stacked-label.form-legend
               span.input-label {{::("provider.formLegend"|translate)}}
