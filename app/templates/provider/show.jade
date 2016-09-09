@@ -13,8 +13,8 @@ ion-view(
           .descripcion {{providerDetVm.provider.description}}
           .horario {{providerDetVm.provider.horary}}
       .grid-parent
-        .content.grid-33(ng-repeat="provider in providerDetVm.provider.products")
-            .product-detail
-              img.format-image(src='{{provider.image}}')
-              .descripcion {{provider.description}}
-              .precio {{provider.price}}
+        .content.grid-33(ng-repeat="product in providerDetVm.provider.products")
+            .product-detail(ui-sref='app.categories.provider.product({id:product.id})')
+              img.format-image(src='{{product.image}}')
+              .descripcion {{product.description}}
+              .precio {{product.price}}

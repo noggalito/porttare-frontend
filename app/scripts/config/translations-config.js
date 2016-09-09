@@ -22,6 +22,7 @@
         location: 'Ubicación',
         provider: 'Proveedor',
         products: 'Productos',
+        product: 'Producto',
         logout: 'Cerrar sesión'
       },
       provider: {

@@ -144,6 +144,16 @@ function routes($stateProvider, $urlRouterProvider) {
       }
     }
   })
+  .state('app.categories.provider.product', {
+    url: '/product/:id',
+    views: {
+      'menuContent@app': {
+        templateUrl: 'templates/product/show.html',
+        controller: 'ProductController',
+        controllerAs: 'productVm',
+      }
+    }
+  })
   .state('app.items', {
     url: '/items',
     abstract: true
