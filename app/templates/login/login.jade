@@ -9,7 +9,7 @@ ion-view(
     .row.width-constraint
       form(ng-submit='loginVm.login()')
         .list
-          label.item.item-input
+          label.item.item-input.with-icon
             span.email-left-icon
             input(
               type='email',
@@ -17,7 +17,7 @@ ion-view(
               required='required'
               placeholder='{{::("login.email"|translate)}}'
             )
-          label.item.item-input
+          label.item.item-input.with-icon
             span.lock-left-icon
             input(
               type='password',

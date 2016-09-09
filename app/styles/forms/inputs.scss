@@ -1,12 +1,5 @@
 input {
   font-family: Montserrat-Light;
-
-  &[type=text],
-  &[type=password],
-  &[type=email],
-  &[type=number] {
-    padding-left: 40px;
-  }
 }
 
 .item-input {
@@ -16,4 +9,15 @@ input {
   border-left: none;
   border-right: none;
   border-top: none;
+
+  &.with-icon {
+    input {
+      &[type=text],
+      &[type=password],
+      &[type=email],
+      &[type=number] {
+        padding-left: 40px;
+      }
+    }
+  }
 }
