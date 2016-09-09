@@ -33,7 +33,7 @@
         .catch(function (resp) {
           $ionicPopup.alert({
             title: 'Error',
-            template: resp.errors.join(', ')
+            template: resp.errors[0]
           });
         })
         .finally(function(){
