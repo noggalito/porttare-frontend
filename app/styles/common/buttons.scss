@@ -2,7 +2,7 @@
   margin: auto;
 
   &.button-link {
-    color: $dark;
+    color: $base-grey;
     text-decoration: underline;
   }
 }
@@ -21,7 +21,6 @@
 .button-primary,
 .button-primary.button-full {
   @extend .common-button;
-  margin-top: 20px;
 
   &.spaced {
     margin-top: 30px;

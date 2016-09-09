@@ -31,7 +31,7 @@ ion-view(
             value='{{::("login.login"|translate)}}'
           ).button.button-primary.button-block
           
-    .list.list-inset.top-narrow
+    .list.list-inset.list--top-narrow
       a.button.button-block.button-clear.button-link(ui-sref='send') {{::("login.forgotPassword"|translate)}}
       
       .button.button-block.facebook-login(ng-click="loginVm.loginWithFB()")

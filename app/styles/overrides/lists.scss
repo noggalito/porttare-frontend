@@ -1,5 +1,10 @@
 .list {
-  &.top-narrow {
+  &--top-narrow {
     margin-top: 0;
+  }
+
+  &--centered {
+    margin-left: auto;
+    margin-right: auto;
   }
 }

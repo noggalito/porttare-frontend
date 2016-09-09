@@ -1,5 +1,43 @@
 .resource-form {
+  form {
+    width: 100%;
+  }
+
   legend {
-    
+    border: 0;
+    font-size: 16px;
+    line-height: 30px;
+    text-transform: uppercase;
+    font-family: Montserrat-SemiBold;
+  }
+
+  .item-error {
+    border-color: $error-red;
+  }
+
+  label.item-input.item-stacked-label {
+    // override default
+    margin-top: 15px;
+    margin-bottom: 5px;
+    padding-bottom: 0;
+    padding-left: 0;
+
+    .input-label {
+      font-size: 15px;
+      text-transform: uppercase;
+      font-family: Montserrat-Regular;
+    }
+
+    input {
+      &[type=tel],
+      &[type=text],
+      &[type=email],
+      &[type=number],
+      &[type=password] {
+        padding-left: 15px;
+        padding-bottom: 0;
+        padding-top: 0;
+      }
+    }
   }
 }

@@ -6,12 +6,12 @@ ion-view(
   ion-content.resource-form
     .row
       form(name="newProviderForm" ng-submit='providerVm.createProvider()', novalidate='')
-        .list
+        .list.list-inset
           legend {{::("provider.formLegend"|translate)}}
-          //- .item.item-input.item-stacked-label.form-legend
-          //-   span.input-label 
 
-          label(ng-class="{'item-error': providerVm.messages.ruc}").item.item-input.item-stacked-label
+          label.item.item-input.item-stacked-label(
+            ng-class="{'item-error': providerVm.messages.ruc}"
+          )
             span.input-label RUC
             input(
               type='text',
@@ -21,7 +21,9 @@ ion-view(
             )
           show-error(array-messages='providerVm.messages.ruc')
 
-          label(ng-class="{'item-error': providerVm.messages.razon_social}").item.item-input.item-stacked-label
+          label.item.item-input.item-stacked-label(
+            ng-class="{'item-error': providerVm.messages.razon_social}"
+          )
             span.input-label {{::("provider.businessName"|translate)}}
             input(
               type='text',
@@ -31,7 +33,9 @@ ion-view(
             )
           show-error(array-messages='providerVm.messages.razon_social')
 
-          label(ng-class="{'item-error': providerVm.messages.actividad_economica}").item.item-input.item-stacked-label
+          label.item.item-input.item-stacked-label(
+            ng-class="{'item-error': providerVm.messages.actividad_economica}"
+          )
             span.input-label {{::("provider.economicActivity"|translate)}}
             input(
               type='text',
@@ -57,7 +61,9 @@ ion-view(
               name='representante_legal',
               ng-model='providerVm.providerForm.representante_legal'
             )
-          label(ng-class="{'item-error': providerVm.messages.telefono}").item.item-input.item-stacked-label
+          label.item.item-input.item-stacked-label(
+            ng-class="{'item-error': providerVm.messages.telefono}"
+          )
             span.input-label {{::("provider.phone"|translate)}}
             input(
               type='tel',
@@ -67,7 +73,9 @@ ion-view(
             )
           show-error(array-messages='providerVm.messages.telefono')
 
-          label(ng-class="{'item-error': providerVm.messages.email}").item.item-input.item-stacked-label
+          label.item.item-input.item-stacked-label(
+            ng-class="{'item-error': providerVm.messages.email}"
+          )
             span.input-label {{::("provider.email"|translate)}}
             input(
               type='email',
@@ -85,7 +93,9 @@ ion-view(
               name='fecha_inicio_actividad',
               ng-model='providerVm.providerForm.fecha_inicio_actividad'
             )
-          label(ng-class="{'item-error': providerVm.messages.banco_nombre}").item.item-input.item-stacked-label
+          label.item.item-input.item-stacked-label(
+            ng-class="{'item-error': providerVm.messages.banco_nombre}"
+          )
             span.input-label {{::("provider.bankName"|translate)}}
             input(
               type='text',
@@ -95,7 +105,9 @@ ion-view(
             )
           show-error(array-messages='providerVm.messages.banco_nombre')
 
-          label(ng-class="{'item-error': providerVm.messages.banco_numero_cuenta}").item.item-input.item-stacked-label
+          label.item.item-input.item-stacked-label(
+            ng-class="{'item-error': providerVm.messages.banco_numero_cuenta}"
+          )
             span.input-label {{::("provider.accountNumber"|translate)}}
             input(
               type='text',
@@ -105,7 +117,9 @@ ion-view(
             )
           show-error(array-messages='providerVm.messages.banco_numero_cuenta')
 
-          label(ng-class="{'item-error': providerVm.messages.banco_identificacion}").item.item-input.item-stacked-label
+          label.item.item-input.item-stacked-label(
+            ng-class="{'item-error': providerVm.messages.banco_identificacion}"
+          )
             span.input-label {{::("provider.bankId"|translate)}}
             input(
               type='text',
@@ -172,9 +186,9 @@ ion-view(
                 ng-click="providerVm.toggleCheck(method)"
               ) {{ ::method.label }}
 
-        .button-actions
-          input(
+        .bar.bar-footer.bar-stable
+          input.button.button-primary(
             type='submit',
             value="Crear proveedor",
             ng-class='{disabled: newProviderForm.$invalid}'
-          ).button.button-primary.button-block
+          )
