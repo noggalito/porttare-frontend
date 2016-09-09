@@ -16,9 +16,9 @@
     font-size: 1.6em;
     margin-bottom: 20px;
   }
-  .description {
+  .intro-description {
     @extend .common-text;
-    padding-left: 3em;
-    padding-right: 3em;
+    margin-left: 2.5em;
+    margin-right: 2.5em;
   }
 }
