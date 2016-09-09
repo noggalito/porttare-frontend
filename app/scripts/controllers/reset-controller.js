@@ -24,7 +24,7 @@
     $rootScope.$on('auth:password-change-error', function (event, data) {
       $ionicPopup.alert({
         title: 'Error',
-        template: data.errors.full_messages[0]//jshint ignore:line
+        template: data.errors.join(', ')
       });
     });
 
