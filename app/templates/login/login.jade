@@ -2,21 +2,21 @@ ion-view(
   view-title="Login",
   hide-nav-bar="true"
 )
-  ion-content
+  ion-content.login-form
     back-button
     .row
       .moviggo-logo-1
-    .row
-      form.form-container(ng-submit='loginVm.login()')
+    .row.width-constraint
+      form(ng-submit='loginVm.login()')
         .list
           label.item.item-input
             span.email-left-icon
             input(
-                type='email',
-                ng-model='loginVm.loginForm.email'
-                required='required'
-                placeholder='{{::("login.email"|translate)}}'
-              )
+              type='email',
+              ng-model='loginVm.loginForm.email'
+              required='required'
+              placeholder='{{::("login.email"|translate)}}'
+            )
           label.item.item-input
             span.lock-left-icon
             input(
@@ -26,13 +26,13 @@ ion-view(
               placeholder='{{::("login.password"|translate)}}'
             )
         .button-actions
-            input(
-              type='submit',
-              value='{{::("login.login"|translate)}}'
-            ).button.button-primary.button-block
-    .row.form-container
-      a.button.button-clear.button-dark(ui-sref='send') {{::("login.forgotPassword"|translate)}}
-    .row.form-container
+          input(
+            type='submit',
+            value='{{::("login.login"|translate)}}'
+          ).button.button-primary.button-block
+    .row.width-constraint
+      a.button.button-clear.button-link(ui-sref='send') {{::("login.forgotPassword"|translate)}}
+    .row.width-constraint
       .button.facebook-login(ng-click="loginVm.loginWithFB()")
         span.fb-left-icon
         span.fb-copytext {{::("login.continueWithFacebook"|translate)}}

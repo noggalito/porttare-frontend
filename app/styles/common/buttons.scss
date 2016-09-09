@@ -1,5 +1,10 @@
 .button {
   margin: auto;
+
+  &.button-link {
+    color: $dark;
+    text-decoration: underline;
+  }
 }
 
 .common-button {

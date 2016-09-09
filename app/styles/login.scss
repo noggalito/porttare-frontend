@@ -1,5 +1,13 @@
-.form-container {
-  margin: auto;
-  margin-top: 50px;
-  width: 90%;
+.login-form {
+  .moviggo-logo-1 {
+    margin-top: 40px
+  }
+  form {
+    width: 100%;
+    margin-top: 50px;
+  }
+  .width-constraint {
+    margin: auto;
+    width: 90%;
+  }
 }
