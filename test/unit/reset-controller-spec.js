@@ -127,7 +127,7 @@
           deferredReset.reject({ errors: [] });
           $rootScope.$digest();
           /*jshint camelcase: false */
-          var errors = { errors: { full_messages: ['message'] } };
+          var errors = { errors: ['message'] };
           $rootScope.$emit('auth:password-change-error', errors);
           sinon.assert.calledOnce($ionicPopup.alert);
         });
