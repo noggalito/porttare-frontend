@@ -1,0 +1,38 @@
+.client-page{
+  .client-title {
+    text-transform: uppercase;
+  }
+
+  .client-add-icon {
+    cursor: pointer;
+    display: flex;
+    font-size: 35px;
+    justify-content: center;
+    flex-direction: column;
+    text-align: right;
+  }
+
+  .client-form-container {
+    margin: auto;
+    margin-top: 0;
+    width: 90%;
+  }
+
+  [type=text],
+  [type=email],
+  [type=textarea] {
+    color: $base-grey;
+    display: block;
+    padding-bottom: 0;
+    padding-left: 0;
+  }
+
+  .client-input-label-lg {
+    color: $base-grey;
+    display: table;
+    font-size: 1.2em;
+    padding: 7px 10px 7px 0px;
+    max-width: 200px;
+    width: 90%;
+  }
+}

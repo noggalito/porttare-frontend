@@ -1,0 +1,64 @@
+form(name='form', class="client-form-container" ng-submit='clientsVm.submitProcess(clientsVm.client.id)', novalidate)
+  .list
+    span.client-input-label-lg (*) Campo requerido
+    label.item.item-input.item-stacked-label
+      span.input-label {{::("client.notas"|translate|uppercase)}}
+      input(
+        type='textarea',
+        ng-model='clientsVm.client.notas',
+        ng-class='input-error'
+      )
+    show-error(array-messages='clientsVm.messages.notas')
+
+    label.item.item-input.item-stacked-label
+      span.input-label {{::("client.ruc"|translate|uppercase)}}*
+      input(
+        type='text',
+        pattern='[0-9]{13}',
+        ng-model='clientsVm.client.ruc',
+        required='required'
+      )
+    show-error(array-messages='clientsVm.messages.ruc')
+
+    label.item.item-input.item-stacked-label
+      span.input-label {{::("client.nombres"|translate|uppercase)}}*
+      input(
+        type='text',
+        ng-model='clientsVm.client.nombres',
+        required='required'
+      )
+    show-error(array-messages='clientsVm.messages.nombres')
+
+    label.item.item-input.item-stacked-label
+      span.input-label {{::("client.direccion"|translate|uppercase)}}*
+      input(
+        type='text',
+        ng-model='clientsVm.client.direccion',
+        required='required'
+      )
+    show-error(array-messages='clientsVm.messages.direccion')
+
+    label.item.item-input.item-stacked-label
+      span.input-label {{::("client.telefono"|translate|uppercase)}}*
+      input(
+        type='text',
+        pattern='[0-9-]+',
+        ng-model='clientsVm.client.telefono',
+        required='required'
+      )
+    show-error(array-messages='clientsVm.messages.telefono')
+
+    label.item.item-input.item-stacked-label
+      span.input-label {{::("client.email"|translate|uppercase)}}*
+      input(
+        type='email',
+        ng-model='clientsVm.client.email',
+        required='required'
+      )
+    show-error(array-messages='clientsVm.messages.email')
+
+  .button-actions
+    input(
+      type='submit',
+      value='{{::("globals.save"|translate)}} {{::("client.client"|translate)}}'
+    ).button.button-primary.button-block
