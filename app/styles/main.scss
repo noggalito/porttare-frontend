@@ -1,8 +1,15 @@
 // https://github.com/driftyco/ionic/blob/v1.3.1/scss/_variables.scss
 @import "../bower_components/ionic/scss/_variables";
 
-@import "fonts/fonts";
 @import "colors/colors";
+
+@import "overrides/lists";
+@import "overrides/scroll";
+@import "overrides/bar-header";
+@import "overrides/input-icons";
+@import "overrides/base-colors";
+
+@import "fonts/fonts";
 @import "common/rows";
 @import "common/mixins";
 @import "common/buttons";
@@ -21,10 +28,6 @@
 @import "map/map";
 @import "provider/new";
 @import "provider/detail";
-@import "overrides/lists";
-@import "overrides/scroll";
-@import "overrides/bar-header";
-@import "overrides/input-icons";
 @import "directives/back-button";
 @import "directives/show-error";
 @import "categories/index";
