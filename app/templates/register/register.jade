@@ -14,7 +14,7 @@ ion-view(
       form(ng-submit='registerVm.register()')
         .list
           label.item.item-input
-            span.email-left-icon
+            i.icon.ion-email.placeholder-icon
             input(
               type='email',
               ng-model='registerVm.registerForm.email'
@@ -23,7 +23,7 @@ ion-view(
               autosize-input
             )
           label.item.item-input
-            span.lock-left-icon
+            i.icon.ion.ion-android-lock.placeholder-icon
             input(
               type='password',
               ng-model='registerVm.registerForm.password',
@@ -31,7 +31,7 @@ ion-view(
               placeholder="Contraseña"
             )
           label.item.item-input
-            span.lock-left-icon
+            i.icon.ion.ion-android-lock.placeholder-icon
             input(
               type='password',
               ng-model='registerVm.registerForm.password_confirmation',

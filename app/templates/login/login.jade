@@ -9,16 +9,16 @@ ion-view(
     .row.width-constraint
       form(ng-submit='loginVm.login()')
         .list
-          label.item.item-input.with-icon
-            span.email-left-icon
+          label.item.item-input
+            i.icon.ion-email.placeholder-icon
             input(
               type='email',
               ng-model='loginVm.loginForm.email'
               required='required'
               placeholder='{{::("login.email"|translate)}}'
             )
-          label.item.item-input.with-icon
-            span.lock-left-icon
+          label.item.item-input
+            i.icon.ion.ion-android-lock.placeholder-icon
             input(
               type='password',
               ng-model='loginVm.loginForm.password',

@@ -8,16 +8,6 @@
   bottom: 50%;
 }
 
-.email-left-icon {
-  @extend .input-left-icon;
-  background-image: url('../images/envelope.png');
-}
-
-.lock-left-icon {
-  @extend .input-left-icon;
-  background-image: url('../images/lock.png');
-}
-
 .fb-left-icon {
   @extend .input-left-icon;
   background-image: url('../images/FB-f-Logo__white_29.png');

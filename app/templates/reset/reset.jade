@@ -8,16 +8,16 @@ ion-view(
     .row.width-constraint
       form(ng-submit='resetVm.updatePassword()')
         .list
-          label.item.item-input.with-icon
-            span.lock-left-icon
+          label.item.item-input
+            i.icon.ion.ion-android-lock.placeholder-icon
             input(
               type='password',
               ng-model='resetVm.updatePasswordForm.password',
               required='required',
               placeholder="Contraseña"
             )
-          label.item.item-input.with-icon
-            span.lock-left-icon
+          label.item.item-input
+            i.icon.ion.ion-android-lock.placeholder-icon
             input(
               type='password',
               ng-model='resetVm.updatePasswordForm.password_confirmation',
