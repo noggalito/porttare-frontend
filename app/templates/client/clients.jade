@@ -6,7 +6,7 @@ ion-view(
       .col.col-75.col-offset-5
         h4.client-title {{::("client.listOfClients"|translate)}}
       .col.col-15.client-add-icon
-        i(class='icon ion-plus-circled', ng-click="clientsVm.openModal()")
+        i(class='icon ion-plus-circled', ng-click="clientsVm.showModal()")
     .row.col.col-offset-5.col-90.col-offset-5
       label.item.item-input
         i.icon.ion-search.placeholder-icon

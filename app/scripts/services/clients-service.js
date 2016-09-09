@@ -6,38 +6,17 @@
     .factory('ClientsService', ClientsService);
 
   function ClientsService($http,
-                        $ionicPopup,
-                        $ionicLoading,
-                        $ionicModal,
-                        $q,
-                        ENV) {
+                          $ionicPopup,
+                          $ionicLoading,
+                          ENV) {
 
     var service = {
       getClients: getClients,
       newClient: newClient,
-      editClient: editClient,
-      modalInstance: modalInstance
+      editClient: editClient
     };
 
     return service;
-
-    function modalInstance($scope){
-      return $ionicModal.fromTemplateUrl('templates/client/new-edit.html', {
-        scope: $scope,
-        animation: 'slide-in-up',
-        backdropClickToClose: false,
-        hardwareBackButtonClose: false
-      })
-        .then(function(modal){
-          return modal;
-        },
-        function error(){
-          $ionicPopup.alert({
-            title: 'Error',
-            template: '{{::("globals.pleaseTryAgain"|translate)}}'
-          });
-        });
-    }
 
     function getClients() {
       return $http({
@@ -58,22 +37,21 @@
     }
 
     function newClient(data) {
-      var deferred = $q.defer();
       $ionicLoading.show({
         template: '{{::("globals.saving"|translate)}}'
       });
-      $http({
+      return $http({
         method: 'POST',
         url: ENV.apiHost + '/api/provider/clients',
         data: data
       })
-        .then(function (resp) {
+        .then(function success(resp) {
           $ionicLoading.hide();
           $ionicPopup.alert({
             title: 'Éxito',
             template: '{{::("client.successClientSave"|translate)}}'
           });
-          deferred.resolve(resp);
+          return resp;
         },
         function error(resp) {
           $ionicPopup.alert({
@@ -82,17 +60,15 @@
               '{{::("globals.pleaseTryAgain"|translate)}}'
           });
           $ionicLoading.hide();
-          deferred.reject(resp);
+          return resp;
         });
-      return deferred.promise;
     }
 
     function editClient(data) {
-      var deferred = $q.defer();
       $ionicLoading.show({
         template: '{{::("globals.updating"|translate)}}'
       });
-      $http({
+      return $http({
         method: 'PUT',
         url: ENV.apiHost + '/api/provider/clients/' + data.id,
         data: data
@@ -103,18 +79,17 @@
             title: 'Éxito',
             template: '{{::("client.successUpdateClient"|translate)}}'
           });
-          deferred.resolve(resp);
+          return resp;
         },
         function error(resp) {
           $ionicPopup.alert({
             title: 'Error',
-            template: resp.status===401 ? resp.data.error:
+            template: resp.status==401 ? resp.data.error:
                     '{{::("globals.pleaseTryAgain"|translate)}}'
           });
           $ionicLoading.hide();
-          deferred.reject(resp);
+          return resp;
         });
-      return deferred.promise;
     }
   }
 })();
