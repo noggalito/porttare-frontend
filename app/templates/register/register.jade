@@ -10,9 +10,9 @@ ion-view(
       .col.intro-description
         p Una cuenta, muchos perfiles
 
-    .row.width-constraint
+    .row
       form(ng-submit='registerVm.register()')
-        .list
+        .list.list-inset
           label.item.item-input
             i.icon.ion-email.placeholder-icon
             input(
@@ -39,16 +39,17 @@ ion-view(
               placeholder="Confirmar contraseña"
             )
 
-        .button-actions
+        .button-actions.list.list-inset
           input(
             type='submit',
             value="¡Regístrame!"
           ).button.button-primary.button-block
       
-    .row.or-option
-      span {{::("globals.or"|translate)}}
+    .list.list-inset
+      .or-option
+        span {{::("globals.or"|translate)}}
     
-    .row.width-constraint
+    .list.list-inset
       .button.facebook-login(ng-click="registerVm.loginWithFB()")
         span.fb-left-icon
         span.fb-copytext Continuar con facebook

@@ -5,15 +5,15 @@ ion-view(
   ion-content.login-form
     .row
       .moviggo-logo-1
-    .row.width-constraint
+    .list.list-inset
       .button.facebook-login(ng-click="preVm.loginWithFB()")
         span.fb-left-icon
         span.fb-copytext Continuar con facebook
-    .row.width-constraint
+    .list.list-inset
       a.button.button-primary.button-block(ui-sref='register')
         span Registrarme usando mi email
 
-.bar.bar-footer.bar-light.padded
+.bar.bar-footer.bar-light.existent-account-link
   .title
     | ¿Ya tienes cuenta?&nbsp;
     a(ui-sref="login") Inicia sesión

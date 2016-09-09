@@ -3,177 +3,178 @@ ion-view(
 )
   ion-nav-title
     .alt-logo
-  ion-content
-    .new-provider-view
-      .row
-        form(name="newProviderForm" ng-submit='providerVm.createProvider()', novalidate='')
-          .list
-            .item.item-input.item-stacked-label.form-legend
-              span.input-label {{::("provider.formLegend"|translate)}}
-            label(ng-class="{'item-error': providerVm.messages.ruc}").item.item-input.item-stacked-label
-              span.input-label RUC
-              input(
-                type='text',
-                name='ruc',
-                ng-model='providerVm.providerForm.ruc',
-                ng-class='input-error'
-              )
-            show-error(array-messages='providerVm.messages.ruc')
+  ion-content.resource-form
+    .row
+      form(name="newProviderForm" ng-submit='providerVm.createProvider()', novalidate='')
+        .list
+          legend {{::("provider.formLegend"|translate)}}
+          //- .item.item-input.item-stacked-label.form-legend
+          //-   span.input-label 
 
-            label(ng-class="{'item-error': providerVm.messages.razon_social}").item.item-input.item-stacked-label
-              span.input-label {{::("provider.businessName"|translate)}}
-              input(
-                type='text',
-                placeholder='',
-                name='razon_social',
-                ng-model='providerVm.providerForm.razon_social'
-              )
-            show-error(array-messages='providerVm.messages.razon_social')
-
-            label(ng-class="{'item-error': providerVm.messages.actividad_economica}").item.item-input.item-stacked-label
-              span.input-label {{::("provider.economicActivity"|translate)}}
-              input(
-                type='text',
-                placeholder='',
-                name='actividad_economica',
-                ng-model='providerVm.providerForm.actividad_economica'
-              )
-            show-error(array-messages='providerVm.messages.actividad_economica')
-
-            label.item.item-input.item-stacked-label
-              span.input-label {{::("provider.contributorType"|translate)}}
-              input(
-                type='text',
-                placeholder='',
-                name='tipo_contribuyente',
-                ng-model='providerVm.providerForm.tipo_contribuyente'
-              )
-            label.item.item-input.item-stacked-label
-              span.input-label {{::("provider.LegalRepresentative"|translate)}}
-              input(
-                type='text',
-                placeholder='',
-                name='representante_legal',
-                ng-model='providerVm.providerForm.representante_legal'
-              )
-            label(ng-class="{'item-error': providerVm.messages.telefono}").item.item-input.item-stacked-label
-              span.input-label {{::("provider.phone"|translate)}}
-              input(
-                type='tel',
-                placeholder='',
-                name='telefono',
-                ng-model='providerVm.providerForm.telefono'
-              )
-            show-error(array-messages='providerVm.messages.telefono')
-
-            label(ng-class="{'item-error': providerVm.messages.email}").item.item-input.item-stacked-label
-              span.input-label {{::("provider.email"|translate)}}
-              input(
-                type='email',
-                placeholder='user@mydomain.com',
-                name='email',
-                ng-model='providerVm.providerForm.email'
-              )
-            show-error(array-messages='providerVm.messages.email')
-
-            label.item.item-input.item-stacked-label
-              span.input-label {{::("provider.startDate"|translate)}}
-              input(
-                type='text',
-                placeholder='',
-                name='fecha_inicio_actividad',
-                ng-model='providerVm.providerForm.fecha_inicio_actividad'
-              )
-            label(ng-class="{'item-error': providerVm.messages.banco_nombre}").item.item-input.item-stacked-label
-              span.input-label {{::("provider.bankName"|translate)}}
-              input(
-                type='text',
-                placeholder='',
-                name='banco_nombre',
-                ng-model='providerVm.providerForm.banco_nombre'
-              )
-            show-error(array-messages='providerVm.messages.banco_nombre')
-
-            label(ng-class="{'item-error': providerVm.messages.banco_numero_cuenta}").item.item-input.item-stacked-label
-              span.input-label {{::("provider.accountNumber"|translate)}}
-              input(
-                type='text',
-                placeholder='',
-                name='banco_numero_cuenta',
-                ng-model='providerVm.providerForm.banco_numero_cuenta'
-              )
-            show-error(array-messages='providerVm.messages.banco_numero_cuenta')
-
-            label(ng-class="{'item-error': providerVm.messages.banco_identificacion}").item.item-input.item-stacked-label
-              span.input-label {{::("provider.bankId"|translate)}}
-              input(
-                type='text',
-                placeholder='',
-                name='banco_identificacion',
-                ng-model='providerVm.providerForm.banco_identificacion'
-              )
-            show-error(array-messages='providerVm.messages.banco_identificacion')
-
-            label.item.item-input.item-stacked-label
-              span.input-label {{::("provider.webSite"|translate)}}
-              input(
-                type='text',
-                placeholder='',
-                name='website',
-                ng-model='providerVm.providerForm.website'
-              )
-            label.item.item-input.item-stacked-label
-              span.input-label Facebook
-              input(
-                type='text',
-                placeholder='',
-                name='facebook_handle',
-                ng-model='providerVm.providerForm.facebook_handle'
-              )
-            label.item.item-input.item-stacked-label
-              span.input-label Twitter
-              input(
-                type='text',
-                placeholder='',
-                name='twitter_handle',
-                ng-model='providerVm.providerForm.twitter_handle'
-              )
-            label.item.item-input.item-stacked-label
-              span.input-label Instagram
-              input(
-                type='text',
-                placeholder='',
-                name='instagram_handle',
-                ng-model='providerVm.providerForm.instagram_handle'
-              )
-            label.item.item-input.item-stacked-label
-              span.input-label Youtube
-              input(
-                type='text',
-                placeholder='',
-                name='youtube_handle',
-                ng-model='providerVm.providerForm.youtube_handle'
-              )
-            label.item.item-input.item-stacked-label
-              span.input-label {{::("provider.bestArticle"|translate)}}
-              input(
-                type='text',
-                placeholder='',
-                name='mejor_articulo',
-                ng-model='providerVm.providerForm.mejor_articulo'
-              )
-            label.item.item-input
-              span.input-label {{::("provider.methodPayment"|translate)}}
-              ion-list
-                ion-checkbox(
-                  ng-repeat="method in providerVm.methodsPayment",
-                  ng-checked="providerVm.selections.indexOf(method.value) != -1"
-                  ng-click="providerVm.toggleCheck(method)"
-                ) {{ ::method.label }}
-
-          .button-actions
+          label(ng-class="{'item-error': providerVm.messages.ruc}").item.item-input.item-stacked-label
+            span.input-label RUC
             input(
-              type='submit',
-              value="Crear proveedor",
-              ng-class='{disabled: newProviderForm.$invalid}'
-            ).button.button-primary.button-block
+              type='text',
+              name='ruc',
+              ng-model='providerVm.providerForm.ruc',
+              ng-class='input-error'
+            )
+          show-error(array-messages='providerVm.messages.ruc')
+
+          label(ng-class="{'item-error': providerVm.messages.razon_social}").item.item-input.item-stacked-label
+            span.input-label {{::("provider.businessName"|translate)}}
+            input(
+              type='text',
+              placeholder='',
+              name='razon_social',
+              ng-model='providerVm.providerForm.razon_social'
+            )
+          show-error(array-messages='providerVm.messages.razon_social')
+
+          label(ng-class="{'item-error': providerVm.messages.actividad_economica}").item.item-input.item-stacked-label
+            span.input-label {{::("provider.economicActivity"|translate)}}
+            input(
+              type='text',
+              placeholder='',
+              name='actividad_economica',
+              ng-model='providerVm.providerForm.actividad_economica'
+            )
+          show-error(array-messages='providerVm.messages.actividad_economica')
+
+          label.item.item-input.item-stacked-label
+            span.input-label {{::("provider.contributorType"|translate)}}
+            input(
+              type='text',
+              placeholder='',
+              name='tipo_contribuyente',
+              ng-model='providerVm.providerForm.tipo_contribuyente'
+            )
+          label.item.item-input.item-stacked-label
+            span.input-label {{::("provider.LegalRepresentative"|translate)}}
+            input(
+              type='text',
+              placeholder='',
+              name='representante_legal',
+              ng-model='providerVm.providerForm.representante_legal'
+            )
+          label(ng-class="{'item-error': providerVm.messages.telefono}").item.item-input.item-stacked-label
+            span.input-label {{::("provider.phone"|translate)}}
+            input(
+              type='tel',
+              placeholder='',
+              name='telefono',
+              ng-model='providerVm.providerForm.telefono'
+            )
+          show-error(array-messages='providerVm.messages.telefono')
+
+          label(ng-class="{'item-error': providerVm.messages.email}").item.item-input.item-stacked-label
+            span.input-label {{::("provider.email"|translate)}}
+            input(
+              type='email',
+              placeholder='user@mydomain.com',
+              name='email',
+              ng-model='providerVm.providerForm.email'
+            )
+          show-error(array-messages='providerVm.messages.email')
+
+          label.item.item-input.item-stacked-label
+            span.input-label {{::("provider.startDate"|translate)}}
+            input(
+              type='text',
+              placeholder='',
+              name='fecha_inicio_actividad',
+              ng-model='providerVm.providerForm.fecha_inicio_actividad'
+            )
+          label(ng-class="{'item-error': providerVm.messages.banco_nombre}").item.item-input.item-stacked-label
+            span.input-label {{::("provider.bankName"|translate)}}
+            input(
+              type='text',
+              placeholder='',
+              name='banco_nombre',
+              ng-model='providerVm.providerForm.banco_nombre'
+            )
+          show-error(array-messages='providerVm.messages.banco_nombre')
+
+          label(ng-class="{'item-error': providerVm.messages.banco_numero_cuenta}").item.item-input.item-stacked-label
+            span.input-label {{::("provider.accountNumber"|translate)}}
+            input(
+              type='text',
+              placeholder='',
+              name='banco_numero_cuenta',
+              ng-model='providerVm.providerForm.banco_numero_cuenta'
+            )
+          show-error(array-messages='providerVm.messages.banco_numero_cuenta')
+
+          label(ng-class="{'item-error': providerVm.messages.banco_identificacion}").item.item-input.item-stacked-label
+            span.input-label {{::("provider.bankId"|translate)}}
+            input(
+              type='text',
+              placeholder='',
+              name='banco_identificacion',
+              ng-model='providerVm.providerForm.banco_identificacion'
+            )
+          show-error(array-messages='providerVm.messages.banco_identificacion')
+
+          label.item.item-input.item-stacked-label
+            span.input-label {{::("provider.webSite"|translate)}}
+            input(
+              type='text',
+              placeholder='',
+              name='website',
+              ng-model='providerVm.providerForm.website'
+            )
+          label.item.item-input.item-stacked-label
+            span.input-label Facebook
+            input(
+              type='text',
+              placeholder='',
+              name='facebook_handle',
+              ng-model='providerVm.providerForm.facebook_handle'
+            )
+          label.item.item-input.item-stacked-label
+            span.input-label Twitter
+            input(
+              type='text',
+              placeholder='',
+              name='twitter_handle',
+              ng-model='providerVm.providerForm.twitter_handle'
+            )
+          label.item.item-input.item-stacked-label
+            span.input-label Instagram
+            input(
+              type='text',
+              placeholder='',
+              name='instagram_handle',
+              ng-model='providerVm.providerForm.instagram_handle'
+            )
+          label.item.item-input.item-stacked-label
+            span.input-label Youtube
+            input(
+              type='text',
+              placeholder='',
+              name='youtube_handle',
+              ng-model='providerVm.providerForm.youtube_handle'
+            )
+          label.item.item-input.item-stacked-label
+            span.input-label {{::("provider.bestArticle"|translate)}}
+            input(
+              type='text',
+              placeholder='',
+              name='mejor_articulo',
+              ng-model='providerVm.providerForm.mejor_articulo'
+            )
+          label.item.item-input
+            span.input-label {{::("provider.methodPayment"|translate)}}
+            ion-list
+              ion-checkbox(
+                ng-repeat="method in providerVm.methodsPayment",
+                ng-checked="providerVm.selections.indexOf(method.value) != -1"
+                ng-click="providerVm.toggleCheck(method)"
+              ) {{ ::method.label }}
+
+        .button-actions
+          input(
+            type='submit',
+            value="Crear proveedor",
+            ng-class='{disabled: newProviderForm.$invalid}'
+          ).button.button-primary.button-block

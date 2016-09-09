@@ -5,9 +5,9 @@ ion-view(
   ion-content.login-form
     .row
       .col.header-text Actualiza tu contraseña
-    .row.width-constraint
+    .row
       form(ng-submit='resetVm.updatePassword()')
-        .list
+        .list.list-inset
           label.item.item-input
             i.icon.ion.ion-android-lock.placeholder-icon
             input(
@@ -24,7 +24,7 @@ ion-view(
               required='required',
               placeholder="Confirmar contraseña"
             )
-        .button-actions
+        .list.list-inset.button-actions
           button(
             type='submit'
           ).button.button-full.button-primary.spaced
