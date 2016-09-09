@@ -1,10 +1,6 @@
-.bar-header-transparent {
-  border: 0px;
-  border-bottom-color: transparent;
-  background-image: none;
-  border-bottom: none;
-  position: relative;
-  span::before {
-    font-size: 20px !important;
+.back-button-wrapper {
+  position: absolute;
+  .button {
+    color: $dark;
   }
 }
