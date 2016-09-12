@@ -35,7 +35,7 @@
     describe('on init', function () {
       it('categories should not be empty', function () {
         $scope.$digest();
-        expect(ctrl.categories).to.not.be.null;
+        expect(ctrl.categories).to.not.be.null; //jshint ignore:line
       });
 
     });
