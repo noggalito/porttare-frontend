@@ -82,12 +82,6 @@
             template: '{{::("globals.pleaseTryAgain"|translate)}}'
           });
           itemsVm.messages = response.data.errors;
-        } else {
-          $ionicPopup.alert({
-            title: 'Error',
-            template: response.data ? response.data.error :
-              '{{::("globals.pleaseTryAgain"|translate)}}'
-          });
         }
       }).finally(function () {
           $ionicLoading.hide();

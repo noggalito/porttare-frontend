@@ -29,7 +29,22 @@
     });
   })
 
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+
+    $httpProvider.interceptors.push(function($injector, $q){
+      return {
+        'responseError': function(rejection) {
+            if (rejection.status === 401) {
+              $injector.get('$ionicPopup').alert({
+                title: 'Ups!',
+                template: 'No tienes permisos para realizar eso!'
+              });
+            }
+            return $q.reject(rejection);
+          }
+      };
+    });
+
     $stateProvider
 
     .state('login', {
