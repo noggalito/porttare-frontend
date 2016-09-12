@@ -4,9 +4,9 @@ form.item-form-container(name='form', ng-submit='itemsVm.submitProcess(itemsVm.i
     label.item.item-input.item-stacked-label
       span.input-label {{::("item.titulo"|translate|uppercase)}}*
       input(
-        type='text',
-        ng-model='itemsVm.item.titulo',
-        required='required',
+        type='text'
+        ng-model='itemsVm.item.titulo'
+        required='required'
         ng-class='input-error'
       )
     show-error(array-messages='itemsVm.messages.titulo')
@@ -14,7 +14,7 @@ form.item-form-container(name='form', ng-submit='itemsVm.submitProcess(itemsVm.i
     label.item.item-input.item-stacked-label
       span.input-label {{::("item.descripcion"|translate|uppercase)}}
       input(
-        type='text',
+        type='text'
         ng-model='itemsVm.item.descripcion'
       )
     show-error(array-messages='itemsVm.messages.descripcion')
@@ -22,10 +22,10 @@ form.item-form-container(name='form', ng-submit='itemsVm.submitProcess(itemsVm.i
     label.item.item-input.item-stacked-label
       span.input-label {{::("item.precio"|translate|uppercase)}}*
       input(
-        min='0',
-        step='any',
-        type='number',
-        ng-model='itemsVm.item.precio',
+        min='0'
+        step='any'
+        type='number'
+        ng-model='itemsVm.item.precio'
         required='required'
       )
     show-error(array-messages='itemsVm.messages.precio')
@@ -41,7 +41,7 @@ form.item-form-container(name='form', ng-submit='itemsVm.submitProcess(itemsVm.i
     label.item.item-input.item-stacked-label
       span.input-label {{::("item.peso"|translate|uppercase)}}
       input(
-        type='text',
+        type='text'
         ng-model='itemsVm.item.peso'
       )
     show-error(array-messages='itemsVm.messages.peso')
@@ -49,9 +49,8 @@ form.item-form-container(name='form', ng-submit='itemsVm.submitProcess(itemsVm.i
     label.item.item-input.item-stacked-label
       span.input-label {{::("item.imagen"|translate|uppercase)}}
       input(
-        name='imagen',
-        type='file',
-        ngf-select 
+        type='file'
+        ngf-select
         ng-model="itemsVm.item.imagen"  
         accept="image/*"
       )
@@ -60,8 +59,7 @@ form.item-form-container(name='form', ng-submit='itemsVm.submitProcess(itemsVm.i
     label.item.item-input.item-stacked-label
       span.input-label {{::("item.observaciones"|translate|uppercase)}}
       input(
-        type='text',
-        name='ob',
+        type='text'
         ng-model='itemsVm.item.observaciones'
       )
     show-error(array-messages='itemsVm.messages.observaciones')
@@ -77,6 +75,6 @@ form.item-form-container(name='form', ng-submit='itemsVm.submitProcess(itemsVm.i
 
   .button-actions
     input(
-      type='submit',
+      type='submit'
       value='{{::("globals.save"|translate)}} {{::("item.item"|translate)}}'
     ).button.button-primary.button-block

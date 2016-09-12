@@ -76,7 +76,7 @@
         itemsVm.items.push(response.provider_item); //jshint ignore:line
         itemsVm.closeModal();
       }, function error(response){
-        if (response.data.errors){
+        if (response.status === 422){
           $ionicPopup.alert({
             title: 'Faltan datos',
             template: '{{::("globals.pleaseTryAgain"|translate)}}'

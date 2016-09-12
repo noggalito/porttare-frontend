@@ -42,20 +42,18 @@
 
     function newItem(data) {
       var promise;
-      // load headers into request
-      var headers = $auth.retrieveData('auth_headers');
-      headers['Accept'] = 'application/json'; //jshint ignore:line
 
       if (data.imagen) {
         //adding nested attributes
         data.imagenes_attributes = []; //jshint ignore:line
         data.imagenes_attributes.push({imagen: data.imagen}); //jshint ignore:line
+        // create Upload library promise
         promise = Upload.upload({
           url: ENV.apiHost + '/api/provider/items',
-          data: data,
-          headers: headers
+          data: data
         });
       } else {
+        // default angular $http request
         promise = $http({
           method: 'POST',
           url: ENV.apiHost + '/api/provider/items',
