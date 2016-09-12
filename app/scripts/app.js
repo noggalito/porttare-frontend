@@ -27,7 +27,7 @@
         StatusBar.styleDefault();
       }
     });
-  });;
+  });
 
   angular.module('porttare.config', []);
   angular.module('porttare.controllers', []);
