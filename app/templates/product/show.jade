@@ -4,5 +4,31 @@ ion-view(
   ion-nav-title
     .alt-logo
   ion-content
-    .product-detail
-      .nombre {{productVm.product.name}}
+    .row.product-detail
+      form(name="selectProductForm" ng-submit='productVm.selectProduct()')
+        .list
+          img.format-image(src='{{productVm.product.image}}')
+          .cantidad
+            a.button.button-icon.icon.ion-plus-circled(ng-click="productVm.updatePrice('add')")
+            h2 {{productVm.product.amount}}
+            a.button.button-icon.icon.ion-minus-circled(ng-click="productVm.updatePrice('remove')")
+          .add-product
+            button.button.button-outline.button-energized
+              | Añadir al carrito
+            button.button.button-outline.button-positive
+              | Añadir a mi whishlist
+          .more-description
+            .more-label
+              button.button.button-clear.button-energized(ng-click="productVm.show_more()")
+                | more...
+            .observations(ng-if="productVm.more")
+              p {{productVm.product.more}}
+              textarea(ng-model='productVm.product.user_notes')
+  ion-footer-bar.bar-stable(align-title='center')
+    .buttons
+      button.button.button-outline.button-energized
+        | Comprar Ahora
+    .title
+      h2 X{{productVm.product.amount}}
+    .buttons
+      h2 ${{productVm.product.total_price}}
