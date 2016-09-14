@@ -7,6 +7,8 @@
 
   function ClientsController(ClientsService,
                              ModalService,
+                             $ionicLoading,
+                             $ionicPopup,
                              $scope,
                              $ionicActionSheet) {
     var clientsVm = this;
@@ -21,40 +23,53 @@
     function getClients() {
       ClientsService.getClients()
         .then(function success(resp) {
-          clientsVm.clients = resp;
+          clientsVm.clients = resp.data.provider_clients; //jshint ignore:line
         });
     }
 
     function submitProcess(id){
-      /* jshint expr: true */
-      (id) ? editClient() : newClient();
+      (id) ? editClient() : newClient(); //jshint ignore:line
     }
 
     function newClient() {
+      $ionicLoading.show({
+        template: '{{::("globals.saving"|translate)}}'
+      });
       ClientsService.newClient(clientsVm.client)
         .then(function success(resp){
-          if(resp.status==201){
-            /* jshint camelcase:false */
-            clientsVm.clients.push(resp.data.provider_client);
-            clientsVm.closeModal();
-          }else{
-            clientsVm.messages = resp.data.errors;
-          }
+          $ionicLoading.hide();
+          $ionicPopup.alert({
+            title: 'Éxito',
+            template: '{{::("client.successClientSave"|translate)}}'
+          });
+          clientsVm.clients.push(resp.data.provider_client); //jshint ignore:line
+          clientsVm.closeModal();
+        },
+        function error(resp){
+          clientsVm.messages = resp.status===422 ? resp.data.errors:undefined;
+          $ionicLoading.hide();
         });
     }
 
     function editClient() {
+      $ionicLoading.show({
+        template: '{{::("globals.updating"|translate)}}'
+      });
       ClientsService.editClient(clientsVm.client)
         .then(function success(resp) {
-          if(resp.status==202){
-            var indexArray = clientsVm.clients.map(function(o){return o.id;});
-            var index = indexArray.indexOf(clientsVm.client.id);
-            /* jshint camelcase:false */
-            clientsVm.clients[index] = resp.data.provider_client;
-            closeModal();
-          }else{
-            clientsVm.messages = resp.data.errors;
-          }
+          $ionicLoading.hide();
+          $ionicPopup.alert({
+            title: 'Éxito',
+            template: '{{::("client.successUpdateClient"|translate)}}'
+          });
+          var indexArray = clientsVm.clients.map(function(o){return o.id;});
+          var index = indexArray.indexOf(clientsVm.client.id);
+          clientsVm.clients[index] = resp.data.provider_client; //jshint ignore:line
+          closeModal();
+        },
+        function error(resp){
+          clientsVm.messages = resp.status===422 ? resp.data.errors:undefined;
+          $ionicLoading.hide();
         });
     }
 
@@ -67,10 +82,6 @@
 
     function closeModal() {
       ModalService.closeModal();
-      resetData();
-    }
-
-    function resetData(){
       clientsVm.client = null;
       clientsVm.messages = {};
       clientsVm.query = '';
@@ -88,7 +99,7 @@
           // Pendient
         },
         buttonClicked: function(index) {
-          if(index == 0) {
+          if(index === 0) {
             clientsVm.client = JSON.parse(JSON.stringify(client));
             clientsVm.showModal();
             hideSheet();

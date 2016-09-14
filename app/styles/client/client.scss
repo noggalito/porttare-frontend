@@ -12,21 +12,6 @@
     text-align: right;
   }
 
-  .client-form-container {
-    margin: auto;
-    margin-top: 0;
-    width: 90%;
-  }
-
-  [type=text],
-  [type=email],
-  [type=textarea] {
-    color: $base-grey;
-    display: block;
-    padding-bottom: 0;
-    padding-left: 0;
-  }
-
   .client-input-label-lg {
     color: $base-grey;
     display: table;

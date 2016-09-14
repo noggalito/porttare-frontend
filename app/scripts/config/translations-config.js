@@ -78,6 +78,7 @@
 
       },
       client: {
+        formLegend: 'Datos cliente',
         client: 'Cliente',
         clients: 'Clientes',
         listOfClients: 'Lista de clientes',
