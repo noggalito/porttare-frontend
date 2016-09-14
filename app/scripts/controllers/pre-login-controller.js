@@ -9,6 +9,7 @@ function PreController($auth,
                       $ionicPopup,
                       $localStorage,
                       LoginService,
+                      $location,
                       APP) {
   var preVm = this;
   preVm.loginWithFB = LoginService.loginWithFB;
@@ -20,9 +21,17 @@ function PreController($auth,
     }
     $auth.validateUser().then(function(){
       $state.go(successState);
+    }).catch(function () {
+      var url = $location.absUrl();
+      if(url.match(/error=access_denied&error_code=([^&]+)/)){
+        var error = url.match(/error_reason=(\w+)/);
+        console.log('xxx',error[1]);
+        $ionicPopup.alert({
+          title: 'Error',
+          template: error[1]
+        });
+      }
     });
   }
-
   load();
-
 }
