@@ -44,7 +44,12 @@ function routes($stateProvider, $urlRouterProvider) {
     controller: 'PreController',
     controllerAs: 'preVm'
   })
-
+  .state('error', {
+    url: '/error',
+    templateUrl: 'templates/error/error.html',
+    controller: 'ErrorController',
+    controllerAs: 'errVm'
+  })
   .state('app', {
     url: '/app',
     abstract: true,

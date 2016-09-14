@@ -55,7 +55,8 @@
         pleaseTryAgain: 'Inténtalo nuevamente',
         leftData: 'Faltan datos',
         error: 'Error',
-        or: 'o'
+        or: 'o',
+        index: 'Inicio'
       },
       item: {
         item: 'Artículo',

@@ -17,7 +17,7 @@
 
     $rootScope.$on('$stateChangeSuccess', function(){
       // Check if user is authenticated
-      if (!$state.includes('app')) {
+      if (isSimpleState($state)) {
         $auth.validateUser()
           .then(function(){
             $ionicLoading.hide();
@@ -35,5 +35,11 @@
       $ionicLoading.hide();
     });
 
+    function isSimpleState(state) {
+      var valid = !state.includes('app') &&
+          !state.is('reset') &&
+          !state.is('error');
+      return valid;
+    }
   }
 })();
