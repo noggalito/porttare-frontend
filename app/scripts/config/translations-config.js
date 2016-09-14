@@ -14,7 +14,8 @@
         password: 'Contraseña',
         login: 'Iniciar Sesión',
         forgotPassword: '¿Olvidaste tu contraseña?',
-        continueWithFacebook: 'Continuar con facebook'
+        continueWithFacebook: 'Continuar con facebook',
+        cancelLoginwithFacebook: 'Usuario denegado'
       },
       menu: {
         category: 'Categorías',

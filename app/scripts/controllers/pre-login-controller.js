@@ -24,14 +24,14 @@ function PreController($auth,
     }).catch(function () {
       var url = $location.absUrl();
       if(url.match(/error=access_denied&error_code=([^&]+)/)){
-        var error = url.match(/error_reason=(\w+)/);
-        console.log('xxx',error[1]);
         $ionicPopup.alert({
           title: 'Error',
-          template: error[1]
+          template: '{{::("login.cancelLoginwithFacebook"|translate)}}'
         });
       }
     });
   }
+
   load();
+  
 }
