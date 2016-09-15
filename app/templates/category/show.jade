@@ -1,5 +1,5 @@
 ion-view(
-  view-title="{{:: categoryVm.categoryName}}"
+  view-title="{{:: categoryVm.category.titulo}}"
 )
   ion-nav-title
     .alt-logo
@@ -10,7 +10,7 @@ ion-view(
     .category-description {{categoryVm.category.descripcion}}
     slick(settings="categoryVm.slickConfig")
       .slick-container(ng-repeat="provider in categoryVm.providers")
-        .slick-content
+        .slick-content(ui-sref='app.categories.provider({category_id: categoryVm.category.id, id: provider.id })')
           .provider-card
             .img(style="background-image: url('{{provider.imagen}}')")
             .provider-card-footer

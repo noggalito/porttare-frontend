@@ -114,6 +114,7 @@ function routes($stateProvider, $urlRouterProvider) {
             ];
             var responsedata = {
               category: {
+                id:1,
                 titulo: 'Medicinas',
                 imagen: '../images/bg.png',
                 descripcion: 'Paracetamol, aspirinas, pastillas de dolor ' +
@@ -125,28 +126,6 @@ function routes($stateProvider, $urlRouterProvider) {
             return responsedata;
           }
         }
-      }
-    },
-    resolve: {
-      data: function () {
-
-        //TODO remove this when we have the endpoint
-        var providers = [
-          {id: 1, 'razon_social': 'Empresa 1', imagen: '../images/bg.png'},
-          {id: 2, 'razon_social': 'Empresa 2', imagen: '../images/bg.png'},
-          {id: 3, 'razon_social': 'Empresa 3', imagen: '../images/bg.png'},
-          {id: 4, 'razon_social': 'Empresa 4', imagen: '../images/bg.png'},
-          {id: 5, 'razon_social': 'Empresa 5', imagen: '../images/bg.png'}
-        ];
-        var responsedata = {
-          category: {
-            titulo: 'Medicinas',
-            imagen: '../images/bg.png'
-          },
-          providers: providers
-        };
-
-        return responsedata;
       }
     }
   })

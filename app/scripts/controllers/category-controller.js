@@ -8,7 +8,6 @@
   function CategoryController(data) {
     var categoryVm = this;
 
-    categoryVm.categoryName = data.category.titulo;
     categoryVm.providers = data.providers;
     categoryVm.category = data.category;
     categoryVm.slickConfig = {
