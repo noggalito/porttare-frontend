@@ -2,8 +2,7 @@ ion-modal-view
   ion-header-bar.bar.bar-header.bar-light
     h4(ng-hide="clientsVm.client.id").title {{::("globals.new"|translate)}} {{::("client.client"|translate)}}
     h4(ng-show="clientsVm.client.id").title {{::("globals.edit"|translate)}} {{::("client.client"|translate)}}
-    button(
-      class="button ion-chevron-left button-clear"
+    button.button.ion-chevron-left.button-clear(
       ng-click="clientsVm.closeModal()"
     )  Cancelar
   ion-content.resource-form

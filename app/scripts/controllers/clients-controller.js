@@ -23,7 +23,7 @@
     function getClients() {
       ClientsService.getClients()
         .then(function success(resp) {
-          clientsVm.clients = resp.data.provider_clients; //jshint ignore:line
+          clientsVm.clients = resp;
         });
     }
 
@@ -42,7 +42,7 @@
             title: 'Éxito',
             template: '{{::("client.successClientSave"|translate)}}'
           });
-          clientsVm.clients.push(resp.data.provider_client); //jshint ignore:line
+          clientsVm.clients.push(resp);
           clientsVm.closeModal();
         },
         function error(resp){
@@ -64,7 +64,7 @@
           });
           var indexArray = clientsVm.clients.map(function(o){return o.id;});
           var index = indexArray.indexOf(clientsVm.client.id);
-          clientsVm.clients[index] = resp.data.provider_client; //jshint ignore:line
+          clientsVm.clients[index] = resp;
           closeModal();
         },
         function error(resp){

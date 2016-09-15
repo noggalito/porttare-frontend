@@ -8,15 +8,14 @@ ion-view(
       .col.col-75.col-offset-5
         h4.client-title {{::("client.listOfClients"|translate)}}
       .col.col-15.client-add-icon
-        i(class="icon ion-plus-circled" ng-click="clientsVm.showModal()")
+        i.icon.ion-plus-circled(ng-click="clientsVm.showModal()")
     .row.col.col-offset-5.col-90.col-offset-5
       label.item.item-input
         i.icon.ion-search.placeholder-icon
         input(ng-model="clientsVm.query" type="text" placeholder="Buscar")
       list
-        a(
+        a.item(
           ng-repeat="client in clientsVm.clients | filter: clientsVm.query"
-          class="item"
           ng-click="clientsVm.showActionSheet(client)"
         )
           h2 {{ client.nombres }}
