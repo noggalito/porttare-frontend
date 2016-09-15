@@ -1,11 +1,8 @@
 .product-detail{
+  width: 100%;
   .format-image{
     width: 100%;
     height: 250px;
-  }
-  .cantidad{
-    text-align: center;
-    display: flex;
   }
   .add-product{
     display: flex;
@@ -21,12 +18,39 @@
     flex-direction: column;
     .more-label{
       button{
-        float: right;  
+        float: right;
       }
     }
     textarea{
       width: 100%;
-      background-color: beige;
+      background: #f8f8f8;
+    }
+    .observations{
+      .large-description{
+        background: #f8f8f8;
+      }
+    }
+  }
+}
+.footer-product{
+  display: flex;
+  width: 100%;
+  .left-panel{
+    flex-grow: 1;
+  }
+  .center-panel{
+    text-align: center;
+    display: flex;
+    flex-grow: 1;
+    h2{
+      margin-top: 0px;
+    }
+  }
+  .right-panel{
+    text-align: right;
+    flex-grow: 1;
+    h2{
+      margin-top: 0px;
     }
   }
 }

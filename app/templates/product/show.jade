@@ -4,14 +4,10 @@ ion-view(
   ion-nav-title
     .alt-logo
   ion-content
-    .row.product-detail
-      form(name="selectProductForm" ng-submit='productVm.selectProduct()')
+    .row
+      form.product-detail(name="selectProductForm" ng-submit='productVm.selectProduct()')
         .list
           img.format-image(src='{{productVm.product.image}}')
-          .cantidad
-            a.button.button-icon.icon.ion-plus-circled(ng-click="productVm.updatePrice('add')")
-            h2 {{productVm.product.amount}}
-            a.button.button-icon.icon.ion-minus-circled(ng-click="productVm.updatePrice('remove')")
           .add-product
             button.button.button-outline.button-energized
               | Añadir al carrito
@@ -19,16 +15,22 @@ ion-view(
               | Añadir a mi whishlist
           .more-description
             .more-label
-              button.button.button-clear.button-energized(ng-click="productVm.show_more()")
+              button.button.button-clear.button-energized(ng-click="productVm.showMore()")
                 | more...
             .observations(ng-if="productVm.more")
-              p {{productVm.product.more}}
+              .large-description
+                h4 Descripción Larga
+                p {{productVm.product.more}}
+              h4 Observaciones
               textarea(ng-model='productVm.product.user_notes')
   ion-footer-bar.bar-stable(align-title='center')
-    .buttons
-      button.button.button-outline.button-energized
-        | Comprar Ahora
-    .title
-      h2 X{{productVm.product.amount}}
-    .buttons
-      h2 ${{productVm.product.total_price}}
+    .footer-product
+      .left-panel
+        button.button.button-outline.button-energized
+          | Comprar Ahora
+      .center-panel
+        a.button.button-icon.icon.ion-minus-circled(ng-click="productVm.updatePrice('remove')")
+        h2 X {{productVm.product.amount}}
+        a.button.button-icon.icon.ion-plus-circled(ng-click="productVm.updatePrice('add')")
+      .right-panel
+        h2 ${{productVm.product.totalPrice}}

@@ -16,11 +16,11 @@
       image: '../images/bg.png',
       more: 'more information',
       amount: 0,
-      unit_price: 2.5,
-      total_price: 0
+      unitPrice: 2.5,
+      totalPrice: 0
     };
 
-    productVm.show_more = function () {
+    productVm.showMore = function () {
       if(productVm.more){
         productVm.more = false;
       }else{
@@ -34,7 +34,7 @@
       }else if(opt === 'remove'){
         productVm.product.amount --;
       }
-      productVm.product.total_price = (productVm.product.amount * productVm.product.unit_price);
+      productVm.product.totalPrice = (productVm.product.amount * productVm.product.unitPrice);
     };
   }
 })();
