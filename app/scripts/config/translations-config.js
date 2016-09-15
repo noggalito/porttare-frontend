@@ -15,7 +15,7 @@
         login: 'Iniciar Sesión',
         forgotPassword: '¿Olvidaste tu contraseña?',
         continueWithFacebook: 'Continuar con facebook',
-        cancelLoginwithFacebook: 'Usuario denegado'
+        unauthorized: 'No Autorizado'
       },
       menu: {
         category: 'Categorías',

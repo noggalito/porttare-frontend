@@ -26,12 +26,12 @@ function PreController($auth,
       if(url.match(/error=access_denied&error_code=([^&]+)/)){
         $ionicPopup.alert({
           title: 'Error',
-          template: '{{::("login.cancelLoginwithFacebook"|translate)}}'
+          template: '{{::("login.unauthorized"|translate)}}'
         });
       }
     });
   }
 
   load();
-  
+
 }
