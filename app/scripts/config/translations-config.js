@@ -14,7 +14,7 @@
         password: 'Contraseña',
         login: 'Iniciar Sesión',
         forgotPassword: '¿Olvidaste tu contraseña?',
-        continueWithFacebook: 'Continuar con facebook',
+        continueWithFacebook: 'Continuar con Facebook',
         unauthorized: 'No Autorizado'
       },
       menu: {
