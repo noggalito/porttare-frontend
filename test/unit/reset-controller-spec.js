@@ -127,9 +127,15 @@
           deferredReset.reject({ errors: [] });
           $rootScope.$digest();
           /*jshint camelcase: false */
-          var errors = { errors: ['message'] };
-          $rootScope.$emit('auth:password-change-error', errors);
-          sinon.assert.calledOnce($ionicPopup.alert);
+          var res = {
+            'success': false,
+            'errors':{
+              'password_confirmation':['no coincide'],
+              'password':['es demasiado corto (8 caracteres mínimo)']
+            }
+          };
+          $rootScope.$emit('auth:password-change-error', res);
+          expect(controller.messages).to.equal(res.errors);
         });
       });
     });

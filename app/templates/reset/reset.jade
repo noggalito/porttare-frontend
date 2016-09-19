@@ -1,10 +1,10 @@
 ion-view(
-  view-title="Actualiza tu contraseña",
+  view-title='{{::("password.updatePassword"|translate)}}'
   hide-nav-bar="true"
 )
   ion-content.login-form
     .row
-      .col.header-text Actualiza tu contraseña
+      .col.header-text {{::("password.updatePassword"|translate)}}
     .row
       form(ng-submit='resetVm.updatePassword()')
         .list.list-inset
@@ -14,20 +14,24 @@ ion-view(
               type='password',
               ng-model='resetVm.updatePasswordForm.password',
               required='required',
-              placeholder="Contraseña"
+              placeholder='{{::("password.current"|translate)}}'
             )
+          show-error(array-messages='resetVm.messages.password')
+
           label.item.item-input
             i.icon.ion.ion-android-lock.placeholder-icon
             input(
               type='password',
               ng-model='resetVm.updatePasswordForm.password_confirmation',
               required='required',
-              placeholder="Confirmar contraseña"
+              placeholder='{{::("password.confirm"|translate)}}'
             )
+          show-error(array-messages='resetVm.messages.password_confirmation')
+
         .list.list-inset.button-actions
           button(
             type='submit'
           ).button.button-full.button-primary.spaced
-            | Actualizar contraseña
+            | {{::("password.update"|translate)}}
 
 .bar.bar-footer.bar-footer-yellow-stripe

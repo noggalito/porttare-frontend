@@ -92,6 +92,12 @@
         direccion: 'Dirección',
         telefono: 'Teléfono',
         email: 'email'
+      },
+      password: {
+        updatePassword: 'Actualizar contraseña',
+        current: 'Contraseña',
+        confirm: 'Confirmar contraseña',
+        update: 'Actualizar'
       }
     });
 
