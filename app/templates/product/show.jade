@@ -7,16 +7,23 @@ ion-view(
     .row
       form.product-detail(name="selectProductForm" ng-submit='productVm.selectProduct()')
         .list
-          img.format-image(src='{{productVm.product.image}}')
+          slick(settings="productVm.slickConfig")
+            .slick-container(ng-repeat="image in productVm.product.images track by $index")
+              .slick-content
+                .img(style="background-image: url('{{image}}')")
+          .description
+            .title
+              h4 {{productVm.product.name}}
+              .more-label
+                button.button.button-clear.button-energized(ng-click="productVm.showMore()")
+                  | {{productVm.moreLabel}}
+            p {{productVm.product.description}}
           .add-product
             button.button.button-outline.button-energized
               | Añadir al carrito
             button.button.button-outline.button-positive
               | Añadir a mi whishlist
           .more-description
-            .more-label
-              button.button.button-clear.button-energized(ng-click="productVm.showMore()")
-                | more...
             .observations(ng-if="productVm.more")
               .large-description
                 h4 Descripción Larga
