@@ -279,7 +279,12 @@ module.exports = function (grunt) {
       continuous: {
         browsers: ['PhantomJS'],
         singleRun: true,
-        reporters: ['junit']
+        reporters: ['junit'],
+        junitReporter: {
+          outputDir: process.env.CIRCLE_TEST_REPORTS + '/junit/',
+          outputFile: 'test-results.xml',
+          useBrowserName: false
+        }
       }
     },
 
