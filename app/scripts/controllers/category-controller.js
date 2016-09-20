@@ -8,8 +8,8 @@
   function CategoryController(data) {
     var categoryVm = this;
 
-    categoryVm.providers = data.providers;
     categoryVm.category = data.category;
+    categoryVm.providers = data.category.providers;
     categoryVm.slickConfig = {
       infinite: true,
       slidesToShow: 4,

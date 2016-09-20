@@ -57,7 +57,8 @@
         leftData: 'Faltan datos',
         error: 'Error',
         or: 'o',
-        index: 'Inicio'
+        index: 'Inicio',
+        loading: 'Cargando'
       },
       item: {
         item: 'Artículo',

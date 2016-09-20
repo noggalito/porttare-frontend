@@ -4,7 +4,7 @@ ion-view(
   ion-nav-title
     .alt-logo
   ion-content(class="category-page",
-    style="background-image: url('{{categoryVm.category.imagen}}')"
+    style="background-image: url('{{categoryVm.category.imagen|defaultImage}}')"
   )
     .category-title {{categoryVm.category.titulo | uppercase}}
     .category-description {{categoryVm.category.descripcion}}
@@ -12,7 +12,7 @@ ion-view(
       .slick-container(ng-repeat="provider in categoryVm.providers")
         .slick-content(ui-sref='app.categories.provider({category_id: categoryVm.category.id, id: provider.id })')
           .provider-card
-            .img(style="background-image: url('{{provider.imagen}}')")
+            .img(style="background-image: url('{{provider.imagen|defaultImage:'../images/ionic.png'}}')")
             .provider-card-footer
-              .nombre {{provider.razon_social}}
+              .nombre {{provider.nombre_establecimiento}}
               .horario {{provider.horario}}
