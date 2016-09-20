@@ -5,9 +5,7 @@
     .module('porttare.controllers')
     .controller('SiteController', SiteController);
 
-  function SiteController($rootScope, $ionicLoading, $auth, $state, APP) {
-
-    var successState = APP.successState;
+  function SiteController($rootScope, $ionicLoading) {
 
     $rootScope.$on('$stateChangeStart', function(){
       $ionicLoading.show({
@@ -15,31 +13,12 @@
       });
     });
 
-    $rootScope.$on('$stateChangeSuccess', function(){
-      // Check if user is authenticated
-      if (isSimpleState($state)) {
-        $auth.validateUser()
-          .then(function(){
-            $ionicLoading.hide();
-            $state.go(successState);
-          })
-          .catch(function () {
-            $ionicLoading.hide();
-          });
-      } else {
-        $ionicLoading.hide();
-      }
+    $rootScope.$on('$stateChangeSuccess', function () {
+      $ionicLoading.hide();
     });
 
     $rootScope.$on('$stateChangeError', function(){
       $ionicLoading.hide();
     });
-
-    function isSimpleState(state) {
-      var valid = !state.includes('app') &&
-          !state.is('reset') &&
-          !state.is('error');
-      return valid;
-    }
   }
 })();

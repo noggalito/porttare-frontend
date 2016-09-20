@@ -11,38 +11,56 @@ function routes($stateProvider, $urlRouterProvider) {
     url: '/login',
     controller: 'LoginController',
     controllerAs: 'loginVm',
-    templateUrl: 'templates/login/login.html'
+    templateUrl: 'templates/login/login.html',
+    resolve: {
+      auth: accessIfUserNotAuth
+    }
   })
 
   .state('register', {
     url: '/register',
     controller: 'RegisterController',
     controllerAs: 'registerVm',
-    templateUrl: 'templates/register/register.html'
+    templateUrl: 'templates/register/register.html',
+    resolve: {
+      auth: accessIfUserNotAuth
+    }
   })
   .state('reset', {
     url: '/reset',
     controller: 'ResetController',
     controllerAs: 'resetVm',
-    templateUrl: 'templates/reset/reset.html'
+    templateUrl: 'templates/reset/reset.html',
+    resolve: {
+      auth: accessIfUserAuth
+    }
   })
   .state('send', {
     url: '/send',
     controller: 'ResetController',
     controllerAs: 'resetVm',
-    templateUrl: 'templates/reset/send.html'
+    templateUrl: 'templates/reset/send.html',
+    resolve: {
+      auth: accessIfUserNotAuth
+    }
   })
   .state('intro', {
     url: '/intro',
     templateUrl: 'templates/intro/intro.html',
     controller: 'IntroController',
-    controllerAs: 'introVm'
+    controllerAs: 'introVm',
+    resolve: {
+      auth: accessIfUserNotAuth
+    }
   })
   .state('prelogin', {
     url: '/prelogin',
     templateUrl: 'templates/prelogin/prelogin.html',
     controller: 'PreController',
-    controllerAs: 'preVm'
+    controllerAs: 'preVm',
+    resolve: {
+      auth: accessIfUserNotAuth
+    }
   })
   .state('error', {
     url: '/error',
@@ -56,14 +74,8 @@ function routes($stateProvider, $urlRouterProvider) {
     templateUrl: 'templates/menu/menu.html',
     //only logged users will allow to go to /app/*
     resolve: {
-        currentUser: function($auth, $state) {
-          $auth.validateUser().then(function(user){
-            return user;
-          }, function(){
-            $state.go('prelogin');
-          });
-        }
-      }
+      currentUser: accessIfUserAuth
+    }
   })
   .state('app.categories', {
     url: '/categories',
@@ -232,5 +244,27 @@ function routes($stateProvider, $urlRouterProvider) {
   function isResetPassword(href) {
     var param = href.match(/reset_password=([^&]+)/);
     return (param && param[1] === 'true') ? true : false;
+  }
+
+  function accessIfUserNotAuth($auth, $state, $ionicLoading, APP) {
+    $auth.validateUser()
+      .then(function userAuthorized() {
+        $state.go(APP.successState).then(function () {
+          $ionicLoading.hide();
+        });
+      }, function userNotAuthorized() {
+        return;
+      });
+  }
+
+  function accessIfUserAuth($auth, $state, $ionicLoading, APP) {
+    $auth.validateUser()
+      .then(function userAuthorized(user) {
+        return user;
+      }, function userNotAuthorized() {
+        $state.go(APP.preloginState).then(function () {
+          $ionicLoading.hide();
+        });
+      });
   }
 }

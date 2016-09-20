@@ -4,6 +4,7 @@
  angular
   .module('porttare.config')
   .constant('APP', {
-    successState: 'app.categories.index'
+    successState: 'app.categories.index',
+    preloginState: 'prelogin'
   });
 })();
