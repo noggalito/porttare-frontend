@@ -226,7 +226,7 @@ function routes($stateProvider, $urlRouterProvider) {
       'menuContent@app': {
         templateUrl: 'templates/products/index.html',
         controller: 'ProductsController',
-        controllerAs: 'productsVm',
+        controllerAs: 'productsVm'
       }
     }
   });
