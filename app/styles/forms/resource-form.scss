@@ -15,7 +15,8 @@
     border-color: $error-red;
   }
 
-  label.item-input.item-stacked-label {
+  label.item-input.item-stacked-label,
+  label.item-input.item-select {
     // override default
     margin-top: 15px;
     margin-bottom: 5px;

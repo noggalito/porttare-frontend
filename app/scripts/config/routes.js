@@ -240,6 +240,30 @@ function routes($stateProvider, $urlRouterProvider) {
     views: {
       'menuContent@provider': {}
     }
+  })
+  .state('app.courier', {
+    url: '/courier',
+    abstract: true
+  })
+  .state('app.courier.welcome', {
+    url: '/welcome',
+    views: {
+      'menuContent@app': {
+        templateUrl: 'templates/courier/welcome.html',
+        controller: 'CourierController',
+        controllerAs: 'courierWelVm'
+      }
+    }
+  })
+  .state('app.courier.new', {
+    url: '/new',
+    views: {
+      'menuContent@app': {
+        templateUrl: 'templates/courier/new.html',
+        controller: 'CourierController',
+        controllerAs: 'courierVm'
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise(function ($injector, $location) {

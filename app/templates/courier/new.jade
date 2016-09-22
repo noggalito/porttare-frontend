@@ -1,0 +1,103 @@
+ion-view(
+  view-title='{{::("courier.newCourierTitle"|translate)}}'
+)
+  ion-nav-title
+    .alt-logo
+  ion-content.resource-form
+    .row
+      form(
+        name="newCourierForm"
+        ng-submit='courierVm.createCourier()'
+        novalidate
+      )
+        .list.list-inset
+          legend {{::("courier.formLegend"|translate)}}
+
+          label.item.item-input.item-stacked-label(
+            ng-class="{'item-error': courierVm.messages.nombres}"
+          )
+            span.input-label {{::("courier.names"|translate)}}
+            input(
+              type='text'
+              name='nombres'
+              ng-model='courierVm.courierForm.nombres'
+            )
+          show-error(array-messages='courierVm.messages.nombres')
+
+          label.item.item-input.item-stacked-label(
+            ng-class="{'item-error': courierVm.messages.ruc}"
+          )
+            span.input-label {{::("courier.ruc"|translate)}}
+            input(
+              type='text'
+              name='ruc'
+              ng-model='courierVm.courierForm.ruc'
+            )
+          show-error(array-messages='courierVm.messages.ruc')
+
+          label.item.item-input.item-stacked-label(
+            ng-class="{'item-error': courierVm.messages.telefono}"
+          )
+            span.input-label {{::("courier.phone"|translate)}}
+            input(
+              type='text'
+              name='telefono'
+              ng-model='courierVm.courierForm.telefono'
+            )
+          show-error(array-messages='courierVm.messages.telefono')
+
+          label.item.item-input.item-stacked-label(
+            ng-class="{'item-error': courierVm.messages.email}"
+          )
+            span.input-label {{::("courier.email"|translate)}}
+            input(
+              type='email'
+              placeholder='user@mydomain.com'
+              name='email'
+              ng-model='courierVm.courierForm.email'
+            )
+          show-error(array-messages='courierVm.messages.email')
+
+          label.item.item-input.item-stacked-label(
+            ng-class="{'item-error': courierVm.messages.fecha_nacimiento}"
+          )
+            span.input-label {{::("courier.birthdate"|translate)}}
+            input(
+              type='date'
+              name='fecha_nacimiento'
+              ng-model='courierVm.courierForm.fecha_nacimiento'
+            )
+          show-error(array-messages='courierVm.messages.fecha_nacimiento')
+
+          label.item.item-input.item-select(
+            ng-class="{'item-error': courierVm.messages.ubicacion}"
+          )
+            span.input-label {{::("courier.location"|translate)}}
+            select(
+              ng-model='courierVm.courierForm.ubicacion'
+              ng-options="location as location for location in courierVm.locations")
+          show-error(array-messages='courierVm.messages.ubicacion')
+
+          label.item.item-input.item-select(
+            ng-class="{'item-error': courierVm.messages.tipo_licencia}"
+          )
+            span.input-label {{::("courier.license"|translate)}}
+            select(
+              ng-model='courierVm.courierForm.tipo_licencia'
+              ng-options="license as license for license in courierVm.licenses")
+          show-error(array-messages='courierVm.messages.tipo_licencia')
+
+          label.item.item-input.item-select(
+            ng-class="{'item-error': courierVm.messages.tipo_medio_movilizacion}"
+          )
+            span.input-label {{::("courier.mobilization"|translate)}}
+            select(
+              ng-model='courierVm.courierForm.tipo_medio_movilizacion'
+              ng-options="mobil as mobil for mobil in courierVm.mobilization")
+          show-error(array-messages='courierVm.messages.tipo_medio_movilizacion')
+
+          input.button.button-primary(
+            type='submit'
+            value='{{::("globals.sendRequest"|translate)}}'
+            ng-class='{disabled: newCourierForm.$invalid}'
+          )
