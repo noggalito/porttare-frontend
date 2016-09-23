@@ -25,6 +25,7 @@
         logout: 'Cerrar sesión'
       },
       provider: {
+        managementProvider: 'Gestion de Proveedor',
         formLegend: 'Datos nuevo proveedor',
         businessName: 'Razón social',
         economicActivity: 'Actividad económica',

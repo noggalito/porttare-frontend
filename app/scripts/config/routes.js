@@ -196,6 +196,32 @@ function routes($stateProvider, $urlRouterProvider) {
     url: '/provider',
     abstract: true
   })
+  .state('app.provider.state', {
+    views: {
+      'menuContent@app': {
+        controller: function($auth, $state){
+          $auth.validateUser()
+            .then(function userAuthorized(user) {
+              if(!$.isEmptyObject(user.provider_profile)){
+                $state.go('app.provider.management');
+              }else{
+                $state.go('app.provider.welcome');
+              }
+            });
+        }
+      }
+    }
+  })
+  .state('app.provider.management', {
+    url: '/management',
+    views: {
+      'menuContent@app': {
+        templateUrl: 'templates/provider/managementProvider.html',
+        controller: 'ProviderManagementController',
+        controllerAs: 'providerM1'
+      }
+    }
+  })
   .state('app.provider.welcome', {
     url: '/welcome',
     views: {
