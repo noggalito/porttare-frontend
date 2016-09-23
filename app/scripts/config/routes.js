@@ -202,6 +202,7 @@ function routes($stateProvider, $urlRouterProvider) {
         controller: function($auth, $state){
           $auth.validateUser()
             .then(function userAuthorized(user) {
+              /*jshint camelcase: false */
               if(!$.isEmptyObject(user.provider_profile)){
                 $state.go('app.provider.management');
               }else{
