@@ -1,23 +1,60 @@
 .client-page{
-  .client-title {
-    text-transform: uppercase;
+  margin: 0 5px;
+  .list-header{
+    border-bottom: 1px solid #ddd;
+    margin: 10px 0;
+    padding: 0;
+    .list-title{
+      color: #666;
+      text-transform: uppercase;
+    }
   }
-
+  .list-content{
+    margin: 5px 0;
+    .list-item{
+      color: $base-grey;
+    }
+  }
   .client-add-icon {
     cursor: pointer;
-    display: flex;
     font-size: 35px;
     justify-content: center;
-    flex-direction: column;
-    text-align: right;
+    text-align: center;
   }
+  .label-select {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding: 0;
+  }
+  .bar-base-yellow{
+    background-color: $base-yellow !important;
+  }
+  .title{
+    color: $white !important;
+  }
+}
 
-  .client-input-label-lg {
-    color: $base-grey;
-    display: table;
-    font-size: 1.2em;
-    padding: 7px 10px 7px 0px;
-    max-width: 200px;
-    width: 90%;
+.footer-client-container {
+  display: block;
+  text-align: center;
+  .button-secondary {
+    background-color: $white;
+    height: 30px;
+    line-height: normal;
+    margin: 0 10px;
+    padding: 0;
+    text-align: center;
+    text-transform: uppercase;
+    width: 130px;
+  }
+  .button-secondary-yellow {
+    @extend .button-secondary;
+    border: 3px solid $base-yellow;
+    color: $base-yellow;
+  }
+  .button-secondary-red {
+    @extend .button-secondary;
+    border: 3px solid $button-red;
+    color: $button-red;
   }
 }

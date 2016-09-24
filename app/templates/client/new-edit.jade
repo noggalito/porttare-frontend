@@ -1,10 +1,13 @@
-ion-modal-view
-  ion-header-bar.bar.bar-header.bar-light
+ion-modal-view.client-page
+  ion-header-bar.bar.bar-header.bar-light.bar-base-yellow(
+    align-title="center"
+  )
     h4(ng-hide="clientsVm.client.id").title {{::("globals.new"|translate)}} {{::("client.client"|translate)}}
     h4(ng-show="clientsVm.client.id").title {{::("globals.edit"|translate)}} {{::("client.client"|translate)}}
-    button.button.ion-chevron-left.button-clear(
-      ng-click="clientsVm.closeModal()"
-    )  Cancelar
+    .ion-nav-buttons(side="left")
+      button.button.ion-chevron-left.button-clear.left(
+        ng-click="clientsVm.closeModal()"
+      )
   ion-content.resource-form
     form(
       name="form"
@@ -73,8 +76,12 @@ ion-modal-view
           )
         show-error(array-messages="clientsVm.messages.email")
 
-      .bar.bar-footer
-        input.button.button-primary(
-          type='submit'
-          value='{{::("globals.save"|translate)}} {{::("client.client"|translate)}}'
-        )
+      .bar.bar-footer.footer-client-container
+        button.button-secondary-yellow(
+          type="submit"
+        ) {{::("globals.save"|translate)}}
+        button.button-secondary-red(
+          ng-click="clientsVm.disableClient(clientsVm.client.id)"
+          ng-show="clientsVm.client.id"
+          type="button"
+        ) {{::("client.unsubscribe"|translate)}}

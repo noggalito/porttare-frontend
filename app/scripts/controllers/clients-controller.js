@@ -9,14 +9,19 @@
                              ModalService,
                              $ionicLoading,
                              $ionicPopup,
-                             $scope,
-                             $ionicActionSheet) {
+                             $scope
+                            ) {
     var clientsVm = this;
-    clientsVm.query = '';
-    clientsVm.showModal = showModal;
+    clientsVm.showNewModal = showNewModal;
+    clientsVm.showEditModal = showEditModal;
     clientsVm.closeModal = closeModal;
     clientsVm.submitProcess = submitProcess;
-    clientsVm.showActionSheet = showActionSheet;
+    clientsVm.disableClient = disableClient;
+    clientsVm.listOptions = [
+      {option: 'Nombres', filterField: 'nombres'},
+      {option: 'Antigüedad', filterField: 'created_at'}
+    ];
+    clientsVm.query = '';
 
     getClients();
 
@@ -73,11 +78,34 @@
         });
     }
 
-    function showModal() {
+    function disableClient(clientId) {
+      $ionicLoading.show({
+        template: '{{::("globals.disabling"|translate)}}'
+      });
+      ClientsService.disableClient(clientsVm.client)
+        .then(function success(){
+          $ionicLoading.hide();
+          $ionicPopup.alert({
+            title: 'Éxito',
+            template: '{{::("client.successDisableClient"|translate)}}'
+          });
+          var indexArray = clientsVm.clients.map(function(o){return o.id;});
+          var index = indexArray.indexOf(clientId);
+          clientsVm.clients.splice(index, 1);
+          closeModal();
+        });
+    }
+
+    function showNewModal() {
       ModalService.showModal({
         parentScope: $scope,
         fromTemplateUrl: 'templates/client/new-edit.html'
       });
+    }
+
+    function showEditModal(client) {
+      clientsVm.client = JSON.parse(JSON.stringify(client));
+      clientsVm.showNewModal();
     }
 
     function closeModal() {
@@ -85,27 +113,6 @@
       clientsVm.client = null;
       clientsVm.messages = {};
       clientsVm.query = '';
-    }
-
-    function showActionSheet(client) {
-      var hideSheet = $ionicActionSheet.show({
-        buttons: [
-          { text: 'Editar' }
-        ],
-        destructiveText: 'Eliminar',
-        titleText: 'Opciones del Cliente',
-        cancelText: 'Cancelar',
-        destructiveButtonClicked: function(){
-          // Pendient
-        },
-        buttonClicked: function(index) {
-          if(index === 0) {
-            clientsVm.client = JSON.parse(JSON.stringify(client));
-            clientsVm.showModal();
-            hideSheet();
-          }
-        }
-      });
     }
   }
 })();

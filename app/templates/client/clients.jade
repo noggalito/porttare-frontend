@@ -5,18 +5,36 @@ ion-view(
     .alt-logo
   ion-content.client-page
     .row
-      .col.col-75.col-offset-5
-        h4.client-title {{::("client.listOfClients"|translate)}}
-      .col.col-15.client-add-icon
-        i.icon.ion-plus-circled(ng-click="clientsVm.showModal()")
-    .row.col.col-offset-5.col-90.col-offset-5
-      label.item.item-input
+      label.search-input
         i.icon.ion-search.placeholder-icon
-        input(ng-model="clientsVm.query" type="text" placeholder="Buscar")
-      list
-        a.item(
-          ng-repeat="client in clientsVm.clients | filter: clientsVm.query"
-          ng-click="clientsVm.showActionSheet(client)"
+        input(
+          ng-model="clientsVm.query"
+          type="text"
+          placeholder='{{::("client.clientSearch"|translate)}}'
         )
-          h2 {{ client.nombres }}
-          p {{ client.ruc }}
+    .row.footer-client-container
+      button.button-secondary-yellow(
+        ng-click="clientsVm.showNewModal()"
+      ) {{::("globals.new"|translate)}} {{::("client.client"|translate)}}
+    .row.list-header
+      .col.col-50.list-title {{::("client.clientName"|translate)}}
+      .col.list-title {{::("client.id"|translate)}}
+      .col.col-33
+        .list
+          label.item.item-input.item-select.label-select
+            {{::("client.sortBy"|translate)}}
+            select(
+              ng-model="selectedOption"
+              ng-options="x.option for x in clientsVm.listOptions"
+            )
+    .row.list-content(
+      ng-repeat="client in clientsVm.clients | filter:clientsVm.query | orderBy:selectedOption.filterField"
+    )
+      .col.col-50.list-item {{ client.nombres }}
+      .col.list-item {{ client.id }}
+      a(
+        ng-click="clientsVm.showEditModal(client)"
+      ).col.col.33 {{::("globals.edit"|translate)}}
+  .bar.bar-footer.footer-client-container
+    button.button-secondary-yellow {{::("client.import"|translate)}}
+    button.button-secondary-yellow {{::("client.export"|translate)}}

@@ -11,7 +11,8 @@
     var service = {
       getClients: getClients,
       newClient: newClient,
-      editClient: editClient
+      editClient: editClient,
+      disableClient: disableClient
     };
 
     return service;
@@ -46,6 +47,14 @@
         .then(function success(resp){
           return resp.data.provider_client; //jshint ignore:line
         });
+    }
+
+    function disableClient(data) {
+      return $http({
+        method: 'DELETE',
+        url: ENV.apiHost + '/api/provider/clients/' + data.id,
+        data: data
+      });
     }
   }
 })();
