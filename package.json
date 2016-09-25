@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "postinstall": "bash ./post_install.sh",
-    "test": "grunt test:ci"
+    "test": "grunt test:ci && CODECLIMATE_REPO_TOKEN=$CodeClimateToken ./node_modules/.bin/codeclimate-test-reporter < coverage/report-lcovonly.txt"
   },
   "dependencies": {
     "bower": "^1.6.5",
