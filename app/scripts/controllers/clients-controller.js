@@ -93,6 +93,10 @@
           var index = indexArray.indexOf(clientId);
           clientsVm.clients.splice(index, 1);
           closeModal();
+        },
+        function error(resp){
+          clientsVm.messages = resp.status===422 ? resp.data.errors:undefined;
+          $ionicLoading.hide();
         });
     }
 
