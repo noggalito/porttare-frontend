@@ -26,19 +26,16 @@
       },
       provider: {
         itemsProvider: 'Productos de Proveedor',
-        formLegend: 'Datos nuevo proveedor',
+        formLegendFirts: 'Datos nuevo proveedor - Paso 1',
+        formLegendSecond: 'Datos bancarios proveedor - Paso 2',
+        formLegendThird: 'Matriz proveedor - Paso 3',
         businessName: 'Razón social',
+        name: 'Nombre Establecimiento',
         economicActivity: 'Actividad económica',
-        contributorType: 'Tipo de contribuyente',
         LegalRepresentative: 'Representante legal',
         phone: 'Número de teléfono',
         email: 'Correo electrónico',
-        startDate: 'Fecha de inicio de actividades',
-        bankName: 'Nombre de su banco',
-        accountNumber: 'Número de cuenta',
-        bankId: 'Identificación de su banco',
         webSite: 'Sitio web',
-        bestArticle: 'Mejor artículo',
         methodPayment: 'Forma de pago',
         methods: {
           cash: 'Efectivo',
@@ -50,7 +47,16 @@
         dispatchers:  'despachadores',
         establishments: 'establecimientos',
         promotionsAndDiscounts: 'promociones y descuentos',
-        moviggoAdvertising: 'publicidad moviggo'
+        moviggoAdvertising: 'publicidad moviggo',
+        logo: 'Logotipo',
+        bank: {
+          name: 'Nombre de su banco',
+          account: 'Número de cuenta',
+          type: 'Tipo de cuenta'
+        },
+        direction: 'Dirección',
+        city: 'Ciudad',
+        schedule: 'Horario'
       },
       globals: {
         new: 'Nuevo',

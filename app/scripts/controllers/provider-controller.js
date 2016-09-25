@@ -19,6 +19,7 @@
     ];
     providerVm.createProvider = createProvider;
     providerVm.toggleCheck = toggleCheck;
+    providerVm.nexStep = nexStep;
     providerVm.providerForm = {};
     providerVm.messages={};
     providerVm.selections = [];
@@ -51,6 +52,9 @@
       if(providerVm.selections.length > 0){
         providerVm.providerForm.forma_de_pago = providerVm.selections.join(',');
       }
+
+      providerVm.providerForm.offices.push(providerVm.matrizProvider);
+
       ProviderService.createNewProvider(providerVm.providerForm)
         .then(function success() {
           $ionicLoading.hide();
@@ -73,6 +77,10 @@
           }
           $ionicLoading.hide();
         });
+    }
+
+    function nexStep() {
+      $state.go('app.provider.secondStep');
     }
 
   }

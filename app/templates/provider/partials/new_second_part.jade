@@ -1,0 +1,85 @@
+ion-view(
+  view-title='{{::("actions.newProvider"|translate)}}'
+)
+  ion-nav-title
+    .alt-logo
+  ion-content.resource-form
+    .row
+      form(name="newProviderForm" ng-submit='providerVm.createProvider()', novalidate='')
+        .list.list-inset
+          legend {{::("provider.formLegendSecond"|translate)}}
+
+          label.item.item-input.item-stacked-label(
+            ng-class="{'item-error': providerVm.messages.banco_nombre}"
+          )
+            span.input-label {{::("provider.bank.name"|translate)}}
+            input(
+              type='text',
+              placeholder='',
+              name='banco_nombre',
+              ng-model='providerVm.providerForm.banco_nombre'
+            )
+          show-error(array-messages='providerVm.messages.banco_nombre')
+          
+          label.item.item-input.item-stacked-label
+            span.input-label {{::("provider.bank.type"|translate)}}
+            input(
+              type='text',
+              placeholder='',
+              name='banco_tipo_cuenta',
+              ng-model='providerVm.providerForm.banco_tipo_cuenta'
+            )
+          
+          label.item.item-input.item-stacked-label(
+            ng-class="{'item-error': providerVm.messages.banco_numero_cuenta}"
+          )
+            span.input-label {{::("provider.bank.account"|translate)}}
+            input(
+              type='text',
+              placeholder='',
+              name='banco_numero_cuenta',
+              ng-model='providerVm.providerForm.banco_numero_cuenta'
+            )
+          show-error(array-messages='providerVm.messages.banco_numero_cuenta')
+          
+          legend {{::("provider.formLegendThird"|translate)}}
+          
+          label.item.item-input.item-stacked-label
+            span.input-label {{::("provider.direction"|translate)}}
+            input(
+              type='text',
+              placeholder='',
+              name='direccion_matriz',
+              ng-model='providerVm.matrizProvider.direccion'
+            )
+          label.item.item-input.item-stacked-label
+            span.input-label {{::("provider.city"|translate)}}
+            input(
+              type='text',
+              placeholder='',
+              name='ciudad_matriz',
+              ng-model='providerVm.matrizProvider.ciudad'
+            )
+          label.item.item-input.item-stacked-label
+            span.input-label {{::("provider.schedule"|translate)}}
+            input(
+              type='text',
+              placeholder='',
+              name='horario_matriz',
+              ng-model='providerVm.matrizProvider.horario'
+            )
+          label.item.item-input.item-stacked-label
+            span.input-label {{::("provider.phone"|translate)}}
+            input(
+              type='text',
+              placeholder='',
+              name='telefono_matriz',
+              ng-model='providerVm.matrizProvider.telefono'
+            )
+
+        .bar.bar-footer.bar-stable
+          button.button.button-outline.button-energized(
+            type='submit',
+            ng-class='{disabled: newProviderForm.$invalid}'
+          )
+            | Crear proveedor
