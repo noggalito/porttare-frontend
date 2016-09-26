@@ -18,23 +18,21 @@ ion-view(
       ) {{::("globals.new"|translate)}} {{::("client.client"|translate)}}
     .row.list-header
       .col.col-50.list-title {{::("client.clientName"|translate)}}
-      .col.list-title {{::("client.id"|translate)}}
-      .col.col-33
-        .list
-          label.item.item-input.item-select.label-select
-            {{::("client.sortBy"|translate)}}
-            select(
-              ng-model="selectedOption"
-              ng-options="x.option for x in clientsVm.listOptions"
-            )
+      .col
+        label.item.item-input.item-select.label-select
+          &nbsp
+          select.adjust-select(
+            ng-model="selectedOption"
+            ng-options="x.option for x in clientsVm.listOptions"
+          )
+            option(value="") Ordenar por
     .row.list-content(
       ng-repeat="client in clientsVm.clients | filter:clientsVm.query | orderBy:selectedOption.filterField"
     )
-      .col.col-50.list-item {{ client.nombres }}
-      .col.list-item {{ client.id }}
-      a(
+      .col.col-75.list-item {{ client.nombres }}
+      a.col(
         ng-click="clientsVm.showEditModal(client)"
-      ).col.col.33 {{::("globals.edit"|translate)}}
+      ) {{::("globals.edit"|translate)}}
   .bar.bar-footer.footer-client-container
     button.button-secondary-yellow {{::("client.import"|translate)}}
     button.button-secondary-yellow {{::("client.export"|translate)}}

@@ -6,6 +6,7 @@
     padding: 0;
     .list-title{
       color: #666;
+      font-size: 13px;
       text-transform: uppercase;
     }
   }
@@ -13,6 +14,10 @@
     margin: 5px 0;
     .list-item{
       color: $base-grey;
+    }
+    a{
+      margin-right: 15px;
+      text-align: right;
     }
   }
   .client-add-icon {
@@ -25,6 +30,9 @@
     border-bottom: none;
     margin-bottom: 0;
     padding: 0;
+  }
+  .adjust-select{
+    padding: 0 30px 0 0 !important;
   }
   .bar-base-yellow{
     background-color: $base-yellow !important;
@@ -42,10 +50,10 @@
     height: 30px;
     line-height: normal;
     margin: 0 10px;
-    padding: 0;
+    padding: 0 20px;
     text-align: center;
     text-transform: uppercase;
-    width: 130px;
+    width: auto;
   }
   .button-secondary-yellow {
     @extend .button-secondary;

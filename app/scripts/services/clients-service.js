@@ -12,7 +12,7 @@
       getClients: getClients,
       newClient: newClient,
       editClient: editClient,
-      disableClient: disableClient
+      deleteClient: deleteClient
     };
 
     return service;
@@ -49,7 +49,7 @@
         });
     }
 
-    function disableClient(data) {
+    function deleteClient(data) {
       return $http({
         method: 'DELETE',
         url: ENV.apiHost + '/api/provider/clients/' + data.id,

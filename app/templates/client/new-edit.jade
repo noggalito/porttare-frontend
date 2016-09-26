@@ -81,7 +81,7 @@ ion-modal-view.client-page
           type="submit"
         ) {{::("globals.save"|translate)}}
         button.button-secondary-red(
-          ng-click="clientsVm.disableClient(clientsVm.client.id)"
+          ng-click="clientsVm.deleteClient(clientsVm.client.id)"
           ng-show="clientsVm.client.id"
           type="button"
         ) {{::("client.unsubscribe"|translate)}}
