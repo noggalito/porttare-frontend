@@ -199,13 +199,19 @@ function routes($stateProvider, $urlRouterProvider) {
   .state('app.provider.state', {
     views: {
       'menuContent@app': {
-        controller: function($auth, $state){
+        controller: function($auth, $state, $ionicHistory){
           $auth.validateUser()
             .then(function userAuthorized(user) {
               /*jshint camelcase: false */
               if(!$.isEmptyObject(user.provider_profile)){
+                $ionicHistory.nextViewOptions({
+                  disableBack: true
+                });
                 $state.go('app.provider.management');
               }else{
+                $ionicHistory.nextViewOptions({
+                  disableBack: true
+                });
                 $state.go('app.provider.welcome');
               }
             });
