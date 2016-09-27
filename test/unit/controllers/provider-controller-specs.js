@@ -7,8 +7,12 @@
       dependencies,
       $rootScope,
       $ionicLoading,
+      deferredAuth,
+      $auth,
+      $ionicHistory,
       ProviderService,
       deferCreateProvider,
+      deferIsProvider,
       deferStateGo,
       $state,
       $ionicPopup,
@@ -22,15 +26,24 @@
       function ($q,
         _$controller_,
         _$rootScope_) {
-
         deferCreateProvider = $q.defer();
+        deferIsProvider = $q.defer();
         deferStateGo = $q.defer();
         deferTranslate = $q.defer();
+        deferredAuth  = $q.defer();
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $ionicLoading = {
           show: sinon.stub(),
           hide: sinon.stub()
+        };
+        $auth = {
+          validateUser: function() {
+            return deferredAuth.promise;
+          }
+        };
+        $ionicHistory = {
+          nextViewOptions: sinon.stub()
         };
         $state = {
           go: sinon.stub().returns(deferStateGo.promise)
@@ -52,6 +65,8 @@
       beforeEach(function () {
         dependencies = {
           $ionicLoading: $ionicLoading,
+          $auth:  $auth,
+          $ionicHistory: $ionicHistory,
           ProviderService: ProviderService,
           $ionicPopup: $ionicPopup,
           $state: $state,
@@ -79,6 +94,8 @@
       beforeEach(function () {
         dependencies = {
           $ionicLoading: $ionicLoading,
+          $auth:  $auth,
+          $ionicHistory: $ionicHistory,
           ProviderService: ProviderService,
           $ionicPopup: $ionicPopup,
           $state: $state,
@@ -136,6 +153,37 @@
         deferCreateProvider.reject(backendErrors);
         $rootScope.$digest();
         expect(ctrl.messages).to.not.empty; //jshint ignore:line
+      });
+    });
+
+    describe('Provider exists', function () {
+      beforeEach(function () {
+        dependencies = {
+          $ionicLoading: $ionicLoading,
+          $auth:  $auth,
+          $ionicHistory: $ionicHistory,
+          ProviderService: ProviderService,
+          $ionicPopup: $ionicPopup,
+          $state: $state,
+          $translate: $translate,
+          APP: APP
+        };
+
+        ctrl = $controller('ProviderController', dependencies);
+      });
+
+      it('if provider should redirect provider management', function () {
+        var providerManagementState = 'appc.provider.management.products';
+        var user = {
+          email:  'jorgemejia@gmail.com',
+          /*jshint camelcase: false */
+          provider_profile: {
+            ruc: '1104607187001'
+          }
+        };
+        ctrl.isProvider(user);
+        $rootScope.$digest();
+        sinon.assert.alwaysCalledWithExactly($state.go, providerManagementState);
       });
     });
   });

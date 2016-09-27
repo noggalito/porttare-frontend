@@ -40,7 +40,7 @@
       });
 
       it('providers should exist', function () {
-        expect(ctrl.providers).to.exist;
+        expect(ctrl.providers).to.exist; //jshint ignore:line
       });
 
     });

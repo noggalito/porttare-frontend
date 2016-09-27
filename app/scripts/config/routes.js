@@ -196,39 +196,6 @@ function routes($stateProvider, $urlRouterProvider) {
     url: '/provider',
     abstract: true
   })
-  .state('app.provider.state', {
-    views: {
-      'menuContent@app': {
-        controller: function($auth, $state, $ionicHistory){
-          $auth.validateUser()
-            .then(function userAuthorized(user) {
-              /*jshint camelcase: false */
-              if(!$.isEmptyObject(user.provider_profile)){
-                $ionicHistory.nextViewOptions({
-                  disableBack: true
-                });
-                $state.go('app.provider.management');
-              }else{
-                $ionicHistory.nextViewOptions({
-                  disableBack: true
-                });
-                $state.go('app.provider.welcome');
-              }
-            });
-        }
-      }
-    }
-  })
-  .state('app.provider.management', {
-    url: '/management',
-    views: {
-      'menuContent@app': {
-        templateUrl: 'templates/provider/managementProvider.html',
-        controller: 'ProviderManagementController',
-        controllerAs: 'providerM1'
-      }
-    }
-  })
   .state('app.provider.welcome', {
     url: '/welcome',
     views: {
@@ -260,6 +227,28 @@ function routes($stateProvider, $urlRouterProvider) {
         templateUrl: 'templates/products/index.html',
         controller: 'ProductsController',
         controllerAs: 'productsVm'
+      }
+    }
+  })
+  .state('appc', {
+    abstract: true,
+    templateUrl: 'templates/menu/menu-provider.html'
+  })
+  .state('appc.provider', {
+    url: '/provider',
+    abstract: true
+  })
+  .state('appc.provider.management', {
+    url: '/management',
+    abstract: true
+  })
+  .state('appc.provider.management.products', {
+    url: '/products',
+    views: {
+      'menuContent@appc': {
+        templateUrl: 'templates/provider/items-provider.html',
+        controller: 'ProviderManagementController',
+        controllerAs: 'providerM1'
       }
     }
   });

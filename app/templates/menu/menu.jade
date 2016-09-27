@@ -18,7 +18,7 @@ ion-side-menus(enable-menu-with-back-views='false')
           | {{::("client.clients"|translate)}}
         ion-item(menu-close='' ui-sref='app.map')
           | {{::("menu.location"|translate)}}
-        ion-item(menu-close='' ui-sref='app.provider.state')
+        ion-item(menu-close=''  ng-controller='ProviderController as providerVm', ng-click='providerVm.isProvider(user)')
           | {{::("menu.provider"|translate)}}
         ion-item(menu-close='' ui-sref='app.products.index')
           | {{::("menu.products"|translate)}}

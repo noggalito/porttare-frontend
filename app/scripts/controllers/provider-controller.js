@@ -10,6 +10,8 @@
                               $ionicPopup,
                               $state,
                               $ionicLoading,
+                              $ionicHistory,
+                              $auth,
                               APP) {
     var providerVm = this;
     var successState = APP.successState;
@@ -18,6 +20,7 @@
       'provider.methods.creditCard'
     ];
     providerVm.createProvider = createProvider;
+    providerVm.isProvider = isProvider;
     providerVm.toggleCheck = toggleCheck;
     providerVm.providerForm = {};
     providerVm.messages={};
@@ -41,6 +44,21 @@
         providerVm.selections.push(method.value);
       } else {
         providerVm.selections.splice(providerVm.selections.indexOf(method.value), 1);
+      }
+    }
+
+    function isProvider(user) {
+      /*jshint camelcase: false */
+      if(user.provider_profile){
+        $ionicHistory.nextViewOptions({
+          disableBack: true
+        });
+        $state.go('appc.provider.management.products');
+      }else{
+        $ionicHistory.nextViewOptions({
+          disableBack: true
+        });
+        $state.go('app.provider.welcome');
       }
     }
 
