@@ -9,8 +9,7 @@
                              ModalService,
                              $ionicLoading,
                              $ionicPopup,
-                             $scope,
-                             $filter) {
+                             $scope) {
     var clientsVm = this;
     clientsVm.showNewModal = showNewModal;
     clientsVm.showEditModal = showEditModal;
@@ -66,8 +65,7 @@
             title: 'Éxito',
             template: '{{::("client.successUpdateClient"|translate)}}'
           });
-          var client = $filter('filter')(clientsVm.clients, {id:resp.id}, true)[0];
-          var index = clientsVm.clients.indexOf(client);
+          var index = clientsVm.clients.findIndex((n) => n.id === resp.id);
           clientsVm.clients[index] = resp;
           closeModal();
         },
@@ -88,8 +86,7 @@
             title: 'Éxito',
             template: '{{::("client.successDeleteClient"|translate)}}'
           });
-          var client = $filter('filter')(clientsVm.clients, {id:clientId}, true)[0];
-          var index = clientsVm.clients.indexOf(client);
+          var index = clientsVm.clients.findIndex((n) => n.id === clientId);
           clientsVm.clients.splice(index, 1);
           closeModal();
         },
