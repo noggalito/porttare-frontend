@@ -150,6 +150,10 @@
         current: 'Contraseña',
         confirm: 'Confirmar contraseña',
         update: 'Actualizar'
+      },
+      user: {
+        profile: 'Perfil de Usuario',
+        showProfile: 'VER PERFIL'
       }
     });
 

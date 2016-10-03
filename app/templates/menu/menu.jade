@@ -9,6 +9,7 @@ ion-side-menus(enable-menu-with-back-views='false')
     ion-header-bar.bar-stable
       h1.title Left
     ion-content
+      a(ui-sref='app.perfil') {{::("user.showProfile"|translate)}}
       ion-list
         ion-item(menu-close='' ui-sref='app.categories.index')
           | {{::("menu.category"|translate)}}
