@@ -65,7 +65,7 @@
             title: 'Éxito',
             template: '{{::("client.successUpdateClient"|translate)}}'
           });
-          var index = clientsVm.clients.findIndex((n) => n.id === resp.id);
+          var index = clientsVm.clients.findIndex(function(row){return row.id === resp.id;});
           clientsVm.clients[index] = resp;
           closeModal();
         },
@@ -86,7 +86,7 @@
             title: 'Éxito',
             template: '{{::("client.successDeleteClient"|translate)}}'
           });
-          var index = clientsVm.clients.findIndex((n) => n.id === clientId);
+          var index = clientsVm.clients.findIndex(function(row){return row.id === clientId;});
           clientsVm.clients.splice(index, 1);
           closeModal();
         },
