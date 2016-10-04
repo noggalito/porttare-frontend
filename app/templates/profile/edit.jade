@@ -1,0 +1,74 @@
+ion-modal-view.client-page
+  ion-header-bar.bar.bar-header.bar-light.bar-base-yellow(
+    align-title="center"
+  )
+    h4{{::("globals.edit"|translate)}} 
+    .ion-nav-buttons(side="left")
+      button.button.ion-chevron-left.button-clear.left(
+        ng-click="profileVm.closeModal()"
+      )
+  ion-content.resource-form
+    form(
+      name="form"
+      ng-submit="profileVm.submitProcess(profileVm.user)"
+      novalidate
+    )
+      .list.list-inset
+        legend {{::("client.formLegend"|translate)}}
+        
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("item.imagen"|translate|uppercase)}}
+          input(
+            type='file'
+            ngf-select
+            ng-model="profileVm.user.image"  
+            accept="image/*"
+          )
+        show-error(array-messages='profileVm.user.image')
+          
+        label.item.item-input.item-stacked-label(
+          ng-class="{'item-error': profileVm.user.email}"
+        )
+          span.input-label {{::("user.email"|translate)}}
+          input(
+            type="text"
+            ng-model="profileVm.user.email"
+            ng-class="input-error"
+          )
+        show-error(array-messages="profileVm.messages.email")
+        
+        label.item.item-input.item-stacked-label(
+          ng-class="{'item-error': profileVm.messages.fecha_de_nacimiento}"
+        )
+          span.input-label {{::("user.birthdate"|translate)}}
+          input(
+            type="date"
+            ng-class="input-error"
+            ng-model="profileVm.fecha_de_nacimiento"
+          )
+        show-error(array-messages="profileVm.messages.fecha_de_nacimiento")
+
+        label.item.item-input.item-stacked-label(
+          ng-class="{'item-error': profileVm.messages.name}"
+        )
+          span.input-label {{::("user.name"|translate)}}
+          input(
+            type="text"
+            ng-model="profileVm.user.name"
+          )
+        show-error(array-messages="profileVm.messages.name")
+
+        label.item.item-input.item-stacked-label(
+          ng-class="{'item-error': profileVm.messages.ciudad}"
+        )
+          span.input-label {{::("user.country"|translate)}}
+          input(
+            type="text"
+            ng-model="profileVm.user.ciudad"
+          )
+        show-error(array-messages="profileVm.messages.ciudad")
+        
+      .bar.bar-footer.footer-client-container
+        button.button-secondary-yellow(
+          type="submit"
+        ) {{::("globals.save"|translate)}}

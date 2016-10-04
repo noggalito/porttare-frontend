@@ -77,8 +77,8 @@ function routes($stateProvider, $urlRouterProvider) {
       currentUser: accessIfUserAuth
     }
   })
-  .state('app.perfil', {
-    url: '/perfil',
+  .state('app.profile', {
+    url: '/profile',
     views: {
       'menuContent': {
         templateUrl: 'templates/profile/profile.html',

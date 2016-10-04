@@ -153,7 +153,15 @@
       },
       user: {
         profile: 'Perfil de Usuario',
-        showProfile: 'VER PERFIL'
+        showProfile: 'Ver perfil',
+        name: 'Nombre',
+        email:  'Correo electrónico',
+        age:  'Edad',
+        country:  'Ciudad',
+        image:  'Imagen',
+        successUpdateProfile: 'Perfil actualizado éxitosamente',
+        password: 'Contraseña',
+        birthdate:  'Fecha de Nacimiento'
       }
     });
 
