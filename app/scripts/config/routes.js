@@ -414,6 +414,29 @@ function routes($stateProvider, $urlRouterProvider) {
   .state('disabledUserError', {
     url: '/disabled-user',
     templateUrl: 'templates/error/disabled-user-error.html'
+  })
+  .state('app.wishlist', {
+    url: '/wishlist',
+    abstract: true
+  })
+  .state('app.wishlist.index', {
+    url: '/',
+    views: {
+      'menuContent@app': {
+        templateUrl: 'templates/wishlist/wishlists.html',
+        controller: 'WishlistsController',
+        controllerAs: 'wishlistsVm',
+        resolve: {
+          data: function ($ionicLoading, WishlistsService, ErrorHandlerService) {
+            return WishlistsService.getWishlists()
+              .then(function success(res) {
+                  $ionicLoading.hide();
+                  return res;
+                }, ErrorHandlerService.handleCommonErrorGET);
+          }
+        }
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise(function ($injector, $location) {

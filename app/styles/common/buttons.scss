@@ -43,6 +43,12 @@
   font-family: Montserrat-Regular;
 }
 
+.button-text-yellow {
+  background: transparent;
+  border: none;
+  color: $base-yellow;
+}
+
 .facebook-login,
  {
   @extend .common-button;

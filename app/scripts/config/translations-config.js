@@ -41,7 +41,8 @@
           coupon: 'Cuponera',
           payments: 'Pagos',
           provider: 'Proveedor',
-          cart: 'Mi carro'
+          cart: 'Mi carro',
+          wishlist: 'Wishlist'
         },
         provider: {
           orders: 'Pedidos',
@@ -192,6 +193,28 @@
         direccion: 'Dirección',
         telefono: 'Teléfono',
         email: 'email'
+      },
+      wishlist: {
+        wishlists: 'Listas de deseos',
+        searchBox: 'Buscar lista',
+        new: 'Nueva lista',
+        id: 'id',
+        name: 'Nombre de la lista',
+        edit: 'Ver lista',
+        titleNew: 'Nueva lista',
+        titleEdit: 'Editar lista',
+        listName: 'Nombre de la lista',
+        items: 'Items',
+        dateDelivery: 'Fecha y hora de entrega',
+        shareWith: 'Compartir lista con',
+        save: 'Guardar lista',
+        remove: 'Eliminar lista',
+        buttonAddItems: 'Agregar ítems +',
+        buttonAddDate: 'Agregar hora y fecha +',
+        buttonShare: 'Escoger usuario +',
+        titleSelectItems: 'Seleccionar Items',
+        cancel: 'Cancelar',
+        noItems: 'No se han cargado items al wishlist'
       },
       password: {
         updatePassword: 'Actualizar contraseña',

@@ -31,6 +31,8 @@ ion-side-menus(enable-menu-with-back-views='false')
           li {{::("menu.client.coupon"|translate)}}
         ion-item.gray-item
           li {{::("menu.client.payments"|translate)}}
+        ion-item.gray-item(menu-close='' ui-sref='app.wishlist.index')
+          li {{::("menu.client.wishlist"|translate)}}
         ion-item
           | {{::("menu.invite"|translate)}}
         ion-item(ng-controller='LoginController as loginVm', ng-click='loginVm.logout()')

@@ -15,8 +15,11 @@
       cursor: pointer;
     }
     .gray-item{
-      background: #f7f7f7;
+      background: $light-grey;
       text-transform: uppercase;
+      .item-content {
+        background: $light-grey;
+      }
     }
     .user-type{
       background: $base-yellow;
