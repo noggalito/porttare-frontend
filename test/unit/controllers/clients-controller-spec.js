@@ -12,15 +12,30 @@
       $ionicLoading,
       $ionicPopup,
       $scope,
-      $rootScope;
+      $rootScope,
+      deferNewClient,
+      deferEditClient,
+      deferDeleteClient;
 
     beforeEach(module('porttare.controllers'));
     beforeEach(module('porttare.services', function($provide){
-      $provide.factory('ClientsService', function(){
+      $provide.factory('ClientsService', function($q){
         return {
           getClients: function(){
             deferGetClients = $q.defer();
             return deferGetClients.promise;
+          },
+          newClient: function(){
+            deferNewClient = $q.defer();
+            return deferNewClient.promise;
+          },
+          editClient: function(){
+            deferEditClient = $q.defer();
+            return deferEditClient.promise;
+          },
+          deleteClient: function(){
+            deferDeleteClient = $q.defer();
+            return deferDeleteClient.promise;
           }
         };
       });
@@ -59,35 +74,213 @@
       })
     );
 
-    beforeEach(function () {
-      dependencies = {
-        $scope: $scope,
-        ClientsService: ClientsService,
-        ModalService: ModalService,
-        $ionicLoading: $ionicLoading,
-        $ionicPopup: $ionicPopup
-      };
+    describe('All functions', function () {
+      beforeEach(function () {
+        dependencies = {
+          $scope: $scope,
+          ClientsService: ClientsService,
+          ModalService: ModalService,
+          $ionicLoading: $ionicLoading,
+          $ionicPopup: $ionicPopup
+        };
 
-      ctrl = $controller('ClientsController', dependencies);
-    });
+        ctrl = $controller('ClientsController', dependencies);
+      });
 
-    describe('Functions', function () {
-      it('Get clients list', function () {
-        var data = {provider_clients: []};
-        deferGetClients.resolve(data);
-        $scope.$digest();
-        expect(ctrl.clients).to.equal(data);
+      describe('Get clients list', function () {
+        it('Get clients list', function () {
+          var data = {provider_clients: []}; //jshint ignore:line
+          deferGetClients.resolve(data);
+          $scope.$digest();
+          expect(ctrl.clients).to.equal(data);
+        });
       });
-      it('Show modal', function () {
-        var spy = sinon.spy(ModalService, 'showModal');
-        ctrl.showNewModal();
-        chai.expect(spy.called).to.be.equal(true);
+
+      describe('Create client', function () {
+
+        beforeEach(inject(function () {
+          ctrl.submitProcess(null);
+        }));
+
+        it('ionicLoading.show should be called', function () {
+          sinon.assert.calledOnce($ionicLoading.show);
+        });
+
+        it('if successful, ionicLoading.hide should be called', function () {
+          ctrl.clients = [];
+          deferNewClient.resolve({data: 'data'});
+          $scope.$digest();
+          sinon.assert.calledOnce($ionicLoading.hide);
+        });
+
+        it('if successful, response should be added to clients', function () {
+          ctrl.clients = [];
+          deferNewClient.resolve({data: 'data'});
+          $scope.$digest();
+          expect(ctrl.clients).to.not.be.null;
+        });
+
+        it('if successful, ionicPopup.alert should be called', function () {
+          ctrl.clients = [];
+          deferNewClient.resolve({data: 'data'});
+          $scope.$digest();
+          sinon.assert.calledOnce($ionicPopup.alert);
+        });
+
+        it('if unsuccessful, ionicLoading.hide should be called', function () {
+          ctrl.messages = {};
+          var backendErrors = {
+            status: 422,
+            data: {
+              errors: [
+                { test: 'message' }
+              ]
+            }
+          };
+          deferNewClient.reject(backendErrors);
+          $rootScope.$digest();
+          expect(ctrl.messages).to.be.not.empty; //jshint ignore:line
+        });
+
+        it('if unsuccessful, ionicLoading.hide should be called', function () {
+          ctrl.clients = [];
+          deferNewClient.reject({data: 'data'});
+          $scope.$digest();
+          sinon.assert.calledOnce($ionicLoading.hide);
+        });
       });
-      it('Close modal', function () {
-        var spy = sinon.spy(ModalService, 'closeModal');
-        ctrl.closeModal();
-        expect(ctrl.client).to.be.null;
-        chai.expect(spy.called).to.be.equal(true);
+
+      describe('Edit client', function () {
+
+        beforeEach(inject(function () {
+          ctrl.submitProcess(1);
+        }));
+
+        it('ionicLoading.show should be called', function () {
+          sinon.assert.calledOnce($ionicLoading.show);
+        });
+
+        it('if successful, ionicLoading.hide should be called', function () {
+          ctrl.clients = [];
+          ctrl.clients.findIndex = function (param) {
+            var row = {id:0};
+            param(row);
+          };
+          deferEditClient.resolve({id:0});
+          deferEditClient.resolve({data: 'data'});
+          $scope.$digest();
+          sinon.assert.calledOnce($ionicLoading.hide);
+        });
+
+        it('if successful, ionicPopup.alert should be called', function () {
+          ctrl.clients = [];
+          ctrl.clients.findIndex = function (param) {
+            var row = {id:0};
+            param(row);
+          };
+          deferEditClient.resolve({id:0});
+          $scope.$digest();
+          sinon.assert.calledOnce($ionicPopup.alert);
+        });
+
+        it('if unsuccessful, ionicLoading.hide should be called', function () {
+          ctrl.messages = {};
+          var backendErrors = {
+            status: 422,
+            data: {
+              errors: [
+                { test: 'message' }
+              ]
+            }
+          };
+          deferEditClient.reject(backendErrors);
+          $rootScope.$digest();
+          expect(ctrl.messages).to.be.not.empty; //jshint ignore:line
+        });
+
+        it('if unsuccessful, ionicLoading.hide should be called', function () {
+          ctrl.clients = [];
+          deferEditClient.reject({data: 'data'});
+          $scope.$digest();
+          sinon.assert.calledOnce($ionicLoading.hide);
+        });
+      });
+
+      describe('Delete client', function () {
+
+        beforeEach(inject(function () {
+          ctrl.deleteClient(0);
+        }));
+
+        it('ionicLoading.show should be called', function () {
+          sinon.assert.calledOnce($ionicLoading.show);
+        });
+
+        it('if successful, ionicLoading.hide should be called', function () {
+          ctrl.clients = [];
+          ctrl.clients.findIndex = function (param) {
+            var row = {id:0};
+            param(row);
+          };
+          deferDeleteClient.resolve();
+          $scope.$digest();
+          sinon.assert.calledOnce($ionicLoading.hide);
+        });
+
+        it('if successful, ionicPopup.alert should be called', function () {
+          ctrl.clients = [];
+          ctrl.clients.findIndex = function (param) {
+            var row = {id:0};
+            param(row);
+          };
+          deferDeleteClient.resolve();
+          $scope.$digest();
+          sinon.assert.calledOnce($ionicPopup.alert);
+        });
+
+        it('if unsuccessful, ionicLoading.hide should be called', function () {
+          ctrl.clients = [];
+          deferDeleteClient.reject();
+          $scope.$digest();
+          sinon.assert.calledOnce($ionicLoading.hide);
+        });
+      });
+
+      describe('Modal', function () {
+        beforeEach(function () {
+          dependencies = {
+            $scope: $scope,
+            ClientsService: ClientsService,
+            ModalService: ModalService,
+            $ionicLoading: $ionicLoading,
+            $ionicPopup: $ionicPopup
+          };
+
+          ctrl = $controller('ClientsController', dependencies);
+        });
+
+        it('Show modal', function () {
+          var spy = sinon.spy(ModalService, 'showModal');
+          ctrl.showNewModal();
+          chai.expect(spy.called).to.be.equal(true);
+        });
+
+        beforeEach(inject(function () {
+          ctrl.showEditModal({id:0});
+        }));
+
+        it('Show edit modal', function () {
+          var spy = sinon.spy(ModalService, 'showModal');
+          ctrl.showNewModal();
+          chai.expect(spy.called).to.be.equal(true);
+        });
+
+        it('Close modal', function () {
+          var spy = sinon.spy(ModalService, 'closeModal');
+          ctrl.closeModal();
+          expect(ctrl.client).to.be.null;
+          chai.expect(spy.called).to.be.equal(true);
+        });
       });
     });
   });
