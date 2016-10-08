@@ -8,45 +8,50 @@ ion-view(
       form(name="newProviderForm" ng-submit='providerVm.nexStep()', novalidate='')
         .list.list-inset
           legend {{::("provider.formLegendFirts"|translate)}}
-
+          span.item-input-label-lg (*) Campo requerido
           label.item.item-input.item-stacked-label(
-            ng-class="{'item-error': providerVm.messages.ruc}"
+            ng-class="{'item-error': newProviderForm.ruc.$touched && newProviderForm.ruc.$error.required}"
           )
-            span.input-label RUC
+            span.input-label RUC *
             input(
               type='text',
               name='ruc',
               ng-model='providerVm.providerForm.ruc',
-              ng-class='input-error'
+              ng-class='input-error',
+              required
             )
-          show-error(array-messages='providerVm.messages.ruc')
+          show-error(ng-if="newProviderForm.ruc.$touched && newProviderForm.ruc.$error.required"
+            array-messages='[("provider.isRequired"|translate)]')
           
           label.item.item-input.item-stacked-label(
-            ng-class="{'item-error': providerVm.messages.razon_social}"
+            ng-class="{'item-error': newProviderForm.razon_social.$touched && newProviderForm.razon_social.$error.required}"
           )
-            span.input-label {{::("provider.businessName"|translate)}}
+            span.input-label {{::("provider.businessName"|translate)}}*
             input(
               type='text',
               placeholder='',
               name='razon_social',
-              ng-model='providerVm.providerForm.razon_social'
+              ng-model='providerVm.providerForm.razon_social',
+              required
             )
-          show-error(array-messages='providerVm.messages.razon_social')
+          show-error(ng-if="newProviderForm.razon_social.$touched && newProviderForm.razon_social.$error.required"
+            array-messages='[("provider.isRequired"|translate)]')
           
           label.item.item-input.item-stacked-label(
-           ng-class="{'item-error': providerVm.messages.nombre_establecimiento}"
+            ng-class="{'item-error': newProviderForm.nombre_establecimiento.$touched && newProviderForm.nombre_establecimiento.$error.required}"
           )
-           span.input-label {{::("provider.name"|translate)}}
+           span.input-label {{::("provider.name"|translate)}}*
            input(
              type='text',
              name='nombre_establecimiento',
              ng-model='providerVm.providerForm.nombre_establecimiento',
-             ng-class='input-error'
+             ng-class='input-error',
+             required
            )
-          
-          label.item.item-input.item-stacked-label(
-            ng-class="{'item-error': providerVm.messages.actividad_economica}"
-          )
+          show-error(ng-if="newProviderForm.nombre_establecimiento.$touched && newProviderForm.nombre_establecimiento.$error.required"
+            array-messages='[("provider.isRequired"|translate)]')
+
+          label.item.item-input.item-stacked-label
             span.input-label {{::("provider.economicActivity"|translate)}}
             input(
               type='text',
@@ -54,40 +59,48 @@ ion-view(
               name='actividad_economica',
               ng-model='providerVm.providerForm.actividad_economica'
             )
-          show-error(array-messages='providerVm.messages.actividad_economica')  
           
-          label.item.item-input.item-stacked-label
-            span.input-label {{::("provider.LegalRepresentative"|translate)}}
+          label.item.item-input.item-stacked-label(
+            ng-class="{'item-error': newProviderForm.representante_legal.$touched && newProviderForm.representante_legal.$error.required}"
+          )
+            span.input-label {{::("provider.LegalRepresentative"|translate)}}*
             input(
               type='text',
               placeholder='',
               name='representante_legal',
-              ng-model='providerVm.providerForm.representante_legal'
+              ng-model='providerVm.providerForm.representante_legal',
+              required
             )
+          show-error(ng-if="newProviderForm.representante_legal.$touched && newProviderForm.representante_legal.$error.required"
+            array-messages='[("provider.isRequired"|translate)]')
           
           label.item.item-input.item-stacked-label(
-            ng-class="{'item-error': providerVm.messages.telefono}"
+            ng-class="{'item-error': newProviderForm.telefono.$touched && newProviderForm.telefono.$error.required}"
           )
-            span.input-label {{::("provider.phone"|translate)}}
+            span.input-label {{::("provider.phone"|translate)}}*
             input(
               type='tel',
               placeholder='',
               name='telefono',
-              ng-model='providerVm.providerForm.telefono'
+              ng-model='providerVm.providerForm.telefono',
+              required
             )
-          show-error(array-messages='providerVm.messages.telefono')
+          show-error(ng-if="newProviderForm.telefono.$touched && newProviderForm.telefono.$error.required"
+            array-messages='[("provider.isRequired"|translate)]')
           
           label.item.item-input.item-stacked-label(
-            ng-class="{'item-error': providerVm.messages.email}"
+            ng-class="{'item-error': newProviderForm.email.$touched && newProviderForm.email.$error.required}"
           )
-            span.input-label {{::("provider.email"|translate)}}
+            span.input-label {{::("provider.email"|translate)}}*
             input(
               type='email',
               placeholder='user@mydomain.com',
               name='email',
-              ng-model='providerVm.providerForm.email'
+              ng-model='providerVm.providerForm.email',
+              required
             )
-          show-error(array-messages='providerVm.messages.email')
+          show-error(ng-if="newProviderForm.email.$touched && newProviderForm.email.$error.required"
+            array-messages='[("provider.isRequired"|translate)]')
           
           label.item.item-input.item-stacked-label
             span.input-label {{::("provider.webSite"|translate)}}
@@ -117,7 +130,7 @@ ion-view(
             )
         .bar.bar-footer.bar-stable
           button.button.button-outline.button-energized(
-            type='submit',
-            ng-class='{disabled: newProviderForm.$invalid}'
+            type='submit'
+            ng-disabled="newProviderForm.$invalid"
           )
             | Siguiente paso

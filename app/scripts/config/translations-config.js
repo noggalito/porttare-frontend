@@ -56,7 +56,8 @@
         },
         direction: 'Dirección',
         city: 'Ciudad',
-        schedule: 'Horario'
+        schedule: 'Horario',
+        isRequired: 'Este campo es obligatorio'
       },
       globals: {
         new: 'Nuevo',

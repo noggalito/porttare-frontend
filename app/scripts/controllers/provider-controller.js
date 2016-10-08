@@ -53,7 +53,7 @@
         providerVm.providerForm.forma_de_pago = providerVm.selections.join(',');
       }
 
-      providerVm.providerForm.offices.push(providerVm.matrizProvider);
+      providerVm.providerForm.offices = [providerVm.matrizProvider];
 
       ProviderService.createNewProvider(providerVm.providerForm)
         .then(function success() {
