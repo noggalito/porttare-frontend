@@ -57,7 +57,9 @@
         direction: 'Dirección',
         city: 'Ciudad',
         schedule: 'Horario',
-        isRequired: 'Este campo es obligatorio'
+        isRequired: 'Este campo es obligatorio',
+        nextStep: 'Siguiente Paso',
+        createProvider: 'Crear Proveedor'
       },
       globals: {
         new: 'Nuevo',

@@ -206,21 +206,11 @@ function routes($stateProvider, $urlRouterProvider) {
       }
     }
   })
-  .state('app.provider.firstStep', {
-    url: '/init',
+  .state('app.provider.new', {
+    url: '/new',
     views: {
       'menuContent@app': {
-        templateUrl: 'templates/provider/partials/new_first_part.html',
-        controller: 'ProviderController',
-        controllerAs: 'providerVm'
-      }
-    }
-  })
-  .state('app.provider.secondStep', {
-    url: '/final',
-    views: {
-      'menuContent@app': {
-        templateUrl: 'templates/provider/partials/new_second_part.html',
+        templateUrl: 'templates/provider/new.html',
         controller: 'ProviderController',
         controllerAs: 'providerVm'
       }

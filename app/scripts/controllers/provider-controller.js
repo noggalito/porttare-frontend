@@ -17,11 +17,10 @@
       'provider.methods.cash',
       'provider.methods.creditCard'
     ];
-    providerVm.createProvider = createProvider;
     providerVm.toggleCheck = toggleCheck;
-    providerVm.nexStep = nexStep;
+    providerVm.submit = submit;
     providerVm.providerForm = {};
-    providerVm.messages={};
+    providerVm.step = 1;
     providerVm.selections = [];
     providerVm.methodsPayment = [];
     $translate(transKeys).then(function (trans) {
@@ -65,22 +64,17 @@
             });
           });
         },
-        function error(resp) {
-          if (resp.data.errors) {
-            providerVm.messages = resp.data.errors;
-          } else {
-            $ionicPopup.alert({
-              title: 'Error',
-              template: resp.data.error ? resp.data.error :
-                'Hubo un error, intentalo nuevamente.'
-            });
-          }
+        function error() {
           $ionicLoading.hide();
+          providerVm.step = 1;
         });
     }
 
-    function nexStep() {
-      $state.go('app.provider.secondStep');
+    function submit() {
+      if(providerVm.step === 2){
+        createProvider();
+      }
+      providerVm.step += 1;
     }
 
   }
