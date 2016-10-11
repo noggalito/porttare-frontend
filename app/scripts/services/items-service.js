@@ -8,7 +8,6 @@
   function ItemsService($http,
                         $ionicPopup,
                         $ionicLoading,
-                        $ionicModal,
                         $auth,
                         Upload,
                         ENV) {
@@ -17,28 +16,10 @@
       newItem: newItem,
       getItems: getItems,
       editItem: editItem,
-      modalInstance: modalInstance
+      deleteItem: deleteItem
     };
 
     return service;
-
-    function modalInstance($scope){
-      return $ionicModal.fromTemplateUrl('my-modal-item.html', {
-        scope: $scope,
-        animation: 'slide-in-up',
-        backdropClickToClose: false,
-        hardwareBackButtonClose: false
-      })
-        .then(function(modal){
-          return modal;
-        },
-        function error(){
-          $ionicPopup.alert({
-            title: 'Error',
-            template: '{{::("globals.pleaseTryAgain"|translate)}}'
-          });
-        });
-    }
 
     function newItem(data) {
       var promise;
@@ -85,40 +66,21 @@
     }
 
     function editItem(data) {
-      $ionicLoading.show({
-        template: '{{::("globals.updating"|translate)}}'
-      });
       return $http({
         method: 'PUT',
         url: ENV.apiHost + '/api/provider/items/' + data.id,
         data: data
       })
         .then(function success(resp) {
-          $ionicLoading.hide();
-          $ionicPopup.alert({
-            title: 'Éxito',
-            template: '{{::("item.successUpdateItem"|translate)}}'
-          });
-          return resp.data;
-        },
-        function error(resp) {
-          if (resp.data.errors){
-            $ionicPopup.alert({
-              title: 'Faltan datos',
-              template: '{{::("globals.pleaseTryAgain"|translate)}}'
-            });
-            return resp.data;
-          } else {
-            $ionicPopup.alert({
-              title: 'Error',
-              template: resp.data ? resp.data.error :
-                '{{::("globals.pleaseTryAgain"|translate)}}'
-            });
-          }
-        })
-        .finally(function () {
-          $ionicLoading.hide();
+          return resp.data.provider_item; //jshint ignore:line
         });
+    }
+
+    function deleteItem(data) {
+      return $http({
+        method: 'DELETE',
+        url: ENV.apiHost + '/api/provider/items/' + data
+      });
     }
   }
 })();

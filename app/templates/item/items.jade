@@ -4,15 +4,16 @@ ion-view(
   ion-nav-title
     .alt-logo
   ion-content.item-page
+    .row.footer-item-container
+      button.button-secondary-yellow(
+        ng-click="itemsVm.showNewModal()"
+      ) {{::("globals.new"|translate)}} {{::("item.item"|translate)}}
     .row
-      .col.col-75.col-offset-5
-        h4.item-title {{::("item.offerItem"|translate)}}
-      .col.col-15.item-add-icon
-        i(class='icon ion-plus-circled', ng-click="itemsVm.openModal()")
-    .row.col.col-offset-5.col-90.col-offset-5
-      .list
+      h4.item-title {{::("item.offerItem"|translate)}}
+    .row
+      .list.list-large
         a(ng-repeat='item in itemsVm.items', class='item item-avatar' ng-click='itemsVm.showActionSheet(item)')
-          img(class='item-square-img', ng-src='{{item.imagenes[0].imagen_url}}')
+          img(ng-src='{{item.imagenes[0].imagen_url}}')
           h2 {{ item.titulo }}
           p {{ item.descripcion }}
     script(id='my-modal-item.html', type='text/ng-template')

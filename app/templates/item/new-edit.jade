@@ -1,80 +1,93 @@
-form.item-form-container(name='form', ng-submit='itemsVm.submitProcess(itemsVm.item.id)', enctype='multipart/form-data', novalidate)
-  .list
-    span.item-input-label-lg (*) Campo requerido
-    label.item.item-input.item-stacked-label
-      span.input-label {{::("item.titulo"|translate|uppercase)}}*
-      input(
-        type='text'
-        ng-model='itemsVm.item.titulo'
-        required='required'
-        ng-class='input-error'
+ion-modal-view.item-page
+  ion-header-bar.bar.bar-header.bar-light.bar-base-yellow(
+    align-title="center"
+  )
+    h4(ng-hide="itemsVm.item.id").title {{::("globals.new"|translate)}} {{::("item.item"|translate)}}
+    h4(ng-show="itemsVm.item.id").title {{::("globals.edit"|translate)}} {{::("item.item"|translate)}}
+    .ion-nav-buttons(side="left")
+      button.button.ion-chevron-left.button-clear.left(
+        ng-click="itemsVm.closeModal()"
       )
-    show-error(array-messages='itemsVm.messages.titulo')
+  ion-content.resource-form
+    form(
+      name='form'
+      ng-submit='itemsVm.submitProcess(itemsVm.item.id)'
+      novalidate
+    )
+      .list.list-inset
+        legend {{::("item.formLegend"|translate)}}
 
-    label.item.item-input.item-stacked-label
-      span.input-label {{::("item.descripcion"|translate|uppercase)}}
-      input(
-        type='text'
-        ng-model='itemsVm.item.descripcion'
-      )
-    show-error(array-messages='itemsVm.messages.descripcion')
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("item.titulo"|translate|uppercase)}}
+          input(
+            type='text'
+            ng-model='itemsVm.item.titulo'
+            ng-class='input-error'
+          )
+        show-error(array-messages='itemsVm.messages.titulo')
 
-    label.item.item-input.item-stacked-label
-      span.input-label {{::("item.precio"|translate|uppercase)}}*
-      input(
-        min='0'
-        step='any'
-        type='number'
-        ng-model='itemsVm.item.precio'
-        required='required'
-      )
-    show-error(array-messages='itemsVm.messages.precio')
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("item.descripcion"|translate|uppercase)}}
+          input(
+            type='text'
+            ng-model='itemsVm.item.descripcion'
+          )
+        show-error(array-messages='itemsVm.messages.descripcion')
 
-    label.item.item-input.item-stacked-label
-      span.input-label {{::("item.volumen"|translate|uppercase)}}
-      input(
-        type='text',
-        ng-model='itemsVm.item.volumen'
-      )
-    show-error(array-messages='itemsVm.messages.volumen')
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("item.precio"|translate|uppercase)}}
+          input(
+            min='0'
+            step='any'
+            type='number'
+            ng-model='itemsVm.item.precio'
+          )
+        show-error(array-messages='itemsVm.messages.precio')
 
-    label.item.item-input.item-stacked-label
-      span.input-label {{::("item.peso"|translate|uppercase)}}
-      input(
-        type='text'
-        ng-model='itemsVm.item.peso'
-      )
-    show-error(array-messages='itemsVm.messages.peso')
-    //- Pending upload image
-    label.item.item-input.item-stacked-label
-      span.input-label {{::("item.imagen"|translate|uppercase)}}
-      input(
-        type='file'
-        ngf-select
-        ng-model="itemsVm.item.imagen"  
-        accept="image/*"
-      )
-    show-error(array-messages='itemsVm.messages.imagen')
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("item.volumen"|translate|uppercase)}}
+          input(
+            type='text'
+            ng-model='itemsVm.item.volumen'
+          )
+        show-error(array-messages='itemsVm.messages.volumen')
 
-    label.item.item-input.item-stacked-label
-      span.input-label {{::("item.observaciones"|translate|uppercase)}}
-      input(
-        type='text'
-        ng-model='itemsVm.item.observaciones'
-      )
-    show-error(array-messages='itemsVm.messages.observaciones')
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("item.peso"|translate|uppercase)}}
+          input(
+            type='text'
+            ng-model='itemsVm.item.peso'
+          )
+        show-error(array-messages='itemsVm.messages.peso')
+        //- Pending upload image
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("item.imagen"|translate|uppercase)}}
+          input(
+            type='file'
+            ngf-select
+            ng-model="itemsVm.item.imagen"
+            accept="image/*"
+          )
+        show-error(array-messages='itemsVm.messages.imagen')
 
-    label.item.item-input.item-select
-          .input-label {{::("item.unidadMedida"|translate|uppercase)}}
-          select(ng-model='itemsVm.item.unidad_medida')
-            option(selected='' value='volumen') Volumen
-            option(value='unidades') Unidades
-            option(value='peso') Peso
-            option(value='longitud') Longitud
-    show-error(array-messages='itemsVm.messages.unidad_medida')
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("item.observaciones"|translate|uppercase)}}
+          input(
+            type='text'
+            ng-model='itemsVm.item.observaciones'
+          )
+        show-error(array-messages='itemsVm.messages.observaciones')
 
-  .button-actions
-    input(
-      type='submit'
-      value='{{::("globals.save"|translate)}} {{::("item.item"|translate)}}'
-    ).button.button-primary.button-block
+        label.item.item-input.item-select
+              .input-label {{::("item.unidadMedida"|translate|uppercase)}}
+              select(ng-model='itemsVm.item.unidad_medida')
+                option(selected='' value='volumen') Volumen
+                option(value='unidades') Unidades
+                option(value='peso') Peso
+                option(value='longitud') Longitud
+        show-error(array-messages='itemsVm.messages.unidad_medida')
+
+      .bar.bar-footer.footer-item-container
+        button.button-secondary-yellow(
+          type="submit"
+        ) {{::("globals.save"|translate)}} {{::("item.item"|translate)}}

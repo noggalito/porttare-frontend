@@ -6,61 +6,36 @@
     .controller('ItemsController', ItemsController);
 
   function ItemsController(ItemsService,
-                           $scope,
+                           ModalService,
                            $ionicActionSheet,
                            $ionicLoading,
-                           $ionicPopup) {
+                           $ionicPopup,
+                           $scope) {
     var itemsVm = this;
-    itemsVm.submitProcess = submitProcess;
-    var modalInstance = null;
-    itemsVm.openModal = openModal;
+    itemsVm.showNewModal = showNewModal;
+    itemsVm.showEditModal = showEditModal;
     itemsVm.closeModal = closeModal;
+    itemsVm.submitProcess = submitProcess;
+    itemsVm.deleteItem = deleteItem;
     itemsVm.showActionSheet = showActionSheet;
+    itemsVm.query = '';
 
     getItems();
 
-    function openModal() {
-      ItemsService.modalInstance($scope)
-        .then(function success(modal){
-          modalInstance = modal;
-          modalInstance.show();
+    function getItems() {
+      ItemsService.getItems()
+        .then(function success(resp) {
+          itemsVm.items = resp;
         });
     }
 
-    function closeModal(){
-      modalInstance.remove();
-      cleanData();
-    }
-
-    function showActionSheet(item) {
-      var hideSheet = $ionicActionSheet.show({
-        buttons: [
-          { text: 'Editar' }
-        ],
-        destructiveText: 'Eliminar',
-        titleText: 'Opciones del Artículo',
-        cancelText: 'Cancelar',
-        destructiveButtonClicked: function(){
-          // Pendient
-        },
-        buttonClicked: function(index) {
-          if(index === 0) {
-            itemsVm.item = JSON.parse(JSON.stringify(item));
-            itemsVm.openModal();
-            hideSheet();
-          }
-        }
-      });
-    }
-
-    function cleanData(){
-      itemsVm.item = null;
-      itemsVm.messages = {};
-    }
-
     function submitProcess(id){
-      /* jshint expr: true */
-      (id) ? editItem() : newItem();
+      (id) ? editItem() : newItem(); //jshint ignore:line
+    }
+
+    function error(resp){
+      itemsVm.messages = resp.status===422 ? resp.data.errors:undefined;
+      $ionicLoading.hide();
     }
 
     function newItem() {
@@ -75,40 +50,87 @@
         });
         itemsVm.items.push(response.provider_item); //jshint ignore:line
         itemsVm.closeModal();
-      }, function error(response){
-        if (response.status === 422){
-          $ionicPopup.alert({
-            title: 'Faltan datos',
-            template: '{{::("globals.pleaseTryAgain"|translate)}}'
-          });
-          itemsVm.messages = response.data.errors;
-        }
-      }).finally(function () {
-          $ionicLoading.hide();
-      });
-    }
-
-    function getItems() {
-      ItemsService.getItems()
-        .then(function success(resp) {
-          itemsVm.items = resp;
-        });
+      }, error);
     }
 
     function editItem() {
+      $ionicLoading.show({
+        template: '{{::("globals.updating"|translate)}}'
+      });
       ItemsService.editItem(itemsVm.item)
         .then(function success(resp) {
-          /*jshint camelcase:false */
-          if(resp.provider_item){
-            var indexArray = itemsVm.items.map(function(o){return o.id;});
-            var index = indexArray.indexOf(itemsVm.item.id);
-            itemsVm.items[index] = itemsVm.item;
-            cleanData();
-            itemsVm.closeModal();
-          }else{
-            itemsVm.messages = resp.errors;
-          }
+          $ionicLoading.hide();
+          $ionicPopup.alert({
+            title: 'Éxito',
+            template: '{{::("item.successUpdateItem"|translate)}}'
+          });
+          var index = itemsVm.items.findIndex(function(row){return row.id === resp.id;});
+          itemsVm.items[index] = resp;
+          itemsVm.closeModal();
+        }, error);
+    }
+
+    function deleteItem(itemId) {
+      $ionicLoading.show({
+        template: '{{::("globals.deleting"|translate)}}'
+      });
+      ItemsService.deleteItem(itemId)
+        .then(function success(){
+          $ionicLoading.hide();
+          $ionicPopup.alert({
+            title: 'Éxito',
+            template: '{{::("item.successDeleteItem"|translate)}}'
+          });
+          var index = itemsVm.items.findIndex(function(row){return row.id === itemId;});
+          itemsVm.items.splice(index, 1);
+        },
+        function error(){
+          $ionicLoading.hide();
+          $ionicPopup.alert({
+            title: 'Error',
+            template: '{{::("globals.pleaseTryAgain"|translate)}}'
+          });
         });
+    }
+
+    function showNewModal() {
+      ModalService.showModal({
+        parentScope: $scope,
+        fromTemplateUrl: 'templates/item/new-edit.html'
+      });
+    }
+
+    function showEditModal(item) {
+      itemsVm.item = JSON.parse(JSON.stringify(item));
+      itemsVm.showNewModal();
+    }
+
+    function closeModal() {
+      ModalService.closeModal();
+      itemsVm.item = null;
+      itemsVm.messages = {};
+    }
+
+    function showActionSheet(item) {
+      var hideSheet = $ionicActionSheet.show({
+        buttons: [
+          { text: 'Editar' }
+        ],
+        destructiveText: 'Eliminar',
+        titleText: 'Opciones del Artículo',
+        cancelText: 'Cancelar',
+        destructiveButtonClicked: function(){
+          itemsVm.deleteItem(item.id);
+          hideSheet();
+        },
+        buttonClicked: function(index) {
+          if(index === 0) {
+            itemsVm.item = JSON.parse(JSON.stringify(item));
+            itemsVm.showEditModal(item);
+            hideSheet();
+          }
+        }
+      });
     }
   }
 })();

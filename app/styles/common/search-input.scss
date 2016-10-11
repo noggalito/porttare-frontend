@@ -3,7 +3,8 @@
   border: 3px solid $search-label-grey;
   border-radius: 35px;
   display: flex;
-  margin: 10px 0 20px 0;
+  line-height: 1.6;
+  margin: 10px 0 10px 0;
   padding: 0 15px;
   width: inherit;
 
@@ -16,7 +17,6 @@
 
   input {
     color: $search-input-grey;
-    margin-top: 2px;
     margin-left: -1.5em;
     text-align: center;
     text-transform: uppercase;
