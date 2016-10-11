@@ -47,17 +47,19 @@
       }
     }
 
+    function backButton(){
+      $ionicHistory.nextViewOptions({
+        disableBack: true
+      });
+    }
+    
     function isProvider(user) {
       /*jshint camelcase: false */
       if(user.provider_profile){
-        $ionicHistory.nextViewOptions({
-          disableBack: true
-        });
+        backButton();
         $state.go('appc.provider.management.products');
       }else{
-        $ionicHistory.nextViewOptions({
-          disableBack: true
-        });
+        backButton();
         $state.go('app.provider.welcome');
       }
     }
