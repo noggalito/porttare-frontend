@@ -50,7 +50,14 @@
     }
 
     function editItem(data) {
-      return CommonService.editObject(data, '/api/provider/items/');
+      return $http({
+        method: 'PUT',
+        url: ENV.apiHost + '/api/provider/items/' + data.id,
+        data: data
+      })
+        .then(function success(resp) {
+          return resp.data.provider_item; //jshint ignore:line
+        });
     }
 
     function deleteItem(data) {
