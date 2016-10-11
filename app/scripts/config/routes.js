@@ -230,26 +230,15 @@ function routes($stateProvider, $urlRouterProvider) {
       }
     }
   })
-  .state('appc', {
+  .state('provider', {
+    url: '/provider',
     abstract: true,
     templateUrl: 'templates/menu/menu-provider.html'
   })
-  .state('appc.provider', {
-    url: '/provider',
-    abstract: true
-  })
-  .state('appc.provider.management', {
-    url: '/management',
-    abstract: true
-  })
-  .state('appc.provider.management.products', {
+  .state('provider.items', {
     url: '/products',
     views: {
-      'menuContent@appc': {
-        templateUrl: 'templates/provider/items-provider.html',
-        controller: 'ProviderManagementController',
-        controllerAs: 'providerM1'
-      }
+      'menuContent@provider': {}
     }
   });
   // if none of the above states are matched, use this as the fallback

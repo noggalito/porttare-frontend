@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-
+  /*jshint camelcase:false */
   describe('CategoryController', function () {
     var ctrl,
       resolve,

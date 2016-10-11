@@ -173,7 +173,7 @@
       });
 
       it('if provider should redirect provider management', function () {
-        var providerManagementState = 'appc.provider.management.products';
+        var providerManagementState = 'provider.items';
         var user = {
           email:  'jorgemejia@gmail.com',
           /*jshint camelcase: false */

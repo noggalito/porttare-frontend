@@ -52,12 +52,12 @@
         disableBack: true
       });
     }
-    
+
     function isProvider(user) {
       /*jshint camelcase: false */
       if(user.provider_profile){
         backButton();
-        $state.go('appc.provider.management.products');
+        $state.go('provider.items');
       }else{
         backButton();
         $state.go('app.provider.welcome');

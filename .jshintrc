@@ -23,7 +23,6 @@
     "cordova": false,
     "StatusBar": false,
     "google": false,
-    "airbrakeJs": false,
-    "$": false
+    "airbrakeJs": false
   }
 }

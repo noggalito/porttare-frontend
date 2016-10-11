@@ -45,13 +45,13 @@
           creditCard: 'Tarjeta de crédito'
         },
         management: {
-          orders: 'PEDIDOS',
-          products:  'PRODUCTOS',
-          account:  'CUENTA',
-          dispatchers:  'DESPACHADORES',
-          establishments: 'ESTABLECIMIENTOS',
-          promotionsAndDiscounts: 'PROMOCIONES Y DESCUENTOS',
-          moviggoAdvertising: 'PUBLICIDAD MOVIGGO'
+          orders: 'pedidos',
+          products:  'productos',
+          account:  'cuenta',
+          dispatchers:  'despachadores',
+          establishments: 'establecimientos',
+          promotionsAndDiscounts: 'promociones y descuentos',
+          moviggoAdvertising: 'publicidad moviggo'
         }
       },
       globals: {
