@@ -15,7 +15,7 @@
     .list-item{
       color: $base-grey;
     }
-    a{
+    .action{
       margin-right: 15px;
       text-align: right;
     }
@@ -31,8 +31,12 @@
     margin-bottom: 0;
     padding: 0;
   }
-  .adjust-select{
-    padding: 0 30px 0 0 !important;
+  .item-select select {
+    line-height: 1.1;
+    max-width: 100%;
+  }
+  .select-position-adjust {
+    height: 15px;
   }
   .bar-base-yellow{
     background-color: $base-yellow !important;
