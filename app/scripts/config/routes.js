@@ -236,7 +236,7 @@ function routes($stateProvider, $urlRouterProvider) {
     templateUrl: 'templates/menu/menu-provider.html'
   })
   .state('provider.items', {
-    url: '/products',
+    url: '/items',
     views: {
       'menuContent@provider': {}
     }

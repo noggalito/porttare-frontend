@@ -9,17 +9,10 @@ ion-side-menus(enable-menu-with-back-views='false')
     ion-header-bar.bar-stable
     ion-content
       ion-list
-        ion-item(menu-close='' ui-sref='appc.provider.management.orders')
-          | {{::("provider.management.orders"|translate)}}
-        ion-item(menu-close='' ui-sref='appc.provider.management.products')
-          | {{::("provider.management.products"|translate)}}
-        ion-item(menu-close='' ui-sref='appc.provider.management.account')
-          | {{::("provider.management.account"|translate)}}
-        ion-item(menu-close='' ui-sref='appc.provider.management.dispatchers')
-          | {{::("provider.management.dispatchers"|translate)}}
-        ion-item(menu-close='' ui-sref='appc.provider.management.establishments')
-          | {{::("provider.management.establishments"|translate)}}
-        ion-item(menu-close='' ui-sref='appc.provider.management.promotions')
-          | {{::("provider.management.promotionsAndDiscounts"|translate)}}
-        ion-item(menu-close='' ui-sref='appc.provider.management.advertising')
-          | {{::("provider.management.moviggoAdvertising"|translate)}}
+        ion-item  {{::("provider.orders"|translate)}}
+        ion-item  {{::("provider.products"|translate)}}
+        ion-item  {{::("provider.account"|translate)}}
+        ion-item  {{::("provider.dispatchers"|translate)}}
+        ion-item  {{::("provider.establishments"|translate)}}
+        ion-item  {{::("provider.promotionsAndDiscounts"|translate)}}
+        ion-item  {{::("provider.moviggoAdvertising"|translate)}}

@@ -44,15 +44,13 @@
           cash: 'Efectivo',
           creditCard: 'Tarjeta de crédito'
         },
-        management: {
-          orders: 'pedidos',
-          products:  'productos',
-          account:  'cuenta',
-          dispatchers:  'despachadores',
-          establishments: 'establecimientos',
-          promotionsAndDiscounts: 'promociones y descuentos',
-          moviggoAdvertising: 'publicidad moviggo'
-        }
+        orders: 'pedidos',
+        products:  'productos',
+        account:  'cuenta',
+        dispatchers:  'despachadores',
+        establishments: 'establecimientos',
+        promotionsAndDiscounts: 'promociones y descuentos',
+        moviggoAdvertising: 'publicidad moviggo'
       },
       globals: {
         new: 'Nuevo',
