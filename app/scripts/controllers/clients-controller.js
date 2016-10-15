@@ -79,7 +79,7 @@
       $ionicLoading.show({
         template: '{{::("globals.deleting"|translate)}}'
       });
-      ClientsService.deleteClient(clientsVm.client)
+      ClientsService.deleteClient(clientId)
         .then(function success(){
           $ionicLoading.hide();
           $ionicPopup.alert({

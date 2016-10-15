@@ -49,11 +49,10 @@
         });
     }
 
-    function deleteClient(data) {
+    function deleteClient(clientId) {
       return $http({
         method: 'DELETE',
-        url: ENV.apiHost + '/api/provider/clients/' + data.id,
-        data: data
+        url: ENV.apiHost + '/api/provider/clients/' + clientId,
       });
     }
   }

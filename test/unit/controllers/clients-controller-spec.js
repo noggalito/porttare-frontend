@@ -117,7 +117,7 @@
           ctrl.clients = [];
           deferNewClient.resolve({data: 'data'});
           $scope.$digest();
-          expect(ctrl.clients).to.not.be.null;
+          chai.assert.isArray(ctrl.clients);
         });
 
         it('if successful, ionicPopup.alert should be called', function () {
@@ -278,7 +278,7 @@
         it('Close modal', function () {
           var spy = sinon.spy(ModalService, 'closeModal');
           ctrl.closeModal();
-          expect(ctrl.client).to.be.null;
+          chai.assert.isNull(ctrl.client);
           chai.expect(spy.called).to.be.equal(true);
         });
       });
