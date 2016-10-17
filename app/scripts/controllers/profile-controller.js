@@ -26,8 +26,7 @@
     }
 
     function showNewModal() {
-      profileVm.fecha_de_nacimiento = moment(profileVm.user.fecha_de_nacimiento);
-      profileVm.fecha_de_nacimiento = profileVm.fecha_de_nacimiento._d;
+      profileVm.fecha_de_nacimiento = moment(profileVm.user.fecha_de_nacimiento).toDate();
       ModalService.showModal({
         parentScope: $scope,
         fromTemplateUrl: 'templates/profile/edit.html'
