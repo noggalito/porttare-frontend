@@ -162,11 +162,6 @@
 
         it('if successful, ionicLoading.hide should be called', function () {
           ctrl.clients = [];
-          ctrl.clients.findIndex = function (param) {
-            var row = {id:0};
-            param(row);
-          };
-          deferEditClient.resolve({id:0});
           deferEditClient.resolve({data: 'data'});
           $scope.$digest();
           sinon.assert.calledOnce($ionicLoading.hide);
@@ -174,10 +169,6 @@
 
         it('if successful, ionicPopup.alert should be called', function () {
           ctrl.clients = [];
-          ctrl.clients.findIndex = function (param) {
-            var row = {id:0};
-            param(row);
-          };
           deferEditClient.resolve({id:0});
           $scope.$digest();
           sinon.assert.calledOnce($ionicPopup.alert);
@@ -218,10 +209,6 @@
 
         it('if successful, ionicLoading.hide should be called', function () {
           ctrl.clients = [];
-          ctrl.clients.findIndex = function (param) {
-            var row = {id:0};
-            param(row);
-          };
           deferDeleteClient.resolve();
           $scope.$digest();
           sinon.assert.calledOnce($ionicLoading.hide);
@@ -229,10 +216,6 @@
 
         it('if successful, ionicPopup.alert should be called', function () {
           ctrl.clients = [];
-          ctrl.clients.findIndex = function (param) {
-            var row = {id:0};
-            param(row);
-          };
           deferDeleteClient.resolve();
           $scope.$digest();
           sinon.assert.calledOnce($ionicPopup.alert);

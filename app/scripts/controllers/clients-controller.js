@@ -21,6 +21,7 @@
       {option: 'Antigüedad', filterField: 'created_at'}
     ];
     clientsVm.query = '';
+    var selectedClient;
     getClients();
 
     function getClients() {
@@ -65,8 +66,7 @@
             title: 'Éxito',
             template: '{{::("client.successUpdateClient"|translate)}}'
           });
-          var index = clientsVm.clients.findIndex(function(row){return row.id === resp.id;});
-          clientsVm.clients[index] = resp;
+          clientsVm.clients[selectedClient] = resp;
           closeModal();
         },
         function error(resp){
@@ -86,8 +86,7 @@
             title: 'Éxito',
             template: '{{::("client.successDeleteClient"|translate)}}'
           });
-          var index = clientsVm.clients.findIndex(function(row){return row.id === clientId;});
-          clientsVm.clients.splice(index, 1);
+          clientsVm.clients.splice(selectedClient, 1);
           closeModal();
         },
         function error(){
@@ -106,13 +105,15 @@
       });
     }
 
-    function showEditModal(client) {
+    function showEditModal(client, index) {
+      selectedClient = index;
       clientsVm.client = JSON.parse(JSON.stringify(client));
       clientsVm.showNewModal();
     }
 
     function closeModal() {
       ModalService.closeModal();
+      selectedClient = null;
       clientsVm.client = null;
       clientsVm.messages = {};
       clientsVm.query = '';

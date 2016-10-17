@@ -30,7 +30,7 @@ ion-view(
     )
       .col.col-75.list-item {{ client.nombres }}
       a.col.action(
-        ng-click="clientsVm.showEditModal(client)"
+        ng-click="clientsVm.showEditModal(client, $index)"
       ) {{::("globals.edit"|translate)}}
   .bar.bar-footer.footer-client-container
     button.button-secondary-yellow {{::("client.import"|translate)}}
