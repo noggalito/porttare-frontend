@@ -10,7 +10,7 @@ ion-modal-view.client-page
   ion-content.resource-form
     form(
       name="form"
-      ng-submit="profileVm.submitProcess(profileVm.user)"
+      ng-submit="profileVm.submitProcess(profileVm.userEdit)"
       novalidate
     )
       .list.list-inset
@@ -21,7 +21,7 @@ ion-modal-view.client-page
           input(
             type='file'
             ngf-select
-            ng-model="profileVm.user.image"  
+            ng-model="profileVm.userEdit.image"  
             accept="image/*"
           )
         show-error(array-messages='profileVm.user.image')
@@ -32,7 +32,7 @@ ion-modal-view.client-page
           span.input-label {{::("user.email"|translate)}}
           input(
             type="text"
-            ng-model="profileVm.user.email"
+            ng-model="profileVm.userEdit.email"
             ng-class="input-error"
           )
         show-error(array-messages="profileVm.messages.email")
@@ -44,7 +44,7 @@ ion-modal-view.client-page
           input(
             type="date"
             ng-class="input-error"
-            ng-model="profileVm.fecha_de_nacimiento"
+            ng-model="profileVm.userEdit.fecha_de_nacimiento"
           )
         show-error(array-messages="profileVm.messages.fecha_de_nacimiento")
 
@@ -54,7 +54,7 @@ ion-modal-view.client-page
           span.input-label {{::("user.name"|translate)}}
           input(
             type="text"
-            ng-model="profileVm.user.name"
+            ng-model="profileVm.userEdit.name"
           )
         show-error(array-messages="profileVm.messages.name")
 
@@ -64,7 +64,7 @@ ion-modal-view.client-page
           span.input-label {{::("user.country"|translate)}}
           input(
             type="text"
-            ng-model="profileVm.user.ciudad"
+            ng-model="profileVm.userEdit.ciudad"
           )
         show-error(array-messages="profileVm.messages.ciudad")
         
