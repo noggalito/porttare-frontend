@@ -107,7 +107,7 @@
 
     function showEditModal(client, index) {
       selectedClient = index;
-      clientsVm.client = JSON.parse(JSON.stringify(client));
+      clientsVm.client = angular.copy(clientsVm.clients[index]);
       clientsVm.showNewModal();
     }
 
