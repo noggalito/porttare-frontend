@@ -11,7 +11,8 @@
     'porttare.filters',
     'ngCordova',
     'slickCarousel',
-    'ngFileUpload'
+    'ngFileUpload',
+    'ion-datetime-picker'
   ])
 
   .run(function($ionicPlatform) {

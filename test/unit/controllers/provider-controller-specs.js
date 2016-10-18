@@ -90,7 +90,8 @@
       });
 
       beforeEach(inject(function () {
-        ctrl.createProvider();
+        ctrl.step = 2;
+        ctrl.submit();
       }));
 
       it('ionicLoading.show should be called', function () {
@@ -118,25 +119,12 @@
         sinon.assert.calledOnce($ionicPopup.alert);
       });
 
-      it('if unsuccessful, should show a alert', function () {
+      it('if unsuccessful, should show first template', function () {
         deferCreateProvider.reject({ data: { error: 'error' } });
         $rootScope.$digest();
-        sinon.assert.calledOnce($ionicPopup.alert);
+        expect(ctrl.step).to.be.equal(1);
       });
 
-      it('if unsuccessful by validation error, should create a object', function () {
-        ctrl.messages = {};
-        var backendErrors = {
-          data: {
-            errors: [
-              { test: 'message' }
-            ]
-          }
-        };
-        deferCreateProvider.reject(backendErrors);
-        $rootScope.$digest();
-        expect(ctrl.messages).to.not.empty; //jshint ignore:line
-      });
     });
   });
 })();

@@ -52,7 +52,9 @@
         bank: {
           name: 'Nombre de su banco',
           account: 'Número de cuenta',
-          type: 'Tipo de cuenta'
+          type: 'Tipo de cuenta',
+          current:'Ahorros',
+          saving: 'Crédito'
         },
         direction: 'Dirección',
         city: 'Ciudad',

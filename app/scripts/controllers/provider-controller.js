@@ -23,6 +23,8 @@
     providerVm.step = 1;
     providerVm.selections = [];
     providerVm.methodsPayment = [];
+    providerVm.matrizProvider = {};
+    providerVm.matrizProvider.horario = new Date();
     $translate(transKeys).then(function (trans) {
       providerVm.methodsPayment = [
         {

@@ -12,12 +12,11 @@
   
   label.item.item-input.item-stacked-label
     span.input-label {{::("provider.bank.type"|translate)}}
-    input(
-      type='text',
-      placeholder='',
-      name='banco_tipo_cuenta',
-      ng-model='providerVm.providerForm.banco_tipo_cuenta'
-    )
+    select(ng-model='providerVm.providerForm.banco_tipo_cuenta')
+      option(value="{{::('provider.bank.current'|translate)}}") 
+        | {{::("provider.bank.current"|translate)}}
+      option(value="{{::('provider.bank.saving'|translate)}}") 
+        | {{::("provider.bank.saving"|translate)}}
   
   label.item.item-input.item-stacked-label
     span.input-label {{::("provider.bank.account"|translate)}}
@@ -44,17 +43,12 @@
   show-error(ng-if="newProviderForm.direccion_matriz.$touched && newProviderForm.direccion_matriz.$error.required"
     array-messages='[("provider.isRequired"|translate)]')
   
-  label.item.item-input.item-stacked-label(
+  .item.item-input.item-stacked-label(
     ng-class="{'item-error': newProviderForm.horario_matriz.$touched && newProviderForm.horario_matriz.$error.required}"
   )
     span.input-label {{::("provider.schedule"|translate)}}*
-    input(
-      type='text',
-      placeholder='',
-      name='horario_matriz',
-      ng-model='providerVm.matrizProvider.horario',
-      required
-    )
+    ion-datetime-picker(time ng-model='providerVm.matrizProvider.horario')
+      | {{providerVm.matrizProvider.horario| date: "H:mm"}}
   show-error(ng-if="newProviderForm.horario_matriz.$touched && newProviderForm.horario_matriz.$error.required"
     array-messages='[("provider.isRequired"|translate)]')
   
