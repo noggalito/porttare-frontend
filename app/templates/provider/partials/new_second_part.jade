@@ -5,7 +5,6 @@
     span.input-label {{::("provider.bank.name"|translate)}}
     input(
       type='text',
-      placeholder='',
       name='banco_nombre',
       ng-model='providerVm.providerForm.banco_nombre'
     )
@@ -13,16 +12,15 @@
   label.item.item-input.item-stacked-label
     span.input-label {{::("provider.bank.type"|translate)}}
     select(ng-model='providerVm.providerForm.banco_tipo_cuenta')
-      option(value="{{::('provider.bank.current'|translate)}}") 
-        | {{::("provider.bank.current"|translate)}}
-      option(value="{{::('provider.bank.saving'|translate)}}") 
-        | {{::("provider.bank.saving"|translate)}}
+      option(value="{{::('provider.bank.savings'|translate)}}") 
+        | {{::("provider.bank.savings"|translate)}}
+      option(value="{{::('provider.bank.credit'|translate)}}") 
+        | {{::("provider.bank.credit"|translate)}}
   
   label.item.item-input.item-stacked-label
     span.input-label {{::("provider.bank.account"|translate)}}
     input(
       type='text',
-      placeholder='',
       name='banco_numero_cuenta',
       ng-model='providerVm.providerForm.banco_numero_cuenta'
     )
@@ -32,25 +30,19 @@
   label.item.item-input.item-stacked-label(
     ng-class="{'item-error': newProviderForm.direccion_matriz.$touched && newProviderForm.direccion_matriz.$error.required}"
   )
-    span.input-label {{::("provider.direction"|translate)}}*
+    span.input-label {{::("provider.address"|translate)}}*
     input(
       type='text',
-      placeholder='',
       name='direccion_matriz',
       ng-model='providerVm.matrizProvider.direccion',
       required
     )
-  show-error(ng-if="newProviderForm.direccion_matriz.$touched && newProviderForm.direccion_matriz.$error.required"
-    array-messages='[("provider.isRequired"|translate)]')
+  show-error(element='newProviderForm.direccion_matriz' message='("provider.isRequired"|translate)')
   
-  .item.item-input.item-stacked-label(
-    ng-class="{'item-error': newProviderForm.horario_matriz.$touched && newProviderForm.horario_matriz.$error.required}"
-  )
+  .item.item-input.item-stacked-label
     span.input-label {{::("provider.schedule"|translate)}}*
     ion-datetime-picker(time ng-model='providerVm.matrizProvider.horario')
       | {{providerVm.matrizProvider.horario| date: "H:mm"}}
-  show-error(ng-if="newProviderForm.horario_matriz.$touched && newProviderForm.horario_matriz.$error.required"
-    array-messages='[("provider.isRequired"|translate)]')
   
   label.item.item-input.item-stacked-label(
     ng-class="{'item-error': newProviderForm.telefono_matriz.$touched && newProviderForm.telefono_matriz.$error.required}"
@@ -58,10 +50,8 @@
     span.input-label {{::("provider.phone"|translate)}}*
     input(
       type='tel',
-      placeholder='',
       name='telefono_matriz',
       ng-model='providerVm.matrizProvider.telefono',
       required
     )
-  show-error(ng-if="newProviderForm.telefono_matriz.$touched && newProviderForm.telefono_matriz.$error.required"
-    array-messages='[("provider.isRequired"|translate)]')
+  show-error(element='newProviderForm.telefono_matriz' message='("provider.isRequired"|translate)')

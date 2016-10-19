@@ -12,8 +12,7 @@
       ng-class='input-error',
       required
     )
-  show-error(ng-if="newProviderForm.ruc.$touched && newProviderForm.ruc.$error.required"
-    array-messages='[("provider.isRequired"|translate)]')
+  show-error(element='newProviderForm.ruc' message='("provider.isRequired"|translate)')
   
   label.item.item-input.item-stacked-label(
     ng-class="{'item-error': newProviderForm.razon_social.$touched && newProviderForm.razon_social.$error.required}"
@@ -21,13 +20,11 @@
     span.input-label {{::("provider.businessName"|translate)}}*
     input(
       type='text',
-      placeholder='',
       name='razon_social',
       ng-model='providerVm.providerForm.razon_social',
       required
     )
-  show-error(ng-if="newProviderForm.razon_social.$touched && newProviderForm.razon_social.$error.required"
-    array-messages='[("provider.isRequired"|translate)]')
+  show-error(element='newProviderForm.razon_social' message='("provider.isRequired"|translate)')
   
   label.item.item-input.item-stacked-label(
     ng-class="{'item-error': newProviderForm.nombre_establecimiento.$touched && newProviderForm.nombre_establecimiento.$error.required}"
@@ -40,14 +37,12 @@
      ng-class='input-error',
      required
    )
-  show-error(ng-if="newProviderForm.nombre_establecimiento.$touched && newProviderForm.nombre_establecimiento.$error.required"
-    array-messages='[("provider.isRequired"|translate)]')
+  show-error(element='newProviderForm.nombre_establecimiento' message='("provider.isRequired"|translate)')
 
   label.item.item-input.item-stacked-label
     span.input-label {{::("provider.economicActivity"|translate)}}
     input(
       type='text',
-      placeholder='',
       name='actividad_economica',
       ng-model='providerVm.providerForm.actividad_economica'
     )
@@ -58,13 +53,11 @@
     span.input-label {{::("provider.LegalRepresentative"|translate)}}*
     input(
       type='text',
-      placeholder='',
       name='representante_legal',
       ng-model='providerVm.providerForm.representante_legal',
       required
     )
-  show-error(ng-if="newProviderForm.representante_legal.$touched && newProviderForm.representante_legal.$error.required"
-    array-messages='[("provider.isRequired"|translate)]')
+  show-error(element='newProviderForm.representante_legal' message='("provider.isRequired"|translate)')
   
   label.item.item-input.item-stacked-label(
     ng-class="{'item-error': newProviderForm.telefono.$touched && newProviderForm.telefono.$error.required}"
@@ -72,13 +65,11 @@
     span.input-label {{::("provider.phone"|translate)}}*
     input(
       type='tel',
-      placeholder='',
       name='telefono',
       ng-model='providerVm.providerForm.telefono',
       required
     )
-  show-error(ng-if="newProviderForm.telefono.$touched && newProviderForm.telefono.$error.required"
-    array-messages='[("provider.isRequired"|translate)]')
+  show-error(element='newProviderForm.telefono' message='("provider.isRequired"|translate)')
   
   label.item.item-input.item-stacked-label(
     ng-class="{'item-error': newProviderForm.email.$touched && newProviderForm.email.$error.required}"
@@ -91,14 +82,12 @@
       ng-model='providerVm.providerForm.email',
       required
     )
-  show-error(ng-if="newProviderForm.email.$touched && newProviderForm.email.$error.required"
-    array-messages='[("provider.isRequired"|translate)]')
+  show-error(element='newProviderForm.email' message='("provider.isRequired"|translate)')
   
   label.item.item-input.item-stacked-label
     span.input-label {{::("provider.webSite"|translate)}}
     input(
       type='text',
-      placeholder='',
       name='website',
       ng-model='providerVm.providerForm.website'
     )

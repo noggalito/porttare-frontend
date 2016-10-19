@@ -53,10 +53,10 @@
           name: 'Nombre de su banco',
           account: 'Número de cuenta',
           type: 'Tipo de cuenta',
-          current:'Ahorros',
-          saving: 'Crédito'
+          savings:'Ahorros',
+          credit: 'Crédito'
         },
-        direction: 'Dirección',
+        address: 'Dirección',
         city: 'Ciudad',
         schedule: 'Horario',
         isRequired: 'Este campo es obligatorio',

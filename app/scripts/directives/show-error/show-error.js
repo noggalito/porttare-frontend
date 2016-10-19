@@ -11,7 +11,9 @@
       templateUrl: 'templates/directives/show-error/show-error.html',
       controller: ShowErrorController,
       scope: {
-        arrayMessages: '='
+        arrayMessages: '=',
+        element: '=',
+        message: '='
       },
       controllerAs: 'seVm',
       bindToController: true
