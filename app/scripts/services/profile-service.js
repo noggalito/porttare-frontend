@@ -18,7 +18,7 @@
         user_id: 1,
         name: 'Jorge',
         ciudad:'Loja',
-        fecha_de_nacimiento:'1988/04/23',
+        fecha_de_nacimiento:'1988-04-23',
         email:'snake3201@yahoo.es',
         customer_addresses: [
           {

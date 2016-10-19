@@ -40,12 +40,10 @@ ion-modal-view.client-page
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': profileVm.messages.fecha_de_nacimiento}"
         )
+        .item.item-input.item-stacked-label
           span.input-label {{::("user.birthdate"|translate)}}
-          input(
-            type="date"
-            ng-class="input-error"
-            ng-model="profileVm.userEdit.fecha_de_nacimiento"
-          )
+          ion-datetime-picker(ng-model='profileVm.userEdit.fecha_de_nacimiento')
+            | {{profileVm.userEdit.fecha_de_nacimiento| date: "yyyy-MM-dd"}}
         show-error(array-messages="profileVm.messages.fecha_de_nacimiento")
 
         label.item.item-input.item-stacked-label(

@@ -27,7 +27,6 @@
 
     function showNewModal() {
       profileVm.userEdit= angular.copy(profileVm.user);
-      profileVm.userEdit.fecha_de_nacimiento = new Date(profileVm.user.fecha_de_nacimiento);
       ModalService.showModal({
         parentScope: $scope,
         fromTemplateUrl: 'templates/profile/edit.html'
@@ -39,14 +38,14 @@
     }
 
     function submitProcess(user){
-      profileVm.user.fecha_de_nacimiento = moment(profileVm.userEdit.fecha_de_nacimiento).format('YYYY-MM-DD');
+      var fecha_de_nacimiento = moment(profileVm.userEdit.fecha_de_nacimiento).format('YYYY-MM-DD');
       var data = {
         name: user.name,
         email: user.email,
         password: user.password,
         customer_profile_attributes:{
           ciudad: user.ciudad,
-          fecha_de_nacimiento: profileVm.user.fecha_de_nacimiento
+          fecha_de_nacimiento: fecha_de_nacimiento
         }
       };
       $auth.updateAccount(data)
