@@ -105,7 +105,7 @@
       });
     }
 
-    function showEditModal(client, index) {
+    function showEditModal(index) {
       selectedClient = index;
       clientsVm.client = angular.copy(clientsVm.clients[index]);
       clientsVm.showNewModal();

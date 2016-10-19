@@ -249,7 +249,8 @@
         });
 
         beforeEach(inject(function () {
-          ctrl.showEditModal({id:0});
+          ctrl.clients = [];
+          ctrl.showEditModal(0);
         }));
 
         it('Show edit modal', function () {
