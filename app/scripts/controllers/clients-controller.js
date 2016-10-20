@@ -17,8 +17,8 @@
     clientsVm.submitProcess = submitProcess;
     clientsVm.deleteClient = deleteClient;
     clientsVm.listOptions = [
-      {option: 'Nombres', filterField: 'nombres'},
-      {option: 'Antigüedad', filterField: 'created_at'}
+      {name: 'Nombres', filterField: 'nombres'},
+      {name: 'Antigüedad', filterField: 'created_at'}
     ];
     clientsVm.query = '';
     var selectedClient;
