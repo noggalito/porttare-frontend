@@ -50,11 +50,7 @@
     }
 
     function editItem(data) {
-      return $http({
-        method: 'PUT',
-        url: ENV.apiHost + '/api/provider/items/' + data.id,
-        data: data
-      })
+      return CommonService.editObject(data, '/api/provider/items/')
         .then(function success(resp) {
           return resp.data.provider_item; //jshint ignore:line
         });
