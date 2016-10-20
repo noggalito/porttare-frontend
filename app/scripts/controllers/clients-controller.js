@@ -21,7 +21,7 @@
       {name: 'Antigüedad', filterField: 'created_at'}
     ];
     clientsVm.query = '';
-    var selectedClient;
+    var selectedClientIndex;
     getClients();
 
     function getClients() {
@@ -66,7 +66,7 @@
             title: 'Éxito',
             template: '{{::("client.successUpdateClient"|translate)}}'
           });
-          clientsVm.clients[selectedClient] = resp;
+          clientsVm.clients[selectedClientIndex] = resp;
           closeModal();
         },
         function error(resp){
@@ -86,7 +86,7 @@
             title: 'Éxito',
             template: '{{::("client.successDeleteClient"|translate)}}'
           });
-          clientsVm.clients.splice(selectedClient, 1);
+          clientsVm.clients.splice(selectedClientIndex, 1);
           closeModal();
         },
         function error(){
@@ -106,14 +106,14 @@
     }
 
     function showEditModal(index) {
-      selectedClient = index;
+      selectedClientIndex = index;
       clientsVm.client = angular.copy(clientsVm.clients[index]);
       clientsVm.showNewModal();
     }
 
     function closeModal() {
       ModalService.closeModal();
-      selectedClient = null;
+      selectedClientIndex = null;
       clientsVm.client = null;
       clientsVm.messages = {};
       clientsVm.query = '';

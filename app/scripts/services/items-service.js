@@ -6,11 +6,9 @@
     .factory('ItemsService', ItemsService);
 
   function ItemsService($http,
-                        $ionicPopup,
-                        $ionicLoading,
-                        $auth,
                         Upload,
-                        ENV) {
+                        ENV,
+                        CommonService) {
 
     var service = {
       newItem: newItem,
@@ -53,24 +51,12 @@
         url: ENV.apiHost + '/api/provider/items'
       })
         .then(function success(resp) {
-          /*jshint camelcase:false */
-          return resp.data.provider_items;
-        },
-        function error(resp) {
-          $ionicPopup.alert({
-            title: 'Error',
-            template: resp.data ? resp.data.error :
-              '{{::("globals.pleaseTryAgain"|translate)}}'
-          });
+          return resp.data.provider_items; //jshint ignore:line
         });
     }
 
     function editItem(data) {
-      return $http({
-        method: 'PUT',
-        url: ENV.apiHost + '/api/provider/items/' + data.id,
-        data: data
-      })
+      return CommonService.editObject(data, '/api/provider/items/')
         .then(function success(resp) {
           return resp.data.provider_item; //jshint ignore:line
         });

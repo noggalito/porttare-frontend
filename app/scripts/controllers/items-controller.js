@@ -19,6 +19,7 @@
     itemsVm.deleteItem = deleteItem;
     itemsVm.showActionSheet = showActionSheet;
     itemsVm.query = '';
+    var selectedItemIndex;
 
     getItems();
 
@@ -26,6 +27,13 @@
       ItemsService.getItems()
         .then(function success(resp) {
           itemsVm.items = resp;
+        },
+        function error(resp) {
+          $ionicPopup.alert({
+            title: 'Error',
+            template: resp.data ? resp.data.error :
+              '{{::("globals.pleaseTryAgain"|translate)}}'
+          });
         });
     }
 
@@ -81,8 +89,7 @@
             title: 'Éxito',
             template: '{{::("item.successDeleteItem"|translate)}}'
           });
-          var index = itemsVm.items.findIndex(function(row){return row.id === itemId;});
-          itemsVm.items.splice(index, 1);
+          itemsVm.items.splice(selectedItemIndex, 1);
         },
         function error(){
           $ionicLoading.hide();
@@ -107,11 +114,14 @@
 
     function closeModal() {
       ModalService.closeModal();
+      selectedItemIndex = null;
       itemsVm.item = null;
       itemsVm.messages = {};
     }
 
-    function showActionSheet(item) {
+    function showActionSheet(itemIndex) {
+      selectedItemIndex = itemIndex;
+      itemsVm.item = angular.copy(itemsVm.items[selectedItemIndex]);
       var hideSheet = $ionicActionSheet.show({
         buttons: [
           { text: 'Editar' }
@@ -120,13 +130,12 @@
         titleText: 'Opciones del Artículo',
         cancelText: 'Cancelar',
         destructiveButtonClicked: function(){
-          itemsVm.deleteItem(item.id);
+          itemsVm.deleteItem(itemsVm.item.id);
           hideSheet();
         },
         buttonClicked: function(index) {
           if(index === 0) {
-            itemsVm.item = JSON.parse(JSON.stringify(item));
-            itemsVm.showEditModal(item);
+            itemsVm.showEditModal(itemsVm.item);
             hideSheet();
           }
         }

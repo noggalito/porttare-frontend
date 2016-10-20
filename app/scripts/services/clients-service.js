@@ -6,7 +6,8 @@
     .factory('ClientsService', ClientsService);
 
   function ClientsService($http,
-                          ENV) {
+                          ENV,
+                          CommonService) {
 
     var service = {
       getClients: getClients,
@@ -39,12 +40,8 @@
     }
 
     function editClient(data) {
-      return $http({
-        method: 'PUT',
-        url: ENV.apiHost + '/api/provider/clients/' + data.id,
-        data: data
-      })
-        .then(function success(resp){
+      return CommonService.editObject(data, '/api/provider/clients/')
+        .then(function success(resp) {
           return resp.data.provider_client; //jshint ignore:line
         });
     }

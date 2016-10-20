@@ -12,7 +12,7 @@ ion-view(
       h4.item-title {{::("item.offerItem"|translate)}}
     .row
       .list.list-large
-        a(ng-repeat='item in itemsVm.items', class='item item-avatar' ng-click='itemsVm.showActionSheet(item)')
+        a(ng-repeat='item in itemsVm.items', class='item item-avatar' ng-click='itemsVm.showActionSheet($index)')
           img(ng-src='{{item.imagenes[0].imagen_url}}')
           h2 {{ item.titulo }}
           p {{ item.descripcion }}

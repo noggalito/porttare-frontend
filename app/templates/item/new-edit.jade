@@ -79,12 +79,12 @@ ion-modal-view.item-page
         show-error(array-messages='itemsVm.messages.observaciones')
 
         label.item.item-input.item-select
-              .input-label {{::("item.unidadMedida"|translate|uppercase)}}
-              select(ng-model='itemsVm.item.unidad_medida')
-                option(selected='' value='volumen') Volumen
-                option(value='unidades') Unidades
-                option(value='peso') Peso
-                option(value='longitud') Longitud
+          span.input-label {{::("item.unidadMedida"|translate|uppercase)}}
+          select(ng-model='itemsVm.item.unidad_medida')
+            option(selected='' value='volumen') Volumen
+            option(value='unidades') Unidades
+            option(value='peso') Peso
+            option(value='longitud') Longitud
         show-error(array-messages='itemsVm.messages.unidad_medida')
 
       .bar.bar-footer.footer-item-container
