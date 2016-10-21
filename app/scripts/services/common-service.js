@@ -18,7 +18,10 @@
         method: 'PUT',
         url: ENV.apiHost + url + data.id,
         data: data
-      });
+      })
+        .then(function success(resp){
+          return resp.data;
+        });
     }
   }
 })();

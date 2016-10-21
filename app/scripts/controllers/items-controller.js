@@ -72,8 +72,7 @@
             title: 'Éxito',
             template: '{{::("item.successUpdateItem"|translate)}}'
           });
-          var index = itemsVm.items.findIndex(function(row){return row.id === resp.id;});
-          itemsVm.items[index] = resp;
+          itemsVm.items[selectedItemIndex] = resp.provider_item; //jshint ignore:line
           itemsVm.closeModal();
         }, error);
     }

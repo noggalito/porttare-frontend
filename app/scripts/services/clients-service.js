@@ -40,10 +40,7 @@
     }
 
     function editClient(data) {
-      return CommonService.editObject(data, '/api/provider/clients/')
-        .then(function success(resp) {
-          return resp.data.provider_client; //jshint ignore:line
-        });
+      return CommonService.editObject(data, '/api/provider/clients/');
     }
 
     function deleteClient(clientId) {

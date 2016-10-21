@@ -79,7 +79,7 @@
           .respond(objectToRespond);
 
         service.editClient(client).then(function(response){
-          chai.assert.isArray(response);
+          chai.assert.isObject(response, 'This is not an object!');
         });
 
         $httpBackend.flush();

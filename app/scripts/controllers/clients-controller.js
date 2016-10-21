@@ -66,7 +66,7 @@
             title: 'Éxito',
             template: '{{::("client.successUpdateClient"|translate)}}'
           });
-          clientsVm.clients[selectedClientIndex] = resp;
+          clientsVm.clients[selectedClientIndex] = resp.provider_client; //jshint ignore:line
           closeModal();
         },
         function error(resp){
