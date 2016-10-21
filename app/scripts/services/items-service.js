@@ -50,10 +50,7 @@
     }
 
     function editItem(data) {
-      return CommonService.editObject(data, '/api/provider/items/')
-        .then(function success(resp) {
-          return resp.data.provider_item; //jshint ignore:line
-        });
+      return CommonService.editObject(data, '/api/provider/items/');
     }
 
     function deleteItem(data) {
