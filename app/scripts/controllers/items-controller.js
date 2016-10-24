@@ -26,7 +26,7 @@
     function getItems() {
       ItemsService.getItems()
         .then(function success(resp) {
-          itemsVm.items = resp;
+          itemsVm.items = resp.provider_items; //jshint ignore:line
         },
         function error(resp) {
           $ionicPopup.alert({

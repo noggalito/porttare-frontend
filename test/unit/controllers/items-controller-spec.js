@@ -94,7 +94,14 @@
           var data = {provider_items: []}; //jshint ignore:line
           deferGetItems.resolve(data);
           $scope.$digest();
-          expect(ctrl.items).to.equal(data);
+          chai.assert.isArray(ctrl.items);
+        });
+
+        it('if successful, ionicPopup.alert should be called', function () {
+          var data = {provider_items: []}; //jshint ignore:line
+          deferGetItems.reject(data);
+          $scope.$digest();
+          sinon.assert.calledOnce($ionicPopup.alert);
         });
       });
 

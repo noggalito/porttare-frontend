@@ -8,10 +8,21 @@
   function CommonService($http, ENV) {
 
     var service = {
-      editObject: editObject
+      editObject: editObject,
+      getObjects: getObjects
     };
 
     return service;
+
+    function getObjects(url) {
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + url
+      })
+        .then(function success(resp) {
+          return resp.data;
+        });
+    }
 
     function editObject(data, url) {
       return $http({

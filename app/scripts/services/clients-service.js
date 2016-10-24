@@ -19,13 +19,7 @@
     return service;
 
     function getClients() {
-      return $http({
-        method: 'GET',
-        url: ENV.apiHost + '/api/provider/clients'
-      })
-        .then(function success(resp){
-          return resp.data.provider_clients; //jshint ignore:line
-        });
+      return CommonService.getObjects('/api/provider/clients/');
     }
 
     function newClient(data) {

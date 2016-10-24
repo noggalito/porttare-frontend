@@ -92,7 +92,7 @@
           var data = {provider_clients: []}; //jshint ignore:line
           deferGetClients.resolve(data);
           $scope.$digest();
-          expect(ctrl.clients).to.equal(data);
+          chai.assert.isArray(ctrl.clients);
         });
       });
 

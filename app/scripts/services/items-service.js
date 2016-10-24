@@ -46,13 +46,7 @@
     }
 
     function getItems() {
-      return $http({
-        method: 'GET',
-        url: ENV.apiHost + '/api/provider/items'
-      })
-        .then(function success(resp) {
-          return resp.data.provider_items; //jshint ignore:line
-        });
+      return CommonService.getObjects('/api/provider/items/');
     }
 
     function editItem(data) {

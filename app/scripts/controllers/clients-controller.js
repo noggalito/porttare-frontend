@@ -27,7 +27,7 @@
     function getClients() {
       ClientsService.getClients()
         .then(function success(resp) {
-          clientsVm.clients = resp;
+          clientsVm.clients = resp.provider_clients; //jshint ignore:line
         });
     }
 
