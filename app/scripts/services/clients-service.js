@@ -19,7 +19,7 @@
     return service;
 
     function getClients() {
-      return CommonService.getObjects('/api/provider/clients/');
+      return CommonService.getObjects('/api/provider/clients');
     }
 
     function newClient(data) {
