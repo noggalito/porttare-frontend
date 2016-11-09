@@ -16,3 +16,8 @@ ion-side-menus(enable-menu-with-back-views='false')
         ion-item  {{::("provider.establishments"|translate)}}
         ion-item  {{::("provider.promotionsAndDiscounts"|translate)}}
         ion-item  {{::("provider.moviggoAdvertising"|translate)}}
+        ion-item.change-user 
+          | {{::("menu.changeTo"|translate)}}
+        ion-item.user-type(menu-close='' ui-sref='app.categories.index')
+          | {{::("menu.buyer"|translate)}}
+        ion-item.user-type  {{::("menu.courier"|translate)}}

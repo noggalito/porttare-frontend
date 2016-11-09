@@ -1,0 +1,14 @@
+.menu {
+  .change-user{
+    background: #f7f7f7;
+    text-transform: uppercase;
+  }
+  .user-type{
+    background: $base-yellow;
+    color: white;
+    text-transform: uppercase;
+    a {
+      background: $base-yellow;
+    }
+  }
+}
