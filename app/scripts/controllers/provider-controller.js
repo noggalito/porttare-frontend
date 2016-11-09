@@ -9,10 +9,9 @@
                               $translate,
                               $ionicPopup,
                               $state,
-                              $ionicLoading,
-                              APP) {
+                              $ionicLoading) {
     var providerVm = this;
-    var successState = APP.successState;
+    var stateRedirect = 'provider.items';
     var transKeys = [
       'provider.methods.cash',
       'provider.methods.creditCard'
@@ -59,7 +58,7 @@
       ProviderService.createNewProvider(providerVm.providerForm)
         .then(function success() {
           $ionicLoading.hide();
-          $state.go(successState).then(function(){
+          $state.go(stateRedirect).then(function(){
             $ionicPopup.alert({
               title: 'Alerta',
               template: 'Proveedor creado satisfactoriamente'

@@ -168,16 +168,6 @@ function routes($stateProvider, $urlRouterProvider) {
     url: '/items',
     abstract: true
   })
-  .state('app.items.index', {
-    url: '/',
-    views: {
-      'menuContent@app': {
-        templateUrl: 'templates/item/items.html',
-        controller: 'ItemsController',
-        controllerAs: 'itemsVm'
-      }
-    }
-  })
   .state('app.clients', {
     url: '/clients',
     abstract: true
@@ -248,7 +238,11 @@ function routes($stateProvider, $urlRouterProvider) {
   .state('provider.items', {
     url: '/items',
     views: {
-      'menuContent@provider': {}
+      'menuContent@provider': {
+        templateUrl: 'templates/item/items.html',
+        controller: 'ItemsController',
+        controllerAs: 'itemsVm'
+      }
     }
   })
   .state('app.courier', {
@@ -272,6 +266,19 @@ function routes($stateProvider, $urlRouterProvider) {
         templateUrl: 'templates/courier/new.html',
         controller: 'CourierController',
         controllerAs: 'courierVm'
+      }
+    }
+  })
+  .state('courier', {
+    url: '/courier',
+    abstract: true,
+    templateUrl: 'templates/menu/menu-courier.html'
+  })
+  .state('courier.orders', {
+    url: '/orders',
+    views: {
+      'menuContent@app': {
+        templateUrl: 'templates/courier/orders.html'
       }
     }
   });

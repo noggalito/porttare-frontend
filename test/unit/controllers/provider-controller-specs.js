@@ -13,7 +13,7 @@
       $state,
       $ionicPopup,
       $translate,
-      APP,
+      stateRedirect,
       deferTranslate;
 
     beforeEach(module('porttare.controllers'));
@@ -42,9 +42,7 @@
         ProviderService = {
           createNewProvider: sinon.stub().returns(deferCreateProvider.promise)
         };
-        APP = {
-          successState: 'app.categories.index'
-        };
+        stateRedirect = 'provider.items';
       })
     );
 
@@ -55,8 +53,7 @@
           ProviderService: ProviderService,
           $ionicPopup: $ionicPopup,
           $state: $state,
-          $translate: $translate,
-          APP: APP
+          $translate: $translate
         };
 
         ctrl = $controller('ProviderController', dependencies);
@@ -82,8 +79,7 @@
           ProviderService: ProviderService,
           $ionicPopup: $ionicPopup,
           $state: $state,
-          $translate: $translate,
-          APP: APP
+          $translate: $translate
         };
 
         ctrl = $controller('ProviderController', dependencies);
@@ -105,10 +101,9 @@
       });
 
       it('if successful, should change state', function () {
-        var successState = 'app.categories.index';
         deferCreateProvider.resolve();
         $rootScope.$digest();
-        sinon.assert.alwaysCalledWithExactly($state.go, successState);
+        sinon.assert.alwaysCalledWithExactly($state.go, stateRedirect);
       });
 
       it('if successful, should show a alert', function () {

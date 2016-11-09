@@ -7,31 +7,32 @@ ion-side-menus(enable-menu-with-back-views='false')
     ion-nav-view(name='menuContent')
   ion-side-menu(side='left')
     ion-header-bar.bar-stable
-      h1.title Left
     ion-content
       a(menu-close ui-sref='app.profile') {{::("user.showProfile"|translate)}}
       ion-list
         ion-item(menu-close='' ui-sref='app.categories.index')
-          | {{::("menu.category"|translate)}}
-        ion-item(menu-close='' ui-sref='app.items.index')
-          | {{::("item.items"|translate)}}
-        ion-item(menu-close='' ui-sref='app.clients.index')
-          | {{::("client.clients"|translate)}}
-        ion-item(menu-close='' ui-sref='app.map')
-          | {{::("menu.location"|translate)}}
-        ion-item(menu-close=''  ui-sref='app.provider.welcome', ng-if='!user.provider_profile')
-          | {{::("menu.provider"|translate)}}
-        ion-item(menu-close=''  ui-sref='provider.items', ng-if='user.provider_profile')
-          | {{::("menu.provider"|translate)}}
-        ion-item(menu-close='' ui-sref='app.courier.welcome')
-          | {{::("menu.courier"|translate)}}
-        ion-item(menu-close='' ui-sref='app.products.index')
-          | {{::("menu.products"|translate)}}
+          | {{::("menu.client.category"|translate)}}
+        ion-item 
+          | {{::("menu.account"|translate)}}
+        ion-item.gray-item
+          li {{::("menu.client.myOrders"|translate)}}
+        ion-item.gray-item
+          li {{::("menu.client.myLists"|translate)}}
+        ion-item.gray-item 
+          li {{::("menu.client.coupon"|translate)}}
+        ion-item.gray-item 
+          li {{::("menu.client.payments"|translate)}}
+        ion-item 
+          | {{::("menu.invite"|translate)}}
         ion-item(ng-controller='LoginController as loginVm', ng-click='loginVm.logout()')
           | {{::("menu.logout"|translate)}}
-        ion-item.change-user
+        ion-item.gray-item
           | {{::("menu.changeTo"|translate)}}
+        ion-item.user-type(menu-close=''  ui-sref='app.provider.welcome', ng-if='!user.provider_profile')
+          | {{::("menu.user.provider"|translate)}}
         ion-item.user-type(menu-close='' ui-sref='provider.items', ng-if='user.provider_profile')
-          | {{::("menu.provider"|translate)}}
-        ion-item.user-type
-          | {{::("menu.courier"|translate)}}
+          | {{::("menu.user.provider"|translate)}}
+        ion-item.user-type(menu-close='' ui-sref='app.courier.welcome', ng-if='!user.courier_profile')
+          | {{::("menu.user.courier"|translate)}}
+        ion-item.user-type(menu-close='' ui-sref='courier.orders', ng-if='user.courier_profile')
+          | {{::("menu.user.courier"|translate)}}

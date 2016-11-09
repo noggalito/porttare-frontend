@@ -20,12 +20,43 @@
       menu: {
         category: 'Categorías',
         location: 'Ubicación',
-        provider: 'Proveedor',
-        products: 'Productos',
         logout: 'Cerrar sesión',
-        courier: 'Mensajero',
-        buyer: 'Comprador',
-        changeTo: 'Cambiar a'
+        changeTo: 'Cambiar a',
+        account: 'Cuenta',
+        invite: 'Invitar',
+        history: 'Historial',
+        user:{
+          courier: 'Mensajero',
+          buyer: 'Comprador',
+          provider: 'Proveedor',
+          dispatcher: 'Despachador'
+        },
+        client: {
+          category: 'Categorías',
+          myOrders: 'Mis Pedidos',
+          myLists: 'Mis Listas',
+          coupon: 'Cuponera',
+          payments: 'Pagos',
+          provider: 'Proveedor'
+        },
+        provider: {
+          orders: 'Pedidos',
+          products: 'Productos',
+          account: 'Cuenta',
+          dispatchers: 'Despachadores',
+          establishments: 'Establecimientos',
+          promotionsAndDiscounts: 'promociones y descuentos',
+          moviggoAdvertising: 'publicidad moviggo'
+        },
+        courier: {
+          orders: 'Pedidos',
+          account: 'Cuenta',
+          payments: 'Pagos',
+          history: 'Historial'
+        },
+        dispatcher: {
+          dispatch: 'Despachos'
+        }
       },
       provider: {
         itemsProvider: 'Productos de Proveedor',
@@ -46,11 +77,6 @@
         },
         orders: 'pedidos',
         products:  'productos',
-        account:  'cuenta',
-        dispatchers:  'despachadores',
-        establishments: 'establecimientos',
-        promotionsAndDiscounts: 'promociones y descuentos',
-        moviggoAdvertising: 'publicidad moviggo',
         logo: 'Logotipo',
         bank: {
           name: 'Nombre de su banco',
@@ -122,7 +148,6 @@
       actions: {
         showCategory: 'Lista de Categorías',
         newProvider: 'Nuevo Proveedor'
-
       },
       client: {
         formLegend: 'Datos cliente',

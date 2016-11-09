@@ -8,10 +8,9 @@
   function CourierController(CourierService,
                             $ionicPopup,
                             $state,
-                            $ionicLoading,
-                            APP) {
+                            $ionicLoading) {
     var courierVm = this;
-    var successState = APP.successState;
+    var stateRedirect = 'courier.orders';
     courierVm.createCourier = createCourier;
     courierVm.courierForm = {};
     courierVm.messages = {};
@@ -52,7 +51,7 @@
       CourierService.createNewCourier(courierVm.courierForm)
         .then(function success() {
           $ionicLoading.hide();
-          $state.go(successState).then(function () {
+          $state.go(stateRedirect).then(function () {
             $ionicPopup.alert({
               title: 'Alerta',
               template: '{{::("courier.successCourierSave"|translate)}}'

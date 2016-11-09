@@ -12,7 +12,7 @@
       deferStateGo,
       $state,
       $ionicPopup,
-      APP;
+      stateRedirect;
 
     beforeEach(module('porttare.controllers'));
 
@@ -38,9 +38,7 @@
         CourierService = {
           createNewCourier: sinon.stub().returns(deferCreateCourier.promise)
         };
-        APP = {
-          successState: 'app.categories.index'
-        };
+        stateRedirect = 'courier.orders';
       })
     );
 
@@ -50,8 +48,7 @@
           $ionicLoading: $ionicLoading,
           $ionicPopup: $ionicPopup,
           $state: $state,
-          CourierService: CourierService,
-          APP: APP
+          CourierService: CourierService
         };
 
         ctrl = $controller('CourierController', dependencies);
@@ -71,8 +68,7 @@
           $ionicLoading: $ionicLoading,
           $ionicPopup: $ionicPopup,
           $state: $state,
-          CourierService: CourierService,
-          APP: APP
+          CourierService: CourierService
         };
 
         ctrl = $controller('CourierController', dependencies);
@@ -93,10 +89,9 @@
       });
 
       it('if successful, should change state', function () {
-        var successState = 'app.categories.index';
         deferCreateCourier.resolve();
         $rootScope.$digest();
-        sinon.assert.alwaysCalledWithExactly($state.go, successState);
+        sinon.assert.alwaysCalledWithExactly($state.go, stateRedirect);
       });
 
       it('if successful, should show a alert', function () {

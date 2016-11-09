@@ -9,22 +9,16 @@ ion-side-menus(enable-menu-with-back-views='false')
     ion-header-bar.bar-stable
     ion-content
       ion-list
+        ion-item
+          | {{::("menu.dispatcher.orders"|translate)}}
         ion-item  
-          | {{::("menu.provider.orders"|translate)}}
-        ion-item(menu-close=''  ui-sref='app.items.index')
-          | {{::("menu.provider.products"|translate)}}
+          | {{::("menu.dispatcher.account"|translate)}}
         ion-item  
-          | {{::("menu.provider.account"|translate)}}
+          | {{::("menu.dispatcher.payments"|translate)}}
         ion-item  
-          | {{::("menu.provider.dispatchers"|translate)}}
+          | {{::("menu.dispatcher.history"|translate)}}
         ion-item  
-          | {{::("menu.provider.establishments"|translate)}}
-        ion-item  
-          | {{::("menu.provider.promotionsAndDiscounts"|translate)}}
-        ion-item  
-          | {{::("menu.provider.moviggoAdvertising"|translate)}}
-        ion-item  
-          | {{::("menu.invite"|translate)}}
+          | {{::("menu.dispatcher.invite"|translate)}}
         ion-item.gray-item 
           | {{::("menu.changeTo"|translate)}}
         ion-item.user-type(menu-close='' ui-sref='app.categories.index')

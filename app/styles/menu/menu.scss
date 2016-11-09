@@ -1,14 +1,20 @@
 .menu {
-  .change-user{
-    background: #f7f7f7;
-    text-transform: uppercase;
-  }
-  .user-type{
-    background: $base-yellow;
-    color: white;
-    text-transform: uppercase;
-    a {
+  .list{
+    ion-item{
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .gray-item{
+      background: #f7f7f7;
+      text-transform: uppercase;
+    }
+    .user-type{
       background: $base-yellow;
+      color: white;
+      text-transform: uppercase;
+      a {
+        background: $base-yellow;
+      }
     }
   }
 }
