@@ -38,17 +38,7 @@
     }
 
     function submitProcess(user){
-      var fecha_de_nacimiento = moment(profileVm.userEdit.fecha_de_nacimiento).format('YYYY-MM-DD');
-      var data = {
-        name: user.name,
-        email: user.email,
-        password: user.password,
-        customer_profile_attributes:{
-          ciudad: user.ciudad,
-          fecha_de_nacimiento: fecha_de_nacimiento
-        }
-      };
-      $auth.updateAccount(data)
+      $auth.updateAccount(user)
         .then(function() {
           $ionicLoading.hide();
           $ionicPopup.alert({

@@ -8,6 +8,9 @@
   function age() {
     return function (value) {
       var years = moment().diff(value, 'years',false);
+      if(isNaN(years)){
+        years='';
+      }
       return years;
    };
   }
