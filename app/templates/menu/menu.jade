@@ -28,8 +28,9 @@ ion-side-menus(enable-menu-with-back-views='false')
           | {{::("menu.products"|translate)}}
         ion-item(ng-controller='LoginController as loginVm', ng-click='loginVm.logout()')
           | {{::("menu.logout"|translate)}}
-        ion-item.change-user 
+        ion-item.change-user
           | {{::("menu.changeTo"|translate)}}
-        ion-item.user-type(menu-close='' ui-sref='provider.items')
+        ion-item.user-type(menu-close='' ui-sref='provider.items', ng-if='user.provider_profile')
           | {{::("menu.provider"|translate)}}
-        ion-item.user-type  {{::("menu.courier"|translate)}}
+        ion-item.user-type
+          | {{::("menu.courier"|translate)}}
