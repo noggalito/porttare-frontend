@@ -1,32 +1,32 @@
 ion-content
-  .profile-index
+  .addresses-page
     .address-container(ng-repeat="address in ::pfaVm.addresses")
       .edit
         link-button(on-click="address.id" text="{{::('profile.addresses.buttonEdit'|translate)}}")
-      .name {{address.nombre}}
-      table
-        tr
-          th {{::('profile.addresses.city'|translate)}}
-          th {{address.ciudad}}
-        tr
-          td {{::('profile.addresses.parish'|translate)}}
-          td {{address.parroquia}}
-        tr
-          td {{::('profile.addresses.neighborhood'|translate)}}
-          td {{address.barrio}}
-        tr
-          th {{::('profile.addresses.addressOne'|translate)}}
-          th {{address.direccion_uno}}
-        tr
-          td {{::('profile.addresses.addressTwo'|translate)}}
-          td {{address.direccion_dos}}
-        tr
-          td {{::('profile.addresses.zipCode'|translate)}}
-          td {{address.codigo_postal}}
-        tr
-          td {{::('profile.addresses.reference'|translate)}}
-          td {{address.referencia}}
-        tr
-          td {{::('profile.addresses.telephoneNumber'|translate)}}
-          td {{address.numero_convencional}}
+      .name {{address.nombre || address.direccion_uno}}
+      .address-grid
+        .row
+          .col.col-label {{::('profile.addresses.city'|translate)}}
+          .col {{address.ciudad}}
+        .row
+          .col.col-label {{::('profile.addresses.parish'|translate)}}
+          .col {{address.parroquia}}
+        .row
+          .col.col-label {{::('profile.addresses.neighborhood'|translate)}}
+          .col {{address.barrio}}
+        .row
+          .col.col-label {{::('profile.addresses.addressOne'|translate)}}
+          .col {{address.direccion_uno}}
+        .row
+          .col.col-label {{::('profile.addresses.addressTwo'|translate)}}
+          .col {{address.direccion_dos}}
+        .row
+          .col.col-label {{::('profile.addresses.zipCode'|translate)}}
+          .col {{address.codigo_postal}}
+        .row
+          .col.col-label {{::('profile.addresses.reference'|translate)}}
+          .col {{address.referencia}}
+        .row
+          .col.col-label {{::('profile.addresses.telephoneNumber'|translate)}}
+          .col {{address.numero_convencional}}
 

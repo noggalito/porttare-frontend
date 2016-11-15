@@ -1,3 +1,4 @@
+<<<<<<< 0cffa9c0224a763f095e10daf93eef1be79b8d14
 <<<<<<< 91b39c81d7a55b5443512e115cb42e7de11f4bb7
 ion-view(
   view-title='{{::("user.profile"|translate)}}'
@@ -40,12 +41,15 @@ ion-view(
         span.input-label ********    
 =======
 ion-content
+=======
+ion-content(scroll="false")
+>>>>>>> Use ionic grid to show data
   .profile-page
     .profile-header
       .user-name
         |{{ pfVm.user.name }}
     .profile-body
-      ion-tabs.tabs-top.state-tabs
+      ion-tabs.state-tabs
         ion-tab(
           title="{{::('profile.tabs.info'|translate)}}"
           ui-sref="app.profile.info"
