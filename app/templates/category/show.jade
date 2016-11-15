@@ -4,7 +4,7 @@ ion-view(
   ion-nav-title
     .alt-logo
   ion-content(class="category-page",
-    style="background-image: url('{{categoryVm.category.imagen|defaultImage}}')"
+    style="background-image: url('{{categoryVm.category.imagen_url|defaultImage}}')"
   )
     .category-title {{categoryVm.category.titulo | uppercase}}
     .category-description {{categoryVm.category.descripcion}}
