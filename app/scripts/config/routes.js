@@ -298,7 +298,7 @@ function routes($stateProvider, $urlRouterProvider) {
   .state('app.profile.info', {
     url: '/info',
     views: {
-      'menuContent@info': {
+      'menuContent@profileInfo': {
         templateUrl: 'templates/profile/info/info.html',
         controller: 'ProfileInfoController',
         controllerAs: 'piVm'
@@ -312,7 +312,7 @@ function routes($stateProvider, $urlRouterProvider) {
   .state('app.profile.addresses.index', {
     url: '/',
     views: {
-      'menuContent@index': {
+      'menuContent@addressesIndex': {
         templateUrl: 'templates/profile/addresses/index.html',
         controller: 'ProfileAddressesController',
         controllerAs: 'pfaVm',
@@ -341,10 +341,44 @@ function routes($stateProvider, $urlRouterProvider) {
   .state('app.profile.addresses.new', {
     url: '/new',
     views: {
-      'menuContent@new': {
+      'menuContent@app': {
         templateUrl: 'templates/profile/addresses/new.html',
-        controller: 'ProfileAddressesController',
-        controllerAs: 'pfaVm'
+        controller: 'ProfileAddressesActionsController',
+        controllerAs: 'pfaVm',
+      }
+    }
+  })
+  .state('app.profile.addresses.update', {
+    url: '/update/:id',
+    views: {
+      'menuContent@app': {
+        templateUrl: 'templates/profile/addresses/update.html',
+        controller: 'ProfileAddressesActionsController',
+        controllerAs: 'pfaVm',
+        params: {
+          id: null
+        },
+        resolve: {
+          data: function ($ionicLoading, $stateParams, $ionicPopup, ProfileAddressesService) {
+            $ionicLoading.show({
+              template: '{{::("globals.loading"|translate)}}'
+            });
+            if ($stateParams.id) {
+              return ProfileAddressesService.getAddress($stateParams.id)
+              .then(function success(res) {
+                $ionicLoading.hide();
+                return res;
+              }, function error(res) {
+                $ionicLoading.hide();
+                var message = res.error ? res.error : '{{::("globals.pleaseTryAgain"|translate)}}';
+                $ionicPopup.alert({
+                  title: 'Error',
+                  template: message
+                });
+              });
+            }
+          }
+        }
       }
     }
   });
