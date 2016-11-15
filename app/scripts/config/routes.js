@@ -71,6 +71,8 @@ function routes($stateProvider, $urlRouterProvider) {
   .state('app', {
     url: '/app',
     abstract: true,
+    controller: 'MenuController',
+    controllerAs: 'menuVm',
     templateUrl: 'templates/menu/menu.html',
     //only logged users will allow to go to /app/*
     resolve: {
@@ -281,6 +283,70 @@ function routes($stateProvider, $urlRouterProvider) {
         templateUrl: 'templates/courier/orders.html'
       }
     }
+  })
+  .state('app.profile', {
+    url: '/profile',
+    abstract: true,
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/profile/profile.html',
+        controller: 'ProfileController',
+        controllerAs: 'pfVm'
+      }
+    }
+  })
+  .state('app.profile.info', {
+    url: '/info',
+    views: {
+      'menuContent@info': {
+        templateUrl: 'templates/profile/info/info.html',
+        controller: 'ProfileInfoController',
+        controllerAs: 'piVm'
+      }
+    }
+  })
+  .state('app.profile.addresses', {
+    url: '/addresses',
+    abstract: true
+  })
+  .state('app.profile.addresses.index', {
+    url: '/',
+    views: {
+      'menuContent@index': {
+        templateUrl: 'templates/profile/addresses/index.html',
+        controller: 'ProfileAddressesController',
+        controllerAs: 'pfaVm',
+        resolve: {
+          data: function ($ionicLoading, $stateParams, $ionicPopup, ProfileAddressesService) {
+            $ionicLoading.show({
+              template: '{{::("globals.loading"|translate)}}'
+            });
+            return ProfileAddressesService.getAddresses()
+              .then(function success(res) {
+                $ionicLoading.hide();
+                return res;
+              }, function error(res) {
+                $ionicLoading.hide();
+                var message = res.error ? res.error : '{{::("globals.pleaseTryAgain"|translate)}}';
+                $ionicPopup.alert({
+                  title: 'Error',
+                  template: message
+                });
+              });
+          }
+        }
+      }
+    }
+  })
+  .state('app.profile.addresses.new', {
+    url: '/new',
+    views: {
+      'menuContent@new': {
+        templateUrl: 'templates/profile/addresses/new.html',
+        controller: 'ProfileAddressesController',
+        controllerAs: 'pfaVm'
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise(function ($injector, $location) {
@@ -297,7 +363,7 @@ function routes($stateProvider, $urlRouterProvider) {
   }
 
   function accessIfUserNotAuth($auth, $state, $ionicLoading, APP) {
-    $auth.validateUser()
+    return $auth.validateUser()
       .then(function userAuthorized() {
         $state.go(APP.successState).then(function () {
           $ionicLoading.hide();
@@ -308,7 +374,7 @@ function routes($stateProvider, $urlRouterProvider) {
   }
 
   function accessIfUserAuth($auth, $state, $ionicLoading, APP) {
-    $auth.validateUser()
+    return $auth.validateUser()
       .then(function userAuthorized(user) {
         return user;
       }, function userNotAuthorized() {

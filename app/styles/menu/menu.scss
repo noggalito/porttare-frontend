@@ -1,4 +1,14 @@
 .menu {
+  .show-profile {
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .menu-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
   .list{
     ion-item{
       text-transform: uppercase;

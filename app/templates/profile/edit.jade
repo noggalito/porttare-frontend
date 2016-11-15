@@ -2,7 +2,7 @@ ion-modal-view.client-page
   ion-header-bar.bar.bar-header.bar-light.bar-base-yellow(
     align-title="center"
   )
-    h4{{::("globals.edit"|translate)}} 
+    h4{{::("globals.edit"|translate)}}
     .ion-nav-buttons(side="left")
       button.button.ion-chevron-left.button-clear.left(
         ng-click="profileVm.closeModal()"
@@ -15,17 +15,17 @@ ion-modal-view.client-page
     )
       .list.list-inset
         legend {{::("client.formLegend"|translate)}}
-        
+
         label.item.item-input.item-stacked-label
           span.input-label {{::("item.imagen"|translate|uppercase)}}
           input(
             type='file'
             ngf-select
-            ng-model="profileVm.userEdit.image"  
+            ng-model="profileVm.userEdit.image"
             accept="image/*"
           )
         show-error(array-messages='profileVm.user.image')
-          
+
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': profileVm.user.email}"
         )
@@ -36,7 +36,7 @@ ion-modal-view.client-page
             ng-class="input-error"
           )
         show-error(array-messages="profileVm.messages.email")
-        
+
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': profileVm.messages.fecha_de_nacimiento}"
         )
@@ -65,7 +65,7 @@ ion-modal-view.client-page
             ng-model="profileVm.userEdit.ciudad"
           )
         show-error(array-messages="profileVm.messages.ciudad")
-        
+
       .bar.bar-footer.footer-client-container
         button.button-secondary-yellow(
           type="submit"

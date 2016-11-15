@@ -21,6 +21,7 @@
         category: 'Categorías',
         location: 'Ubicación',
         logout: 'Cerrar sesión',
+        profile: 'Ver Perfil',
         changeTo: 'Cambiar a',
         account: 'Cuenta',
         invite: 'Invitar',
@@ -190,6 +191,24 @@
         successUpdateProfile: 'Perfil actualizado éxitosamente',
         password: 'Contraseña',
         birthdate:  'Fecha de Nacimiento'
+      },
+      profile: {
+        title: 'Perfil',
+        tabs: {
+          info: 'Datos',
+          addresses: 'Direcciones'
+        },
+        addresses: {
+          buttonEdit: 'Editar',
+          city: 'Ciudad',
+          parish: 'Parroquia',
+          neighborhood: 'Barrio',
+          addressOne: 'Dirección 1',
+          addressTwo: 'Dirección 2 (Opcional)',
+          zipCode: 'Código postal',
+          reference: 'Referencia',
+          telephoneNumber: 'Número convencional'
+        }
       }
     });
 

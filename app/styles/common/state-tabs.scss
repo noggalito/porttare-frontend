@@ -1,0 +1,12 @@
+.state-tabs {
+  .tab-nav {
+    background: none;
+    border-bottom: 0.1rem solid $base-yellow;
+  }
+  .tab-item {
+    font-family: Montserrat-Regular;
+    &.tab-item-active {
+      border-bottom: 0.3rem solid $base-yellow;
+    }
+  }
+}

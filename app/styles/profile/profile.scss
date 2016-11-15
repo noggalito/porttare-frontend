@@ -1,0 +1,21 @@
+.profile-page {
+  margin-top: 5rem;
+  .profile-header {
+    text-align: center;
+    height: 5rem;
+    .user-name {
+      font-family: Montserrat-Light;
+      font-size: 2rem;
+    }
+  }
+  .profile-body {
+    .state-tabs {
+      .tab-item {
+        text-transform: uppercase;
+      }
+    }
+    .profile-index {
+      margin-top: 2rem;
+    }
+  }
+}

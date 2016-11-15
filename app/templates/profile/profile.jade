@@ -1,3 +1,4 @@
+<<<<<<< 91b39c81d7a55b5443512e115cb42e7de11f4bb7
 ion-view(
   view-title='{{::("user.profile"|translate)}}'
 )
@@ -37,3 +38,30 @@ ion-view(
       
       label.item.item-input.item-stacked-label
         span.input-label ********    
+=======
+ion-content
+  .profile-page
+    .profile-header
+      .user-name
+        |{{ pfVm.user.name }}
+    .profile-body
+      ion-tabs.tabs-top.state-tabs
+        ion-tab(
+          title="{{::('profile.tabs.info'|translate)}}"
+          ui-sref="app.profile.info"
+        )
+          ion-nav-view(name='menuContent@info')
+        ion-tab(
+          title="{{::('profile.tabs.addresses'|translate)}}"
+          ui-sref="app.profile.addresses.index"
+        )
+          ion-nav-view(name='menuContent@index')
+
+
+
+
+
+
+
+
+>>>>>>> Add structure for customer addresses view

@@ -1,0 +1,19 @@
+.action-button {
+  background-color: transparent;
+  height: 2.5em;
+  line-height: normal;
+  margin: 0 0.5em;
+  padding: 0 1em;
+  text-align: center;
+  text-transform: uppercase;
+  width: auto;
+  &.yellow {
+    @include action-button-color($base-yellow);
+  }
+  &.red {
+    @include action-button-color($button-red);
+  }
+  &.blue {
+    @include action-button-color($button-blue);
+  }
+}
