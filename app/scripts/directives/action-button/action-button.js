@@ -25,6 +25,7 @@
   function ActionButtonController() {
     var abVm = this;
     abVm.onButtonClick = onButtonClick;
+    abVm.customColor = abVm.color || 'yellow';
 
     function onButtonClick() {
       if (abVm.onClick) {

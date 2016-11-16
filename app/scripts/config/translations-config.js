@@ -207,7 +207,10 @@
           addressTwo: 'Dirección 2 (Opcional)',
           zipCode: 'Código postal',
           reference: 'Referencia',
-          telephoneNumber: 'Número convencional'
+          telephoneNumber: 'Número convencional',
+          formLegend: 'Actualizar Dirección',
+          name: 'Nombre',
+          saveButton: 'Guardar Dirección'
         }
       }
     });

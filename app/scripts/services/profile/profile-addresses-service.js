@@ -28,7 +28,7 @@
     function getAddress(id) {
       return $q(function (resolve, reject) {
         getAddresses().then(function success(res) {
-          var selectedAddress = filterAddresses(res, id)
+          var selectedAddress = filterAddresses(res, id);
           resolve(selectedAddress);
         }, reject);
       });
