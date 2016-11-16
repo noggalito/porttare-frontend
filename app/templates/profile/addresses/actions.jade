@@ -7,7 +7,7 @@ ion-content
           novalidate
         )
           .list.list-inset
-            legend {{::("profile.addresses.formLegend"|translate)}}
+            legend {{::pfaVm.inUpdateMode ? ("profile.addresses.formLegendUpdate"|translate) : ("profile.addresses.formLegendNew"|translate)}}
 
             label.item.item-input.item-stacked-label(
               ng-class="{'item-error': pfaVm.messages.nombre}"
@@ -19,8 +19,6 @@ ion-content
               )
             show-error(array-messages='pfaVm.messages.nombre')
 
-
-
             label.item.item-input.item-stacked-label(
               ng-class="{'item-error': pfaVm.messages.ciudad}"
             )
@@ -31,6 +29,15 @@ ion-content
               )
             show-error(array-messages='pfaVm.messages.ciudad')
 
+            label.item.item-input.item-stacked-label(
+              ng-class="{'item-error': pfaVm.messages.parroquia}"
+            )
+              span.input-label {{::("profile.addresses.parish"|translate)}}
+              input(
+                type='text'
+                ng-model='pfaVm.addressFormData.parroquia'
+              )
+            show-error(array-messages='pfaVm.messages.parroquia')
 
             label.item.item-input.item-stacked-label(
               ng-class="{'item-error': pfaVm.messages.barrio}"
@@ -42,7 +49,6 @@ ion-content
               )
             show-error(array-messages='pfaVm.messages.barrio')
 
-
             label.item.item-input.item-stacked-label(
               ng-class="{'item-error': pfaVm.messages.direccion_uno}"
             )
@@ -52,7 +58,6 @@ ion-content
                 ng-model='pfaVm.addressFormData.direccion_uno'
               )
             show-error(array-messages='pfaVm.messages.direccion_uno')
-
 
             label.item.item-input.item-stacked-label(
               ng-class="{'item-error': pfaVm.messages.direccion_dos}"
@@ -64,8 +69,6 @@ ion-content
               )
             show-error(array-messages='pfaVm.messages.direccion_dos')
 
-
-
             label.item.item-input.item-stacked-label(
               ng-class="{'item-error': pfaVm.messages.codigo_postal}"
             )
@@ -75,7 +78,6 @@ ion-content
                 ng-model='pfaVm.addressFormData.codigo_postal'
               )
             show-error(array-messages='pfaVm.messages.codigo_postal')
-
 
             label.item.item-input.item-stacked-label(
               ng-class="{'item-error': pfaVm.messages.numero_convencional}"
@@ -96,9 +98,10 @@ ion-content
                 ng-model='pfaVm.addressFormData.referencia'
               )
             show-error(array-messages='pfaVm.messages.referencia')
+
             .action-button-container
               action-button(
-                on-click="pfaVm.updateAddress()"
-                text='{{::("profile.addresses.saveButton"|translate)}}'
+                on-click="pfaVm.processAddress()"
+                text='{{ ::pfaVm.inUpdateMode ? ("profile.addresses.updateBtnText"|translate) : ("profile.addresses.saveBtnText"|translate) }}'
                 color="yellow"
               )

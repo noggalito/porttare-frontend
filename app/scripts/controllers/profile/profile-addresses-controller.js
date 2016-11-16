@@ -8,17 +8,23 @@
   function ProfileAddressesController(data, $state) {
     var pfaVm = this;
     pfaVm.addresses = data.customer_addresses || []; //jshint ignore:line
+    pfaVm.redirectToUpdateAddressView = redirectToUpdateAddressView;
+    pfaVm.redirectToNewAddressView = redirectToNewAddressView;
+    var addressStates = {
+      new: 'app.profile.addresses.new',
+      update: 'app.profile.addresses.update'
+    };
 
-    pfaVm.processAddress = processAddress;
-
-    function processAddress(id) {
+    function redirectToUpdateAddressView(id) {
       if (id) {
-        $state.go('app.profile.addresses.update', {
+        $state.go(addressStates.update, {
           id: id
         });
-      } else {
-        $state.go('app.profile.addresses.new');
       }
+    }
+
+    function redirectToNewAddressView() {
+      $state.go(addressStates.new);
     }
   }
 })();

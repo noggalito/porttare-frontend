@@ -2,7 +2,7 @@ ion-content
   .addresses-page
     .address-container(ng-repeat="address in ::pfaVm.addresses")
       .edit
-        link-button(on-click="pfaVm.processAddress(address.id)" text="{{::('profile.addresses.buttonEdit'|translate)}}")
+        link-button(on-click="pfaVm.redirectToUpdateAddressView(address.id)" text="{{::('profile.addresses.buttonEdit'|translate)}}")
       .name {{address.nombre || address.direccion_uno}}
       .address-grid
         .row
@@ -30,3 +30,9 @@ ion-content
           .col.col-label {{::('profile.addresses.telephoneNumber'|translate)}}
           .col {{address.numero_convencional}}
 
+    .address-create-new
+      action-button(
+        on-click="pfaVm.redirectToNewAddressView()"
+        text='{{::("profile.addresses.addAddressBtnText"|translate)}}'
+        color="yellow"
+      )

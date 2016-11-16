@@ -311,6 +311,7 @@ function routes($stateProvider, $urlRouterProvider) {
   })
   .state('app.profile.addresses.index', {
     url: '/',
+    cache: false,
     views: {
       'menuContent@addressesIndex': {
         templateUrl: 'templates/profile/addresses/index.html',
@@ -342,9 +343,14 @@ function routes($stateProvider, $urlRouterProvider) {
     url: '/new',
     views: {
       'menuContent@app': {
-        templateUrl: 'templates/profile/addresses/new.html',
+        templateUrl: 'templates/profile/addresses/actions.html',
         controller: 'ProfileAddressesActionsController',
         controllerAs: 'pfaVm',
+        resolve: {
+          data: function() {
+            return null;
+          }
+        }
       }
     }
   })
@@ -352,7 +358,7 @@ function routes($stateProvider, $urlRouterProvider) {
     url: '/update/:id',
     views: {
       'menuContent@app': {
-        templateUrl: 'templates/profile/addresses/update.html',
+        templateUrl: 'templates/profile/addresses/actions.html',
         controller: 'ProfileAddressesActionsController',
         controllerAs: 'pfaVm',
         params: {

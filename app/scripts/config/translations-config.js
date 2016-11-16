@@ -208,9 +208,12 @@
           zipCode: 'Código postal',
           reference: 'Referencia',
           telephoneNumber: 'Número convencional',
-          formLegend: 'Actualizar Dirección',
+          formLegendUpdate: 'Actualizar Dirección',
+          formLegendNew: 'Nueva Dirección',
           name: 'Nombre',
-          saveButton: 'Guardar Dirección'
+          addAddressBtnText: 'Agregar Dirección',
+          saveBtnText: 'Guardar Dirección',
+          updateBtnText: 'Actualizar Dirección'
         }
       }
     });
