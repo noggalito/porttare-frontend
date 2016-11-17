@@ -14,7 +14,6 @@
 
     beforeEach(angular.mock.module(function ($provide) {
       $provide.value('ENV', {
-        gMapsUrl: 'url',
         gMapsgMapsKey: 'key'
       });
     }));
