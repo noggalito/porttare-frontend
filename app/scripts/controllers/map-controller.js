@@ -5,16 +5,31 @@
     .module('porttare.controllers')
     .controller('MapController', MapController);
 
-  function MapController($ionicLoading, $ionicPopup, GeolocationService) {
+  function MapController($ionicLoading,
+                        $ionicPopup,
+                        GeolocationService,
+                        $window)
+  {
 
     var mapVm = this;
     mapVm.disableTap = disableTap;
+    $window.init = function(){
+      init();
+    };
+
+    function loadGMap(){
+      var script = document.createElement('script');
+      script.src = '//maps.google.com/maps/api/js?key=AIzaSyDbY9wkWTMUHeT_J2Uehq0-i0S1PCaybFE&libraries=places&output=embed&callback=init';
+      script.type = 'text/javascript';
+      document.getElementsByTagName('head')[0].appendChild(script);
+    }
+
+    loadGMap();
 
     $ionicLoading.show({
       template: 'cargando...'
     });
 
-    init();
 
     function init() {
       GeolocationService
