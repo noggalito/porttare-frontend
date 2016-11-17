@@ -51,7 +51,12 @@
 
     function onError(res) {
       $ionicLoading.hide();
-      var message = res.error ? res.error : '{{::("globals.pleaseTryAgain"|translate)}}';
+      var message = null;
+      if (res && res.error) {
+        message = res.error;
+      } else {
+        message = '{{::("globals.pleaseTryAgain"|translate)}}';
+      }
       $ionicPopup.alert({
         title: 'Error',
         template: message

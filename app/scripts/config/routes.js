@@ -110,13 +110,7 @@ function routes($stateProvider, $urlRouterProvider) {
                 $ionicLoading.hide();
                 return res.data;
               }, function error(res) {
-                $ionicLoading.hide();
-                var message = res.data.error ? res.data.error :
-                  '{{::("globals.pleaseTryAgain"|translate)}}';
-                $ionicPopup.alert({
-                  title: 'Error',
-                  template: message
-                });
+                onError(res, $ionicLoading, $ionicPopup);
               });
           }
         }
@@ -143,13 +137,7 @@ function routes($stateProvider, $urlRouterProvider) {
                 $ionicLoading.hide();
                 return res.data;
               }, function error(res) {
-                $ionicLoading.hide();
-                var message = res.data.error ? res.data.error :
-                  '{{::("globals.pleaseTryAgain"|translate)}}';
-                $ionicPopup.alert({
-                  title: 'Error',
-                  template: message
-                });
+                onError(res, $ionicLoading, $ionicPopup);
               });
           }
         }
@@ -327,12 +315,7 @@ function routes($stateProvider, $urlRouterProvider) {
                 $ionicLoading.hide();
                 return res;
               }, function error(res) {
-                $ionicLoading.hide();
-                var message = res.error ? res.error : '{{::("globals.pleaseTryAgain"|translate)}}';
-                $ionicPopup.alert({
-                  title: 'Error',
-                  template: message
-                });
+                onError(res, $ionicLoading, $ionicPopup);
               });
           }
         }
@@ -375,12 +358,7 @@ function routes($stateProvider, $urlRouterProvider) {
                 $ionicLoading.hide();
                 return res;
               }, function error(res) {
-                $ionicLoading.hide();
-                var message = res.error ? res.error : '{{::("globals.pleaseTryAgain"|translate)}}';
-                $ionicPopup.alert({
-                  title: 'Error',
-                  template: message
-                });
+                onError(res, $ionicLoading, $ionicPopup);
               });
             }
           }
@@ -422,5 +400,19 @@ function routes($stateProvider, $urlRouterProvider) {
           $ionicLoading.hide();
         });
       });
+  }
+
+  function onError(res, loading, popup) {
+    loading.hide();
+    var message = null;
+    if (res && res.error) {
+      message = res.error;
+    } else {
+      message = '{{::("globals.pleaseTryAgain"|translate)}}';
+    }
+    popup.alert({
+      title: 'Error',
+      template: message
+    });
   }
 }
