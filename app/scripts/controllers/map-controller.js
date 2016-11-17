@@ -8,18 +8,24 @@
   function MapController($ionicLoading,
                         $ionicPopup,
                         GeolocationService,
-                        $window)
+                        $window,
+                        ENV,
+                        $scope)
   {
 
     var mapVm = this;
     mapVm.disableTap = disableTap;
-    $window.init = function(){
-      init();
+    $window.launchGMap = function(){
+      showGMap();
     };
+
+    $scope.$on('$stateChangeStart', function() {
+      delete $window.launchGMap;
+     });
 
     function loadGMap(){
       var script = document.createElement('script');
-      script.src = '//maps.google.com/maps/api/js?key=AIzaSyDbY9wkWTMUHeT_J2Uehq0-i0S1PCaybFE&libraries=places&output=embed&callback=init';
+      script.src = ENV.gMapsUrl + ENV.gMapsKey;
       script.type = 'text/javascript';
       document.getElementsByTagName('head')[0].appendChild(script);
     }
@@ -30,8 +36,7 @@
       template: 'cargando...'
     });
 
-
-    function init() {
+    function showGMap() {
       GeolocationService
         .getCurrentPosition()
         .then(
