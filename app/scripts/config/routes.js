@@ -101,7 +101,7 @@ function routes($stateProvider, $urlRouterProvider) {
         controller: 'CategoriesController',
         controllerAs: 'categoryVm',
         resolve: {
-          data: function (CategoriesService, $q, $ionicLoading, $ionicPopup) {
+          data: function (CategoriesService, $q, $ionicLoading, $ionicPopup, ErrorHandlerService) {
             $ionicLoading.show({
               template: '{{::("globals.loading"|translate)}}'
             });
@@ -109,9 +109,7 @@ function routes($stateProvider, $urlRouterProvider) {
               .then(function success(res) {
                 $ionicLoading.hide();
                 return res.data;
-              }, function error(res) {
-                onError(res, $ionicLoading, $ionicPopup);
-              });
+              }, ErrorHandlerService.handleCommonErrorGET);
           }
         }
       }
@@ -125,7 +123,7 @@ function routes($stateProvider, $urlRouterProvider) {
         controller: 'CategoryController',
         controllerAs: 'categoryVm',
         resolve: {
-          data: function ($ionicLoading, $stateParams, $ionicPopup, CategoryService) {
+          data: function ($ionicLoading, $stateParams, $ionicPopup, CategoryService, ErrorHandlerService) {
             $ionicLoading.show({
               template: '{{::("globals.loading"|translate)}}'
             });
@@ -136,9 +134,7 @@ function routes($stateProvider, $urlRouterProvider) {
               .then(function success(res) {
                 $ionicLoading.hide();
                 return res.data;
-              }, function error(res) {
-                onError(res, $ionicLoading, $ionicPopup);
-              });
+              }, ErrorHandlerService.handleCommonErrorGET);
           }
         }
       }
@@ -306,7 +302,7 @@ function routes($stateProvider, $urlRouterProvider) {
         controller: 'ProfileAddressesController',
         controllerAs: 'pfaVm',
         resolve: {
-          data: function ($ionicLoading, $stateParams, $ionicPopup, ProfileAddressesService) {
+          data: function ($ionicLoading, $stateParams, $ionicPopup, ProfileAddressesService, ErrorHandlerService) {
             $ionicLoading.show({
               template: '{{::("globals.loading"|translate)}}'
             });
@@ -314,9 +310,7 @@ function routes($stateProvider, $urlRouterProvider) {
               .then(function success(res) {
                 $ionicLoading.hide();
                 return res;
-              }, function error(res) {
-                onError(res, $ionicLoading, $ionicPopup);
-              });
+              }, ErrorHandlerService.handleCommonErrorGET);
           }
         }
       }
@@ -348,7 +342,7 @@ function routes($stateProvider, $urlRouterProvider) {
           id: null
         },
         resolve: {
-          data: function ($ionicLoading, $stateParams, $ionicPopup, ProfileAddressesService) {
+          data: function ($ionicLoading, $stateParams, $ionicPopup, ProfileAddressesService, ErrorHandlerService) {
             $ionicLoading.show({
               template: '{{::("globals.loading"|translate)}}'
             });
@@ -357,9 +351,7 @@ function routes($stateProvider, $urlRouterProvider) {
               .then(function success(res) {
                 $ionicLoading.hide();
                 return res;
-              }, function error(res) {
-                onError(res, $ionicLoading, $ionicPopup);
-              });
+              }, ErrorHandlerService.handleCommonErrorGET);
             }
           }
         }
@@ -400,19 +392,5 @@ function routes($stateProvider, $urlRouterProvider) {
           $ionicLoading.hide();
         });
       });
-  }
-
-  function onError(res, loading, popup) {
-    loading.hide();
-    var message = null;
-    if (res && res.error) {
-      message = res.error;
-    } else {
-      message = '{{::("globals.pleaseTryAgain"|translate)}}';
-    }
-    popup.alert({
-      title: 'Error',
-      template: message
-    });
   }
 }

@@ -8,12 +8,12 @@
       $state,
       $ionicLoading,
       ProfileAddressesService,
-      $ionicPopup,
       deferUpdateAddresses,
       deferCreateAddresses,
       deferStateGo,
       $rootScope,
-      localData;
+      localData,
+      ErrorHandlerService;
 
     beforeEach(module('porttare.controllers'));
     beforeEach(angular.mock.module(function ($provide) {
@@ -31,15 +31,16 @@
           createAddresses: sinon.stub().returns(deferCreateAddresses.promise)
         };
       });
-      $provide.factory('$ionicPopup', function () {
-        return {
-          alert: sinon.stub()
-        };
-      });
+
       $provide.factory('$state', function ($q) {
         deferStateGo = $q.defer();
         return {
           go: sinon.stub().returns(deferStateGo.promise)
+        };
+      });
+      $provide.factory('ErrorHandlerService', function () {
+        return {
+          handleCommonErrorGET: sinon.stub()
         };
       });
     }));
@@ -49,14 +50,14 @@
                                 _$state_,
                                 _$ionicLoading_,
                                 _ProfileAddressesService_,
-                                _$ionicPopup_) {
+                                _ErrorHandlerService_) {
 
       $rootScope = _$rootScope_;
       $controller = _$controller_;
       $ionicLoading = _$ionicLoading_;
       ProfileAddressesService = _ProfileAddressesService_;
-      $ionicPopup = _$ionicPopup_;
       $state = _$state_;
+      ErrorHandlerService = _ErrorHandlerService_;
       localData = {
         nombre: 'test 1',
         id: '1'
@@ -66,13 +67,9 @@
         data: localData,
         $state: $state,
         $ionicLoading: $ionicLoading,
-        ProfileAddressesService: ProfileAddressesService,
-        $ionicPopup: $ionicPopup,
+        ProfileAddressesService: ProfileAddressesService
       };
-
       ctrl = $controller('ProfileAddressesActionsController', dependencies);
-
-
     }));
 
     it('Should add data to scope', function () {
@@ -126,34 +123,11 @@
         sinon.assert.calledOnce($ionicLoading.hide);
       });
 
-      it('On error', function () {
+      it('On error: Should call to ErrorHandlerService', function () {
         ctrl.processAddress();
         deferCreateAddresses.reject();
         $rootScope.$digest();
-        sinon.assert.calledWithExactly($ionicPopup.alert, {
-          title: 'Error',
-          template: '{{::("globals.pleaseTryAgain"|translate)}}'
-        });
-      });
-
-      it('On error: with data', function () {
-        ctrl.processAddress();
-        deferCreateAddresses.reject({
-          error: 'error message'
-        });
-        $rootScope.$digest();
-        sinon.assert.calledWithExactly($ionicPopup.alert, {
-          title: 'Error',
-          template: 'error message'
-        });
-      });
-
-      it('On error: Should hide loading', function () {
-        ctrl.processAddress();
-        deferCreateAddresses.resolve();
-        deferStateGo.resolve();
-        $rootScope.$digest();
-        sinon.assert.calledOnce($ionicLoading.hide);
+        sinon.assert.calledOnce(ErrorHandlerService.handleCommonErrorGET);
       });
     });
 
@@ -204,34 +178,11 @@
         sinon.assert.calledOnce($ionicLoading.hide);
       });
 
-      it('On error', function () {
+      it('On error: Should call to ErrorHandlerService', function () {
         ctrl.processAddress();
         deferUpdateAddresses.reject();
         $rootScope.$digest();
-        sinon.assert.calledWithExactly($ionicPopup.alert, {
-          title: 'Error',
-          template: '{{::("globals.pleaseTryAgain"|translate)}}'
-        });
-      });
-
-      it('On error: with data', function () {
-        ctrl.processAddress();
-        deferUpdateAddresses.reject({
-          error: 'error message'
-        });
-        $rootScope.$digest();
-        sinon.assert.calledWithExactly($ionicPopup.alert, {
-          title: 'Error',
-          template: 'error message'
-        });
-      });
-
-      it('On error: Should hide loading', function () {
-        ctrl.processAddress();
-        deferUpdateAddresses.resolve();
-        deferStateGo.resolve();
-        $rootScope.$digest();
-        sinon.assert.calledOnce($ionicLoading.hide);
+        sinon.assert.calledOnce(ErrorHandlerService.handleCommonErrorGET);
       });
 
     });

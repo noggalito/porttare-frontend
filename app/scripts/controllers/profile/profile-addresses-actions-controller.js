@@ -5,7 +5,8 @@
     .module('porttare.controllers')
     .controller('ProfileAddressesActionsController', ProfileAddressesActionsController);
 
-  function ProfileAddressesActionsController(data, $ionicLoading, ProfileAddressesService, $ionicPopup, $state) {
+  function ProfileAddressesActionsController(data, $ionicLoading,
+    ProfileAddressesService, $state, ErrorHandlerService) {
     var pfaVm = this;
     pfaVm.addressFormData = {};
     pfaVm.messages = {};
@@ -35,12 +36,12 @@
 
     function update() {
       ProfileAddressesService.updateAddresses(pfaVm.addressFormData)
-        .then(onSuccess, onError);
+        .then(onSuccess, ErrorHandlerService.handleCommonErrorGET);
     }
 
     function create() {
       ProfileAddressesService.createAddresses(pfaVm.addressFormData)
-        .then(onSuccess, onError);
+        .then(onSuccess, ErrorHandlerService.handleCommonErrorGET);
     }
 
     function onSuccess() {
@@ -49,18 +50,5 @@
       });
     }
 
-    function onError(res) {
-      $ionicLoading.hide();
-      var message = null;
-      if (res && res.error) {
-        message = res.error;
-      } else {
-        message = '{{::("globals.pleaseTryAgain"|translate)}}';
-      }
-      $ionicPopup.alert({
-        title: 'Error',
-        template: message
-      });
-    }
   }
 })();
