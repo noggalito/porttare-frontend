@@ -1,0 +1,37 @@
+ion-view(
+  view-title="{{::('office.office'|translate)}}"
+)
+  ion-nav-title
+    .alt-logo
+  ion-content
+    .content-office(ng-class="{'disabled': officeVm.office.enabled==false}")
+      .row
+        ion-toggle.toogle(ng-model="officeVm.office.enabled" ng-checked="officeVm.office.enabled")
+          {{::("office.office"|translate)}}
+          span(ng-show="officeVm.office.enabled") {{::("office.activo"|translate)}}
+          span(ng-show="!officeVm.office.enabled") {{::("office.inactivo"|translate)}}
+
+      .row
+        h2.item-title{{officeVm.office.direccion}}
+
+      .row
+        .col {{::("office.officeLegend"|translate)}}
+        .col
+          a{{::("actions.edit"|translate)}}
+        .col
+          a.link-delete(ng-click=''){{::("actions.delete"|translate)}}
+
+      .row
+        table.table
+          tr
+            td.disabled {{::("office.officeNumber"|translate)}}
+            td.center {{officeVm.office.id}}
+          tr
+            td.disabled {{::("office.ciudad"|translate)}}
+            td.center {{officeVm.office.ciudad}}
+          tr
+            td.disabled {{::("office.officeAttention"|translate)}}
+            td.center {{officeVm.office.hora_de_apertura}} {{officeVm.office.hora_de_cierre}}
+
+
+

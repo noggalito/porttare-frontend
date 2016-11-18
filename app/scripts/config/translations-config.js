@@ -171,7 +171,10 @@
       },
       actions: {
         showCategory: 'Lista de Categorías',
-        newProvider: 'Nuevo Proveedor'
+        newProvider: 'Nuevo Proveedor',
+        seeMore: 'Ver más',
+        edit: 'Editar',
+        delete: 'Eliminar'
       },
       client: {
         formLegend: 'Datos cliente',
@@ -215,6 +218,22 @@
         titleSelectItems: 'Seleccionar Items',
         cancel: 'Cancelar',
         noItems: 'No se han cargado items al wishlist'
+      },
+      office: {
+        office: 'Establecimiento',
+        officeAddress: 'Dirección Establecimiento',
+        officeMatrix: 'Matriz',
+        officeSuccessSave: 'Establecimiento guardado éxitosamente',
+        officeLegend: 'Datos del Establecimiento',
+        ciudad: 'Ciudad',
+        direccion: 'Dirección',
+        telefono: 'Teléfono',
+        horaApertura: 'Hora de apertura',
+        horaCierre: 'Hora de cierre',
+        activo: 'Activo',
+        inactivo: 'Inactivo',
+        officeNumber: 'Sucursal número',
+        officeAttention:'Horario de atención'
       },
       password: {
         updatePassword: 'Actualizar contraseña',

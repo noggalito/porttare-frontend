@@ -285,6 +285,26 @@ function routes($stateProvider, $urlRouterProvider) {
         templateUrl: 'templates/client/clients.html',
         controller: 'ClientsController',
         controllerAs: 'clientsVm'
+        }
+    }
+  })
+  .state('provider.offices', {
+    url: '/offices',
+    views: {
+      'menuContent@provider': {
+        templateUrl: 'templates/offices/offices.html',
+        controller: 'OfficesController',
+        controllerAs: 'officesVm'
+      }
+    }
+  })
+  .state('provider.office', {
+    url: '/office',
+    views: {
+      'menuContent@provider': {
+        templateUrl: 'templates/offices/detail.html',
+        controller: 'OfficesController',
+        controllerAs: 'officeVm'
       }
     }
   })

@@ -1,0 +1,62 @@
+ion-modal-view.item-page
+  ion-header-bar.bar.bar-header.bar-light.bar-base-yellow(
+    align-title="center"
+  )
+    h4(ng-hide="officesVm.office.id").title {{::("globals.new"|translate)}} {{::("office.office"|translate)}}
+    h4(ng-show="officesVm.office.id").title {{::("globals.edit"|translate)}} {{::("office.office"|translate)}}
+    .ion-nav-buttons(side="left")
+      button.button.ion-chevron-left.button-clear.left(
+        ng-click="officesVm.closeModal()"
+      )
+  ion-content.resource-form
+    form(
+      name='form'
+      ng-submit='officesVm.submitModal(officesVm.office.id)'
+      novalidate
+    )
+      .list.list-inset
+        legend {{::("office.officeLegend"|translate)}}
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("office.ciudad"|translate|uppercase)}}
+          input(
+            type="text"
+            ng-class="input-error"
+            ng-model="officesVm.office.ciudad"
+          )
+        show-error(array-messages="officesVm.messages.ciudad")
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("office.direccion"|translate|uppercase)}}
+          input(
+            type='text'
+            ng-model='officesVm.office.direccion'
+            ng-class="input-error"
+          )
+        show-error(array-messages="officesVm.messages.direccion")
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("office.telefono"|translate|uppercase)}}
+          input(
+            type='text'
+            ng-model='officesVm.office.telefono'
+            ng-class="input-error"
+          )
+        show-error(array-messages='officesVm.messages.telefono')
+
+        .item.item-input.item-stacked-label
+          span.input-label {{::("office.horaApertura"|translate|uppercase)}}
+          ion-datetime-picker(time ng-model='officesVm.office.hora_de_apertura')
+            | {{officesVm.office.hora_de_apertura| date: 'HH:mm'}}
+        show-error(array-messages='officesVm.messages.hora_de_apertura')
+
+        .item.item-input.item-stacked-label
+          span.input-label {{::("office.horaCierre"|translate|uppercase)}}
+          ion-datetime-picker(time ng-model='officesVm.office.hora_de_cierre')
+            | {{officesVm.office.hora_de_cierre| date: "HH:mm"}}
+        show-error(array-messages='officesVm.messages.hora_de_cierre')
+
+      .bar.bar-footer.footer-item-container
+        button.button-secondary-yellow(
+          type="submit"
+        ) {{::("globals.save"|translate)}}

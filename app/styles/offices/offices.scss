@@ -1,0 +1,47 @@
+.content-office{
+
+  padding: 0px 20px;
+
+  a{
+    cursor: pointer
+  }
+
+  h5 span {
+    color: $base-yellow;
+  }
+
+  span{
+    padding: 0 5px;
+  }
+
+  .line{
+    color: $base-grey;
+  }
+  .disabled{
+    opacity: 0.5;
+  }
+  .center{
+    text-align: center;
+  }
+  .rigth{
+    text-align: right;
+  }
+  .delete{
+    color: $error-red;
+  }
+  .table{
+      width: 100%;
+      border-collapse: collapse;
+      border: 7px #FFFFFF solid;
+      tr {
+        border: 0.1px  $base-yellow solid;
+      }
+      td {
+        border: 0.1px  $base-yellow solid;
+      }
+  }
+  .toogle{
+    border: none;
+  }
+
+}
