@@ -18,15 +18,17 @@
     officesVm.closeModal = closeModal;
     officesVm.submitModal = submitModal;
     officesVm.seeMore = seeMore;
-    officesVm.offices = [];
     getoffices();
-
-    var officeVm = this;
-    officeVm.office = $localStorage.getObject('office') ? $localStorage.getObject('office'):officeVm.office = undefined;
 
     function getoffices() {
       OfficesService.getOffices().then(function(results){
         officesVm.offices = results.provider_offices; //jshint ignore:line
+      }, function error(resp) {
+        $ionicLoading.hide();
+        $ionicPopup.alert({
+          title: 'Error',
+          template: resp.data.error ? resp.data.error : '{{::("globals.pleaseTryAgain"|translate)}}'
+        });
       });
     }
 
@@ -34,10 +36,6 @@
       officesVm.office = {};
       officesVm.office.hora_de_apertura = new Date(); //jshint ignore:line
       officesVm.office.hora_de_cierre = new Date(); //jshint ignore:line
-      showModal();
-    }
-
-    function showModal() {
       ModalService.showModal({
         parentScope: $scope,
         fromTemplateUrl: 'templates/offices/new-edit.html'
@@ -50,15 +48,11 @@
       officesVm.messages = {};
     }
 
-    function submitModal(id){
-      (id) ? editoffice() : newoffice();
-    }
-
-    function newoffice() {
+    function submitModal(){
       $ionicLoading.show({
         template: '{{::("globals.saving"|translate)}}'
       });
-      OfficesService.newOffice(officesVm.office).then(function success(resp){
+      OfficesService.createOffice(officesVm.office).then(function success(resp){
         $ionicLoading.hide();
         $ionicPopup.alert({
           title: 'Éxito',

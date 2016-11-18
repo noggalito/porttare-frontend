@@ -128,6 +128,8 @@
         save: 'Guardar',
         list: 'Listar',
         edit: 'Editar',
+        delete: 'Eliminar',
+        seeMore: 'Ver más',
         options: 'Opciones',
         success: 'Éxito',
         saving: 'Guardando',
@@ -224,6 +226,7 @@
         officeAddress: 'Dirección Establecimiento',
         officeMatrix: 'Matriz',
         officeSuccessSave: 'Establecimiento guardado éxitosamente',
+        officeSuccessUpdate: 'Establecimiento actualizado éxitosamente',
         officeLegend: 'Datos del Establecimiento',
         ciudad: 'Ciudad',
         direccion: 'Dirección',
@@ -233,7 +236,17 @@
         activo: 'Activo',
         inactivo: 'Inactivo',
         officeNumber: 'Sucursal número',
-        officeAttention:'Horario de atención'
+        officeAttention:'Horario de atención',
+        officeStart:'Inicio de labores',
+        officeFinsh: 'Final de Labores',
+        monday: 'Lunes',
+        tuesday: 'Martes',
+        wednesday: 'Miercoles',
+        thursday: 'Jueves',
+        friday:'Viernes',
+        saturday: 'Sabado',
+        sunday: 'Domingo'
+
       },
       password: {
         updatePassword: 'Actualizar contraseña',

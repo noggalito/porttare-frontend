@@ -3,35 +3,36 @@ ion-view(
 )
   ion-nav-title
     .alt-logo
-  ion-content
-    .content-office(ng-class="{'disabled': officeVm.office.enabled==false}")
+  ion-content.content-office
+    .div(ng-class="{'disabled': officesVm.officeDetail.enabled==false}")
       .row
-        ion-toggle.toogle(ng-model="officeVm.office.enabled" ng-checked="officeVm.office.enabled")
-          {{::("office.office"|translate)}}
-          span(ng-show="officeVm.office.enabled") {{::("office.activo"|translate)}}
-          span(ng-show="!officeVm.office.enabled") {{::("office.inactivo"|translate)}}
+        h4.item-title {{::("office.office"|translate)}}
+          span(ng-show="officesVm.officeDetail.enabled") {{::("office.activo"|translate)}}
+          span(ng-show="!officesVm.officeDetail.enabled") {{::("office.inactivo"|translate)}}
+        ion-toggle.toogle(ng-checked="officesVm.officeDetail.enabled" ng-disabled="true")
 
       .row
-        h2.item-title{{officeVm.office.direccion}}
+        h2.item-title {{officesVm.officeDetail.direccion}}
 
       .row
         .col {{::("office.officeLegend"|translate)}}
         .col
-          a{{::("actions.edit"|translate)}}
+          a(ng-class="{'action': officesVm.officeDetail.enabled==true}"
+          ng-click="officesVm.officeDetail.enabled && officesVm.showEditModal()") {{::("globals.edit"|translate)}}
         .col
-          a.link-delete(ng-click=''){{::("actions.delete"|translate)}}
+          a.delete(ng-class="{'action': officesVm.officeDetail.enabled==true}") {{::("globals.delete"|translate)}}
 
       .row
         table.table
           tr
             td.disabled {{::("office.officeNumber"|translate)}}
-            td.center {{officeVm.office.id}}
+            td.text-center {{officesVm.officeDetail.id}}
           tr
             td.disabled {{::("office.ciudad"|translate)}}
-            td.center {{officeVm.office.ciudad}}
+            td.text-center {{officesVm.officeDetail.ciudad}}
           tr
             td.disabled {{::("office.officeAttention"|translate)}}
-            td.center {{officeVm.office.hora_de_apertura}} {{officeVm.office.hora_de_cierre}}
+            td.text-center {{officesVm.officeDetail.hora_de_apertura|date: "HH:mm a"}}-{{officesVm.officeDetail.hora_de_cierre| date: "HH:mm a"}}
 
 
 

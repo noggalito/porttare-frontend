@@ -303,8 +303,8 @@ function routes($stateProvider, $urlRouterProvider) {
     views: {
       'menuContent@provider': {
         templateUrl: 'templates/offices/detail.html',
-        controller: 'OfficesController',
-        controllerAs: 'officeVm'
+        controller: 'OfficeController',
+        controllerAs: 'officesVm'
       }
     }
   })

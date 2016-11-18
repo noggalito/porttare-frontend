@@ -16,7 +16,7 @@ ion-view(
           .col
             h5(ng-class="{'disabled': item.enabled==false}") {{item.direccion}}
               span(ng-show="$first") ({{::("office.officeMatrix"|translate)}})
-          .col.rigth
-            a(ng-click='officesVm.seeMore(item)') {{::("actions.seeMore"|translate)}}
+          .col.text-right
+            a.action(ng-click='officesVm.seeMore(item)') {{::("globals.seeMore"|translate)}}
 
 

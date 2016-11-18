@@ -2,10 +2,6 @@
 
   padding: 0px 20px;
 
-  a{
-    cursor: pointer
-  }
-
   h5 span {
     color: $base-yellow;
   }
@@ -13,18 +9,15 @@
   span{
     padding: 0 5px;
   }
-
+  .action{
+    cursor: pointer
+  }
   .line{
     color: $base-grey;
   }
   .disabled{
     opacity: 0.5;
-  }
-  .center{
-    text-align: center;
-  }
-  .rigth{
-    text-align: right;
+    cursor: default;
   }
   .delete{
     color: $error-red;
@@ -42,6 +35,15 @@
   }
   .toogle{
     border: none;
+    .handle {
+      background-color: $base-yellow;
+    }
+    .toggle input:checked + .track .handle {
+      background-color: $base-yellow;
+    }
+    .toggle input:checked + .track {
+      background-color: #e6e6e6;
+      border-color: #e6e6e6;
+    }
   }
-
 }

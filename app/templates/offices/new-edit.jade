@@ -11,7 +11,7 @@ ion-modal-view.item-page
   ion-content.resource-form
     form(
       name='form'
-      ng-submit='officesVm.submitModal(officesVm.office.id)'
+      ng-submit='officesVm.submitModal()'
       novalidate
     )
       .list.list-inset
@@ -44,16 +44,52 @@ ion-modal-view.item-page
           )
         show-error(array-messages='officesVm.messages.telefono')
 
-        .item.item-input.item-stacked-label
+        label.item.item-input.item-select
+          span.input-label {{::("office.officeStart"|translate)}}
+          select(ng-model='officesVm.office.inicio_de_labores')
+            option(value="mon")
+              | {{::("office.monday"|translate)}}
+            option(value="tue")
+              | {{::("office.tuesday"|translate)}}
+            option(value="wed")
+              | {{::("office.wednesday"|translate)}}
+            option(value="thu")
+              | {{::("office.thursday"|translate)}}
+            option(value="fri")
+              | {{::("office.friday"|translate)}}
+            option(value="sat")
+              | {{::("office.saturday"|translate)}}
+            option(value="sun")
+              | {{::("office.sunday"|translate)}}
+
+        label.item.item-input.item-select
+          span.input-label {{::("office.officeFinsh"|translate)}}
+          select(ng-model='officesVm.office.final_de_labores')
+            option(value="mon")
+              | {{::("office.monday"|translate)}}
+            option(value="tue")
+              | {{::("office.tuesday"|translate)}}
+            option(value="wed")
+              | {{::("office.wednesday"|translate)}}
+            option(value="thu")
+              | {{::("office.thursday"|translate)}}
+            option(value="fri")
+              | {{::("office.friday"|translate)}}
+            option(value="sat")
+              | {{::("office.saturday"|translate)}}
+            option(value="sun")
+              | {{::("office.sunday"|translate)}}
+
+        item.item-input
           span.input-label {{::("office.horaApertura"|translate|uppercase)}}
           ion-datetime-picker(time ng-model='officesVm.office.hora_de_apertura')
-            | {{officesVm.office.hora_de_apertura| date: 'HH:mm'}}
+            | {{officesVm.office.hora_de_apertura| date: 'HH:mm a'}}
         show-error(array-messages='officesVm.messages.hora_de_apertura')
 
-        .item.item-input.item-stacked-label
+        item.item-input
           span.input-label {{::("office.horaCierre"|translate|uppercase)}}
           ion-datetime-picker(time ng-model='officesVm.office.hora_de_cierre')
-            | {{officesVm.office.hora_de_cierre| date: "HH:mm"}}
+            | {{officesVm.office.hora_de_cierre| date: 'HH:mm a'}}
         show-error(array-messages='officesVm.messages.hora_de_cierre')
 
       .bar.bar-footer.footer-item-container
