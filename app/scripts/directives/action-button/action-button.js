@@ -12,7 +12,8 @@
       scope: {
         onClick: '&',
         text: '@',
-        color: '@'
+        color: '@',
+        type: '@'
       },
       controller: ActionButtonController,
       controllerAs: 'abVm',

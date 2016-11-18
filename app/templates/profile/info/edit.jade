@@ -5,12 +5,12 @@ ion-modal-view.client-page
     h4{{::("globals.edit"|translate)}}
     .ion-nav-buttons(side="left")
       button.button.ion-chevron-left.button-clear.left(
-        ng-click="profileVm.closeModal()"
+        ng-click="piVm.closeModal()"
       )
   ion-content.resource-form
     form(
       name="form"
-      ng-submit="profileVm.submitProcess(profileVm.userEdit)"
+      ng-submit="piVm.submitProcess(piVm.userEdit)"
       novalidate
     )
       .list.list-inset
@@ -21,52 +21,53 @@ ion-modal-view.client-page
           input(
             type='file'
             ngf-select
-            ng-model="profileVm.userEdit.image"
+            ng-model="piVm.userEdit.image"
             accept="image/*"
           )
-        show-error(array-messages='profileVm.user.image')
+        show-error(array-messages='piVm.user.image')
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': profileVm.user.email}"
+          ng-class="{'item-error': piVm.user.email}"
         )
           span.input-label {{::("user.email"|translate)}}
           input(
             type="text"
-            ng-model="profileVm.userEdit.email"
+            ng-model="piVm.userEdit.email"
             ng-class="input-error"
           )
-        show-error(array-messages="profileVm.messages.email")
+        show-error(array-messages="piVm.messages.email")
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': profileVm.messages.fecha_de_nacimiento}"
+          ng-class="{'item-error': piVm.messages.fecha_de_nacimiento}"
         )
         .item.item-input.item-stacked-label
           span.input-label {{::("user.birthdate"|translate)}}
-          .item(ion-datetime-picker date ng-model='profileVm.userEdit.fecha_nacimiento')
-            | {{profileVm.userEdit.fecha_nacimiento| date: "yyyy-MM-dd"}}
-        show-error(array-messages="profileVm.messages.fecha_nacimiento")
+          .item(ion-datetime-picker date ng-model='piVm.userEdit.fecha_nacimiento')
+            | {{piVm.userEdit.fecha_nacimiento| date: "yyyy-MM-dd"}}
+        show-error(array-messages="piVm.messages.fecha_nacimiento")
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': profileVm.messages.name}"
+          ng-class="{'item-error': piVm.messages.name}"
         )
           span.input-label {{::("user.name"|translate)}}
           input(
             type="text"
-            ng-model="profileVm.userEdit.name"
+            ng-model="piVm.userEdit.name"
           )
-        show-error(array-messages="profileVm.messages.name")
+        show-error(array-messages="piVm.messages.name")
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': profileVm.messages.ciudad}"
+          ng-class="{'item-error': piVm.messages.ciudad}"
         )
           span.input-label {{::("user.country"|translate)}}
           input(
             type="text"
-            ng-model="profileVm.userEdit.ciudad"
+            ng-model="piVm.userEdit.ciudad"
           )
-        show-error(array-messages="profileVm.messages.ciudad")
+        show-error(array-messages="piVm.messages.ciudad")
 
       .bar.bar-footer.footer-client-container
-        button.button-secondary-yellow(
+        action-button(
           type="submit"
-        ) {{::("globals.save"|translate)}}
+          text="{{::('globals.save'|translate)}}"
+        )

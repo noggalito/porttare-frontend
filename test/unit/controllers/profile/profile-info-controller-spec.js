@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  describe('ProfileController', function () {
+  describe('ProfileInfoController', function () {
     var ctrl,
       $controller,
       $rootScope,
@@ -73,7 +73,7 @@
           $scope: $scope
         };
 
-        ctrl = $controller('ProfileController', dependencies);
+        ctrl = $controller('ProfileInfoController', dependencies);
       });
 
       it('should show a popup if update account', function () {

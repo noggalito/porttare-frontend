@@ -79,16 +79,6 @@ function routes($stateProvider, $urlRouterProvider) {
       currentUser: accessIfUserAuth
     }
   })
-  .state('app.profile', {
-    url: '/profile',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/profile/profile.html',
-        controller: 'ProfileController',
-        controllerAs: 'profileVm'
-      }
-    }
-  })
   .state('app.categories', {
     url: '/categories',
     abstract: true
