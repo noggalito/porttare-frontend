@@ -22,7 +22,7 @@
     function newItem(data) {
       var promise;
       if (data && data.imagenes) {
-        promise = preSaveImages('POST', data);
+        promise = saveWithNestedImages('POST', data);
       } else {
         promise = $http({
           method: 'POST',
@@ -42,7 +42,7 @@
     function editItem(data) {
       var promise;
       if (data && data.imagenes) {
-        promise = preSaveImages('PUT', data);
+        promise = saveWithNestedImages('PUT', data);
       } else {
         CommonService.editObject(data, '/api/provider/items');
       }
@@ -58,7 +58,7 @@
       });
     }
 
-    function preSaveImages(method, data){
+    function saveWithNestedImages(method, data){
       data.imagenes_attributes = []; //jshint ignore:line
       angular.forEach(data.imagenes, function(value) {
         data.imagenes_attributes.push({imagen: value}); //jshint ignore:line

@@ -151,7 +151,7 @@
         titulo: 'Nombre del producto',
         descripcion: 'Descripción corta',
         precio: 'Precio',
-        volumen: 'Valor de medida',
+        volumen: 'Volumen',
         peso: 'Peso',
         imagen: 'Fotografias',
         addImages: 'Agregar fotografías',
