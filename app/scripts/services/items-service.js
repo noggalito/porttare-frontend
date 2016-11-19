@@ -22,7 +22,11 @@
     function newItem(data) {
       var promise;
       if (data && data.imagenes) {
-        promise = saveWithNestedImages('POST', data);
+        promise = saveWithNestedImages({
+          method: 'POST',
+          resourceUri: '/api/provider/items',
+          data: data
+        });
       } else {
         promise = $http({
           method: 'POST',
@@ -42,7 +46,11 @@
     function editItem(data) {
       var promise;
       if (data && data.imagenes) {
-        promise = saveWithNestedImages('PUT', data);
+        promise = saveWithNestedImages({
+          method: 'PUT',
+          resourceUri: '/api/provider/items/' + data.id,
+          data: data
+        });
       } else {
         CommonService.editObject(data, '/api/provider/items');
       }
@@ -58,15 +66,15 @@
       });
     }
 
-    function saveWithNestedImages(method, data){
-      data.imagenes_attributes = []; //jshint ignore:line
-      angular.forEach(data.imagenes, function(value) {
-        data.imagenes_attributes.push({imagen: value}); //jshint ignore:line
+    function saveWithNestedImages(options){
+      options.data.imagenes_attributes = []; //jshint ignore:line
+      angular.forEach(options.data.imagenes, function(value) {
+        options.data.imagenes_attributes.push({imagen: value}); //jshint ignore:line
       });
       var promise = Upload.upload({
-        method: method,
-        url: (method==='PUT') ? ENV.apiHost+'/api/provider/items/'+data.id : ENV.apiHost+'/api/provider/items/',
-        data: data
+        method: options.method,
+        url: ENV.apiHost + options.resourceUri,
+        data: options.data
       });
 
       return promise;
