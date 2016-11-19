@@ -1,13 +1,12 @@
-ion-modal-view.client-page
-  ion-header-bar.bar.bar-header.bar-light.bar-base-yellow(
+ion-modal-view.item-page
+  ion-header-bar.bar-stable.bar.bar-header(
     align-title="center"
   )
-    h4(ng-hide="clientsVm.client.id").title {{::("globals.new"|translate)}} {{::("client.client"|translate)}}
-    h4(ng-show="clientsVm.client.id").title {{::("globals.edit"|translate)}} {{::("client.client"|translate)}}
     .ion-nav-buttons(side="left")
       button.button.ion-chevron-left.button-clear.left(
         ng-click="clientsVm.closeModal()"
       )
+    .title.alt-logo
   ion-content.resource-form
     form(
       name="form"

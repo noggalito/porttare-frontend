@@ -1,13 +1,12 @@
 ion-modal-view.item-page
-  ion-header-bar.bar.bar-header.bar-light.bar-base-yellow(
+  ion-header-bar.bar-stable.bar.bar-header(
     align-title="center"
   )
-    h4(ng-hide="itemsVm.item.id").title {{::("globals.new"|translate)}} {{::("item.item"|translate)}}
-    h4(ng-show="itemsVm.item.id").title {{::("globals.edit"|translate)}} {{::("item.item"|translate)}}
     .ion-nav-buttons(side="left")
       button.button.ion-chevron-left.button-clear.left(
         ng-click="itemsVm.closeModal()"
       )
+    .title.alt-logo
   ion-content.resource-form
     form(
       name='form'
@@ -35,42 +34,6 @@ ion-modal-view.item-page
         show-error(array-messages='itemsVm.messages.descripcion')
 
         label.item.item-input.item-stacked-label
-          span.input-label {{::("item.precio"|translate|uppercase)}}
-          input(
-            min='0'
-            step='any'
-            type='number'
-            ng-model='itemsVm.item.precio'
-          )
-        show-error(array-messages='itemsVm.messages.precio')
-
-        label.item.item-input.item-stacked-label
-          span.input-label {{::("item.volumen"|translate|uppercase)}}
-          input(
-            type='text'
-            ng-model='itemsVm.item.volumen'
-          )
-        show-error(array-messages='itemsVm.messages.volumen')
-
-        label.item.item-input.item-stacked-label
-          span.input-label {{::("item.peso"|translate|uppercase)}}
-          input(
-            type='text'
-            ng-model='itemsVm.item.peso'
-          )
-        show-error(array-messages='itemsVm.messages.peso')
-        //- Pending upload image
-        label.item.item-input.item-stacked-label
-          span.input-label {{::("item.imagen"|translate|uppercase)}}
-          input(
-            type='file'
-            ngf-select
-            ng-model="itemsVm.item.imagen"
-            accept="image/*"
-          )
-        show-error(array-messages='itemsVm.messages.imagen')
-
-        label.item.item-input.item-stacked-label
           span.input-label {{::("item.observaciones"|translate|uppercase)}}
           input(
             type='text'
@@ -83,11 +46,55 @@ ion-modal-view.item-page
           select(ng-model='itemsVm.item.unidad_medida')
             option(selected='' value='volumen') Volumen
             option(value='unidades') Unidades
-            option(value='peso') Peso
             option(value='longitud') Longitud
         show-error(array-messages='itemsVm.messages.unidad_medida')
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("item.volumen"|translate|uppercase)}}
+          input(
+            type='text'
+            ng-model='itemsVm.item.volumen'
+          )
+        show-error(array-messages='itemsVm.messages.volumen')
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("item.precio"|translate|uppercase)}}
+          input(
+            min='0'
+            step='any'
+            type='number'
+            ng-model='itemsVm.item.precio'
+          )
+        show-error(array-messages='itemsVm.messages.precio')
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("item.peso"|translate|uppercase)}}
+          input(
+            type='text'
+            ng-model='itemsVm.item.peso'
+          )
+        show-error(array-messages='itemsVm.messages.peso')
+        label.item.item-input.item-stacked-label.imgs
+          span.input-label-imgs {{::("item.imagen"|translate|uppercase)}}
+        .content
+          input(
+            type='file'
+            ngf-select
+            ng-model="itemsVm.item.imagenes"
+            accept="image/*"
+            class="inputfile"
+            multiple
+          )
+          label
+            figure
+              img(class="img-camera")
+            span.msgImg {{::("item.addImages"|translate)}}
+        .content-prev-images
+          img.item-prev-image(ng-repeat="image in itemsVm.item.imagenes" ngf-src="image")
+          img.item-prev-image(ng-repeat="image in itemsVm.item.imagenes" ngf-src="image.imagen_url")
+        show-error(array-messages='itemsVm.messages.imagen')
 
       .bar.bar-footer.footer-item-container
         button.button-secondary-yellow(
           type="submit"
-        ) {{::("globals.save"|translate)}} {{::("item.item"|translate)}}
+        ) {{::("item.publishItem"|translate)}}

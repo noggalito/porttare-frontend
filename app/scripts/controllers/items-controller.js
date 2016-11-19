@@ -17,7 +17,6 @@
     itemsVm.closeModal = closeModal;
     itemsVm.submitProcess = submitProcess;
     itemsVm.deleteItem = deleteItem;
-    itemsVm.showActionSheet = showActionSheet;
     itemsVm.query = '';
     var selectedItemIndex;
 
@@ -106,8 +105,10 @@
       });
     }
 
-    function showEditModal(item) {
-      itemsVm.item = JSON.parse(JSON.stringify(item));
+    function showEditModal(index) {
+      selectedItemIndex = index;
+      itemsVm.item = angular.copy(itemsVm.items[index]);
+      itemsVm.item.precio = itemsVm.item.precio_cents/100; //jshint ignore:line
       itemsVm.showNewModal();
     }
 
@@ -116,29 +117,6 @@
       selectedItemIndex = null;
       itemsVm.item = null;
       itemsVm.messages = {};
-    }
-
-    function showActionSheet(itemIndex) {
-      selectedItemIndex = itemIndex;
-      itemsVm.item = angular.copy(itemsVm.items[selectedItemIndex]);
-      var hideSheet = $ionicActionSheet.show({
-        buttons: [
-          { text: 'Editar' }
-        ],
-        destructiveText: 'Eliminar',
-        titleText: 'Opciones del Artículo',
-        cancelText: 'Cancelar',
-        destructiveButtonClicked: function(){
-          itemsVm.deleteItem(itemsVm.item.id);
-          hideSheet();
-        },
-        buttonClicked: function(index) {
-          if(index === 0) {
-            itemsVm.showEditModal(itemsVm.item);
-            hideSheet();
-          }
-        }
-      });
     }
   }
 })();

@@ -36,7 +36,7 @@ ion-side-menus(enable-menu-with-back-views='false')
           | {{::("menu.changeTo"|translate)}}
         ion-item.user-type(menu-close=''  ui-sref='app.provider.welcome', ng-if='!user.provider_profile')
           | {{::("menu.user.provider"|translate)}}
-        ion-item.user-type(menu-close='' ui-sref='provider.items', ng-if='user.provider_profile')
+        ion-item.user-type(menu-close='' ui-sref='provider.items.index', ng-if='user.provider_profile')
           | {{::("menu.user.provider"|translate)}}
         ion-item.user-type(menu-close='' ui-sref='app.courier.welcome', ng-if='!user.courier_profile')
           | {{::("menu.user.courier"|translate)}}

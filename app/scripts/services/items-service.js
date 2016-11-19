@@ -21,25 +21,15 @@
 
     function newItem(data) {
       var promise;
-
-      if (data.imagen) {
-        //adding nested attributes
-        data.imagenes_attributes = []; //jshint ignore:line
-        data.imagenes_attributes.push({imagen: data.imagen}); //jshint ignore:line
-        // create Upload library promise
-        promise = Upload.upload({
-          url: ENV.apiHost + '/api/provider/items',
-          data: data
-        });
+      if (data && data.imagenes) {
+        promise = preSaveImages('POST', data);
       } else {
-        // default angular $http request
         promise = $http({
           method: 'POST',
           url: ENV.apiHost + '/api/provider/items',
           data: data
         });
       }
-
       return promise.then(function (resp) {
         return resp.data;
       });
@@ -50,7 +40,15 @@
     }
 
     function editItem(data) {
-      return CommonService.editObject(data, '/api/provider/items/');
+      var promise;
+      if (data && data.imagenes) {
+        promise = preSaveImages('PUT', data);
+      } else {
+        CommonService.editObject(data, '/api/provider/items');
+      }
+      return promise.then(function (resp) {
+        return resp.data;
+      });
     }
 
     function deleteItem(data) {
@@ -58,6 +56,20 @@
         method: 'DELETE',
         url: ENV.apiHost + '/api/provider/items/' + data
       });
+    }
+
+    function preSaveImages(method, data){
+      data.imagenes_attributes = []; //jshint ignore:line
+      angular.forEach(data.imagenes, function(value) {
+        data.imagenes_attributes.push({imagen: value}); //jshint ignore:line
+      });
+      var promise = Upload.upload({
+        method: method,
+        url: (method==='PUT') ? ENV.apiHost+'/api/provider/items/'+data.id : ENV.apiHost+'/api/provider/items/',
+        data: data
+      });
+
+      return promise;
     }
   }
 })();
