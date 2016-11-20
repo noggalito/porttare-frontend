@@ -1,0 +1,48 @@
+ion-modal-view.item-page
+  ion-header-bar.bar.bar-header.bar-light.bar-base-yellow(
+    align-title="center"
+  )
+    .ion-nav-buttons(side="left")
+      button.button.ion-chevron-left.button-clear.left(
+        ng-click="officesVm.closeModal()"
+      )
+    h4.title {{::("office.officeDelete"|translate|uppercase)}}
+  ion-content.resource-form
+    form(
+      name='form'
+      ng-submit='officesVm.submitDeleteModal()'
+      novalidate
+    )
+      .list.list-inset
+        h4.text-center {{::("office.officeDeleteReasons"|translate|uppercase)}}
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("office.officeDeleteMotive"|translate|uppercase)}}
+          input(
+            type="text"
+            ng-class="input-error"
+            ng-model="officesVm.office.motivo"
+          )
+        show-error(array-messages="officesVm.messages.motivo")
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("office.officeDeleteTime"|translate|uppercase)}}
+          input(
+            type='text'
+            ng-model='officesVm.office.tiempo'
+            ng-class="input-error"
+          )
+        show-error(array-messages="officesVm.messages.tiempo")
+
+        label.item.item-input.item-select
+          span.input-label {{::("office.officeDeleteDefinitive"|translate)}}
+          select(ng-model='officesVm.office.definitivo')
+            option(value='1')
+              | {{::("office.yes"|translate)}}
+            option(value='2')
+              | {{::("office.not"|translate)}}
+        show-error(array-messages="officesVm.messages.definitivo")
+
+      .bar.bar-footer.footer-item-container
+        button.button-secondary-red(
+          type="submit"
+        ) {{::("office.officeDeleteClose"|translate|uppercase)}}

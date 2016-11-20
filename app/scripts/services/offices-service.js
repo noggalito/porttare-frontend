@@ -10,7 +10,8 @@
     var service = {
       getOffices: getOffices,
       createOffice: createOffice,
-      updateOffice: updateOffice
+      updateOffice: updateOffice,
+      deleteOffice: deleteOffice
     };
 
     return service;
@@ -33,6 +34,18 @@
     function updateOffice(office) {
       var data = convertDateToString(office);
       return CommonService.editObject(data, '/api/provider/offices/');
+    }
+
+    function deleteOffice(office) {
+      var data = convertDateToString(office);
+      return $http({
+        method: 'PUT',
+        url: ENV.apiHost + '/api/provider/offices/' + data.id,
+        data: data
+      }).then(function success(resp){
+        resp.data.provider_office.enabled = false; //jshint ignore:line
+        return resp.data;
+      });
     }
 
     function convertDateToString(office){

@@ -3,26 +3,30 @@ ion-view(
 )
   ion-nav-title
     .alt-logo
-  ion-content.content-office
-    .div(ng-class="{'disabled': officesVm.officeDetail.enabled==false}")
-      .row
+  ion-content
+    .div(ng-class="{'content-office-disabled': officesVm.officeDetail.enabled==false}")
+      .row.content-office
         h4.item-title {{::("office.office"|translate)}}
           span(ng-show="officesVm.officeDetail.enabled") {{::("office.activo"|translate)}}
           span(ng-show="!officesVm.officeDetail.enabled") {{::("office.inactivo"|translate)}}
         ion-toggle.toogle(ng-checked="officesVm.officeDetail.enabled" ng-disabled="true")
 
-      .row
-        h2.item-title {{officesVm.officeDetail.direccion}}
+      .row.content-office-map
+        div(id="map" data-tap-disabled="true")
 
-      .row
+      .row.content-office
+        h2 {{officesVm.officeDetail.direccion}}
+
+      .row.content-office
         .col {{::("office.officeLegend"|translate)}}
         .col
           a(ng-class="{'action': officesVm.officeDetail.enabled==true}"
           ng-click="officesVm.officeDetail.enabled && officesVm.showEditModal()") {{::("globals.edit"|translate)}}
         .col
-          a.delete(ng-class="{'action': officesVm.officeDetail.enabled==true}") {{::("globals.delete"|translate)}}
+          a.delete(ng-class="{'action': officesVm.officeDetail.enabled==true}"
+          ng-click="officesVm.officeDetail.enabled && officesVm.showDeleteModal()") {{::("globals.delete"|translate)}}
 
-      .row
+      .row.content-office
         table.table
           tr
             td.disabled {{::("office.officeNumber"|translate)}}
@@ -33,6 +37,3 @@ ion-view(
           tr
             td.disabled {{::("office.officeAttention"|translate)}}
             td.text-center {{officesVm.officeDetail.hora_de_apertura|date: "HH:mm a"}}-{{officesVm.officeDetail.hora_de_cierre| date: "HH:mm a"}}
-
-
-

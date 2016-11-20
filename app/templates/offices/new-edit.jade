@@ -47,38 +47,16 @@ ion-modal-view.item-page
         label.item.item-input.item-select
           span.input-label {{::("office.officeStart"|translate)}}
           select(ng-model='officesVm.office.inicio_de_labores')
-            option(value="mon")
-              | {{::("office.monday"|translate)}}
-            option(value="tue")
-              | {{::("office.tuesday"|translate)}}
-            option(value="wed")
-              | {{::("office.wednesday"|translate)}}
-            option(value="thu")
-              | {{::("office.thursday"|translate)}}
-            option(value="fri")
-              | {{::("office.friday"|translate)}}
-            option(value="sat")
-              | {{::("office.saturday"|translate)}}
-            option(value="sun")
-              | {{::("office.sunday"|translate)}}
+            each day in ['mon','tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+              option(value=day)
+                | {{::("office.#{day}"|translate)}}
 
         label.item.item-input.item-select
-          span.input-label {{::("office.officeFinsh"|translate)}}
+          span.input-label {{::("office.officeFinish"|translate)}}
           select(ng-model='officesVm.office.final_de_labores')
-            option(value="mon")
-              | {{::("office.monday"|translate)}}
-            option(value="tue")
-              | {{::("office.tuesday"|translate)}}
-            option(value="wed")
-              | {{::("office.wednesday"|translate)}}
-            option(value="thu")
-              | {{::("office.thursday"|translate)}}
-            option(value="fri")
-              | {{::("office.friday"|translate)}}
-            option(value="sat")
-              | {{::("office.saturday"|translate)}}
-            option(value="sun")
-              | {{::("office.sunday"|translate)}}
+            each day in ['mon','tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+              option(value=day)
+                | {{::("office.#{day}"|translate)}}
 
         item.item-input
           span.input-label {{::("office.horaApertura"|translate|uppercase)}}
