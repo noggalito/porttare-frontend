@@ -5,12 +5,12 @@ ion-view(
     .alt-logo
   ion-content.resource-form
     .row
-      form(name="newProviderForm" ng-submit='providerVm.submit()', novalidate='')
-        div(ng-if="providerVm.step == 1" ng-include="'templates/provider/partials/new_first_part.html'")
-        div(ng-if="providerVm.step == 2" ng-include="'templates/provider/partials/new_second_part.html'")
+      form(name="providerVm.providerForm" ng-submit='providerVm.submit()' novalidate)
+        div(ng-if="providerVm.step === 1" ng-include="'templates/provider/partials/new_first_part.html'")
+        div(ng-if="providerVm.step === 2" ng-include="'templates/provider/partials/new_second_part.html'")
         .bar.bar-footer.bar-stable
           button.button.button-outline.button-energized(
             type='submit'
-            ng-disabled="newProviderForm.$invalid"
+            ng-disabled="providerVm.providerForm.$invalid"
           )
             | {{providerVm.step === 1 ? ("provider.nextStep"|translate) : ("provider.createProvider"|translate)}}

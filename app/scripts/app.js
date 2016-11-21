@@ -12,6 +12,7 @@
     'ngCordova',
     'slickCarousel',
     'ngFileUpload',
+    'ngMessages',
     'ion-datetime-picker'
   ])
 
