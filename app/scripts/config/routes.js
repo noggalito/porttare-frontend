@@ -277,7 +277,7 @@ function routes($stateProvider, $urlRouterProvider) {
   .state('courier.orders', {
     url: '/orders',
     views: {
-      'menuContent@app': {
+      'menuContent@courier': {
         templateUrl: 'templates/courier/orders.html'
       }
     }

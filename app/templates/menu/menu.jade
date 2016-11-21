@@ -8,11 +8,10 @@ ion-side-menus(enable-menu-with-back-views='false')
   ion-side-menu(side='left')
     ion-header-bar.bar-stable
     ion-content
-      a(menu-close ui-sref='app.profile') {{::("user.showProfile"|translate)}}
       ion-list
         ion-item(menu-close='' ui-sref='app.categories.index')
           | {{::("menu.client.category"|translate)}}
-        ion-item 
+        ion-item(menu-close='' ui-sref='app.profile')
           | {{::("menu.account"|translate)}}
         ion-item.gray-item
           li {{::("menu.client.myOrders"|translate)}}
