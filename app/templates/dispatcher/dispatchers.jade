@@ -1,0 +1,30 @@
+ion-view(
+  view-title='{{::("dispatcher.dispatchers"|translate)}}'
+)
+  ion-nav-title
+    .alt-logo
+  ion-content.dispatcher-page
+    .row
+      label.search-input
+        i.icon.ion-search.placeholder-icon
+        input(
+          ng-model="dispatchersVm.query"
+          type="text"
+          placeholder='{{::("dispatcher.dispatcherSearch"|translate)}}'
+        )
+    .row.footer-dispatcher-container
+      button.button-secondary-yellow(
+        ng-click="dispatchersVm.showNewModal()"
+      ) {{::("globals.new"|translate)}} {{::("dispatcher.dispatcher"|translate)}}
+    .row.list-header
+      .col.col-20.list-title {{::("dispatcher.dispatcherId"|translate)}}
+      .col.col-80.list-title {{::("dispatcher.dispatcherName"|translate)}}
+    .row.list-content(
+      ng-repeat="dispatcher in dispatchersVm.dispatchers | filter:dispatchersVm.query"
+      ng-init="idx = $index"
+    )
+      .col.col-20.list-item {{ dispatcher.id }}
+      .col.col-50.list-item {{ dispatcher.user.name }}
+      a.col.action.light-blue(
+        ng-click="dispatchersVm.detailDispatcher(dispatcher)"
+      ) {{::("globals.seeMore"|translate)}}
