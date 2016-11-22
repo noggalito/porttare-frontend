@@ -58,15 +58,15 @@ ion-modal-view.item-page
               option(value=day)
                 | {{::("office.#{day}"|translate)}}
 
-        item.item-input
-          span.input-label {{::("office.horaApertura"|translate|uppercase)}}
-          ion-datetime-picker(time ng-model='officesVm.office.hora_de_apertura')
+        ion-datetime-picker.content-office-datetime(time ng-model='officesVm.office.hora_de_apertura')
+          label.item.item-input.item-stacked-label
+            span.input-label {{::("office.horaApertura"|translate|uppercase)}}
             | {{officesVm.office.hora_de_apertura| date: 'HH:mm a'}}
         show-error(array-messages='officesVm.messages.hora_de_apertura')
 
-        item.item-input
-          span.input-label {{::("office.horaCierre"|translate|uppercase)}}
-          ion-datetime-picker(time ng-model='officesVm.office.hora_de_cierre')
+        ion-datetime-picker.content-office-datetime(time ng-model='officesVm.office.hora_de_cierre')
+          label.item.item-input.item-stacked-label
+            span.input-label {{::("office.horaCierre"|translate|uppercase)}}
             | {{officesVm.office.hora_de_cierre| date: 'HH:mm a'}}
         show-error(array-messages='officesVm.messages.hora_de_cierre')
 

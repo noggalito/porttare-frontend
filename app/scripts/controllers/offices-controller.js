@@ -34,8 +34,6 @@
 
     function showNewModal() {
       officesVm.office = {};
-      officesVm.office.hora_de_apertura = new Date(); //jshint ignore:line
-      officesVm.office.hora_de_cierre = new Date(); //jshint ignore:line
       ModalService.showModal({
         parentScope: $scope,
         fromTemplateUrl: 'templates/offices/new-edit.html'
@@ -44,7 +42,6 @@
 
     function closeModal() {
       ModalService.closeModal();
-      officesVm.office= {};
       officesVm.messages = {};
     }
 

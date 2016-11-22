@@ -5,13 +5,12 @@
     .module('porttare.services')
     .factory('OfficesService', OfficesService);
 
-  function OfficesService($http, ENV, CommonService, $filter) {
+  function OfficesService($http, ENV, $q, CommonService, $filter) {
 
     var service = {
       getOffices: getOffices,
       createOffice: createOffice,
-      updateOffice: updateOffice,
-      deleteOffice: deleteOffice
+      updateOffice: updateOffice
     };
 
     return service;
@@ -28,24 +27,14 @@
         data:data
       }).then(function success(res){
         return res.data;
+      }, function error(res) {
+        return $q.reject(res.data);
       });
     }
 
     function updateOffice(office) {
       var data = convertDateToString(office);
       return CommonService.editObject(data, '/api/provider/offices/');
-    }
-
-    function deleteOffice(office) {
-      var data = convertDateToString(office);
-      return $http({
-        method: 'PUT',
-        url: ENV.apiHost + '/api/provider/offices/' + data.id,
-        data: data
-      }).then(function success(resp){
-        resp.data.provider_office.enabled = false; //jshint ignore:line
-        return resp.data;
-      });
     }
 
     function convertDateToString(office){
