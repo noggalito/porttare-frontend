@@ -6,6 +6,7 @@
 
     var LoginService,
         deferLoginWithFB,
+        deferValidateUser,
         APP,
         $state;
 
@@ -17,6 +18,7 @@
                 _$rootScope_) {
 
         deferLoginWithFB  = $q.defer();
+        deferValidateUser = $q.defer();
         $controller = _$controller_;
         $rootScope = _$rootScope_;
         $ionicLoading = { show: sinon.stub(), hide: sinon.stub()};
@@ -37,7 +39,10 @@
 
     describe('#listeners', function(){
       beforeEach(function(){
-        $auth = { user: {id: 1}};
+        $auth = {
+          user: {id: 1},
+          validateUser: sinon.stub().returns(deferValidateUser.promise)
+        };
 
         dependencies = {
           $ionicLoading: $ionicLoading,
@@ -71,7 +76,10 @@
 
     describe('without user', function(){
       beforeEach(function(){
-        $auth = { user: {}};
+        $auth = {
+          user: {},
+          validateUser: sinon.stub().returns(deferValidateUser.promise)
+        };
 
         dependencies = {
           $ionicLoading: $ionicLoading,

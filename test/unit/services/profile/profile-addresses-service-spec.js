@@ -2,7 +2,14 @@
   'use strict';
   /*jshint camelcase:false */
   describe('ProfileAddressesService', function () {
-    var service, $httpBackend, ENV;
+    var service,
+      $httpBackend,
+      ENV,
+      $state,
+      $ionicLoading,
+      deferStateGo,
+      ErrorHandlerService,
+      $rootScope;
 
     beforeEach(module('porttare.services'));
     beforeEach(module('porttare.services', function ($provide) {
@@ -10,12 +17,39 @@
         name: 'development',
         apiHost: 'http://localhost:3785'
       });
+      $provide.factory('$ionicLoading', function () {
+        return {
+          show: sinon.stub(),
+          hide: sinon.stub()
+        };
+      });
+      $provide.factory('$state', function ($q) {
+        deferStateGo = $q.defer();
+        return {
+          go: sinon.stub().returns(deferStateGo.promise)
+        };
+      });
+      $provide.factory('ErrorHandlerService', function () {
+        return {
+          handleCommonErrorGET: sinon.stub()
+        };
+      });
     }));
 
-    beforeEach(inject(function (_ProfileAddressesService_, _$httpBackend_, _ENV_) {
-      service = _ProfileAddressesService_;
-      ENV = _ENV_;
-      $httpBackend = _$httpBackend_;
+    beforeEach(inject(function (_ProfileAddressesService_,
+                                _$httpBackend_,
+                                _ENV_,
+                                _ErrorHandlerService_,
+                                _$ionicLoading_,
+                                _$state_,
+                                _$rootScope_) {
+                                $rootScope = _$rootScope_;
+                                service = _ProfileAddressesService_;
+                                $state = _$state_;
+                                $ionicLoading = _$ionicLoading_;
+                                ErrorHandlerService = _ErrorHandlerService_;
+                                ENV = _ENV_;
+                                $httpBackend = _$httpBackend_;
     }));
 
     describe('Getting data', function () {
@@ -79,53 +113,111 @@
       });
     });
 
+    describe('Update address', function () {
 
-    it('should create a new address', function () {
-      var expectedUrl = ENV.apiHost + '/api/customer/addresses';
-      var address = {
-        'nombre': 'Casa',
-        'ciudad': 'Quito',
-        'parroquia': 'Quito',
-        'barrio': 'Cumbayá',
-        'direccion_uno': 'Calle Miguel Ángel',
-        'direccion_dos': 'Lorem Impusm',
-        'codigo_postal': '124455',
-        'numero_convencional': '2342-4444',
-        'referencia': 'Lorem Impusm'
-      };
-      var expectData = address;
-      expectData.id = '1';
+      var address = null;
+      beforeEach(function () {
+        var id = 1;
+        var expectedUrl = ENV.apiHost + '/api/customer/addresses/' + id;
+        address = {
+          'id': 1,
+          'nombre': 'Casa',
+          'ciudad': 'Quito',
+          'parroquia': 'Quito',
+          'barrio': 'Cumbayá',
+          'direccion_uno': 'Calle Miguel Ángel',
+          'direccion_dos': 'Lorem Impusm',
+          'codigo_postal': '124455',
+          'numero_convencional': '2342-4444',
+          'referencia': 'Lorem Impusm'
+        };
 
-      $httpBackend.expectPOST(expectedUrl).respond(expectData);
-      service.createAddresses(address).then(function (response) {
-        expect(response).to.be.an('object');
-        expect(response).to.deep.equal(expectData);
+        $httpBackend.expectPUT(expectedUrl).respond(address);
       });
-      $httpBackend.flush();
+
+      it('should update an address', function () {
+        service.updateAddresses(address).then(function (response) {
+          expect(response).to.be.an('object');
+          expect(response).to.deep.equal(address);
+        });
+        $httpBackend.flush();
+      });
+
+      it('Should start loading', function () {
+        var options = {
+          acionName: 'update',
+          data: {}
+        };
+
+        service.runAction(options);
+        sinon.assert.calledOnce($ionicLoading.show);
+        sinon.assert.calledWithExactly($ionicLoading.show, {
+          template: '{{::("globals.loading"|translate)}}'
+        });
+      });
+
+      it('On success: should redirect', function () {
+        var addressListState = 'app.profile.addresses.index';
+        var options = {
+          acionName: 'update',
+          data: {
+            id: '1',
+            nombre: 'test2',
+            direccion_uno: 'test'
+          }
+        };
+        service.runAction(options);
+        $httpBackend.flush();
+        sinon.assert.calledOnce($state.go);
+        sinon.assert.calledWithExactly($state.go, addressListState);
+      });
+
     });
 
-    it('should update an address', function () {
-      var id = 1;
-      var expectedUrl = ENV.apiHost + '/api/customer/addresses/' + id;
-      var address = {
-        'id': 1,
-        'nombre': 'Casa',
-        'ciudad': 'Quito',
-        'parroquia': 'Quito',
-        'barrio': 'Cumbayá',
-        'direccion_uno': 'Calle Miguel Ángel',
-        'direccion_dos': 'Lorem Impusm',
-        'codigo_postal': '124455',
-        'numero_convencional': '2342-4444',
-        'referencia': 'Lorem Impusm'
-      };
+    describe('Create address', function () {
 
-      $httpBackend.expectPUT(expectedUrl).respond(address);
-      service.updateAddresses(address).then(function (response) {
-        expect(response).to.be.an('object');
-        expect(response).to.deep.equal(address);
+      var address = null;
+      beforeEach(function () {
+        var expectedUrl = ENV.apiHost + '/api/customer/addresses';
+        address = {
+          'nombre': 'Casa',
+          'ciudad': 'Quito',
+          'parroquia': 'Quito',
+          'barrio': 'Cumbayá',
+          'direccion_uno': 'Calle Miguel Ángel',
+          'direccion_dos': 'Lorem Impusm',
+          'codigo_postal': '124455',
+          'numero_convencional': '2342-4444',
+          'referencia': 'Lorem Impusm'
+        };
+        var expectData = address;
+        expectData.id = '1';
+        $httpBackend.expectPOST(expectedUrl).respond(expectData);
       });
-      $httpBackend.flush();
+
+      it('should create a new address', function () {
+        service.createAddresses(address).then(function (response) {
+          expect(response).to.be.an('object');
+          expect(response).to.deep.equal(address);
+        });
+        $httpBackend.flush();
+      });
+
+      it('On success: should redirect', function () {
+        var addressListState = 'app.profile.addresses.index';
+        var options = {
+          acionName: 'create',
+          data: {
+            nombre: 'test1',
+            direccion_uno: 'test'
+          }
+        };
+
+        service.runAction(options);
+        $httpBackend.flush();
+        sinon.assert.calledOnce($state.go);
+        sinon.assert.calledWithExactly($state.go, addressListState);
+      });
     });
   });
 })();

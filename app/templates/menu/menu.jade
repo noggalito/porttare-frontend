@@ -10,7 +10,7 @@ ion-side-menus(enable-menu-with-back-views='false')
     ion-content
       ion-list
         ion-item(menu-close='' class='menu-header')
-          div {{menuVm.user.name}}
+          div {{siteVm.user.name}}
           div
             a.show-profile(ui-sref='app.profile.info')
               | {{::("menu.profile"|translate)}}

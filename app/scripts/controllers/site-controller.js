@@ -5,11 +5,17 @@
     .module('porttare.controllers')
     .controller('SiteController', SiteController);
 
-  function SiteController($rootScope, $ionicLoading) {
+  function SiteController($rootScope, $ionicLoading, $auth) {
+    var siteVm = this;
+    siteVm.user = null;
+    $auth.validateUser()
+      .then(function userAuthorized(user) {
+        siteVm.user = user;
+      });
 
     $rootScope.$on('$stateChangeStart', function(){
       $ionicLoading.show({
-        template: 'cargando...'
+        template: '{{::("globals.loading"|translate)}}'
       });
     });
 

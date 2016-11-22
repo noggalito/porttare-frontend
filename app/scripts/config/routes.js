@@ -71,8 +71,6 @@ function routes($stateProvider, $urlRouterProvider) {
   .state('app', {
     url: '/app',
     abstract: true,
-    controller: 'MenuController',
-    controllerAs: 'menuVm',
     templateUrl: 'templates/menu/menu.html',
     //only logged users will allow to go to /app/*
     resolve: {
@@ -293,9 +291,6 @@ function routes($stateProvider, $urlRouterProvider) {
         controllerAs: 'pfaVm',
         resolve: {
           data: function ($ionicLoading, $stateParams, $ionicPopup, ProfileAddressesService, ErrorHandlerService) {
-            $ionicLoading.show({
-              template: '{{::("globals.loading"|translate)}}'
-            });
             return ProfileAddressesService.getAddresses()
               .then(function success(res) {
                 $ionicLoading.hide();
@@ -311,13 +306,8 @@ function routes($stateProvider, $urlRouterProvider) {
     views: {
       'menuContent@app': {
         templateUrl: 'templates/profile/addresses/actions.html',
-        controller: 'ProfileAddressesActionsController',
-        controllerAs: 'pfaVm',
-        resolve: {
-          data: function() {
-            return null;
-          }
-        }
+        controller: 'ProfileCreateAddressesController',
+        controllerAs: 'pfaVm'
       }
     }
   })
@@ -326,16 +316,13 @@ function routes($stateProvider, $urlRouterProvider) {
     views: {
       'menuContent@app': {
         templateUrl: 'templates/profile/addresses/actions.html',
-        controller: 'ProfileAddressesActionsController',
+        controller: 'ProfileUpdateAddressesController',
         controllerAs: 'pfaVm',
         params: {
           id: null
         },
         resolve: {
           data: function ($ionicLoading, $stateParams, $ionicPopup, ProfileAddressesService, ErrorHandlerService) {
-            $ionicLoading.show({
-              template: '{{::("globals.loading"|translate)}}'
-            });
             if ($stateParams.id) {
               return ProfileAddressesService.getAddress($stateParams.id)
               .then(function success(res) {

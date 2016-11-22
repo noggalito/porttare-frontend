@@ -5,13 +5,24 @@
     .module('porttare.services')
     .factory('ProfileAddressesService', ProfileAddressesService);
 
-  function ProfileAddressesService(ENV, $http, $q) {
+  function ProfileAddressesService(ENV, $http, $q, $state, ErrorHandlerService, $ionicLoading) {
+
+    var addressListState = 'app.profile.addresses.index';
+    var actions = {
+      update: {
+        listener: updateAddresses
+      },
+      create: {
+        listener: createAddresses
+      }
+    };
 
     var service = {
       getAddresses: getAddresses,
       getAddress: getAddress,
       updateAddresses: updateAddresses,
-      createAddresses: createAddresses
+      createAddresses: createAddresses,
+      runAction: runAction
     };
 
     return service;
@@ -71,6 +82,20 @@
         });
       }
       return address;
+    }
+
+    function reditectToList() {
+      $state.go(addressListState);
+    }
+
+    function runAction(options) {
+      if (actions[options.acionName]) {
+        $ionicLoading.show({
+          template: '{{::("globals.loading"|translate)}}'
+        });
+        actions[options.acionName].listener(options.data)
+          .then(reditectToList, ErrorHandlerService.handleCommonErrorGET);
+      }
     }
   }
 })();
