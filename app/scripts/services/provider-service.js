@@ -32,9 +32,7 @@
     }
 
     function dateFormat(date) {
-      var newDate = null;
-      newDate = $filter('date')(date, 'HH:mm Z');
-      return newDate;
+      return $filter('date')(date, 'HH:mm Z');
     }
 
   }

@@ -48,12 +48,12 @@
   .item.item-input.item-stacked-label
     span.input-label {{::("provider.schedule.open"|translate)}}*
     ion-datetime-picker(time ng-model='providerVm.matrizProvider.hora_de_apertura')
-      | {{providerVm.matrizProvider.hora_de_apertura| date: "H:mm"}}
+      | {{providerVm.matrizProvider.hora_de_apertura ? (providerVm.matrizProvider.hora_de_apertura | date: "H:mm") : '00:00'}}
       
   .item.item-input.item-stacked-label
     span.input-label {{::("provider.schedule.close"|translate)}}*
     ion-datetime-picker(time ng-model='providerVm.matrizProvider.hora_de_cierre')
-      | {{providerVm.matrizProvider.hora_de_cierre| date: "H:mm"}}
+      | {{providerVm.matrizProvider.hora_de_cierre ? (providerVm.matrizProvider.hora_de_cierre | date: "H:mm") : '00:00'}}
       
   label.item.item-input.item-stacked-label
     span.input-label {{::("provider.schedule.startDay"|translate)}}

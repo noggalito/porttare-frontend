@@ -24,8 +24,6 @@
     providerVm.selections = [];
     providerVm.methodsPayment = [];
     providerVm.matrizProvider = {};
-    providerVm.matrizProvider.hora_de_apertura = new Date();
-    providerVm.matrizProvider.hora_de_cierre = new Date();
     providerVm.dayNames = APP.abbrDays;
     providerVm.cities = APP.cities;
     //preselect selects on view;
