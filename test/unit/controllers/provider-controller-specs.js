@@ -14,6 +14,7 @@
       $ionicPopup,
       $translate,
       stateRedirect,
+      APP,
       deferTranslate;
 
     beforeEach(module('porttare.controllers'));
@@ -22,7 +23,13 @@
       function ($q,
         _$controller_,
         _$rootScope_) {
-
+        window.moment = function () {
+          return {
+            format: function(){
+              return '00:00';
+            }
+          };
+        };
         deferCreateProvider = $q.defer();
         deferStateGo = $q.defer();
         deferTranslate = $q.defer();
@@ -43,6 +50,18 @@
           createNewProvider: sinon.stub().returns(deferCreateProvider.promise)
         };
         stateRedirect = 'provider.items';
+        APP = {
+          cities: ['city1', 'city2'],
+          abbrDays: [
+            'mon',
+            'tue',
+            'wed',
+            'thu',
+            'fri',
+            'sat',
+            'sun'
+          ]
+        };
       })
     );
 
@@ -53,6 +72,7 @@
           ProviderService: ProviderService,
           $ionicPopup: $ionicPopup,
           $state: $state,
+          APP:APP,
           $translate: $translate
         };
 
@@ -79,6 +99,7 @@
           ProviderService: ProviderService,
           $ionicPopup: $ionicPopup,
           $state: $state,
+          APP:APP,
           $translate: $translate
         };
 
@@ -115,7 +136,7 @@
       });
 
       it('if unsuccessful, should show first template', function () {
-        deferCreateProvider.reject({ data: { error: 'error' } });
+        deferCreateProvider.reject({ data: { errors: [{error:'error'}] } });
         $rootScope.$digest();
         expect(ctrl.step).to.be.equal(1);
       });

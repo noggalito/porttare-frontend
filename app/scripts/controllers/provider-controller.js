@@ -9,7 +9,8 @@
                               $translate,
                               $ionicPopup,
                               $state,
-                              $ionicLoading) {
+                              $ionicLoading,
+                              APP) {
     var providerVm = this;
     var stateRedirect = 'provider.items';
     var transKeys = [
@@ -23,7 +24,13 @@
     providerVm.selections = [];
     providerVm.methodsPayment = [];
     providerVm.matrizProvider = {};
-    providerVm.matrizProvider.horario = new Date();
+    providerVm.dayNames = APP.abbrDays;
+    providerVm.cities = APP.cities;
+    //preselect selects on view;
+    providerVm.matrizProvider.inicio_de_labores = providerVm.dayNames[0];
+    providerVm.matrizProvider.final_de_labores = providerVm.dayNames[6];
+    providerVm.matrizProvider.ciudad = providerVm.cities[0];
+
     $translate(transKeys).then(function (trans) {
       providerVm.methodsPayment = [
         {
@@ -52,9 +59,7 @@
       if(providerVm.selections.length > 0){
         providerVm.providerForm.forma_de_pago = providerVm.selections.join(',');
       }
-
-      providerVm.providerForm.offices = [providerVm.matrizProvider];
-
+      providerVm.providerForm.offices_attributes = [providerVm.matrizProvider];
       ProviderService.createNewProvider(providerVm.providerForm)
         .then(function success() {
           $ionicLoading.hide();
@@ -65,10 +70,32 @@
             });
           });
         },
-        function error() {
+        function error(err) {
           $ionicLoading.hide();
+          var defaultMessage = 'Hubo un error enviando la información.',
+              messsage = '',
+              hasData = !!err.data,
+              isObject = hasData ? angular.isObject(err.data.errors) : false;
+          if (isObject) {
+            messsage = nestedMessages(err.data.errors);
+          }else{
+            messsage = hasData ? err.data.errors[0] : defaultMessage;
+          }
+          $ionicPopup.alert({
+            title: 'Error',
+            template: messsage
+          });
           providerVm.step = 1;
         });
+    }
+
+    function nestedMessages(errors) {
+      var messages = [];
+      angular.forEach(errors, function(value, key) {
+        messages.push('<div>' + key + ': ' + value + '</div>');
+      });
+      messages = messages.join('\n');
+      return messages;
     }
 
     function submit() {

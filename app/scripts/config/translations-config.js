@@ -87,7 +87,12 @@
         },
         address: 'Dirección',
         city: 'Ciudad',
-        schedule: 'Horario',
+        schedule: {
+          open: 'Hora de apertura',
+          close: 'Hora de cierre',
+          startDay: 'Inicio de atención',
+          endDay: 'Final de atención'
+        },
         isRequired: 'Este campo es obligatorio',
         nextStep: 'Siguiente Paso',
         createProvider: 'Crear Proveedor'
@@ -187,6 +192,15 @@
         successUpdateProfile: 'Perfil actualizado éxitosamente',
         password: 'Contraseña',
         birthdate:  'Fecha de Nacimiento'
+      },
+      day: {
+        mon: 'lunes',
+        tue: 'martes',
+        wed: 'miércoles',
+        thu: 'jueves',
+        fri: 'viernes',
+        sat: 'sábado',
+        sun: 'domingo'
       }
     });
 

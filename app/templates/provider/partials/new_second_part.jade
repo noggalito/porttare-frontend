@@ -27,6 +27,12 @@
   
   legend {{::("provider.formLegendThird"|translate)}}
   
+  label.item.item-input.item-stacked-label
+    span.input-label {{::("provider.city"|translate)}}
+    select(ng-model='providerVm.matrizProvider.ciudad')
+      option(ng-repeat='city in ::providerVm.cities', value='{{city}}') 
+        | {{city}}
+
   label.item.item-input.item-stacked-label(
     ng-class="{'item-error': newProviderForm.direccion_matriz.$touched && newProviderForm.direccion_matriz.$error.required}"
   )
@@ -40,10 +46,27 @@
   show-error(element='newProviderForm.direccion_matriz' message='("provider.isRequired"|translate)')
   
   .item.item-input.item-stacked-label
-    span.input-label {{::("provider.schedule"|translate)}}*
-    ion-datetime-picker(time ng-model='providerVm.matrizProvider.horario')
-      | {{providerVm.matrizProvider.horario| date: "H:mm"}}
-  
+    span.input-label {{::("provider.schedule.open"|translate)}}*
+    ion-datetime-picker(time ng-model='providerVm.matrizProvider.hora_de_apertura')
+      | {{providerVm.matrizProvider.hora_de_apertura ? (providerVm.matrizProvider.hora_de_apertura | date: "H:mm") : '00:00'}}
+      
+  .item.item-input.item-stacked-label
+    span.input-label {{::("provider.schedule.close"|translate)}}*
+    ion-datetime-picker(time ng-model='providerVm.matrizProvider.hora_de_cierre')
+      | {{providerVm.matrizProvider.hora_de_cierre ? (providerVm.matrizProvider.hora_de_cierre | date: "H:mm") : '00:00'}}
+      
+  label.item.item-input.item-stacked-label
+    span.input-label {{::("provider.schedule.startDay"|translate)}}
+    select(ng-model='providerVm.matrizProvider.inicio_de_labores')
+      option(ng-repeat='name in ::providerVm.dayNames', value='{{name}}') 
+        | {{::("day." + name | translate)}}
+
+  label.item.item-input.item-stacked-label
+    span.input-label {{::("provider.schedule.endDay"|translate)}}
+    select(ng-model='providerVm.matrizProvider.final_de_labores')
+      option(ng-repeat='name in ::providerVm.dayNames', value='{{name}}') 
+        | {{::("day." + name | translate)}}
+        
   label.item.item-input.item-stacked-label(
     ng-class="{'item-error': newProviderForm.telefono_matriz.$touched && newProviderForm.telefono_matriz.$error.required}"
   )
