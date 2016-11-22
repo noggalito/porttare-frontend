@@ -262,8 +262,6 @@ function routes($stateProvider, $urlRouterProvider) {
     views: {
       'menuContent': {
         templateUrl: 'templates/profile/profile.html',
-        controller: 'ProfileController',
-        controllerAs: 'pfVm'
       }
     }
   })
