@@ -87,7 +87,10 @@
         },
         address: 'Dirección',
         city: 'Ciudad',
-        schedule: 'Horario',
+        openTime: 'Hora de Apertura',
+        closeTime: 'Hora de Cierre',
+        initialLaborDay: 'Inicio de Labores',
+        finalLaborDay: 'Final de Labores',
         isRequired: 'Este campo es obligatorio',
         nextStep: 'Siguiente Paso',
         createProvider: 'Crear Proveedor'

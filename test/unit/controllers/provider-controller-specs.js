@@ -12,6 +12,7 @@
       deferStateGo,
       $state,
       $ionicPopup,
+      $ionicScrollDelegate,
       $translate,
       stateRedirect,
       deferTranslate;
@@ -32,6 +33,9 @@
           show: sinon.stub(),
           hide: sinon.stub()
         };
+        $ionicScrollDelegate = {
+          scrollTop: sinon.stub()
+        };
         $state = {
           go: sinon.stub().returns(deferStateGo.promise)
         };
@@ -46,31 +50,6 @@
       })
     );
 
-    describe('Manage options', function () {
-      beforeEach(function () {
-        dependencies = {
-          $ionicLoading: $ionicLoading,
-          ProviderService: ProviderService,
-          $ionicPopup: $ionicPopup,
-          $state: $state,
-          $translate: $translate
-        };
-
-        ctrl = $controller('ProviderController', dependencies);
-      });
-
-      beforeEach(inject(function () {
-        ctrl.selections = [];
-      }));
-
-      it('should add/remove element to array', function () {
-        ctrl.toggleCheck({ value: 'test' });
-        expect(ctrl.selections).to.not.empty; //jshint ignore:line
-        ctrl.toggleCheck({ value: 'test' });
-        expect(ctrl.selections).to.be.empty; //jshint ignore:line
-      });
-
-    });
 
     describe('Create provider', function () {
       beforeEach(function () {
@@ -79,7 +58,8 @@
           ProviderService: ProviderService,
           $ionicPopup: $ionicPopup,
           $state: $state,
-          $translate: $translate
+          $translate: $translate,
+          $ionicScrollDelegate: $ionicScrollDelegate
         };
 
         ctrl = $controller('ProviderController', dependencies);
@@ -87,6 +67,8 @@
 
       beforeEach(inject(function () {
         ctrl.step = 2;
+        ctrl.provider = {'ruc':'222222222','razon_social':'Movvigo','nombre_establecimiento':'Movvigo','actividad_economica':'Gasdro','representante_legal':'Movvigo','telefono':'6666666666','email':'something@movvigo.com','website':'www.moviggo.com'};
+        ctrl.matrizProvider = {'direccion':'Aqui','hora_de_apertura':'1899-12-31T11:28:00.000Z','hora_de_cierre':'1899-12-31T15:28:00.000Z','inicio_de_labores':{'label':'Lunes','name':'mon','$$hashKey':'object:159'},'final_de_labores':{'label':'Domingo','name':'sun','$$hashKey':'object:165'},'telefono':'666666666'};
         ctrl.submit();
       }));
 

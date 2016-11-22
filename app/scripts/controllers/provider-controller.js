@@ -15,14 +15,45 @@
     var stateRedirect = 'provider.items';
     var transKeys = [
       'provider.methods.cash',
-      'provider.methods.creditCard'
+      'provider.methods.creditCard',
+      'provider.bank.savings',
+      'provider.bank.credit'
     ];
     providerVm.submit = submit;
     providerVm.step = 1;
     providerVm.methodsPayment = [];
     providerVm.matrizProvider = {};
-    providerVm.matrizProvider.horario = new Date();
     providerVm.touchedPayments = false;
+    providerVm.checked = checked;
+    providerVm.checkedBank = checkedBank;
+    providerVm.laborDays = [{
+      label: 'Lunes',
+      name: 'mon'
+    },
+    {
+      label: 'Martes',
+      name: 'tue'
+    },
+    {
+      label: 'Miércoles',
+      name: 'wed'
+    },
+    {
+      label: 'Jueves',
+      name: 'thr'
+    },
+    {
+      label: 'Viernes',
+      name: 'fri'
+    },
+    {
+      label: 'Sábado',
+      name: 'sat'
+    },
+    {
+      label: 'Domingo',
+      name: 'sun'
+    }];
 
     $translate(transKeys).then(function (trans) {
       providerVm.methodsPayment = [
@@ -37,9 +68,21 @@
           checked: false
         }
       ];
+      providerVm.accountType = [
+        {
+          value: 'Ahorros',
+          label: trans[transKeys[2]],
+          checked: false
+        },
+        {
+          value: 'Crédito',
+          label: trans[transKeys[3]],
+          checked: false
+        }
+      ];
     });
 
-    providerVm.checked = function(element){
+    function checked(element){
       providerVm.touchedPayments = true;
       providerVm.checkedItems = 0;
       if(element.checked){
@@ -48,22 +91,41 @@
         providerVm.checkedItems++;
       }
       providerVm.providerForm.methodsPayment.$invalid = providerVm.checkedItems > 0;
-      console.log(providerVm.providerForm.methodsPayment.$invalid);
-    };
+    }
+
+    function checkedBank(element){
+      if (element.checked) {
+        providerVm.accountType.map(function(row){
+          if (row !== element) {
+            row.checked = false;
+          }
+        });
+      }
+    }
+
+    function createOffice(office){
+      var objectToReturn = angular.copy(office);
+      objectToReturn.hora_de_apertura = moment(objectToReturn.hora_de_apertura).format('H:M Z');
+      objectToReturn.hora_de_cierre = moment(objectToReturn.hora_de_cierre).format('H:M Z');
+      objectToReturn.inicio_de_labores = objectToReturn.inicio_de_labores.name;
+      objectToReturn.final_de_labores = objectToReturn.final_de_labores.name;
+      return objectToReturn;
+    }
 
     function createProvider() {
       $ionicLoading.show({
         template: 'enviando...'
       });
 
-      providerVm.providerForm.formas_de_pago = providerVm.methodsPayment.filter(function(row){
+      var objectToSend = angular.copy(providerVm.provider);
+      objectToSend.formas_de_pago = providerVm.methodsPayment.filter(function(row){
         return row.checked;
       }).map(function(row){
         return row.value;
       }).join(',');
 
-      providerVm.providerForm.offices = [providerVm.matrizProvider];
-      ProviderService.createNewProvider(providerVm.providerForm)
+      objectToSend.offices = [createOffice(providerVm.matrizProvider)];
+      ProviderService.createNewProvider(objectToSend)
         .then(function success() {
           $ionicLoading.hide();
           $state.go(stateRedirect).then(function(){
