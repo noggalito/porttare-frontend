@@ -14,7 +14,7 @@
       required
     )
   .show-errors(ng-messages="providerVm.providerForm.ruc.$error" ng-if="providerVm.providerForm.ruc.$touched")
-    span(ng-message="required") Campo requerido
+    span(ng-message="required" class="message-error") Campo requerido
 
   label.item.item-input.item-stacked-label(
     ng-class="{'item-error': providerVm.providerForm.razonsocial.$touched && providerVm.providerForm.razonsocial.$invalid}"
@@ -27,7 +27,7 @@
       required
     )
   .show-errors(ng-messages="providerVm.providerForm.razonsocial.$error" ng-if="providerVm.providerForm.razonsocial.$touched")
-    span(ng-message="required") Campo requerido
+    span(ng-message="required" class="message-error") Campo requerido
 
   label.item.item-input.item-stacked-label(
     ng-class="{'item-error': providerVm.providerForm.establecimiento.$touched && providerVm.providerForm.establecimiento.$invalid}"
@@ -40,7 +40,7 @@
      required
    )
   .show-errors(ng-messages="providerVm.providerForm.establecimiento.$error" ng-if="providerVm.providerForm.establecimiento.$touched")
-    span(ng-message="required") Campo requerido
+    span(ng-message="required" class="message-error") Campo requerido
 
   label.item.item-input.item-stacked-label
     span.input-label {{::("provider.economicActivity"|translate)}}
@@ -61,7 +61,7 @@
       required
     )
   .show-errors(ng-messages="providerVm.providerForm.representante.$error" ng-if="providerVm.providerForm.representante.$touched")
-    span(ng-message="required") Campo requerido
+    span(ng-message="required" class="message-error") Campo requerido
 
   label.item.item-input.item-stacked-label(
     ng-class="{'item-error': providerVm.providerForm.telefono.$touched && providerVm.providerForm.telefono.$invalid}"
@@ -74,7 +74,7 @@
       required
     )
   .show-errors(ng-messages="providerVm.providerForm.telefono.$error" ng-if="providerVm.providerForm.telefono.$touched")
-    span(ng-message="required") Campo requerido
+    span(ng-message="required" class="message-error") Campo requerido
 
   label.item.item-input.item-stacked-label(
     ng-class="{'item-error': providerVm.providerForm.email.$touched && providerVm.newProviderForm.email.$invalid}"
@@ -88,8 +88,8 @@
       required
     )
   .show-errors(ng-messages="providerVm.providerForm.email.$error" ng-if="providerVm.providerForm.email.$touched")
-    span(ng-message="required") Campo requerido
-    span(ng-message="email") Email incorrecto
+    span(ng-message="required" class="message-error") Campo requerido
+    span(ng-message="email" class="message-error") Email incorrecto
 
   label.item.item-input.item-stacked-label
     span.input-label {{::("provider.webSite"|translate)}}
@@ -102,7 +102,7 @@
   label.item.item-input.item-stacked-label(
     ng-class="{'item-error': providerVm.touchedPayments && providerVm.providerForm.methodsPayment.$invalid}"
   )
-    span.input-label {{::("provider.methodPayment"|translate)}}* {{providerVm.providerForm.methodsPayment.$dirty}}
+    span.input-label {{::("provider.methodPayment"|translate)}}*
     ion-list
       ion-checkbox(
         ng-repeat="method in providerVm.methodsPayment",
@@ -111,8 +111,8 @@
         ng-checked="method.checked"
         ng-change="providerVm.checked(method)"
       ) {{ ::method.label }}
-      .show-errors(ng-if="providerVm.touchedPayments && providerVm.providerForm.methodsPayment.$invalid")
-        span(class='message-error') Campo requerido
+  .show-errors.ng-active(ng-if="providerVm.touchedPayments && providerVm.providerForm.methodsPayment.$invalid")
+    span(class='message-error' class="message-error") Campo requerido
 
   label.item.item-input.item-stacked-label
     span.input-label {{::("provider.logo"|translate)}}
