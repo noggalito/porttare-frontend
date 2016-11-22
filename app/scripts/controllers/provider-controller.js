@@ -40,7 +40,7 @@
     },
     {
       label: 'Jueves',
-      name: 'thr'
+      name: 'thu'
     },
     {
       label: 'Viernes',
