@@ -14,6 +14,7 @@
       $ionicPopup,
       $translate,
       stateRedirect,
+      APP,
       deferTranslate;
 
     beforeEach(module('porttare.controllers'));

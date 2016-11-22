@@ -9,7 +9,8 @@
                               $translate,
                               $ionicPopup,
                               $state,
-                              $ionicLoading) {
+                              $ionicLoading,
+                              APP) {
     var providerVm = this;
     var stateRedirect = 'provider.items';
     var transKeys = [
