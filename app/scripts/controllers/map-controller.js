@@ -9,81 +9,71 @@
                         $ionicPopup,
                         GeolocationService,
                         $window,
-                        ENV,
+                        MapsService,
                         $scope)
   {
 
     var mapVm = this;
     mapVm.disableTap = disableTap;
-    $window.launchGMap = function(){
-      showGMap();
-    };
-    var libraries = 'places';
-    var gMapsUrl = '//maps.google.com/maps/api/js?libraries=' + libraries + '&callback=launchGMap&key=';
 
     $scope.$on('$stateChangeStart', function() {
       delete $window.launchGMap;
      });
 
-    function loadGMap(){
-      var script = document.createElement('script');
-      script.src = gMapsUrl + ENV.gMapsKey;
-      script.type = 'text/javascript';
-      document.getElementsByTagName('head')[0].appendChild(script);
-    }
-
-    loadGMap();
-
     $ionicLoading.show({
       template: 'cargando...'
     });
 
+    showGMap();
+
     function showGMap() {
-      GeolocationService
-        .getCurrentPosition()
-        .then(
-        function onSuccess(position) {
-          var map = loadMap(position, true);
-          loadPlacesSearchBox(map);
-          $ionicLoading.hide();
-        },
-        function onError(err) {
-          $ionicLoading.hide();
-          var message = null;
-          // Use default coordinate (Loja)
-          var defaultPosition = {
-            coords: {
-              latitude: -4.0078909,
-              longitude: -79.21127690000003
+      MapsService.loadGMap().then(function(){
+        GeolocationService
+          .getCurrentPosition()
+          .then(
+          function onSuccess(position) {
+            var map = loadMap(position, true);
+            loadPlacesSearchBox(map);
+            $ionicLoading.hide();
+          },
+          function onError(err) {
+            $ionicLoading.hide();
+            var message = null;
+            // Use default coordinate (Loja)
+            var defaultPosition = {
+              coords: {
+                latitude: -4.0078909,
+                longitude: -79.21127690000003
+              }
+            };
+
+            if (!err && !err.code) {
+              // Unknown error
+              showUnknownError();
+              return;
             }
-          };
 
-          if (!err && !err.code) {
-            // Unknown error
-            showUnknownError();
-            return;
-          }
+            switch (err.code) {
+              case 1:
+                message = 'Denegada la peticion de Geolocalización.';
+                break;
+              case 2:
+                message = 'No se ha encontrado la ubicación especificada.';
+                break;
+              case 3:
+                message = 'El tiempo de petición ha expirado.';
+                break;
+            }
 
-          switch (err.code) {
-            case 1:
-              message = 'Denegada la peticion de Geolocalización.';
-              break;
-            case 2:
-              message = 'No se ha encontrado la ubicación especificada.';
-              break;
-            case 3:
-              message = 'El tiempo de petición ha expirado.';
-              break;
+            if (!message) {
+              // Unknown error
+              showUnknownError();
+            } else {
+              handleLocationError(message, defaultPosition, false);
+            }
           }
-
-          if (!message) {
-            // Unknown error
-            showUnknownError();
-          } else {
-            handleLocationError(message, defaultPosition, false);
-          }
-        }
-      );
+        );
+      });
     }
 
     function showUnknownError() {
