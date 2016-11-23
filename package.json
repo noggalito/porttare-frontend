@@ -72,6 +72,7 @@
     "org.apache.cordova.device",
     "org.apache.cordova.console",
     "com.ionic.keyboard",
-    "cordova-plugin-geolocation"
+    "cordova-plugin-geolocation",
+    "ionic-plugin-keyboard"
   ]
 }
