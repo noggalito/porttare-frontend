@@ -15,11 +15,24 @@
       arrows: false,
       centerMode: true,
       mobileFirst: true,
+      swipeToSlide: true,
       responsive: [
         {
-          breakpoint: 1024,
+          breakpoint: 425,
+          settings: {
+            slidesToShow: 2
+          }
+        },
+        {
+          breakpoint: 700,
           settings: {
             slidesToShow: 3
+          }
+        },
+        {
+          breakpoint: 1000,
+          settings: {
+            slidesToShow: 4
           }
         }
       ]

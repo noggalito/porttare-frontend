@@ -5,12 +5,13 @@
   background-size: cover;
   color: $white;
   .category-title {
-    font-size: 2em;
+    font-size: 28px;
     font-family: Montserrat-Bold;
     margin-top: 5rem;
     margin-bottom: 3rem;
     text-align: center;
     padding: 0 0.5rem;
+    line-height: 27px;
   }
   .category-description {
     text-align: center;
@@ -20,10 +21,12 @@
     margin-top: 30px;
     .slick-content {
       text-align: center;
+      margin: 5px;
       .provider-card {
         background-color: $white;
         min-height: 350px;
-        margin: 5px;
+        max-width: 250px;
+        margin: 5px auto;
         color: $base-grey;
         position: relative;
         .img {
