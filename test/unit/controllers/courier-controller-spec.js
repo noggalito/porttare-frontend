@@ -11,6 +11,7 @@
       deferCreateCourier,
       deferStateGo,
       $state,
+      $auth,
       $ionicPopup,
       stateRedirect;
 
@@ -38,6 +39,9 @@
         CourierService = {
           createNewCourier: sinon.stub().returns(deferCreateCourier.promise)
         };
+        $auth = {
+          user: {}
+        };
         stateRedirect = 'courier.orders';
       })
     );
@@ -45,6 +49,7 @@
     describe('Manage options', function () {
       beforeEach(function () {
         dependencies = {
+          $auth: $auth,
           $ionicLoading: $ionicLoading,
           $ionicPopup: $ionicPopup,
           $state: $state,
@@ -65,6 +70,7 @@
     describe('Create courier', function () {
       beforeEach(function () {
         dependencies = {
+          $auth: $auth,
           $ionicLoading: $ionicLoading,
           $ionicPopup: $ionicPopup,
           $state: $state,
@@ -83,19 +89,19 @@
       });
 
       it('if successful, ionicLoading.hide should be called', function () {
-        deferCreateCourier.resolve();
+        deferCreateCourier.resolve({courier_profile: {}}); //jshint ignore:line
         $rootScope.$digest();
         sinon.assert.calledOnce($ionicLoading.hide);
       });
 
       it('if successful, should change state', function () {
-        deferCreateCourier.resolve();
+        deferCreateCourier.resolve({courier_profile: {}}); //jshint ignore:line
         $rootScope.$digest();
         sinon.assert.alwaysCalledWithExactly($state.go, stateRedirect);
       });
 
       it('if successful, should show a alert', function () {
-        deferCreateCourier.resolve();
+        deferCreateCourier.resolve({courier_profile: {}}); //jshint ignore:line
         $rootScope.$digest();
         deferStateGo.resolve();
         $rootScope.$digest();

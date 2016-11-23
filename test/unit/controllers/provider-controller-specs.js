@@ -11,6 +11,7 @@
       deferCreateProvider,
       deferStateGo,
       $state,
+      $auth,
       $ionicPopup,
       $ionicScrollDelegate,
       $translate,
@@ -46,6 +47,9 @@
         ProviderService = {
           createNewProvider: sinon.stub().returns(deferCreateProvider.promise)
         };
+        $auth = {
+          user: {}
+        };
         stateRedirect = 'provider.items';
       })
     );
@@ -58,6 +62,7 @@
           ProviderService: ProviderService,
           $ionicPopup: $ionicPopup,
           $state: $state,
+          $auth: $auth,
           $translate: $translate,
           $ionicScrollDelegate: $ionicScrollDelegate
         };
@@ -77,19 +82,19 @@
       });
 
       it('if successful, ionicLoading.hide should be called', function () {
-        deferCreateProvider.resolve();
+        deferCreateProvider.resolve({provider_profile: {}}); //jshint ignore:line
         $rootScope.$digest();
         sinon.assert.calledOnce($ionicLoading.hide);
       });
 
       it('if successful, should change state', function () {
-        deferCreateProvider.resolve();
+        deferCreateProvider.resolve({provider_profile: {}}); //jshint ignore:line
         $rootScope.$digest();
         sinon.assert.alwaysCalledWithExactly($state.go, stateRedirect);
       });
 
       it('if successful, should show a alert', function () {
-        deferCreateProvider.resolve();
+        deferCreateProvider.resolve({provider_profile: {}}); //jshint ignore:line
         $rootScope.$digest();
         deferStateGo.resolve();
         $rootScope.$digest();

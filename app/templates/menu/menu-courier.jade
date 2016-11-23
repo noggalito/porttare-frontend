@@ -19,6 +19,8 @@ ion-side-menus(enable-menu-with-back-views='false')
           | {{::("menu.courier.history"|translate)}}
         ion-item  
           | {{::("menu.invite"|translate)}}
+        ion-item(ng-controller='LoginController as loginVm', ng-click='loginVm.logout()')
+          | {{::("menu.logout"|translate)}}
         ion-item.gray-item 
           | {{::("menu.changeTo"|translate)}}
         ion-item.user-type(menu-close='' ui-sref='app.categories.index')

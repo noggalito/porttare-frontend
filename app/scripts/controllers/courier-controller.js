@@ -8,6 +8,7 @@
   function CourierController(CourierService,
                             $ionicPopup,
                             $state,
+                            $auth,
                             $ionicLoading) {
     var courierVm = this;
     var stateRedirect = 'courier.orders';
@@ -49,7 +50,9 @@
       });
 
       CourierService.createNewCourier(courierVm.courierForm)
-        .then(function success() {
+        .then(function success(courier) {
+          //update auth user
+          $auth.user.courier_profile = courier.courier_profile; //jshint ignore:line
           $ionicLoading.hide();
           $state.go(stateRedirect).then(function () {
             $ionicPopup.alert({

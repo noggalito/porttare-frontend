@@ -11,7 +11,7 @@ ion-side-menus(enable-menu-with-back-views='false')
       ion-list
         ion-item  
           | {{::("menu.provider.orders"|translate)}}
-        ion-item(menu-close=''  ui-sref='app.items.index')
+        ion-item(menu-close=''  ui-sref='provider.items')
           | {{::("menu.provider.products"|translate)}}
         ion-item  
           | {{::("menu.provider.account"|translate)}}
@@ -25,6 +25,8 @@ ion-side-menus(enable-menu-with-back-views='false')
           | {{::("menu.provider.moviggoAdvertising"|translate)}}
         ion-item  
           | {{::("menu.invite"|translate)}}
+        ion-item(ng-controller='LoginController as loginVm', ng-click='loginVm.logout()')
+          | {{::("menu.logout"|translate)}}
         ion-item.gray-item 
           | {{::("menu.changeTo"|translate)}}
         ion-item.user-type(menu-close='' ui-sref='app.categories.index')
