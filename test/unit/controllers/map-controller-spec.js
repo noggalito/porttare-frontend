@@ -5,9 +5,11 @@
     var $rootScope,
       controller,
       deferredGeolocation,
+      deferredMaps,
       $ionicPopup,
       GeolocationService,
       $scope,
+      MapsService,
       $ionicLoading;
 
     beforeEach(module('porttare.controllers'));
@@ -23,9 +25,15 @@
         $rootScope,
         $controller) {
         deferredGeolocation = $q.defer();
+        deferredMaps = $q.defer();
         $ionicPopup = { alert: sinon.stub() };
         $ionicLoading = { show: sinon.stub(), hide: sinon.stub() };
-        GeolocationService = { getCurrentPosition: sinon.stub().returns(deferredGeolocation.promise) };
+        GeolocationService = {
+          getCurrentPosition: sinon.stub().returns(deferredGeolocation.promise)
+        };
+        MapsService = {
+          loadGMap: sinon.stub().returns(deferredMaps.promise)
+        };
         $scope = $rootScope.$new();
         window.google = {
           maps: {
@@ -71,6 +79,7 @@
           '$ionicPopup': $ionicPopup,
           '$ionicLoading': $ionicLoading,
           'GeolocationService': GeolocationService,
+          'MapsService': MapsService,
           '$scope': $scope
         });
       }));
@@ -79,7 +88,7 @@
 
       beforeEach(inject(function (_$rootScope_) {
         $rootScope = _$rootScope_;
-        window.launchGMap();
+        MapsService.loadGMap();
       }));
 
       it('ionicLoading.show should be called', function () {
@@ -87,6 +96,11 @@
       });
 
       describe('when MapController is loaded', function () {
+
+        beforeEach(inject(function (_$rootScope_) {
+          $rootScope = _$rootScope_;
+          deferredMaps.resolve();
+        }));
 
         it('if successful, should create map', function () {
           var spyMap = sinon.spy(window.google.maps, 'Map');

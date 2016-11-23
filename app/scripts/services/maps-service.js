@@ -7,18 +7,14 @@
 
   function MapsService($window, ENV, $q) {
     var service = {
-      loadGMap: loadGMap
+      loadGMap: loadGMap,
+      removeGMapScript: removeGMapScript
     };
     var deferred;
 
     return service;
 
     function loadGMap() {
-      loadScript();
-      return deferred.promise;
-    }
-
-    function loadScript(){
       deferred = $q.defer();
       $window.launchGMap = function(){
         showGMap();
@@ -29,10 +25,15 @@
       script.src = gMapsUrl + ENV.gMapsKey;
       script.type = 'text/javascript';
       document.getElementsByTagName('head')[0].appendChild(script);
+      return deferred.promise;
     }
 
     function showGMap(){
       deferred.resolve();
+    }
+
+    function removeGMapScript(){
+      delete $window.launchGMap;
     }
   }
 })();

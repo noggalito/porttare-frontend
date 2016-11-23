@@ -8,7 +8,6 @@
   function MapController($ionicLoading,
                         $ionicPopup,
                         GeolocationService,
-                        $window,
                         MapsService,
                         $scope)
   {
@@ -16,17 +15,12 @@
     var mapVm = this;
     mapVm.disableTap = disableTap;
 
-    $scope.$on('$stateChangeStart', function() {
-      delete $window.launchGMap;
-     });
-
-    $ionicLoading.show({
-      template: 'cargando...'
-    });
-
     showGMap();
 
     function showGMap() {
+      $ionicLoading.show({
+        template: 'cargando...'
+      });
       MapsService.loadGMap().then(function(){
         GeolocationService
           .getCurrentPosition()
@@ -176,6 +170,10 @@
           document.getElementById('input-places').blur();
       });
     }
+
+    $scope.$on('$stateChangeStart', function() {
+      MapsService.removeGMapScript();
+    });
 
   }
 })();
