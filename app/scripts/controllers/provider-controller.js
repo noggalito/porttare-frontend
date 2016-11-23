@@ -104,12 +104,12 @@
     }
 
     function createOffice(office){
-      var objectToReturn = angular.copy(office);
-      objectToReturn.hora_de_apertura = moment(objectToReturn.hora_de_apertura).format('H:M Z');
-      objectToReturn.hora_de_cierre = moment(objectToReturn.hora_de_cierre).format('H:M Z');
-      objectToReturn.inicio_de_labores = objectToReturn.inicio_de_labores.name;
-      objectToReturn.final_de_labores = objectToReturn.final_de_labores.name;
-      return objectToReturn;
+      var newOffice = angular.copy(office);
+      newOffice.hora_de_apertura = moment(newOffice.hora_de_apertura).format('H:m Z');
+      newOffice.hora_de_cierre = moment(newOffice.hora_de_cierre).format('H:m Z');
+      newOffice.inicio_de_labores = newOffice.inicio_de_labores && newOffice.inicio_de_labores.name;
+      newOffice.final_de_labores = newOffice.final_de_labores && newOffice.final_de_labores.name;
+      return newOffice;
     }
 
     function createProvider() {
@@ -122,9 +122,9 @@
         return row.checked;
       }).map(function(row){
         return row.value;
-      }).join(',');
+      });
 
-      objectToSend.offices = [createOffice(providerVm.matrizProvider)];
+      objectToSend.offices_attributes = [createOffice(providerVm.matrizProvider)];
       ProviderService.createNewProvider(objectToSend)
         .then(function success() {
           $ionicLoading.hide();
