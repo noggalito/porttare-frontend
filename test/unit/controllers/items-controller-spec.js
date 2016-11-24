@@ -9,7 +9,7 @@
       ItemsService,
       deferGetItems,
       ModalService,
-      $ionicActionSheet,
+      APP,
       $ionicLoading,
       $ionicPopup,
       $scope,
@@ -50,6 +50,9 @@
           }
         };
       });
+      APP = {
+        centsInDollar: '100'
+      };
     }));
 
     beforeEach(inject(
@@ -83,7 +86,7 @@
           ModalService: ModalService,
           $ionicLoading: $ionicLoading,
           $ionicPopup: $ionicPopup,
-          $ionicActionSheet: $ionicActionSheet
+          APP: APP
         };
 
         ctrl = $controller('ItemsController', dependencies);
@@ -239,7 +242,7 @@
         });
       });
 
-      describe('Modal and ActionSheet', function () {
+      describe('Modal', function () {
         beforeEach(function () {
           dependencies = {
             $scope: $scope,
@@ -247,7 +250,7 @@
             ModalService: ModalService,
             $ionicLoading: $ionicLoading,
             $ionicPopup: $ionicPopup,
-            $ionicActionSheet: $ionicActionSheet
+            APP: APP
           };
 
           ctrl = $controller('ItemsController', dependencies);
@@ -257,6 +260,18 @@
           var spy = sinon.spy(ModalService, 'showModal');
           ctrl.showNewModal();
           chai.expect(spy.called).to.be.equal(true);
+        });
+
+        beforeEach(inject(function () {
+          ctrl.items = [ { id: 0 }, { id:1 } ];
+          ctrl.showEditModal(0);
+        }));
+
+        it('Show edit modal', function () {
+          var spy = sinon.spy(ModalService, 'showModal');
+          ctrl.showNewModal();
+          chai.expect(spy.called).to.be.equal(true);
+          chai.assert.isObject(ctrl.item, 'This is an object!');
         });
 
         it('Close modal', function () {

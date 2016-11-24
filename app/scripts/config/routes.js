@@ -256,16 +256,6 @@ function routes($stateProvider, $urlRouterProvider) {
   })
   .state('provider.items', {
     url: '/items',
-    views: {
-      'menuContent@provider': {
-        templateUrl: 'templates/item/items.html',
-        controller: 'ItemsController',
-        controllerAs: 'itemsVm'
-      }
-    }
-  })
-  .state('provider.items', {
-    url: '/items',
     abstract: true
   })
   .state('provider.items.index', {

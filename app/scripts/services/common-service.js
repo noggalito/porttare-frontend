@@ -9,6 +9,7 @@
 
     var service = {
       editObject: editObject,
+      newObject: newObject,
       getObjects: getObjects
     };
 
@@ -20,6 +21,17 @@
         url: ENV.apiHost + url
       })
         .then(function success(resp) {
+          return resp.data;
+        });
+    }
+
+    function newObject(data, url) {
+      return $http({
+        method: 'POST',
+        url: ENV.apiHost + url,
+        data: data
+      })
+        .then(function success(resp){
           return resp.data;
         });
     }

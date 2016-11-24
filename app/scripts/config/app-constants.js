@@ -6,6 +6,7 @@
   .constant('APP', {
     successState: 'app.categories.index',
     preloginState: 'prelogin',
-    defaultImage: '../images/bg.png'
+    defaultImage: '../images/bg.png',
+    centsInDollar: '100'
   });
 })();

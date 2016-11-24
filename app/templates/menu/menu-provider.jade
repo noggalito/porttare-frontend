@@ -11,12 +11,10 @@ ion-side-menus(enable-menu-with-back-views='false')
       ion-list
         ion-item
           | {{::("menu.provider.orders"|translate)}}
-        ion-item(menu-close=''  ui-sref='provider.items.index')
+        ion-item(menu-close='' ui-sref='provider.items.index')
           | {{::("menu.provider.products"|translate)}}
-        ion-item(menu-close='' ui-sref='provider.products.index')
-          | {{::("item.items"|translate)}}
         ion-item(menu-close='' ui-sref='provider.clients.index')
-          | {{::("client.clients"|translate)}}
+          | {{::("menu.provider.clients"|translate)}}
         ion-item
           | {{::("menu.provider.account"|translate)}}
         ion-item

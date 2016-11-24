@@ -7,10 +7,10 @@
 
   function ItemsController(ItemsService,
                            ModalService,
-                           $ionicActionSheet,
                            $ionicLoading,
                            $ionicPopup,
-                           $scope) {
+                           $scope,
+                           APP) {
     var itemsVm = this;
     itemsVm.showNewModal = showNewModal;
     itemsVm.showEditModal = showEditModal;
@@ -108,7 +108,7 @@
     function showEditModal(index) {
       selectedItemIndex = index;
       itemsVm.item = angular.copy(itemsVm.items[index]);
-      itemsVm.item.precio = itemsVm.item.precio_cents/100; //jshint ignore:line
+      itemsVm.item.precio = itemsVm.item.precio_cents/APP.centsInDollar; //jshint ignore:line
       itemsVm.showNewModal();
     }
 

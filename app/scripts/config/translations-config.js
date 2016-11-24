@@ -46,6 +46,7 @@
         provider: {
           orders: 'Pedidos',
           products: 'Productos',
+          clients: 'Clientes',
           account: 'Cuenta',
           dispatchers: 'Despachadores',
           establishments: 'Establecimientos',
