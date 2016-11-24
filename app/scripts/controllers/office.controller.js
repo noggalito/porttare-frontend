@@ -11,9 +11,7 @@
                             $ionicPopup,
                             $scope,
                             $localStorage,
-                            $filter,
-                            MapService,
-                            $timeout) {
+                            MapsService) {
 
     var officesVm = this;
     officesVm.showEditModal = showEditModal;
@@ -23,18 +21,17 @@
     officesVm.submitDeleteModal = submitDeleteModal;
     initOffice($localStorage.getObject('office'));
 
-
     function initOffice(office){
       officesVm.officeDetail = office;
       convertStringToDate();
-      MapService.initGMap();
-      $timeout(function(){
-        MapService.loadGMapAddress(officesVm.officeDetail.direccion);
-      },1000);
+      MapsService.loadGMap().then(function(){
+        MapsService.loadGMapAddress(officesVm.officeDetail.direccion);
+      });
     }
 
+
     function convertStringToDate(){
-      var date = $filter('date')(new Date(), 'yyyy/MM/dd');
+      var date = moment(new Date()).format('YYYY/MM/DD');
       var hora_de_apertura= date +' '+ officesVm.officeDetail.hora_de_apertura; //jshint ignore:line
       var hora_de_cierre= date +' '+ officesVm.officeDetail.hora_de_cierre; //jshint ignore:line
       officesVm.officeDetail.hora_de_apertura = new Date(hora_de_apertura); //jshint ignore:line
@@ -79,7 +76,7 @@
       officesVm.closeModal();
       $ionicPopup.alert({
         title: 'Error',
-        template: '{{::("office.officeDeleteInProgress"|translate|uppercase)}} !!!'
+        template: '{{::("office.taskInProgress"|translate|uppercase)}} !!!'
       });
     }
 

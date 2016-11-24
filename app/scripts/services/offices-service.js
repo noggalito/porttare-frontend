@@ -5,7 +5,7 @@
     .module('porttare.services')
     .factory('OfficesService', OfficesService);
 
-  function OfficesService($http, ENV, $q, CommonService, $filter) {
+  function OfficesService($http, ENV, $q, CommonService) {
 
     var service = {
       getOffices: getOffices,
@@ -39,8 +39,8 @@
 
     function convertDateToString(office){
       var data = angular.copy(office);
-      data.hora_de_apertura = $filter('date')(office.hora_de_apertura, "HH:mm Z");//jshint ignore:line
-      data.hora_de_cierre = $filter('date')(office.hora_de_cierre, "HH:mm Z");//jshint ignore:line
+      data.hora_de_apertura = moment(office.hora_de_apertura).format('HH:mm Z'); //jshint ignore:line
+      data.hora_de_cierre = moment(office.hora_de_cierre).format('HH:mm Z'); //jshint ignore:line
       return data;
     }
 
