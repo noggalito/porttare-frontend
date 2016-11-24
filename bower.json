@@ -1,11 +1,11 @@
 {
-  "name": "portarre-frontend",
+  "name": "porttare-frontend",
   "version": "0.0.1",
   "dependencies": {
     "angular": "1.5.3",
     "angular-animate": "1.5.3",
     "angular-sanitize": "1.5.3",
-    "ionic": "v1.3.1",
+    "ionic": "v1.3.2",
     "ngCordova": "~0.1.26-alpha",
     "ng-token-auth": "^0.0.29",
     "angular-translate": "^2.11.1",
