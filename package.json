@@ -73,6 +73,7 @@
     "org.apache.cordova.console",
     "cordova-plugin-geolocation",
     "ionic-plugin-keyboard",
-    "cordova-plugin-statusbar"
+    "cordova-plugin-statusbar",
+    "cordova-plugin-whitelist"
   ]
 }
