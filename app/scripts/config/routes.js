@@ -297,8 +297,9 @@ function routes($stateProvider, $urlRouterProvider) {
     url: '/orders',
     views: {
       'menuContent@courier': {
-        templateUrl: 'templates/courier/orders.html'
-      }
+        templateUrl: 'templates/courier/orders.html',
+        controller: 'OrdersController',
+        controllerAs: 'orVm'}
     }
   })
   .state('app.profile', {

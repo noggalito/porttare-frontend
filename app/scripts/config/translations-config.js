@@ -112,7 +112,14 @@
         location: 'Ubicación',
         mobilization: 'Tipo de medio de movilización',
         birthdate: 'Fecha de nacimiento',
-        license: 'Licencia de conducir'
+        license: 'Licencia de conducir',
+        orders: 'Pedidos',
+        labels: {
+          found: 'Encontramos',
+          closeToYou: 'Cerca de ti',
+          currentLocation: 'de tu ubicación actual',
+          forDelivery: 'para la entrega'
+        }
       },
       globals: {
         new: 'Nuevo',

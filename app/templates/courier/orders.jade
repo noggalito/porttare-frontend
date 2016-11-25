@@ -1,12 +1,10 @@
 ion-view(
-  view-title='{{::("menu.user.courier"|translate)}}'
+  view-title='{{::("courier.orders"|translate)}}'
 )
-
   ion-nav-title
     .alt-logo
-  ion-content.pre-application-form
-    .row
-      .moviggo-logo-2.branding-logo
-    .row
-      .list.list-inset.common-text
-        h1.title Bienvenido
+  ion-content
+    .orders-container
+      .row
+        .total-orders
+          | {{::("courier.labels.found "| translate)}} {{orVm.totalOrders}} {{("courier.labels.closeToYou "| translate)}}
