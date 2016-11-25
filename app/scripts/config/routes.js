@@ -437,7 +437,22 @@ function routes($stateProvider, $urlRouterProvider) {
         }
       }
     }
-  });
+  })
+  .state('app.billing', {
+    url: '/billing',
+    abstract: true
+  })
+  .state('app.billing.addresses', {
+    url: '/addresses',
+    views: {
+      'menuContent@app': {
+        templateUrl: 'templates/billing-addresses/index.html',
+        controller: 'BillingAddressesController',
+        controllerAs: 'billingAddressesVm'
+      }
+    }
+});
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise(function ($injector, $location) {
     if (isResetPassword($location.absUrl())) {

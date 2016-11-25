@@ -33,6 +33,8 @@ ion-side-menus(enable-menu-with-back-views='false')
           li {{::("menu.client.payments"|translate)}}
         ion-item.gray-item(menu-close='' ui-sref='app.wishlist.index')
           li {{::("menu.client.wishlist"|translate)}}
+        ion-item.gray-item(menu-close='' ui-sref='app.billing.addresses')
+          li {{::("menu.client.billingAddresses"|translate)}}
         ion-item
           | {{::("menu.invite"|translate)}}
         ion-item(ng-controller='LoginController as loginVm', ng-click='loginVm.logout()')

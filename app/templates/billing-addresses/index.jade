@@ -1,0 +1,23 @@
+ion-view(
+  view-title="{{::('billingAddresses.billingAddresses'|translate)}}"
+)
+  ion-nav-title
+    .alt-logo
+  ion-content
+    .row.footer-item-container
+      button.button-secondary-yellow
+        {{::("billingAddresses.newBillingAddresses"|translate)}}
+    .row.billing-addresses-list
+      table
+        tr
+          th {{::("client.ruc"|translate)}}
+          th {{::("provider.businessName"|translate)}}
+          th {{::("provider.city"|translate)}}
+          th {{::("courier.email"|translate)}}
+        tr(ng-repeat='item in billingAddressesVm.billingAddresses')
+          td {{item.ruc}}
+          td {{item.razon_social}}
+          td {{item.ciudad}}
+          td {{item.email}}
+    .row(ng-show="billingAddressesVm.billingAddresses")
+      h5.item-title{{::("billingAddresses.anyBillingAddresses"|translate)}}
