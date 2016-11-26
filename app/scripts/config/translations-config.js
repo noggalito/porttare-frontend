@@ -277,7 +277,10 @@
         newBillingAddresses: 'Nueva dirección de facturación',
         anyBillingAddresses: 'No dispone de ninguna dirección de facturación.',
         successSave: 'La dirección de facturación ha sido guardado éxitosamente',
-        successUpdate: 'La dirección de facturación ha sido actualizado éxitosamente'
+        successUpdate: 'La dirección de facturación ha sido actualizado éxitosamente',
+        isRequired: 'Este campo es obligatorio',
+        isLengthRuc: 'Debe contener 13 caracteres',
+        isEmail: 'Correo electrónico no valido',
       }
     });
 

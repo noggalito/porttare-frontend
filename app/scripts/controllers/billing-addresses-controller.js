@@ -55,21 +55,18 @@
     }
 
     function submitModal(){
-      billingAddressesVm.billingAddress.id ? updateBillingAddress():saveBillingAddress();// jshint ignore:line
-    }
+      if(billingAddressesVm.form.$valid){
+        billingAddressesVm.billingAddress.id ? updateBillingAddress():saveBillingAddress();// jshint ignore:line
+      }
+  }
 
     function saveBillingAddress(){
       $ionicLoading.show({
         template: '{{::("globals.saving"|translate)}}'
       });
       BillingAddressesService.createBillingAddress(billingAddressesVm.billingAddress).then(function success(resp){
-        $ionicLoading.hide();
-        $ionicPopup.alert({
-          title: 'Éxito',
-          template: '{{::("billingAddresses.successSave"|translate)}}'
-        });
+        showMessage('billingAddresses.successSave');
         billingAddressesVm.billingAddresses.push(resp.customer_billing_address); //jshint ignore:line
-        closeModal();
       }, function (res){
         billingAddressesVm.messages = res.errors ? res.errors:undefined;
         $ionicLoading.hide();
@@ -81,17 +78,21 @@
         template: '{{::("globals.updating"|translate)}}'
       });
       BillingAddressesService.updateBillingAddress(billingAddressesVm.billingAddress).then(function success(resp){
-        $ionicLoading.hide();
-        $ionicPopup.alert({
-          title: 'Éxito',
-          template: '{{::("billingAddresses.successUpdate"|translate)}}'
-        });
+        showMessage('billingAddresses.successUpdate');
         billingAddressesVm.billingAddresses[billingAddressesIndex] = resp.customer_billing_address; //jshint ignore:line
-        closeModal();
       }, function (res){
         billingAddressesVm.messages = res.status===422 ? res.data.errors:undefined;
         $ionicLoading.hide();
       });
+    }
+
+    function showMessage(template){
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Éxito',
+        template: '{{::("'+template+'"|translate)}}'
+      });
+      closeModal();
     }
 
   }

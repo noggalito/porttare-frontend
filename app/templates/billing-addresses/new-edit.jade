@@ -10,36 +10,57 @@ ion-modal-view.item-page
       )
   ion-content.resource-form
     form(
-      name='form'
+      name='billingAddressesVm.form'
       ng-submit='billingAddressesVm.submitModal()'
       novalidate
     )
       .list.list-inset
-        label.item.item-input.item-stacked-label
+        label.item.item-input.item-stacked-label(
+          ng-class="{'item-error': billingAddressesVm.form.ruc.$touched && billingAddressesVm.form.ruc.$invalid}"
+          )
           span.input-label {{::("client.ruc"|translate|uppercase)}}
           input(
             type="text"
-            ng-class="input-error"
+            name="ruc"
+            ng-class="input-error",
             ng-model="billingAddressesVm.billingAddress.ruc"
+            ng-minlength="13"
+            ng-maxlength="13"
+            required
           )
+          .show-errors(ng-messages="billingAddressesVm.form.ruc.$error" ng-if="billingAddressesVm.form.ruc.$touched")
+            span(ng-message="required" class="message-error") {{::("billingAddresses.isRequired"|translate)}}
+            span(ng-message-exp="['minlength', 'maxlength']" class="message-error") {{::("billingAddresses.isLengthRuc"|translate)}}
         show-error(array-messages="billingAddressesVm.messages.ruc")
 
-        label.item.item-input.item-stacked-label
+        label.item.item-input.item-stacked-label(
+          ng-class="{'item-error': billingAddressesVm.form.razon_social.$touched && billingAddressesVm.form.razon_social.$invalid}"
+        )
           span.input-label {{::("provider.businessName"|translate|uppercase)}}
           input(
             type='text'
+            name="razon_social"
             ng-model='billingAddressesVm.billingAddress.razon_social'
             ng-class="input-error"
+            required
           )
+          .show-errors(ng-messages="billingAddressesVm.form.razon_social.$error" ng-if="billingAddressesVm.form.razon_social.$touched")
+            span(ng-message="required" class="message-error") {{::("billingAddresses.isRequired"|translate)}}
         show-error(array-messages="billingAddressesVm.messages.razon_social")
 
-        label.item.item-input.item-stacked-label
+        label.item.item-input.item-stacked-label(
+          ng-class="{'item-error': billingAddressesVm.form.direccion.$touched && billingAddressesVm.form.direccion.$invalid}"
+        )
           span.input-label {{::("client.direccion"|translate|uppercase)}}
           input(
             type='text'
+            name="direccion"
             ng-model='billingAddressesVm.billingAddress.direccion '
             ng-class="input-error"
+            required
           )
+          .show-errors(ng-messages="billingAddressesVm.form.direccion.$error" ng-if="billingAddressesVm.form.direccion.$touched")
+            span(ng-message="required" class="message-error") {{::("billingAddresses.isRequired"|translate)}}
         show-error(array-messages="billingAddressesVm.messages.direccion")
 
         label.item.item-input.item-stacked-label
@@ -51,13 +72,18 @@ ion-modal-view.item-page
           )
         show-error(array-messages="billingAddressesVm.messages.ciudad")
 
-        label.item.item-input.item-stacked-label
+        label.item.item-input.item-stacked-label(
+          ng-class="{'item-error': billingAddressesVm.form.email.$touched && billingAddressesVm.form.email.$invalid}"
+        )
           span.input-label {{::("client.email"|translate|uppercase)}}
           input(
-            type='text'
+            type='email'
+            name="email"
             ng-model='billingAddressesVm.billingAddress.email'
             ng-class="input-error"
           )
+          .show-errors(ng-messages="billingAddressesVm.form.email.$error" ng-if="billingAddressesVm.form.email.$touched")
+            span(ng-message="email" class="message-error") {{::("billingAddresses.isEmail"|translate)}}
         show-error(array-messages="billingAddressesVm.messages.email")
 
         label.item.item-input.item-stacked-label
@@ -70,6 +96,5 @@ ion-modal-view.item-page
         show-error(array-messages="billingAddressesVm.messages.telefono")
 
       .bar.bar-footer.footer-item-container
-        button.button-secondary-yellow(
-          type="submit"
-) {{::("globals.save"|translate)}}
+        button.button-secondary-yellow(type="submit")
+          {{::("globals.save"|translate)}}
