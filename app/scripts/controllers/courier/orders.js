@@ -22,7 +22,7 @@
     }
 
     $translate(transKeys).then(function (trans) {
-      orVm.titleResultsFound = trans[transKeys[0]] + ' ' + orVm.totalOrders +  ' ' + trans[transKeys[1]]
+      orVm.titleResultsFound = trans[transKeys[0]] + ' ' + orVm.totalOrders +  ' ' + trans[transKeys[1]];
     });
 
   }

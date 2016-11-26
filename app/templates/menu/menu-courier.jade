@@ -9,7 +9,7 @@ ion-side-menus(enable-menu-with-back-views='false')
     ion-header-bar.bar-stable
     ion-content
       ion-list
-        ion-item
+        ion-item(menu-close='' ui-sref='courier.orders')
           | {{::("menu.courier.orders"|translate)}}
         ion-item  
           | {{::("menu.courier.account"|translate)}}
