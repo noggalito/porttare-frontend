@@ -9,11 +9,10 @@ ion-side-menus(enable-menu-with-back-views='false')
     ion-header-bar.bar-stable
     ion-content
       ion-list
-        ion-item(menu-close='' class='menu-header')
-          div {{siteVm.user.name}}
-          div
-            a.show-profile(ui-sref='app.profile.info')
-              | {{::("menu.profile"|translate)}}
+        ion-item(menu-close='' class='menu-header' ng-if="siteVm.user.name")
+          | {{siteVm.user.name}}
+        ion-item(menu-close='' ui-sref='app.profile.info')
+          | {{::("menu.profile"|translate)}}
         ion-item(menu-close='' ui-sref='app.cart.index')
           | {{::("menu.client.cart"|translate)}}
         ion-item(menu-close='' ui-sref='app.categories.index')
