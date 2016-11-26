@@ -48,7 +48,7 @@
           createNewProvider: sinon.stub().returns(deferCreateProvider.promise)
         };
         $auth = {
-          user: {}
+          user: {name:'', email:''}
         };
         stateRedirect = 'provider.items';
       })
@@ -107,13 +107,13 @@
         expect(ctrl.step).to.be.equal(1);
       });
 
-      it.only('name and email should exist authenticated user', function () {
+      it('name and email should exist authenticated user', function () {
         ctrl.initProvider();
-        expect(dependencies.$auth.name).to.exist; //jshint ignore:line
-        expect(dependencies.$auth.email).to.exist; //jshint ignore:line
+        expect($auth.user.name).to.exist; //jshint ignore:line
+        expect($auth.user.email).to.exist; //jshint ignore:line
       });
 
-      it.only('legal representative and email  should not be empty', function () {
+      it('legal representative and email  should not be empty', function () {
         ctrl.initProvider();
         chai.assert.isNotNull(ctrl.provider.representante_legal, 'exists!'); //jshint ignore:line
         chai.assert.isNotNull(ctrl.provider.email, 'exists!');

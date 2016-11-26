@@ -41,7 +41,7 @@
           createNewCourier: sinon.stub().returns(deferCreateCourier.promise)
         };
         $auth = {
-          user: {}
+          user: {name:'', email:''}
         };
         ErrorHandlerService = {
           handleCommonErrorGET: sinon.stub()
@@ -125,13 +125,13 @@
         expect(ctrl.messages).to.not.empty; //jshint ignore:line
       });
 
-      it.only('name and email should exist authenticated user', function () {
+      it('name and email should exist authenticated user', function () {
         ctrl.initCourier();
-        expect(dependencies.$auth.name).to.exist; //jshint ignore:line
-        expect(dependencies.$auth.email).to.exist; //jshint ignore:line
+        expect($auth.user.name).to.exist; //jshint ignore:line
+        expect($auth.user.email).to.exist; //jshint ignore:line
       });
 
-      it.only('names and email  should not be empty', function () {
+      it('names and email  should not be empty', function () {
         ctrl.initCourier();
         chai.assert.isNotNull(ctrl.courierForm.nombres, 'exists!'); //jshint ignore:line
         chai.assert.isNotNull(ctrl.courierForm.email, 'exists!');
