@@ -1,16 +1,15 @@
-ion-modal-view.client-page
-  ion-header-bar.bar.bar-header.bar-light.bar-base-yellow(
+ion-modal-view.item-page
+  ion-header-bar.bar-stable.bar.bar-header(
     align-title="center"
   )
-    h4(ng-hide="clientsVm.client.id").title {{::("globals.new"|translate)}} {{::("client.client"|translate)}}
-    h4(ng-show="clientsVm.client.id").title {{::("globals.edit"|translate)}} {{::("client.client"|translate)}}
     .ion-nav-buttons(side="left")
       button.button.ion-chevron-left.button-clear.left(
         ng-click="clientsVm.closeModal()"
       )
+    .title.alt-logo
   ion-content.resource-form
     form(
-      name="form"
+      name="clientsVm.clientForm"
       ng-submit="clientsVm.submitProcess(clientsVm.client.id)"
       novalidate
     )
@@ -22,63 +21,87 @@ ion-modal-view.client-page
           input(
             type="text"
             ng-model="clientsVm.client.notas"
-            ng-class="input-error"
           )
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': clientsVm.messages.ruc}"
+          ng-class="{'item-error': clientsVm.clientForm.ruc.$touched && cliensVm.clientForm.ruc.$invalid}"
         )
           span.input-label {{::("client.ruc"|translate)}}
           input(
+            name="ruc"
             type="text"
             ng-class="input-error"
             ng-model="clientsVm.client.ruc"
+            required
           )
+        .show-errors(ng-messages="clientsVm.clientForm.ruc.$error" ng-if="clientsVm.clientForm.ruc.$touched")
+          span(ng-message="required" class="message-error") {{::("globals.isRequired"|translate)}}
         show-error(array-messages="clientsVm.messages.ruc")
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': clientsVm.messages.nombres}"
+          ng-class="{'item-error': clientsVm.clientForm.nombres.$touched && cliensVm.clientForm.nombres.$invalid}"
         )
           span.input-label {{::("client.nombres"|translate)}}
           input(
+            name="nombres"
             type="text"
+            ng-class="input-error"
             ng-model="clientsVm.client.nombres"
+            required
           )
+        .show-errors(ng-messages="clientsVm.clientForm.nombres.$error" ng-if="clientsVm.clientForm.nombres.$touched")
+          span(ng-message="required" class="message-error") {{::("globals.isRequired"|translate)}}
         show-error(array-messages="clientsVm.messages.nombres")
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': clientsVm.messages.direccion}"
+          ng-class="{'item-error': clientsVm.clientForm.direccion.$touched && cliensVm.clientForm.direccion.$invalid}"
         )
           span.input-label {{::("client.direccion"|translate)}}
           input(
+            name="direccion"
             type="text"
+            ng-class="input-error"
             ng-model="clientsVm.client.direccion"
+            required
           )
+        .show-errors(ng-messages="clientsVm.clientForm.direccion.$error" ng-if="clientsVm.clientForm.direccion.$touched")
+          span(ng-message="required" class="message-error") {{::("globals.isRequired"|translate)}}
         show-error(array-messages="clientsVm.messages.direccion")
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': clientsVm.messages.telefono}"
+          ng-class="{'item-error': clientsVm.clientForm.telefono.$touched && cliensVm.clientForm.telefono.$invalid}"
         )
           span.input-label {{::("client.telefono"|translate|uppercase)}}
           input(
+            name="telefono"
             type="tel"
+            ng-class="input-error"
             ng-model="clientsVm.client.telefono"
+            required
           )
+        .show-errors(ng-messages="clientsVm.clientForm.telefono.$error" ng-if="clientsVm.clientForm.telefono.$touched")
+          span(ng-message="required" class="message-error") {{::("globals.isRequired"|translate)}}
         show-error(array-messages="clientsVm.messages.telefono")
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': clientsVm.messages.email}"
+          ng-class="{'item-error': clientsVm.clientForm.email.$touched && cliensVm.clientForm.email.$invalid}"
         )
           span.input-label {{::("client.email"|translate|uppercase)}}
           input(
+            name="email"
             type="email"
+            ng-class="input-error"
             ng-model="clientsVm.client.email"
+            required
           )
+        .show-errors(ng-messages="clientsVm.clientForm.email.$error" ng-if="clientsVm.clientForm.email.$touched")
+          span(ng-message="required" class="message-error") {{::("globals.isRequired"|translate)}}
         show-error(array-messages="clientsVm.messages.email")
 
       .bar.bar-footer.footer-client-container
         button.button-secondary-yellow(
           type="submit"
+          ng-disabled="clientsVm.clientForm.$invalid"
         ) {{::("globals.save"|translate)}}
         button.button-secondary-red(
           ng-click="clientsVm.deleteClient(clientsVm.client.id)"

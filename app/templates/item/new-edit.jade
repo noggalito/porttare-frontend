@@ -1,29 +1,34 @@
 ion-modal-view.item-page
-  ion-header-bar.bar.bar-header.bar-light.bar-base-yellow(
+  ion-header-bar.bar-stable.bar.bar-header(
     align-title="center"
   )
-    h4(ng-hide="itemsVm.item.id").title {{::("globals.new"|translate)}} {{::("item.item"|translate)}}
-    h4(ng-show="itemsVm.item.id").title {{::("globals.edit"|translate)}} {{::("item.item"|translate)}}
     .ion-nav-buttons(side="left")
       button.button.ion-chevron-left.button-clear.left(
         ng-click="itemsVm.closeModal()"
       )
+    .title.alt-logo
   ion-content.resource-form
     form(
-      name='form'
+      name='itemsVm.itemForm'
       ng-submit='itemsVm.submitProcess(itemsVm.item.id)'
       novalidate
     )
       .list.list-inset
         legend {{::("item.formLegend"|translate)}}
 
-        label.item.item-input.item-stacked-label
+        label.item.item-input.item-stacked-label(
+          ng-class="{'item-error': itemsVm.itemForm.titulo.$touched && itemsVm.itemForm.titulo.$invalid}"
+        )
           span.input-label {{::("item.titulo"|translate|uppercase)}}
           input(
+            name='titulo'
             type='text'
             ng-model='itemsVm.item.titulo'
             ng-class='input-error'
+            required
           )
+        .show-errors(ng-messages="itemsVm.itemForm.titulo.$error" ng-if="itemsVm.itemForm.titulo.$touched")
+          span(ng-message="required" class="message-error") {{::("globals.isRequired"|translate)}}
         show-error(array-messages='itemsVm.messages.titulo')
 
         label.item.item-input.item-stacked-label
@@ -35,14 +40,24 @@ ion-modal-view.item-page
         show-error(array-messages='itemsVm.messages.descripcion')
 
         label.item.item-input.item-stacked-label
-          span.input-label {{::("item.precio"|translate|uppercase)}}
+          span.input-label {{::("item.observaciones"|translate|uppercase)}}
           input(
-            min='0'
-            step='any'
-            type='number'
-            ng-model='itemsVm.item.precio'
+            type='text'
+            ng-model='itemsVm.item.observaciones'
           )
-        show-error(array-messages='itemsVm.messages.precio')
+        show-error(array-messages='itemsVm.messages.observaciones')
+
+        label.item.item-input.item-select(
+          ng-class="{'item-error': itemsVm.itemForm.unidad_medida.$touched && itemsVm.itemForm.unidad_medida.$invalid}"
+        )
+          span.input-label {{::("item.unidadMedida"|translate|uppercase)}}
+          select(ng-model='itemsVm.item.unidad_medida' name='unidad_medida' required)
+            option(selected='' value='volumen') Volumen
+            option(value='unidades') Unidades
+            option(value='longitud') Longitud
+        .show-errors(ng-messages="itemsVm.itemForm.unidad_medida.$error" ng-if="itemsVm.itemForm.unidad_medida.$touched")
+          span(ng-message="required" class="message-error") {{::("globals.isRequired"|translate)}}
+        show-error(array-messages='itemsVm.messages.unidad_medida')
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("item.volumen"|translate|uppercase)}}
@@ -52,6 +67,22 @@ ion-modal-view.item-page
           )
         show-error(array-messages='itemsVm.messages.volumen')
 
+        label.item.item-input.item-stacked-label(
+          ng-class="{'item-error': itemsVm.itemForm.precio.$touched && itemsVm.itemForm.precio.$invalid}"
+        )
+          span.input-label {{::("item.precio"|translate|uppercase)}}
+          input(
+            min='0'
+            name='precio'
+            step='any'
+            type='number'
+            ng-model='itemsVm.item.precio'
+            required
+          )
+        .show-errors(ng-messages="itemsVm.itemForm.precio.$error" ng-if="itemsVm.itemForm.precio.$touched")
+          span(ng-message="required" class="message-error") {{::("globals.isRequired"|translate)}}
+        show-error(array-messages='itemsVm.messages.precio')
+
         label.item.item-input.item-stacked-label
           span.input-label {{::("item.peso"|translate|uppercase)}}
           input(
@@ -59,35 +90,28 @@ ion-modal-view.item-page
             ng-model='itemsVm.item.peso'
           )
         show-error(array-messages='itemsVm.messages.peso')
-        //- Pending upload image
-        label.item.item-input.item-stacked-label
-          span.input-label {{::("item.imagen"|translate|uppercase)}}
+        label.item.item-input.item-stacked-label.imgs
+          span.input-label-imgs {{::("item.imagen"|translate|uppercase)}}
+        .content
           input(
             type='file'
             ngf-select
-            ng-model="itemsVm.item.imagen"
+            ng-model="itemsVm.item.imagenes"
             accept="image/*"
+            class="inputfile"
+            multiple
           )
+          label
+            figure
+              img(class="img-camera")
+            span.msgImg {{::("item.addImages"|translate)}}
+        .content-prev-images
+          img.item-prev-image(ng-repeat="image in itemsVm.item.imagenes" ngf-src="image")
+          img.item-prev-image(ng-repeat="image in itemsVm.item.imagenes" ngf-src="image.imagen_url")
         show-error(array-messages='itemsVm.messages.imagen')
-
-        label.item.item-input.item-stacked-label
-          span.input-label {{::("item.observaciones"|translate|uppercase)}}
-          input(
-            type='text'
-            ng-model='itemsVm.item.observaciones'
-          )
-        show-error(array-messages='itemsVm.messages.observaciones')
-
-        label.item.item-input.item-select
-          span.input-label {{::("item.unidadMedida"|translate|uppercase)}}
-          select(ng-model='itemsVm.item.unidad_medida')
-            option(selected='' value='volumen') Volumen
-            option(value='unidades') Unidades
-            option(value='peso') Peso
-            option(value='longitud') Longitud
-        show-error(array-messages='itemsVm.messages.unidad_medida')
 
       .bar.bar-footer.footer-item-container
         button.button-secondary-yellow(
           type="submit"
-        ) {{::("globals.save"|translate)}} {{::("item.item"|translate)}}
+          ng-disabled="itemsVm.itemForm.$invalid"
+        ) {{::("item.publishItem"|translate)}}

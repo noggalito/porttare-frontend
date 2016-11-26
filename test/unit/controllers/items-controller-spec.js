@@ -9,7 +9,7 @@
       ItemsService,
       deferGetItems,
       ModalService,
-      $ionicActionSheet,
+      APP,
       $ionicLoading,
       $ionicPopup,
       $scope,
@@ -50,6 +50,9 @@
           }
         };
       });
+      APP = {
+        centsInDollar: '100'
+      };
     }));
 
     beforeEach(inject(
@@ -83,7 +86,7 @@
           ModalService: ModalService,
           $ionicLoading: $ionicLoading,
           $ionicPopup: $ionicPopup,
-          $ionicActionSheet: $ionicActionSheet
+          APP: APP
         };
 
         ctrl = $controller('ItemsController', dependencies);
@@ -171,10 +174,6 @@
 
         it('if successful, ionicLoading.hide should be called', function () {
           ctrl.items = [];
-          ctrl.items.findIndex = function (param) {
-            var row = {id:0};
-            param(row);
-          };
           deferEditItem.resolve({id:0});
           deferEditItem.resolve({data: 'data'});
           $scope.$digest();
@@ -183,10 +182,6 @@
 
         it('if successful, ionicPopup.alert should be called', function () {
           ctrl.items = [];
-          ctrl.items.findIndex = function (param) {
-            var row = {id:0};
-            param(row);
-          };
           deferEditItem.resolve({id:0});
           $scope.$digest();
           sinon.assert.calledOnce($ionicPopup.alert);
@@ -227,10 +222,6 @@
 
         it('if successful, ionicLoading.hide should be called', function () {
           ctrl.items = [];
-          ctrl.items.findIndex = function (param) {
-            var row = {id:0};
-            param(row);
-          };
           deferDeleteItem.resolve();
           $scope.$digest();
           sinon.assert.calledOnce($ionicLoading.hide);
@@ -238,10 +229,6 @@
 
         it('if successful, ionicPopup.alert should be called', function () {
           ctrl.items = [];
-          ctrl.items.findIndex = function (param) {
-            var row = {id:0};
-            param(row);
-          };
           deferDeleteItem.resolve();
           $scope.$digest();
           sinon.assert.calledOnce($ionicPopup.alert);
@@ -255,7 +242,7 @@
         });
       });
 
-      describe('Modal and ActionSheet', function () {
+      describe('Modal', function () {
         beforeEach(function () {
           dependencies = {
             $scope: $scope,
@@ -263,7 +250,7 @@
             ModalService: ModalService,
             $ionicLoading: $ionicLoading,
             $ionicPopup: $ionicPopup,
-            $ionicActionSheet: $ionicActionSheet
+            APP: APP
           };
 
           ctrl = $controller('ItemsController', dependencies);
@@ -276,13 +263,15 @@
         });
 
         beforeEach(inject(function () {
-          ctrl.showEditModal({id:0});
+          ctrl.items = [ { id: 0 }, { id:1 } ];
+          ctrl.showEditModal(0);
         }));
 
         it('Show edit modal', function () {
           var spy = sinon.spy(ModalService, 'showModal');
           ctrl.showNewModal();
           chai.expect(spy.called).to.be.equal(true);
+          chai.assert.isObject(ctrl.item, 'This is an object!');
         });
 
         it('Close modal', function () {

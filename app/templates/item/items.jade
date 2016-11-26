@@ -4,23 +4,33 @@ ion-view(
   ion-nav-title
     .alt-logo
   ion-content.item-page
+    .row
+        label.search-input
+          i.icon.ion-search.placeholder-icon
+          input(
+            ng-model="itemsVm.query"
+            type="text"
+            placeholder='{{::("item.itemSearch"|translate)}}'
+          )
     .row.footer-item-container
       button.button-secondary-yellow(
         ng-click="itemsVm.showNewModal()"
       ) {{::("globals.new"|translate)}} {{::("item.item"|translate)}}
-    .row
-      h4.item-title {{::("item.offerItem"|translate)}}
-    .row
-      .list.list-large
-        a(ng-repeat='item in itemsVm.items', class='item item-avatar' ng-click='itemsVm.showActionSheet($index)')
-          img(ng-src='{{item.imagenes[0].imagen_url}}')
-          h2 {{ item.titulo }}
-          p {{ item.descripcion }}
-    script(id='my-modal-item.html', type='text/ng-template')
-        ion-modal-view
-          ion-header-bar.bar.bar-header.bar-light
-            h4(ng-hide="itemsVm.item.id").title {{::("globals.new"|translate)}} {{::("item.item"|translate)}}
-            h4(ng-show="itemsVm.item.id").title {{::("globals.edit"|translate)}} {{::("item.item"|translate)}}
-            button(class='button ion-chevron-left button-clear', ng-click='itemsVm.closeModal()')  Cancelar
-          ion-content.item-page
-            .row(ng-include="'templates/item/new-edit.html'")
+    .row.list-header
+      .col.col-50.list-title {{::("item.productName"|translate)}}
+      .col.col-20.list-title {{::("item.quantity"|translate)}}
+      .col.col-20.list-title {{::("item.price"|translate)}}
+      .col.col-10.list-title
+    span(ng-if="!itemsVm.items.length" class="col without-items") {{::("item.titleWithoutItems"|translate)}}
+    span(ng-if="!itemsVm.items.length" class="col without-items") {{::("item.subtitleWithoutItems"|translate)}}
+    .row.list-content(
+      ng-repeat="item in itemsVm.items | filter:itemsVm.query"
+      ng-init="idx = $index"
+    )
+      .col.col-50.list-item {{ item.titulo }}
+      .col.col-20.list-item
+        span(ng-if="item.unidad_medida=='unidades'") X{{ item.volumen }}
+      .col.col-20.list-item ${{ item.precio_cents/100 }}
+      a.col.action(
+        ng-click="itemsVm.showEditModal(idx)"
+      ) {{::("globals.edit"|translate)}}

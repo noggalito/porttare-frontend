@@ -19,29 +19,19 @@
 
     return service;
 
-    function newItem(data) {
+    function newItem(item) {
       var promise;
-
-      if (data.imagen) {
-        //adding nested attributes
-        data.imagenes_attributes = []; //jshint ignore:line
-        data.imagenes_attributes.push({imagen: data.imagen}); //jshint ignore:line
-        // create Upload library promise
-        promise = Upload.upload({
-          url: ENV.apiHost + '/api/provider/items',
-          data: data
+      if (item && item.imagenes) {
+        promise = saveWithNestedImages({
+          method: 'POST',
+          resourceUri: '/api/provider/items',
+          item: item
         });
       } else {
-        // default angular $http request
-        promise = $http({
-          method: 'POST',
-          url: ENV.apiHost + '/api/provider/items',
-          data: data
-        });
+        promise = CommonService.newObject(item, '/api/provider/items');
       }
-
       return promise.then(function (resp) {
-        return resp.data;
+        return resp;
       });
     }
 
@@ -49,14 +39,38 @@
       return CommonService.getObjects('/api/provider/items/');
     }
 
-    function editItem(data) {
-      return CommonService.editObject(data, '/api/provider/items/');
+    function editItem(item) {
+      var promise;
+      if (item && item.imagenes) {
+        promise = saveWithNestedImages({
+          method: 'PUT',
+          resourceUri: '/api/provider/items/' + item.id,
+          item: item
+        });
+      } else {
+        promise = CommonService.editObject(item, '/api/provider/items');
+      }
+      return promise.then(function (resp) {
+        return resp.data;
+      });
     }
 
-    function deleteItem(data) {
+    function deleteItem(item) {
       return $http({
         method: 'DELETE',
-        url: ENV.apiHost + '/api/provider/items/' + data
+        url: ENV.apiHost + '/api/provider/items/' + item
+      });
+    }
+
+    function saveWithNestedImages(options){
+      options.item.imagenes_attributes = []; //jshint ignore:line
+      angular.forEach(options.item.imagenes, function(value) {
+        options.item.imagenes_attributes.push({imagen: value}); //jshint ignore:line
+      });
+      return Upload.upload({
+        method: options.method,
+        url: ENV.apiHost + options.resourceUri,
+        data: options.item
       });
     }
   }

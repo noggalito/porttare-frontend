@@ -256,11 +256,29 @@ function routes($stateProvider, $urlRouterProvider) {
   })
   .state('provider.items', {
     url: '/items',
+    abstract: true
+  })
+  .state('provider.items.index', {
+    url: '/',
     views: {
       'menuContent@provider': {
         templateUrl: 'templates/item/items.html',
         controller: 'ItemsController',
         controllerAs: 'itemsVm'
+      }
+    }
+  })
+  .state('provider.clients', {
+    url: '/clients',
+    abstract: true
+  })
+  .state('provider.clients.index', {
+    url: '/',
+    views: {
+      'menuContent@provider': {
+        templateUrl: 'templates/client/clients.html',
+        controller: 'ClientsController',
+        controllerAs: 'clientsVm'
       }
     }
   })
