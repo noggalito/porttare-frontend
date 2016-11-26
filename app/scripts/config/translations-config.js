@@ -117,7 +117,7 @@
         orders: 'Pedidos',
         labels: {
           found: 'Encontramos',
-          closeToYou: 'Cerca de ti',
+          closeToYou: 'pedidos cerca de ti',
           currentLocation: 'de tu ubicación actual',
           forDelivery: 'para la entrega'
         }

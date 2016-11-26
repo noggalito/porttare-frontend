@@ -317,7 +317,15 @@ function routes($stateProvider, $urlRouterProvider) {
       'menuContent@courier': {
         templateUrl: 'templates/courier/orders.html',
         controller: 'OrdersController',
-        controllerAs: 'orVm'}
+        controllerAs: 'orVm',
+        resolve: {
+          orders: function (CourierService) {
+            return CourierService.shippingRequests().then(function (res) {
+              return res;
+            });
+          }
+        }
+      }
     }
   })
   .state('app.profile', {

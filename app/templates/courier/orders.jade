@@ -7,4 +7,17 @@ ion-view(
     .orders-container
       .row
         .total-orders
-          | {{::("courier.labels.found "| translate)}} {{orVm.totalOrders}} {{("courier.labels.closeToYou "| translate)}}
+          | {{::orVm.titleResultsFound}}
+      .row
+        .orders
+          .order(ng-repeat="order in orVm.orders")
+            .distance-circle
+              .range
+                | 1.2
+            .establishment
+              .name
+                .text {{order.provider_profile.nombre_establecimiento}}
+                .icon-location
+              .location 1.2 km {{::("courier.labels.currentLocation"| translate)}}
+              .time 1 hora {{::("courier.labels.forDelivery"| translate)}}
+            

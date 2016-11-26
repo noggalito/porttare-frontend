@@ -1,0 +1,54 @@
+.orders-container {
+
+  .total-orders {
+    opacity: 0.5;
+    padding: 15px;
+  }
+
+  .orders {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .order {
+      display: flex;
+      margin-bottom: 10px;
+
+      .distance-circle {
+        display: flex;
+        padding: 15px;
+
+        .range {
+          border-radius: 100%;
+          border: 1px solid #e7e7e7;
+          background-color: #e3e3e3;
+          font-weight: bold;
+        }
+      }
+
+      .establishment {
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid $base-yellow;
+        width: 100%;
+
+        .name {
+          display: flex;
+          justify-content: space-between;
+
+          .text {
+            font-weight: bold;
+          }
+        }
+
+        .location {
+          opacity: 0.5;
+        }
+
+        .time {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
