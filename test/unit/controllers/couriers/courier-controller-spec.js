@@ -127,8 +127,8 @@
 
       it.only('name and email should exist authenticated user', function () {
         ctrl.initCourier();
-        expect(ctrl.courierForm.$auth.name).to.exist; //jshint ignore:line
-        expect(ctrl.courierFormr.$auth.email).to.exist; //jshint ignore:line
+        expect(dependencies.$auth.name).to.exist; //jshint ignore:line
+        expect(dependencies.$auth.email).to.exist; //jshint ignore:line
       });
 
       it.only('names and email  should not be empty', function () {

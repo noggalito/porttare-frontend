@@ -109,8 +109,8 @@
 
       it.only('name and email should exist authenticated user', function () {
         ctrl.initProvider();
-        expect(ctrl.provider.$auth.name).to.exist; //jshint ignore:line
-        expect(ctrl.provider.$auth.email).to.exist; //jshint ignore:line
+        expect(dependencies.$auth.name).to.exist; //jshint ignore:line
+        expect(dependencies.$auth.email).to.exist; //jshint ignore:line
       });
 
       it.only('legal representative and email  should not be empty', function () {
