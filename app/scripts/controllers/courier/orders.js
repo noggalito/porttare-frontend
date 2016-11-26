@@ -39,7 +39,7 @@
         },
         delivery_time: 150 //min
       }
-    ];
+    ]
 
     init();
 
@@ -53,6 +53,5 @@
     });
 
       orVm.totalOrders = orVm.orders.length;
-    }
-
+  }
 })();
