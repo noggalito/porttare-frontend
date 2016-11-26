@@ -107,6 +107,18 @@
         expect(ctrl.step).to.be.equal(1);
       });
 
+      it.only('name and email should exist authenticated user', function () {
+        ctrl.initProvider();
+        expect(ctrl.provider.$auth.name).to.exist; //jshint ignore:line
+        expect(ctrl.provider.$auth.email).to.exist; //jshint ignore:line
+      });
+
+      it.only('legal representative and email  should not be empty', function () {
+        ctrl.initProvider();
+        chai.assert.isNotNull(ctrl.provider.representante_legal, 'exists!'); //jshint ignore:line
+        chai.assert.isNotNull(ctrl.provider.email, 'exists!');
+      });
+
     });
   });
 })();

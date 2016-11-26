@@ -14,9 +14,8 @@
     var stateRedirect = 'courier.orders';
     courierVm.createCourier = createCourier;
     courierVm.messages = {};
-    courierVm.courierForm = {};
-    courierVm.courierForm.nombres = $auth.user.name;
-    courierVm.courierForm.email = $auth.user.email;
+    courierVm.initCourier = initCourier;
+    courierVm.initCourier();
 
     courierVm.locations = [
       'Loja',
@@ -46,6 +45,12 @@
       'Pesado',
       'Especiales'
     ];
+
+    function initCourier(){
+      courierVm.courierForm = {};
+      courierVm.courierForm.nombres = $auth.user.name;
+      courierVm.courierForm.email = $auth.user.email;
+    }
 
     function createCourier() {
       $ionicLoading.show({

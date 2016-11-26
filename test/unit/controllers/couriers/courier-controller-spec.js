@@ -124,6 +124,19 @@
         $rootScope.$digest();
         expect(ctrl.messages).to.not.empty; //jshint ignore:line
       });
+
+      it.only('name and email should exist authenticated user', function () {
+        ctrl.initCourier();
+        expect(ctrl.courierForm.$auth.name).to.exist; //jshint ignore:line
+        expect(ctrl.courierFormr.$auth.email).to.exist; //jshint ignore:line
+      });
+
+      it.only('names and email  should not be empty', function () {
+        ctrl.initCourier();
+        chai.assert.isNotNull(ctrl.courierForm.nombres, 'exists!'); //jshint ignore:line
+        chai.assert.isNotNull(ctrl.courierForm.email, 'exists!');
+      });
+
     });
   });
 })();
