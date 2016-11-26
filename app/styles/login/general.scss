@@ -16,3 +16,24 @@
     top: 5px;
   }
 }
+@media (max-width: 768px) {
+  .align-login {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
+  }
+  .top-logo{
+    display: block;
+  }
+}
+@media (min-width: 769px) {
+  .align-login {
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 100%;
+  }
+  .top-logo{
+    height: 30px;
+  }
+}
+
