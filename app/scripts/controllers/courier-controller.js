@@ -13,8 +13,11 @@
     var courierVm = this;
     var stateRedirect = 'courier.orders';
     courierVm.createCourier = createCourier;
-    courierVm.courierForm = {};
     courierVm.messages = {};
+    courierVm.courierForm = {};
+    courierVm.courierForm.nombres = $auth.user.name;
+    courierVm.courierForm.email = $auth.user.email;
+
     courierVm.locations = [
       'Loja',
       'Quito'

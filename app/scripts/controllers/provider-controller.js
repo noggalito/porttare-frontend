@@ -13,6 +13,10 @@
                               $ionicLoading,
                               $ionicScrollDelegate) {
     var providerVm = this;
+    providerVm.provider = {};
+    providerVm.provider.representante_legal = $auth.user.name;
+    providerVm.provider.email = $auth.user.email;
+
     var stateRedirect = 'provider.items';
     var transKeys = [
       'provider.methods.cash',
