@@ -3,7 +3,7 @@ ion-modal-view.item-page
     align-title="center"
   )
     h4(ng-hide="billingAddressesVm.billingAddress.id").title {{::("billingAddresses.newBillingAddresses"|translate|uppercase)}}
-    h4(ng-show="billingAddressesVm.billingAddress.id").title {{::("globals.edit"|translate|uppercase)}} {{::("billingAddresses.billingAddresses"|translate|uppercase)}}
+    h4(ng-show="billingAddressesVm.billingAddress.id").title {{::("globals.edit"|translate|uppercase)}} {{::("billingAddresses.legendForm"|translate|uppercase)}}
     .ion-nav-buttons(side="left")
       button.button.ion-chevron-left.button-clear.left(
         ng-click="billingAddressesVm.closeModal()"
