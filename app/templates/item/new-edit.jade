@@ -9,20 +9,26 @@ ion-modal-view.item-page
     .title.alt-logo
   ion-content.resource-form
     form(
-      name='form'
+      name='itemsVm.itemForm'
       ng-submit='itemsVm.submitProcess(itemsVm.item.id)'
       novalidate
     )
       .list.list-inset
         legend {{::("item.formLegend"|translate)}}
 
-        label.item.item-input.item-stacked-label
+        label.item.item-input.item-stacked-label(
+          ng-class="{'item-error': itemsVm.itemForm.titulo.$touched && itemsVm.itemForm.titulo.$invalid}"
+        )
           span.input-label {{::("item.titulo"|translate|uppercase)}}
           input(
+            name='titulo'
             type='text'
             ng-model='itemsVm.item.titulo'
             ng-class='input-error'
+            required
           )
+        .show-errors(ng-messages="itemsVm.itemForm.titulo.$error" ng-if="itemsVm.itemForm.titulo.$touched")
+          span(ng-message="required" class="message-error") {{::("globals.isRequired"|translate)}}
         show-error(array-messages='itemsVm.messages.titulo')
 
         label.item.item-input.item-stacked-label
@@ -41,12 +47,16 @@ ion-modal-view.item-page
           )
         show-error(array-messages='itemsVm.messages.observaciones')
 
-        label.item.item-input.item-select
+        label.item.item-input.item-select(
+          ng-class="{'item-error': itemsVm.itemForm.unidad_medida.$touched && itemsVm.itemForm.unidad_medida.$invalid}"
+        )
           span.input-label {{::("item.unidadMedida"|translate|uppercase)}}
-          select(ng-model='itemsVm.item.unidad_medida')
+          select(ng-model='itemsVm.item.unidad_medida' name='unidad_medida' required)
             option(selected='' value='volumen') Volumen
             option(value='unidades') Unidades
             option(value='longitud') Longitud
+        .show-errors(ng-messages="itemsVm.itemForm.unidad_medida.$error" ng-if="itemsVm.itemForm.unidad_medida.$touched")
+          span(ng-message="required" class="message-error") {{::("globals.isRequired"|translate)}}
         show-error(array-messages='itemsVm.messages.unidad_medida')
 
         label.item.item-input.item-stacked-label
@@ -57,14 +67,20 @@ ion-modal-view.item-page
           )
         show-error(array-messages='itemsVm.messages.volumen')
 
-        label.item.item-input.item-stacked-label
+        label.item.item-input.item-stacked-label(
+          ng-class="{'item-error': itemsVm.itemForm.precio.$touched && itemsVm.itemForm.precio.$invalid}"
+        )
           span.input-label {{::("item.precio"|translate|uppercase)}}
           input(
             min='0'
+            name='precio'
             step='any'
             type='number'
             ng-model='itemsVm.item.precio'
+            required
           )
+        .show-errors(ng-messages="itemsVm.itemForm.precio.$error" ng-if="itemsVm.itemForm.precio.$touched")
+          span(ng-message="required" class="message-error") {{::("globals.isRequired"|translate)}}
         show-error(array-messages='itemsVm.messages.precio')
 
         label.item.item-input.item-stacked-label
@@ -97,4 +113,5 @@ ion-modal-view.item-page
       .bar.bar-footer.footer-item-container
         button.button-secondary-yellow(
           type="submit"
+          ng-disabled="itemsVm.itemForm.$invalid"
         ) {{::("item.publishItem"|translate)}}

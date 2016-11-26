@@ -133,7 +133,8 @@
         loading: 'Cargando',
         sending: 'Enviando',
         start: 'Empezar',
-        sendRequest: 'Enviar solicitud'
+        sendRequest: 'Enviar solicitud',
+        isRequired: 'Este campo es obligatorio'
       },
       item: {
         item: 'Producto',
