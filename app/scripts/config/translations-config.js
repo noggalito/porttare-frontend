@@ -141,7 +141,8 @@
         sending: 'Enviando',
         start: 'Empezar',
         sendRequest: 'Enviar solicitud',
-        isRequired: 'Este campo es obligatorio'
+        isRequired: 'Este campo es obligatorio',
+        disabledUser: 'Su cuenta ha sido deshabilitada'
       },
       item: {
         item: 'Producto',

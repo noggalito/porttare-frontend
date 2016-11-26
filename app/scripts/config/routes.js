@@ -252,7 +252,10 @@ function routes($stateProvider, $urlRouterProvider) {
   .state('provider', {
     url: '/provider',
     abstract: true,
-    templateUrl: 'templates/menu/menu-provider.html'
+    templateUrl: 'templates/menu/menu-provider.html',
+    resolve: {
+      auth: accessIfEnabledProvider
+    }
   })
   .state('provider.items', {
     url: '/items',
@@ -404,6 +407,10 @@ function routes($stateProvider, $urlRouterProvider) {
         }
       }
     }
+  })
+  .state('disabledUserError', {
+    url: '/disabled-user',
+    templateUrl: 'templates/error/disabled-user-error.html'
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise(function ($injector, $location) {
@@ -439,5 +446,16 @@ function routes($stateProvider, $urlRouterProvider) {
           $ionicLoading.hide();
         });
       });
+  }
+
+  function accessIfEnabledProvider($auth, $state, $ionicLoading){
+    return $auth.validateUser()
+     .then(function userAuthorized(user){
+        if (user.provider_profile.status === 'disabled') { //jshint ignore:line
+          $state.go('disabledUserError').then(function () {
+            $ionicLoading.hide();
+          });
+        }
+     });
   }
 }
