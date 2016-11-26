@@ -55,7 +55,7 @@
     }
 
     function submitModal(){
-      billingAddressesVm.billingAddress.id ? updateBillingAddress() : saveBillingAddress();
+      billingAddressesVm.billingAddress.id ? updateBillingAddress():saveBillingAddress();// jshint ignore:line
     }
 
     function saveBillingAddress(){
