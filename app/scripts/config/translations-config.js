@@ -272,14 +272,14 @@
         requiredField: 'Campo requerido. ',
         wrongEmail: 'Email incorrecto. '
       } ,
-      billingAddresses: {
+      billingAddress: {
         legendForm: 'Dirección de facturación',
-        newBillingAddresses: 'Nueva dirección de facturación',
-        anyBillingAddresses: 'No dispone de ninguna dirección de facturación.',
+        newBillingAddress: 'Nueva dirección de facturación',
+        anyBillingAddress: 'No dispone de ninguna dirección de facturación.',
         successSave: 'La dirección de facturación ha sido guardado éxitosamente',
         successUpdate: 'La dirección de facturación ha sido actualizado éxitosamente',
         isRequired: 'Este campo es obligatorio',
-        isLengthRuc: 'Debe contener 13 caracteres',
+        isPatternRuc: 'Debe contener solo dígitos y una longitud de 13 caracteres',
         isEmail: 'Correo electrónico no valido',
       }
     });

@@ -1,12 +1,12 @@
 ion-view(
-  view-title="{{::('billingAddresses.legendForm'|translate)}}"
+  view-title="{{::('billingAddress.legendForm'|translate)}}"
 )
   ion-nav-title
     .alt-logo
   ion-content.billing-addresses-list
     .row.footer-item-container
       button.button-secondary-yellow(ng-click="billingAddressesVm.showNewModal()")
-        {{::("billingAddresses.newBillingAddresses"|translate)}}
+        {{::("billingAddress.newBillingAddress"|translate)}}
 
     .row
       .col.col-30
@@ -29,4 +29,4 @@ ion-view(
           {{::("globals.edit"|translate)}}
 
     .row.col.text-center(ng-show="billingAddressesVm.billingAddresses.length==0")
-      h5.data {{::("billingAddresses.anyBillingAddresses"|translate)}}
+      h5.data {{::("billingAddress.anyBillingAddress"|translate)}}
