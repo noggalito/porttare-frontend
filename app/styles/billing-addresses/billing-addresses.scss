@@ -1,5 +1,13 @@
 .billing-addresses-list{
-  table{
-    width: 100%;
+  margin: 10px;
+  color: $base-grey;
+
+  .action{
+    cursor: pointer
   }
+
+  .data{
+    padding-top: 20px;
+  }
+
 }

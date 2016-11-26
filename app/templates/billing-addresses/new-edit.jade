@@ -1,0 +1,75 @@
+ion-modal-view.item-page
+  ion-header-bar.bar.bar-header.bar-light.bar-base-yellow(
+    align-title="center"
+  )
+    h4(ng-hide="billingAddressesVm.billingAddress.id").title {{::("billingAddresses.newBillingAddresses"|translate|uppercase)}}
+    h4(ng-show="billingAddressesVm.billingAddress.id").title {{::("globals.edit"|translate|uppercase)}} {{::("billingAddresses.billingAddresses"|translate|uppercase)}}
+    .ion-nav-buttons(side="left")
+      button.button.ion-chevron-left.button-clear.left(
+        ng-click="billingAddressesVm.closeModal()"
+      )
+  ion-content.resource-form
+    form(
+      name='form'
+      ng-submit='billingAddressesVm.submitModal()'
+      novalidate
+    )
+      .list.list-inset
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("client.ruc"|translate|uppercase)}}
+          input(
+            type="text"
+            ng-class="input-error"
+            ng-model="billingAddressesVm.billingAddress.ruc"
+          )
+        show-error(array-messages="billingAddressesVm.messages.ruc")
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("provider.businessName"|translate|uppercase)}}
+          input(
+            type='text'
+            ng-model='billingAddressesVm.billingAddress.razon_social'
+            ng-class="input-error"
+          )
+        show-error(array-messages="billingAddressesVm.messages.razon_social")
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("client.direccion"|translate|uppercase)}}
+          input(
+            type='text'
+            ng-model='billingAddressesVm.billingAddress.direccion '
+            ng-class="input-error"
+          )
+        show-error(array-messages="billingAddressesVm.messages.direccion")
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("user.country"|translate|uppercase)}}
+          input(
+            type='text'
+            ng-model='billingAddressesVm.billingAddress.ciudad '
+            ng-class="input-error"
+          )
+        show-error(array-messages="billingAddressesVm.messages.ciudad")
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("client.email"|translate|uppercase)}}
+          input(
+            type='text'
+            ng-model='billingAddressesVm.billingAddress.email'
+            ng-class="input-error"
+          )
+        show-error(array-messages="billingAddressesVm.messages.email")
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("client.telefono"|translate|uppercase)}}
+          input(
+            type='text'
+            ng-model='billingAddressesVm.billingAddress.telefono '
+            ng-class="input-error"
+          )
+        show-error(array-messages="billingAddressesVm.messages.telefono")
+
+      .bar.bar-footer.footer-item-container
+        button.button-secondary-yellow(
+          type="submit"
+) {{::("globals.save"|translate)}}

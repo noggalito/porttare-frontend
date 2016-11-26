@@ -275,7 +275,9 @@
       billingAddresses: {
         billingAddresses: 'Dirección de facturación',
         newBillingAddresses: 'Nueva dirección de facturación',
-        anyBillingAddresses: 'No dispone de ninguna dirección de facturación.'
+        anyBillingAddresses: 'No dispone de ninguna dirección de facturación.',
+        successSave: 'La dirección de facturación ha sido guardado éxitosamente',
+        successUpdate: 'La dirección de facturación ha sido actualizado éxitosamente'
       }
     });
 

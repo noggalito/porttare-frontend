@@ -3,21 +3,30 @@ ion-view(
 )
   ion-nav-title
     .alt-logo
-  ion-content
+  ion-content.billing-addresses-list
     .row.footer-item-container
-      button.button-secondary-yellow
+      button.button-secondary-yellow(ng-click="billingAddressesVm.showNewModal()")
         {{::("billingAddresses.newBillingAddresses"|translate)}}
-    .row.billing-addresses-list
-      table
-        tr
-          th {{::("client.ruc"|translate)}}
-          th {{::("provider.businessName"|translate)}}
-          th {{::("provider.city"|translate)}}
-          th {{::("courier.email"|translate)}}
-        tr(ng-repeat='item in billingAddressesVm.billingAddresses')
-          td {{item.ruc}}
-          td {{item.razon_social}}
-          td {{item.ciudad}}
-          td {{item.email}}
-    .row(ng-show="billingAddressesVm.billingAddresses")
-      h5.item-title{{::("billingAddresses.anyBillingAddresses"|translate)}}
+
+    .row
+      .col.col-30
+        strong {{::("client.ruc"|translate)}}
+      .col.col-30
+        strong {{::("provider.businessName"|translate)}}
+      .col.col-30
+        strong {{::("client.direccion"|translate)}}
+      .col.col-10
+
+    .row.col
+        hr
+
+    .row(ng-repeat='item in billingAddressesVm.billingAddresses')
+      .col.col-30{{item.ruc}}
+      .col.col-30{{item.razon_social}}
+      .col.col-30{{item.direccion}}
+      .col.col-10
+        a.action(ng-click='billingAddressesVm.showEditModal(item, $index)')
+          {{::("globals.edit"|translate)}}
+
+    .row.col.text-center(ng-show="billingAddressesVm.billingAddresses.length==0")
+      h5.data {{::("billingAddresses.anyBillingAddresses"|translate)}}
