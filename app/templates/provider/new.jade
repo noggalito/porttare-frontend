@@ -3,7 +3,8 @@ ion-view(
 )
   ion-nav-title
     .alt-logo
-  ion-content.resource-form
+
+  ion-content.resource-form(locking="false")
     .row
       form(name="providerVm.providerForm" ng-submit='providerVm.submit()' novalidate)
         div(ng-if="providerVm.step === 1" ng-include="'templates/provider/partials/new_first_part.html'")

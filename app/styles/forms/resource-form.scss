@@ -1,4 +1,6 @@
 .resource-form {
+  height: 100%;
+
   form {
     width: 100%;
   }
@@ -40,5 +42,9 @@
         padding-top: 0;
       }
     }
+  }
+
+  .bar.bar-footer {
+    position: relative;
   }
 }

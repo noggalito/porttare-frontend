@@ -6,7 +6,7 @@ ion-view(
   ion-content(class="category-page",
     style="background-image: url('{{categoryVm.category.imagen_url|defaultImage}}')"
   )
-    .category-title {{categoryVm.category.titulo | uppercase}}
+    .category-title {{categoryVm.category.titulo}}
     .category-description {{categoryVm.category.descripcion}}
     slick(settings="categoryVm.slickConfig")
       .slick-container(ng-repeat="provider in categoryVm.providers")
