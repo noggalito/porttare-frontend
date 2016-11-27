@@ -5,11 +5,9 @@ ion-view(
   ion-content.login-form
     back-button
     .row
-      .top-logo
-    .row
       .moviggo-logo-1
     .row
-      .align-login
+      .center-items-login
         form(ng-submit='loginVm.login()')
         .list.list-inset
           label.item.item-input
@@ -34,7 +32,7 @@ ion-view(
             value='{{::("login.login"|translate)}}'
           ).button.button-primary.button-block
     .row
-      .align-login
+      .center-items-login
         .list.list-inset.list--top-narrow
         a.button.button-block.button-clear.button-link(ui-sref='send') {{::("login.forgotPassword"|translate)}}
 
