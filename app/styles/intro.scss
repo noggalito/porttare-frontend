@@ -54,7 +54,9 @@
     padding-right: 5%;
     border: none;
     background-color: transparent;
-    margin-top: 5%;
+    @media (min-height: 550px) {
+      margin-top: 5%;
+    }
   }
 }
 
@@ -103,7 +105,7 @@
   }
 }
 
-// HACKS for landscape
+// HACKS for small devices
 @media (max-height: 400px) {
   .bar-intro-button {
     margin-bottom: 15px;
@@ -117,7 +119,18 @@
     bottom: 70px;
   }
 }
-@media (max-height: 300px) {
+@media (orientation: portrait) and
+       (max-height: 400px) {
+  .intro-copytext-wrapper {
+    top: 160px;
+    bottom: initial;
+  }
+  .list-logo.below {
+    display: none;
+  }
+}
+@media (orientation: landscape) and
+       (max-height: 300px) {
   .intro-copytext-wrapper {
     top: 110px;
     bottom: initial;
