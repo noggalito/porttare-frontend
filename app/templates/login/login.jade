@@ -7,8 +7,7 @@ ion-view(
     .row
       .moviggo-logo-1
     .row
-      .center-items-login
-        form(ng-submit='loginVm.login()')
+      form(ng-submit='loginVm.login()')
         .list.list-inset
           label.item.item-input
             i.icon.ion-email.placeholder-icon
@@ -31,13 +30,12 @@ ion-view(
             type='submit',
             value='{{::("login.login"|translate)}}'
           ).button.button-primary.button-block
-    .row
-      .center-items-login
-        .list.list-inset.list--top-narrow
-        a.button.button-block.button-clear.button-link(ui-sref='send') {{::("login.forgotPassword"|translate)}}
-
-        .button.button-block.facebook-login(ng-click="loginVm.loginWithFB()")
-          span.fb-left-icon
-          span.fb-copytext {{::("login.continueWithFacebook"|translate)}}
+          
+    .list.list-inset.list--top-narrow
+      a.button.button-block.button-clear.button-link(ui-sref='send') {{::("login.forgotPassword"|translate)}}
+      
+      .button.button-block.facebook-login(ng-click="loginVm.loginWithFB()")
+        span.fb-left-icon
+        span.fb-copytext {{::("login.continueWithFacebook"|translate)}}
 
 .bar.bar-footer.bar-footer-yellow-stripe
