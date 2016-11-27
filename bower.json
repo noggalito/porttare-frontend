@@ -5,7 +5,7 @@
     "angular": "1.5.3",
     "angular-animate": "1.5.3",
     "angular-sanitize": "1.5.3",
-    "ionic": "v1.3.2",
+    "ionic": "noggalito/ionic#1.3.2-nogal",
     "ngCordova": "~0.1.26-alpha",
     "ng-token-auth": "^0.0.29",
     "angular-translate": "^2.11.1",
