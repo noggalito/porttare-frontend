@@ -14,9 +14,9 @@
                               $localStorage) {
 
     var officesVm = this;
-    officesVm.showNewModal = showNewModal;
+    officesVm.showNewOffice = showNewOffice;
     officesVm.closeModal = closeModal;
-    officesVm.submitModal = submitModal;
+    officesVm.submitOffice = submitOffice;
     officesVm.seeMore = seeMore;
     getoffices();
 
@@ -32,7 +32,7 @@
       });
     }
 
-    function showNewModal() {
+    function showNewOffice() {
       officesVm.office = {};
       ModalService.showModal({
         parentScope: $scope,
@@ -45,7 +45,7 @@
       officesVm.messages = {};
     }
 
-    function submitModal(){
+    function submitOffice(){
       $ionicLoading.show({
         template: '{{::("globals.saving"|translate)}}'
       });
@@ -57,12 +57,10 @@
         });
         officesVm.offices.push(resp.provider_office); //jshint ignore:line
         officesVm.closeModal();
-      }, error);
-    }
-
-    function error(resp){
-      officesVm.messages = resp.status===422 ? resp.data.errors:undefined;
-      $ionicLoading.hide();
+      }, function(response){
+        officesVm.messages = response.errors ? response.errors:undefined;
+        $ionicLoading.hide();
+      });
     }
 
     function seeMore(office){

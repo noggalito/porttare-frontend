@@ -249,6 +249,8 @@
         officeSuccess: 'Correctamente',
         locationNotFound: 'No se ha encontrado la ubicación especificada',
         taskInProgress: 'Tarea en progreso',
+        placeholderDate: 'Click para seleccionar',
+        requeredInput: 'Campo requerido',
         mon: 'Lunes',
         tue: 'Martes',
         wed: 'Miercoles',

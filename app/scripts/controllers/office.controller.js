@@ -14,11 +14,11 @@
                             MapsService) {
 
     var officesVm = this;
-    officesVm.showEditModal = showEditModal;
-    officesVm.showDeleteModal = showDeleteModal;
+    officesVm.showEditOffice = showEditOffice;
+    officesVm.showDeleteOffice = showDeleteOffice;
     officesVm.closeModal = closeModal;
-    officesVm.submitModal = submitModal;
-    officesVm.submitDeleteModal = submitDeleteModal;
+    officesVm.submitOffice = submitOffice;
+    officesVm.submitOfficeDelete = submitOfficeDelete;
     initOffice($localStorage.getObject('office'));
 
     function initOffice(office){
@@ -38,7 +38,7 @@
       officesVm.officeDetail.hora_de_cierre = new Date(hora_de_cierre); //jshint ignore:line
     }
 
-    function showEditModal() {
+    function showEditOffice() {
       officesVm.office = angular.copy(officesVm.officeDetail);
       ModalService.showModal({
         parentScope: $scope,
@@ -46,7 +46,7 @@
       });
     }
 
-    function showDeleteModal() {
+    function showDeleteOffice() {
       ModalService.showModal({
         parentScope: $scope,
         fromTemplateUrl: 'templates/offices/delete.html'
@@ -59,20 +59,25 @@
       officesVm.messages = {};
     }
 
-    function submitModal(){
-      loading();
-      OfficesService.updateOffice(officesVm.office).then(function success(resp){
-        $ionicLoading.hide();
-        $ionicPopup.alert({
-          title: 'Éxito',
-          template: '{{::("office.officeSuccessUpdate"|translate)}}'
+    function submitOffice(){
+      if(officesVm.form.$valid){
+        loading();
+        OfficesService.updateOffice(officesVm.office).then(function success(resp){
+          $ionicLoading.hide();
+          $ionicPopup.alert({
+            title: 'Éxito',
+            template: '{{::("office.officeSuccessUpdate"|translate)}}'
+          });
+          initOffice(resp.provider_office); //jshint ignore:line
+          officesVm.closeModal();
+        }, function(rpta){
+          officesVm.messages = rpta.status===422 ? rpta.data.errors:undefined;
+          $ionicLoading.hide();
         });
-        initOffice(resp.provider_office); //jshint ignore:line
-        officesVm.closeModal();
-      }, error);
+      }
     }
 
-    function submitDeleteModal(){
+    function submitOfficeDelete(){
       officesVm.closeModal();
       $ionicPopup.alert({
         title: 'Error',
@@ -85,11 +90,5 @@
         template: '{{::("globals.updating"|translate)}}'
       });
     }
-
-    function error(resp){
-      officesVm.messages = resp.status===422 ? resp.data.errors:undefined;
-      $ionicLoading.hide();
-    }
-
   }
 })();

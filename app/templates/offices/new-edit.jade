@@ -10,8 +10,8 @@ ion-modal-view.item-page
       )
   ion-content.resource-form
     form(
-      name='form'
-      ng-submit='officesVm.submitModal()'
+      name='officesVm.form'
+      ng-submit='officesVm.submitOffice()'
       novalidate
     )
       .list.list-inset
@@ -26,22 +26,34 @@ ion-modal-view.item-page
           )
         show-error(array-messages="officesVm.messages.ciudad")
 
-        label.item.item-input.item-stacked-label
+        label.item.item-input.item-stacked-label(
+          ng-class="{'item-error': officesVm.form.direccion.$touched && officesVm.form.direccion.$invalid}"
+          )
           span.input-label {{::("office.direccion"|translate|uppercase)}}
           input(
             type='text'
+            name='direccion'
             ng-model='officesVm.office.direccion'
             ng-class="input-error"
+            required
           )
+          .show-errors(ng-messages="officesVm.form.direccion.$error" ng-if="officesVm.form.direccion.$touched")
+            span(ng-message="required" class="message-error") {{::("office.requeredInput"|translate)}}
         show-error(array-messages="officesVm.messages.direccion")
 
-        label.item.item-input.item-stacked-label
+        label.item.item-input.item-stacked-label(
+          ng-class="{'item-error': officesVm.form.telefono.$touched && officesVm.form.telefono.$invalid}"
+          )
           span.input-label {{::("office.telefono"|translate|uppercase)}}
           input(
             type='text'
+            name='telefono'
             ng-model='officesVm.office.telefono'
             ng-class="input-error"
+            required
           )
+          .show-errors(ng-messages="officesVm.form.telefono.$error" ng-if="officesVm.form.telefono.$touched")
+            span(ng-message="required" class="message-error") {{::("office.requeredInput"|translate)}}
         show-error(array-messages='officesVm.messages.telefono')
 
         label.item.item-input.item-select
@@ -61,12 +73,14 @@ ion-modal-view.item-page
         ion-datetime-picker.content-office-datetime(time ng-model='officesVm.office.hora_de_apertura')
           label.item.item-input.item-stacked-label
             span.input-label {{::("office.horaApertura"|translate|uppercase)}}
+            span(ng-if="!officesVm.office.hora_de_apertura") {{::("office.placeholderDate"|translate)}}
             | {{officesVm.office.hora_de_apertura| date: 'HH:mm a'}}
         show-error(array-messages='officesVm.messages.hora_de_apertura')
 
         ion-datetime-picker.content-office-datetime(time ng-model='officesVm.office.hora_de_cierre')
           label.item.item-input.item-stacked-label
             span.input-label {{::("office.horaCierre"|translate|uppercase)}}
+            span(ng-if="!officesVm.office.hora_de_cierre") {{::("office.placeholderDate"|translate)}}
             | {{officesVm.office.hora_de_cierre| date: 'HH:mm a'}}
         show-error(array-messages='officesVm.messages.hora_de_cierre')
 

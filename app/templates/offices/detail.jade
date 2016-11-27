@@ -21,10 +21,10 @@ ion-view(
         .col {{::("office.officeLegend"|translate)}}
         .col
           a(ng-class="{'action': officesVm.officeDetail.enabled==true}"
-          ng-click="officesVm.officeDetail.enabled && officesVm.showEditModal()") {{::("globals.edit"|translate)}}
+          ng-click="officesVm.officeDetail.enabled && officesVm.showEditOffice()") {{::("globals.edit"|translate)}}
         .col
           a.delete(ng-class="{'action': officesVm.officeDetail.enabled==true}"
-          ng-click="officesVm.officeDetail.enabled && officesVm.showDeleteModal()") {{::("globals.delete"|translate)}}
+          ng-click="officesVm.officeDetail.enabled && officesVm.showDeleteOffice()") {{::("globals.delete"|translate)}}
 
       .row.content-office
         table.table
