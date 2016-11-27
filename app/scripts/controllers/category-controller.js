@@ -2,8 +2,8 @@
   'use strict';
 
   angular
-    .module('porttare.controllers')
-    .controller('CategoryController', CategoryController);
+      .module('porttare.controllers')
+      .controller('CategoryController', CategoryController);
 
   function CategoryController(data, $state) {
     var categoryVm = this;
