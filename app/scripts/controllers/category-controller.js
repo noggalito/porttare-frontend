@@ -32,13 +32,15 @@
         {
           breakpoint: 700,
           settings: {
-            slidesToShow: 3
+            slidesToShow: 3,
+            centerMode: false
           }
         },
         {
           breakpoint: 1000,
           settings: {
-            slidesToShow: 4
+            slidesToShow: 4,
+            centerMode: false
           }
         }
       ]
