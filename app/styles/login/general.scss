@@ -4,6 +4,7 @@
   }
 
   .moviggo-logo-1 {
+    margin-top: 40px;
     margin-bottom: 50px;
 
     @media (min-height: 500px) {
@@ -54,30 +55,3 @@ ion-view[hide-nav-bar="true"] {
     }
   }
 }
-
-.center-items-login{
-  width: 100%;
-}
-
-@media (max-width: 768px) {
-  .center-items-login {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-
-  .moviggo-logo-1 {
-    margin-top: 40px;
-  }
-}
-
-@media (min-width: 769px) {
-  .center-items-login {
-    margin-left: 25%;
-    margin-right: 25%;
-  }
-
-  .moviggo-logo-1 {
-    margin-top: 70px;
-  }
-}
-
