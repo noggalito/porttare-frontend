@@ -1,36 +1,36 @@
-ion-content.profile-page
-  link-button(on-click="piVm.showNewModal(piVm.user)" text="{{::('globals.edit'|translate)}}")
-  .row
-    label.item.item-input.item-stacked-label
-      span.input-label {{::("user.name"|translate)}}
+ion-content.profile-page.responsive-sm
+  .text-center
+    link-button(on-click="piVm.showNewModal(piVm.user)" text="{{::('globals.edit'|translate)}}")
+  .col.col-offset-25.col-50
+    .row
+      label.item.item-input.item-stacked-label.tag-profile-buyer
+        span.input-label {{::("user.name"|translate)}}
 
-    label.item.item-input.item-stacked-label
-      span.input-label {{piVm.user.name}}
-  .row
-    label.item.item-input.item-stacked-label
-      span.input-label {{::("user.email"|translate)}}
+      label.item.item-input.item-stacked-label.info-profile-buyer
+        span.input-label {{piVm.user.name}}
+    .row
+      label.item.item-input.item-stacked-label.tag-profile-buyer
+        span.input-label {{::("user.email"|translate)}}
 
-    label.item.item-input.item-stacked-label
-      span.input-label {{piVm.user.email}}
-  .row
-    label.item.item-input.item-stacked-label
-      span.input-label {{::("user.age"|translate)}}
+      label.item.item-input.item-stacked-label.info-profile-buyer
+        span.input-label {{piVm.user.email}}
+    .row
+      label.item.item-input.item-stacked-label.tag-profile-buyer
+        span.input-label {{::("user.age"|translate)}}
 
-    label.item.item-input.item-stacked-label
-      span.input-label {{piVm.user.fecha_nacimiento | age}}
+      label.item.item-input.item-stacked-label.info-profile-buyer
+        span.input-label {{piVm.user.fecha_nacimiento | age}}
 
-  .row
-    label.item.item-input.item-stacked-label
-      span.input-label {{::("user.country"|translate)}}
+    .row
+      label.item.item-input.item-stacked-label.tag-profile-buyer
+        span.input-label {{::("user.country"|translate)}}
 
-    label.item.item-input.item-stacked-label
-      span.input-label {{piVm.user.ciudad}}
+      label.item.item-input.item-stacked-label.info-profile-buyer
+        span.input-label {{piVm.user.ciudad}}
 
-  .row
-    label.item.item-input.item-stacked-label
-      span.input-label {{::("user.password"|translate)}}
+    .row
+      label.item.item-input.item-stacked-label.tag-profile-buyer
+        span.input-label {{::("user.password"|translate)}}
 
-    label.item.item-input.item-stacked-label
-      span.input-label ********
-
-
+      label.item.item-input.item-stacked-label.info-profile-buyer
+        span.input-label ********
