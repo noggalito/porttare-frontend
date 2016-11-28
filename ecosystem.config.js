@@ -12,5 +12,6 @@ module.exports = {
                            "pm2 startOrRestart ~/demo-porttare-frontend/shared/ecosystem.json && " +
                            "touch ~/demo-porttare-frontend/current/www/cordova.js"
         }
+        
     }
 }
