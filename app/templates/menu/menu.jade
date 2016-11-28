@@ -10,7 +10,7 @@ ion-side-menus(enable-menu-with-back-views='false')
     ion-content
       ion-list
         ion-item(menu-close='' class='menu-header')
-          | {{siteVm.user.name}}
+          | {{siteVm.userName()}}
         ion-item(menu-close='' ui-sref='app.profile.info')
           | {{::("menu.profile"|translate)}}
         ion-item(menu-close='' ui-sref='app.cart.index')
