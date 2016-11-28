@@ -24,6 +24,16 @@
     margin-right: auto;
   }
 
+  .center-items-login {
+    margin-left: 0;
+    margin-right: 0;
+
+    @media (min-width: $grid-responsive-md-break) {
+      margin-left: 25%;
+      margin-right: 25%;
+    }
+  }
+
   form {
     width: 100%;
   }
