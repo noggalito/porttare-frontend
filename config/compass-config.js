@@ -43,4 +43,5 @@
     };
 
     return module.exports = compassConfig;
+    
 })();
