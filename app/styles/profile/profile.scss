@@ -1,21 +1,41 @@
 .profile-page {
-  margin-top: 5rem;
+  margin-top: 3rem;
+
+  //tamaño header and espaciados
   .profile-header {
     text-align: center;
-    height: 5rem;
+    padding: 2rem;
+    height: 21rem;
     .user-name {
       font-family: Montserrat-Light;
       font-size: 2rem;
+      margin: 3rem;
     }
   }
+
   .profile-body {
+
     .state-tabs {
       .tab-item {
         text-transform: uppercase;
       }
     }
+
     .profile-index {
       margin-top: 2rem;
+    }
+    //informacion del comprador
+    .info-profile-buyer {
+      padding: 1rem;
+      border-bottom: 0.1rem solid #FDC30D;
+      width: 100%;
+    }
+    //etiqueta que hace mencion al dato del comprador(Ej: "username:")
+    .tag-profile-buyer {
+      padding: 1rem;
+      border-bottom: 0.1rem solid #FDC30D;
+      border-right: 0.1rem solid #FDC30D;
+      width: 100%;
     }
   }
 }
