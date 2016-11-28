@@ -46,6 +46,9 @@
         ErrorHandlerService = {
           handleCommonErrorGET: sinon.stub()
         };
+        ErrorHandlerService = {
+          handleCommonErrorGET: sinon.stub()
+        };
         stateRedirect = 'courier.orders';
       })
     );
