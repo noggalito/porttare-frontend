@@ -21,10 +21,10 @@ ion-modal-view.client-page
           input(
             type='file'
             ngf-select
-            ng-model="piVm.userEdit.image"
+            ng-model="piVm.userEdit.custom_image"
             accept="image/*"
           )
-        show-error(array-messages='piVm.user.image')
+        show-error(array-messages='piVm.user.custom_image')
 
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': piVm.user.email}"
