@@ -13,7 +13,7 @@
       constants: {
         ENV: {
           name: 'development',
-          apiHost: 'http://192.168.100.3:3785',
+          apiHost: 'http://localhost:3785',
           gMapsKey: 'AIzaSyDbY9wkWTMUHeT_J2Uehq0-i0S1PCaybFE'
         }
       }
