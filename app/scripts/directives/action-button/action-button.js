@@ -13,7 +13,8 @@
         onClick: '&',
         text: '@',
         color: '@',
-        type: '@'
+        type: '@',
+        ngDisabled: '='
       },
       controller: ActionButtonController,
       controllerAs: 'abVm',

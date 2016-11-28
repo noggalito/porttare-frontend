@@ -7,6 +7,13 @@
   text-align: center;
   text-transform: uppercase;
   width: auto;
+  &.disable {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  &.enable {
+    opacity: 1;
+  }
   &.yellow {
     @include action-button-color($base-yellow);
   }

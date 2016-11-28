@@ -24,11 +24,15 @@ ion-view(
         h4 Observaciones
         textarea(ng-model='productVm.item.observaciones')
         .add-product
-          button.button.button-outline.button-energized(ng-click="::productVm.addToCart()"
-                                                        ng-disabled="!productVm.item.cantidad")
-            | {{::("product.addCar"|translate)}}
-          button.button.button-outline.button-positive
-            | {{::("product.addWishlist"|translate)}}
+          action-button.add-product-button(
+            ng-click="productVm.addToCart()"
+            ng-disabled="!productVm.item.cantidad"
+            text="{{::('product.addCar'|translate)}}"
+          )
+          action-button.add-product-button(
+            text="{{::('product.addWishlist'|translate)}}"
+            color="blue"
+          )
   ion-footer-bar.bar-stable(align-title='center')
     .footer-product
       .left-panel

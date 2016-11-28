@@ -2,5 +2,6 @@ button.action-button(
   ng-click='abVm.onButtonClick()'
   ng-class='abVm.customColor'
   type='abVm.type'
+  class="{{abVm.ngDisabled ? 'disable' : 'enable'}}"
 )
   span {{::abVm.text}}

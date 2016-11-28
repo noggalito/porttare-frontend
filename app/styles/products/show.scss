@@ -8,6 +8,11 @@
     button{
       width: 50%;
     }
+    .add-product-button {
+      display: flex;
+      justify-content: center;
+      margin: 30px 0;
+    }
   }
   .description{
     display: flex;
