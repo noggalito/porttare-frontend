@@ -6,11 +6,14 @@
     .controller('SiteController', SiteController);
 
   function SiteController($rootScope, $ionicLoading, $auth) {
-    var siteVm = this;
-    siteVm.user = null;
+    var siteVm = this,
+        currentUser = null;
+
+    siteVm.userName = userName;
+
     $auth.validateUser()
       .then(function userAuthorized(user) {
-        siteVm.user = user;
+        currentUser = user;
       });
 
     $rootScope.$on('$stateChangeStart', function(){
@@ -26,5 +29,11 @@
     $rootScope.$on('$stateChangeError', function(){
       $ionicLoading.hide();
     });
+
+    function userName () {
+      if (currentUser) {
+        return currentUser.name || currentUser.nickname || currentUser.email;
+      }
+    }
   }
 })();

@@ -3,9 +3,10 @@
 
   angular
     .module('porttare')
-    .config(scrollingConfig);
+    .config(ionicConfig);
 
-  function scrollingConfig($ionicConfigProvider) {
+  function ionicConfig($ionicConfigProvider) {
+    $ionicConfigProvider.navBar.alignTitle('center');
     // enable JS scrolling instead of native
     $ionicConfigProvider.scrolling.jsScrolling(true);
   }

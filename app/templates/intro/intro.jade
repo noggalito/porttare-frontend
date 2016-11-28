@@ -3,24 +3,26 @@ ion-slide-box.intro-slides(on-slide-changed="introVm.slideChanged(index)")
     .list
       .list-logo.above.logo-compra
       .list-logo.below.logo-bolsa
-    .row
-      .text
+    .row.intro-copytext-wrapper
+      .intro-copytext
         | Consigue lo que quieras, cuando quieras y en donde lo quieras, ¡Simple!
 
   ion-slide
     .list
       .list-logo.above.logo-vende
       .list-logo.below.logo-precio
-    .row
-      .text
+    .row.intro-copytext-wrapper
+      .intro-copytext
         | Dales a tus clientes lo que deseen, cuando lo deseen, donde ellos lo deseen, ¡Simple!
+
   ion-slide
     .list
       .list-logo.above.logo-envia
       .list-logo.below.logo-cohete
-    .row
-      .text
-        |No te preocupes, el trabajo difícil lo hacemos por ti, ¡Simple!
+    .row.intro-copytext-wrapper
+      .intro-copytext
+        | No te preocupes, el trabajo difícil lo hacemos por ti, ¡Simple!
+
 .bar.bar-footer.bar-intro-button
   button.intro-button.common-button.button.no-animation(ng-click="introVm.next()" ng-if="introVm.slideIndex != 2")
     | Continuar

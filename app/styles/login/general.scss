@@ -1,11 +1,25 @@
 .login-form {
+  .scroll {
+    padding-bottom: 20px;
+  }
+
   .moviggo-logo-1 {
     margin-top: 40px;
     margin-bottom: 50px;
+
+    @media (min-height: 550px) {
+      margin-top: 60px;
+    }
   }
 
   form {
     width: 100%;
+  }
+
+  // define a min so that we can scroll to buttons
+  // when screen is too small
+  .scroll {
+    min-height: 460px;
   }
 }
 
@@ -14,5 +28,14 @@
 
   .title {
     top: 5px;
+  }
+}
+
+ion-view[hide-nav-bar="true"] {
+  // hide default navbar
+  .nav-bar-block {
+    .bar-header {
+      display: none;
+    }
   }
 }
