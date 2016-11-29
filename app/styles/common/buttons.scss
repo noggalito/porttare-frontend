@@ -15,11 +15,12 @@
   background-color: $base-yellow;
   -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
 }
 
 .button-primary,
-.button-primary.button-full {
+.button-primary.button-full,
+.button-primary.activated {
   @extend .common-button;
 
   &.spaced {
@@ -27,11 +28,24 @@
   }
 }
 
-.facebook-login {
+.facebook-login,
+.facebook-login.activated, {
   @extend .common-button;
   background-color: $facebook-blue;
 
   .fb-copytext {
     padding-left: 30px;
+  }
+}
+
+.button-primary,
+.facebook-login {
+  &.activated {
+    color: $white;
+  }
+
+  &:hover {
+    color: $white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   }
 }

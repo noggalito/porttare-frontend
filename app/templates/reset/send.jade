@@ -7,13 +7,13 @@ ion-view(
   ion-content.login-form
     .row
       .col.header-text Recuperar contraseña
-    .row
+    .row.constraint-width
       .col.intro-description
-        p Escribe tu correo electrónico y te enviaremos una clave temporal que luego podrás cambiar
+        p Escribe tu dirección de correo electrónico y te enviaremos instrucciones para recuperar tu contraseña
 
     .row
       form(ng-submit='resetVm.resetPassword()')
-        .list.list-inset
+        .list.list-inset.constraint-width
           label.item.item-input
             i.icon.ion-email.placeholder-icon
             input(
@@ -22,7 +22,7 @@ ion-view(
               required='required'
               placeholder='Correo electrónico'
             )
-        .list.list-inset.button-actions
+        .list.list-inset.constraint-width.button-actions
           button(
             type='submit'
           ).button.button-full.button-primary.spaced

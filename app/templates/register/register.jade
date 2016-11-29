@@ -15,7 +15,7 @@ ion-view(
       form(name='registerVm.registerForm'
           ng-submit='registerVm.register()'
           novalidate)
-        .list.list-inset
+        .list.list-inset.constraint-width
           label.item.item-input(
             ng-class="{'item-error': registerVm.registerForm.email.$touched && registerVm.registerForm.email.$invalid}"
           )
@@ -61,7 +61,7 @@ ion-view(
             span(ng-message="required" class="message-error") Campo requerido
           show-error(array-messages="registerVm.errors.password_confirmation")
 
-        .button-actions.list.list-inset
+        .button-actions.list.list-inset.constraint-width
           input(
             type='submit',
             value="¡Regístrame!"
@@ -71,7 +71,7 @@ ion-view(
       .or-option
         span {{::("globals.or"|translate)}}
 
-    .list.list-inset
+    .list.list-inset.constraint-width
       .button.facebook-login(ng-click="registerVm.loginWithFB()")
         span.fb-left-icon
         span.fb-copytext Continuar con facebook
