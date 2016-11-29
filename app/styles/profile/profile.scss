@@ -10,6 +10,10 @@
       font-family: Montserrat-Light;
       font-size: 2rem;
       margin: 3rem;
+
+      @media (max-width: $grid-responsive-md-break) {
+        font-size: 1rem;
+      }
     }
   }
 
@@ -21,21 +25,21 @@
       }
     }
 
+    .item {
+      border-color: transparent;
+      background-color: transparent;
+      padding: 1rem;
+      border-bottom: 0.1rem solid #FDC30D;
+      width: 100%;
+    }
+
     .profile-index {
       margin-top: 2rem;
     }
-    //informacion del comprador
-    .info-profile-buyer {
-      padding: 1rem;
-      border-bottom: 0.1rem solid #FDC30D;
-      width: 100%;
-    }
+
     //etiqueta que hace mencion al dato del comprador(Ej: "username:")
-    .tag-profile-buyer {
-      padding: 1rem;
-      border-bottom: 0.1rem solid #FDC30D;
+    .label-profile-buyer {
       border-right: 0.1rem solid #FDC30D;
-      width: 100%;
     }
   }
 }
