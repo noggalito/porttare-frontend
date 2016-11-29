@@ -18,7 +18,6 @@
     dispatchersVm.submitProcess = submitProcess;
     dispatchersVm.detailDispatcher = detailDispatcher;
     dispatchersVm.query = '';
-    var selectedDispatcherIndex;
     getDispatchers();
     getProviderOffices();
 
@@ -84,7 +83,6 @@
 
     function closeModal() {
       ModalService.closeModal();
-      selectedDispatcherIndex = null;
       dispatchersVm.dispatcher = null;
       dispatchersVm.messages = {};
       dispatchersVm.query = '';

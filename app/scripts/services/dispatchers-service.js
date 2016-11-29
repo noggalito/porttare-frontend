@@ -5,9 +5,7 @@
     .module('porttare.services')
     .factory('DispatchersService', DispatchersService);
 
-  function DispatchersService($http,
-                          ENV,
-                          CommonService) {
+  function DispatchersService(CommonService) {
 
     var service = {
       getDispatchers: getDispatchers,

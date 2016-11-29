@@ -8,22 +8,22 @@ ion-view(
       label.search-input
         i.icon.ion-search.placeholder-icon
         input(
-          ng-model="dispatchersVm.query"
-          type="text"
+          ng-model='dispatchersVm.query'
+          type='text'
           placeholder='{{::("dispatcher.dispatcherSearch"|translate)}}'
         )
     .row.footer-dispatcher-container
       button.button-secondary-yellow(
-        ng-click="dispatchersVm.showNewModal()"
+        ng-click='dispatchersVm.showNewModal()'
       ) {{::("globals.new"|translate)}} {{::("dispatcher.dispatcher"|translate)}}
     .row.list-header
       .col.col-20.list-title {{::("dispatcher.dispatcherId"|translate)}}
       .col.col-80.list-title {{::("dispatcher.dispatcherName"|translate)}}
     .row.list-content(
-      ng-repeat="dispatcher in dispatchersVm.dispatchers | filter:dispatchersVm.query track by dispatcher.id"
+      ng-repeat='dispatcher in dispatchersVm.dispatchers | filter:dispatchersVm.query track by dispatcher.id'
     )
       .col.col-20.list-item {{ dispatcher.id }}
       .col.col-50.list-item {{ dispatcher.user.name }}
       a.col.action.light-blue(
-        ng-click="dispatchersVm.detailDispatcher(dispatcher)"
+        ng-click='dispatchersVm.detailDispatcher(dispatcher)'
       ) {{::("globals.seeMore"|translate)}}

@@ -11,7 +11,6 @@
                               $ionicPopup,
                               $scope,
                               $state,
-                              $stateParams,
                               $localStorage) {
 
     var dispatchersVm = this;
