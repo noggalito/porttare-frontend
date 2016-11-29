@@ -1,0 +1,11 @@
+.slick-provider
+  slick-wrapper(settings="spcVm.options.slickSettings")
+    .slick-container(ng-repeat="provider in ::spcVm.providers")
+      .slick-content(ng-click="spcVm.goToProducts(provider)")
+        .provider-card
+          .img-container
+            .img(style="background-image: url('{{provider.imagen | defaultImage:'../images/ionic.png'}}')")
+          .provider-card-footer
+            .nombre {{provider.nombre_establecimiento}}
+            .horario {{provider.horario}}
+
