@@ -51,16 +51,18 @@
     margin: 0;
     padding: 0;
   }
-  .key{
+  .row-border-buttom {
+    border-bottom: 1px solid $base-yellow;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  .col-border-right {
     color: $search-label-grey;
     border-right: 1px solid $base-yellow;
   }
-  .value{
-    color: $base-grey;
+  .text-center {
     text-align: center;
-  }
-  .line-buttom{
-    border-bottom: 1px solid $base-yellow;
   }
 }
 

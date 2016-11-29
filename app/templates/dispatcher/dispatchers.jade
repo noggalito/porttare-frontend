@@ -20,8 +20,7 @@ ion-view(
       .col.col-20.list-title {{::("dispatcher.dispatcherId"|translate)}}
       .col.col-80.list-title {{::("dispatcher.dispatcherName"|translate)}}
     .row.list-content(
-      ng-repeat="dispatcher in dispatchersVm.dispatchers | filter:dispatchersVm.query"
-      ng-init="idx = $index"
+      ng-repeat="dispatcher in dispatchersVm.dispatchers | filter:dispatchersVm.query track by dispatcher.id"
     )
       .col.col-20.list-item {{ dispatcher.id }}
       .col.col-50.list-item {{ dispatcher.user.name }}

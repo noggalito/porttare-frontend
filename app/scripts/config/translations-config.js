@@ -210,7 +210,9 @@
         successDispatcherSave: 'Despachador guardado éxitosamente',
         successUpdateDispatcher: 'Despachador actualizado éxitosamente',
         successDeleteDispatcher: 'Despachador eliminado éxitosamente',
+        id:'ID',
         email: 'Email del despachador',
+        provider_office_id: 'Sucursal', //jshint ignore:line
         providerOfficeId: 'Sucursal'
       },
       password: {

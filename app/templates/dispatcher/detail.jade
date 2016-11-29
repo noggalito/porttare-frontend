@@ -7,17 +7,15 @@ ion-view(
     .row
       .col.col-67.detailTitle {{dispatchersVm.dispatcher.user.name}}
       .col.col-33.detailActions
-        a.edit.light-blue {{::("globals.edit"|translate)}}
-        a.delete.light-red {{::("globals.delete"|translate)}}
+        a.edit.light-blue(
+          ng-click='dispatchersVm.showEditModal()'
+        ) {{::("globals.edit"|translate)}}
+        a.delete.light-red(
+          ng-click='dispatchersVm.deleteDispatcher()'
+        ) {{::("globals.delete"|translate)}}
     .row
       .col.detailSubTitle {{::("dispatcher.dataDispatcher"|translate)}}
     .containerDispatcher
-      .row.line-buttom
-        .col.col-50.key {{::("dispatcher.dispatcherId"|translate)}}
-        .col.col-50.value {{dispatchersVm.dispatcher.id}}
-      .row.line-buttom
-        .col.col-50.key {{::("dispatcher.dispatcherEmail"|translate)}}
-        .col.col-50.value {{dispatchersVm.dispatcher.email}}
-      .row
-        .col.col-50.key {{::("dispatcher.office"|translate)}}
-        .col.col-50.value {{dispatchersVm.dispatcher.provider_office_id}}
+      .row.row-border-buttom(ng-repeat="(key, value) in dispatchersVm.detailDispatcher")
+        .col.col-50.col-border-right {{::("dispatcher." + key|translate)}}
+        .col.text-center {{value}}

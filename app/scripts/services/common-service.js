@@ -10,7 +10,8 @@
     var service = {
       getObjects: getObjects,
       newObject: newObject,
-      editObject: editObject
+      editObject: editObject,
+      deleteObject: deleteObject
     };
 
     return service;
@@ -37,11 +38,20 @@
     }
 
     function editObject(data, url) {
-      console.log(data, url)
       return $http({
         method: 'PUT',
         url: ENV.apiHost + url + data.id,
         data: data
+      })
+        .then(function success(resp){
+          return resp.data;
+        });
+    }
+
+    function deleteObject(id, url) {
+      return $http({
+        method: 'DELETE',
+        url: ENV.apiHost + url + id,
       })
         .then(function success(resp){
           return resp.data;

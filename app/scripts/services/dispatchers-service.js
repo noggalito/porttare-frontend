@@ -32,14 +32,11 @@
     }
 
     function editDispatcher(data) {
-      return CommonService.editObject(data, '/api/provider/dispatchers');
+      return CommonService.editObject(data, '/api/provider/dispatchers/');
     }
 
-    function deleteDispatcher(dispatcherId) {
-      return $http({
-        method: 'DELETE',
-        url: ENV.apiHost + '/api/provider/dispatchers/' + dispatcherId,
-      });
+    function deleteDispatcher(id) {
+      return CommonService.deleteObject(id, '/api/provider/dispatchers/');
     }
   }
 })();

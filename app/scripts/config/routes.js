@@ -293,6 +293,7 @@ function routes($stateProvider, $urlRouterProvider) {
   })
   .state('provider.dispatchers.index', {
     url: '/',
+    cache: false,
     views: {
       'menuContent@provider': {
         templateUrl: 'templates/dispatcher/dispatchers.html',
