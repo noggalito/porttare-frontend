@@ -15,7 +15,8 @@
       .then(function userAuthorized(user) {
         return CartService.getCart().then(function(response){
           user.customer_order = response.customer_order; //jshint ignore:line
-          return currentUser = user;          
+          currentUser = user;
+          return currentUser;          
         });
       });
 

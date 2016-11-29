@@ -8,19 +8,34 @@
         deferLoginWithFB,
         deferValidateUser,
         APP,
-        $state;
+        $state,
+        $q,
+        deferGetCart,
+        CartService;
 
     beforeEach(module('porttare.controllers'));
+    beforeEach(module('porttare.services', function($provide){
+      $provide.factory('CartService', function(){
+        return {
+          getCart: function(){
+            deferGetCart = $q.defer();
+            return deferGetCart.promise;
+          }
+        };
+      });
+    }));
 
     beforeEach(inject(
       function ($q,
                 _$controller_,
-                _$rootScope_) {
+                _$rootScope_,
+                _CartService_) {
 
         deferLoginWithFB  = $q.defer();
         deferValidateUser = $q.defer();
         $controller = _$controller_;
         $rootScope = _$rootScope_;
+        CartService =_CartService_;
         $ionicLoading = { show: sinon.stub(), hide: sinon.stub()};
         $state        = {
           go: sinon.stub(),
