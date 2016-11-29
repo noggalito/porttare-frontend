@@ -49,8 +49,8 @@
   color: $base-yellow;
 }
 
-.facebook-login,
- {
+.facebook-login
+{
   @extend .common-button;
   background-color: $facebook-blue;
 
