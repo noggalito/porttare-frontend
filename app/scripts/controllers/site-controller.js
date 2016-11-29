@@ -8,9 +8,11 @@
   function SiteController($rootScope, $ionicLoading, $auth) {
     var siteVm = this;
     siteVm.user = null;
+
     $auth.validateUser()
       .then(function userAuthorized(user) {
         siteVm.user = user;
+
       });
 
     $rootScope.$on('$stateChangeStart', function(){

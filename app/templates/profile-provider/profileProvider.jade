@@ -1,0 +1,134 @@
+ion-view(
+
+)
+    ion-nav-title
+        .alt-logo
+    ion-content.addresses-page
+
+        .address-container()
+            .profile-page
+                .profile-header
+                    .user-name
+                        | {{ siteVm.user.provider_profile.razon_social }}
+            .edit
+
+                link-button(ng-click="providerProfileVm.showEditModal()" text="{{::('globals.edit'|translate)}}")
+            .address-grid
+
+                .row
+
+                    .col.col-label {{::("RUC"|translate)}}
+                    .col {{user.provider_profile.ruc}}
+
+                .row
+
+                    .col.col-label {{::("provider.businessName"|translate)}}
+                    .col {{user.provider_profile.razon_social}}
+
+                .row
+
+                    .col.col-label {{::("provider.name"|translate)}}
+                    .col {{user.provider_profile.nombre_establecimiento}}
+
+                .row
+
+                    .col.col-label {{::("provider.economicActivity"|translate)}}
+                    .col {{user.provider_profile.actividad_economica}}
+
+                .row
+
+                    .col.col-label {{::("provider.LegalRepresentative"|translate)}}
+                    .col {{user.provider_profile.representante_legal}}
+
+                .row
+
+                    .col.col-label {{::("provider.phone"|translate)}}
+                    .col {{user.provider_profile.telefono}}
+
+                .row
+
+                    .col.col-label {{::("provider.email"|translate)}}
+                    .col {{user.provider_profile.email}}
+
+                .row
+
+                    .col.col-label {{::("provider.webSite"|translate)}}
+                    .col {{user.provider_profile.website}}
+
+                .row
+
+                    .col.col-label {{::("provider.methodPayment"|translate)}}
+                    .col {{user.provider_profile.formas_de_pago}}
+
+                .row
+
+                    .col.col-label {{::("provider.bank.name"|translate)}}
+                    .col {{user.provider_profile.banco_nombre}}
+
+                .row
+
+                    .col.col-label {{::("provider.bank.account"|translate)}}
+                    .col {{user.provider_profile.banco_numero_cuenta}}
+
+                .row
+
+                    .col.col-label {{::("provider.bank.type"|translate)}}
+                    .col {{user.provider_profile.banco_nombre.banco_tipo_cuenta}}
+                //oficina
+                .row
+
+                    .col.col-label {{::("provider.openTime"|translate)}}
+                    .col {{user.provider_profile.provider_offices.hora_de_apertura}}
+
+                .row
+
+                    .col.col-label {{::("provider.closeTime"|translate)}}
+                    .col {{user.provider_profile.provider_offices.hora_de_cierre}}
+
+                .row
+
+                    .col.col-label {{::("provider.initialLaborDay"|translate)}}
+                    .col {{user.provider_profile.provider_offices.inicio_de_labores}}
+
+                .row
+
+                    .col.col-label {{::("provider.finalLaborDay"|translate)}}
+                    .col {{user.provider_profile.provider_offices.final_de_labores}}
+
+                .row
+
+                    .col.col-label {{::("TELEFONO DE OFICINA"|translate)}}
+                    .col {{user.provider_profile.provider_offices.telefono}}
+
+                .row
+
+                    .col.col-label {{::("DIRECCION"|translate)}}
+                    .col {{user.provider_profile.provider_offices.direccion}}
+
+
+                .row
+                    .col.col-label {{::("CIUDAD"|translate)}}
+                    .col {{user.provider_profile.provider_offices.cuidad}}
+
+                .row
+
+                    .col.col-label {{::("FACEBOOK"|translate)}}
+                    .col {{user.provider_profile.facebook_handle}}
+
+                .row
+
+                    .col.col-label {{::("TWITTER"|translate)}}
+                    .col {{user.provider_profile.twittter_handle}}
+
+                .row
+
+                    .col.col-label {{::("INSTAGRAM"|translate)}}
+                    .col {{user.provider_profile.instagram_handle}}
+
+                .row
+
+                    .col.col-label {{::("YOUTUBE"|translate)}}
+                    .col  {{user.provider_profile.youtube_handle}}
+
+
+

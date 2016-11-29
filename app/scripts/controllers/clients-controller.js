@@ -61,6 +61,7 @@
       });
       ClientsService.editClient(clientsVm.client)
         .then(function success(resp) {
+
           $ionicLoading.hide();
           $ionicPopup.alert({
             title: 'Éxito',

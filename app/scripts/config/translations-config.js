@@ -44,6 +44,7 @@
           cart: 'Mi carro'
         },
         provider: {
+          profile:'Perfil de Proveedor',
           orders: 'Pedidos',
           products: 'Productos',
           clients: 'Clientes',
@@ -64,6 +65,7 @@
         }
       },
       provider: {
+        successUpdateProfileProvider: 'Perfil actualizado éxitosamente',
         itemsProvider: 'Productos de Proveedor',
         formLegendFirts: 'Datos nuevo proveedor - Paso 1',
         formLegendSecond: 'Datos bancarios proveedor - Paso 2',
