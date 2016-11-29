@@ -276,5 +276,6 @@
     });
 
     $translateProvider.preferredLanguage('es');
+      
   }
 })();
