@@ -13,7 +13,7 @@ ion-side-menus(enable-menu-with-back-views='false')
           | {{siteVm.userName()}}
         ion-item(menu-close='' ui-sref='app.profile.info')
           | {{::("menu.profile"|translate)}}
-        ion-item(menu-close='' ui-sref='app.cart.index')
+        ion-item(menu-close='' ui-sref='app.cart.index' ng-if='user.customer_order')
           | {{::("menu.client.cart"|translate)}}
         ion-item(menu-close='' ui-sref='app.categories.index')
           | {{::("menu.client.category"|translate)}}

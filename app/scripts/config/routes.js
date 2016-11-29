@@ -430,10 +430,13 @@ function routes($stateProvider, $urlRouterProvider) {
       });
   }
 
-  function accessIfUserAuth($auth, $state, $ionicLoading, APP) {
+  function accessIfUserAuth($auth, $state, $ionicLoading, APP, CartService) {
     return $auth.validateUser()
       .then(function userAuthorized(user) {
-        return user;
+        return CartService.getCart().then(function(response){
+          user.customer_order = response.customer_order; //jshint ignore:line
+          return user;
+        });
       }, function userNotAuthorized() {
         $state.go(APP.preloginState).then(function () {
           $ionicLoading.hide();

@@ -5,16 +5,14 @@
     .module('porttare.controllers')
     .controller('CartController', CartController);
 
-  function CartController(CartService) {
+  function CartController($auth) {
     var cartVm = this;
     cartVm.hola = 1;
 
     init();
 
     function init(){
-      CartService.getCart().then(function(response){
-        cartVm.cart = response.customer_order; //jshint ignore:line
-      });
+      cartVm.cart = $auth.user.customer_order; //jshint ignore:line
     }
   }
 })();
