@@ -254,7 +254,9 @@ function routes($stateProvider, $urlRouterProvider) {
     abstract: true,
     templateUrl: 'templates/menu/menu-provider.html',
     resolve: {
-      auth: accessIfEnabledProvider
+      auth: function ( UserAuthService) {
+              return UserAuthService.checkIfEnabledProvider();
+            }
     }
   })
   .state('provider.items', {
@@ -446,16 +448,5 @@ function routes($stateProvider, $urlRouterProvider) {
           $ionicLoading.hide();
         });
       });
-  }
-
-  function accessIfEnabledProvider($auth, $state, $ionicLoading){
-    return $auth.validateUser()
-     .then(function userAuthorized(user){
-        if (user.provider_profile.status === 'disabled') { //jshint ignore:line
-          $state.go('disabledUserError').then(function () {
-            $ionicLoading.hide();
-          });
-        }
-     });
   }
 }
