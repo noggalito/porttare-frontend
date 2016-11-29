@@ -2,8 +2,8 @@
   'use strict';
   /* jshint validthis:true */
   angular
-    .module('porttare.directives')
-    .directive('slickWrapper', slickWrapper);
+      .module('porttare.directives')
+      .directive('slickWrapper', slickWrapper);
 
   function slickWrapper() {
     var directive = {
