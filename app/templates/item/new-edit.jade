@@ -15,14 +15,10 @@ ion-modal-view.item-page
     )
       .list.list-inset
         legend {{::("item.formLegend"|translate)}}
-        label.item.item-input.item-stacked-label
-          span.input-label {{::("item.stock"|translate|uppercase)}}
-          ion-toggle(ng-model='itemsVm.item.enStock', toggle-class='toggle-calm')
 
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': itemsVm.itemForm.titulo.$touched && itemsVm.itemForm.titulo.$invalid}"
         )
-
           span.input-label {{::("item.titulo"|translate|uppercase)}}
           input(
             name='titulo'
@@ -94,14 +90,6 @@ ion-modal-view.item-page
             ng-model='itemsVm.item.peso'
           )
         show-error(array-messages='itemsVm.messages.peso')
-
-        label.item.item-input.item-stacked-label
-          span.input-label {{::("item.cantidad"|translate|uppercase)}}
-          input(
-            type='text'
-            ng-model='itemsVm.item.cantidad'
-          )
-        show-error(array-messages='itemsVm.messages.cantidad')
         label.item.item-input.item-stacked-label.imgs
           span.input-label-imgs {{::("item.imagen"|translate|uppercase)}}
         .content
