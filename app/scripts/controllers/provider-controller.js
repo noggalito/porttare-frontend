@@ -13,8 +13,7 @@
                               $ionicLoading,
                               $ionicScrollDelegate) {
     var providerVm = this;
-    providerVm.initProvider = initProvider;
-    providerVm.initProvider();
+    initProvider();
 
     var stateRedirect = 'provider.items';
     var transKeys = [

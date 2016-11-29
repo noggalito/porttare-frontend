@@ -7,7 +7,7 @@ ion-view(
   ion-content.resource-form(locking="false")
     .row
       form(
-        name="newCourierForm"
+        name="courierVm.courierForm"
         ng-submit='courierVm.createCourier()'
         novalidate
       )
@@ -15,48 +15,61 @@ ion-view(
           legend {{::("courier.formLegend"|translate)}}
 
           label.item.item-input.item-stacked-label(
-            ng-class="{'item-error': courierVm.messages.nombres}"
+            ng-class="{'item-error': courierVm.courierForm.nombres.$touched && courierVm.courierForm.nombres.$invalid}"
           )
             span.input-label {{::("courier.names"|translate)}}
             input(
               type='text'
               name='nombres'
-              ng-model='courierVm.courierForm.nombres'
+              ng-model='courierVm.courier.nombres'
+              required
             )
+            .show-errors(ng-messages="courierVm.courierForm.nombres.$error" ng-if="courierVm.courierForm.nombres.$touched")
+              span(ng-message="required" class="message-error") Campo requerido
           show-error(array-messages='courierVm.messages.nombres')
 
           label.item.item-input.item-stacked-label(
-            ng-class="{'item-error': courierVm.messages.ruc}"
+            ng-class="{'item-error': courierVm.courierForm.ruc.$touched && courierVm.courierForm.ruc.$invalid}"
           )
             span.input-label {{::("courier.ruc"|translate)}}
             input(
               type='text'
               name='ruc'
-              ng-model='courierVm.courierForm.ruc'
+              ng-model='courierVm.courier.ruc'
+              required
             )
+            .show-errors(ng-messages="courierVm.courierForm.ruc.$error" ng-if="courierVm.courierForm.ruc.$touched")
+              span(ng-message="required" class="message-error") Campo requerido
           show-error(array-messages='courierVm.messages.ruc')
 
           label.item.item-input.item-stacked-label(
-            ng-class="{'item-error': courierVm.messages.telefono}"
+            ng-class="{'item-error': courierVm.courierForm.telefono.$touched && courierVm.courierForm.telefono.$invalid}"
           )
             span.input-label {{::("courier.phone"|translate)}}
             input(
               type='text'
               name='telefono'
-              ng-model='courierVm.courierForm.telefono'
+              ng-model='courierVm.courier.telefono'
+              required
             )
+            .show-errors(ng-messages="courierVm.courierForm.telefono.$error" ng-if="courierVm.courierForm.telefono.$touched")
+              span(ng-message="required" class="message-error") Campo requerido
           show-error(array-messages='courierVm.messages.telefono')
 
           label.item.item-input.item-stacked-label(
-            ng-class="{'item-error': courierVm.messages.email}"
+            ng-class="{'item-error': courierVm.courierForm.email.$touched && courierVm.courierForm.email.$invalid}"
           )
             span.input-label {{::("courier.email"|translate)}}
             input(
               type='email'
               placeholder='user@mydomain.com'
               name='email'
-              ng-model='courierVm.courierForm.email'
+              ng-model='courierVm.courier.email'
+              required
             )
+            .show-errors(ng-messages="courierVm.courierForm.email.$error" ng-if="courierVm.courierForm.email.$touched")
+              span(ng-message="required" class="message-error") Campo requerido
+              span(ng-message="email" class="message-error") E-mail no válido
           show-error(array-messages='courierVm.messages.email')
 
           label.item.item-input.item-stacked-label(
@@ -66,7 +79,7 @@ ion-view(
             input(
               type='date'
               name='fecha_nacimiento'
-              ng-model='courierVm.courierForm.fecha_nacimiento'
+              ng-model='courierVm.courier.fecha_nacimiento'
             )
           show-error(array-messages='courierVm.messages.fecha_nacimiento')
 
@@ -75,7 +88,7 @@ ion-view(
           )
             span.input-label {{::("courier.location"|translate)}}
             select(
-              ng-model='courierVm.courierForm.ubicacion'
+              ng-model='courierVm.courier.ubicacion'
               ng-options="location as location for location in courierVm.locations")
           show-error(array-messages='courierVm.messages.ubicacion')
 
@@ -84,7 +97,7 @@ ion-view(
           )
             span.input-label {{::("courier.license"|translate)}}
             select(
-              ng-model='courierVm.courierForm.tipo_licencia'
+              ng-model='courierVm.courier.tipo_licencia'
               ng-options="license as license for license in courierVm.licenses")
           show-error(array-messages='courierVm.messages.tipo_licencia')
 
@@ -93,12 +106,12 @@ ion-view(
           )
             span.input-label {{::("courier.mobilization"|translate)}}
             select(
-              ng-model='courierVm.courierForm.tipo_medio_movilizacion'
+              ng-model='courierVm.courier.tipo_medio_movilizacion'
               ng-options="mobil as mobil for mobil in courierVm.mobilization")
           show-error(array-messages='courierVm.messages.tipo_medio_movilizacion')
 
           input.button.button-primary(
             type='submit'
             value='{{::("globals.sendRequest"|translate)}}'
-            ng-class='{disabled: newCourierForm.$invalid}'
+            ng-class='{disabled: courierVm.courierForm.$invalid}'
           )

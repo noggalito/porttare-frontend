@@ -70,6 +70,16 @@
         expect(ctrl.mobilization).to.not.empty; //jshint ignore:line
       });
 
+      it('name and email should exist in authenticated user', function () {
+        expect($auth.user.name).to.exist; //jshint ignore:line
+        expect($auth.user.email).to.exist; //jshint ignore:line
+      });
+
+      it('names and email should not be empty', function () {
+        chai.assert.isNotNull(ctrl.courier.nombres, 'exists!'); //jshint ignore:line
+        chai.assert.isNotNull(ctrl.courier.email, 'exists!');
+      });
+
     });
 
     describe('Create courier', function () {
@@ -123,18 +133,6 @@
         deferCreateCourier.reject(backendErrors);
         $rootScope.$digest();
         expect(ctrl.messages).to.not.empty; //jshint ignore:line
-      });
-
-      it('name and email should exist authenticated user', function () {
-        ctrl.initCourier();
-        expect($auth.user.name).to.exist; //jshint ignore:line
-        expect($auth.user.email).to.exist; //jshint ignore:line
-      });
-
-      it('names and email  should not be empty', function () {
-        ctrl.initCourier();
-        chai.assert.isNotNull(ctrl.courierForm.nombres, 'exists!'); //jshint ignore:line
-        chai.assert.isNotNull(ctrl.courierForm.email, 'exists!');
       });
 
     });

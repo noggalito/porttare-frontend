@@ -77,6 +77,16 @@
         ctrl.submit();
       }));
 
+      it('name and email should exist in authenticated user', function () {
+        expect($auth.user.name).to.exist; //jshint ignore:line
+        expect($auth.user.email).to.exist; //jshint ignore:line
+      });
+
+      it('legal representative and email  should not be empty', function () {
+        chai.assert.isNotNull(ctrl.provider.representante_legal, 'exists!'); //jshint ignore:line
+        chai.assert.isNotNull(ctrl.provider.email, 'exists!');
+      });
+
       it('ionicLoading.show should be called', function () {
         sinon.assert.calledOnce($ionicLoading.show);
       });
@@ -105,18 +115,6 @@
         deferCreateProvider.reject({ data: { error: 'error' } });
         $rootScope.$digest();
         expect(ctrl.step).to.be.equal(1);
-      });
-
-      it('name and email should exist authenticated user', function () {
-        ctrl.initProvider();
-        expect($auth.user.name).to.exist; //jshint ignore:line
-        expect($auth.user.email).to.exist; //jshint ignore:line
-      });
-
-      it('legal representative and email  should not be empty', function () {
-        ctrl.initProvider();
-        chai.assert.isNotNull(ctrl.provider.representante_legal, 'exists!'); //jshint ignore:line
-        chai.assert.isNotNull(ctrl.provider.email, 'exists!');
       });
 
     });

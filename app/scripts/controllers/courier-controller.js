@@ -14,8 +14,7 @@
     var stateRedirect = 'courier.orders';
     courierVm.createCourier = createCourier;
     courierVm.messages = {};
-    courierVm.initCourier = initCourier;
-    courierVm.initCourier();
+    initCourier();
 
     courierVm.locations = [
       'Loja',
@@ -47,9 +46,9 @@
     ];
 
     function initCourier(){
-      courierVm.courierForm = {};
-      courierVm.courierForm.nombres = $auth.user.name;
-      courierVm.courierForm.email = $auth.user.email;
+      courierVm.courier = {};
+      courierVm.courier.nombres = $auth.user.name;
+      courierVm.courier.email = $auth.user.email;
     }
 
     function createCourier() {
@@ -57,7 +56,7 @@
         template: '{{::("globals.sending"|translate)}}'
       });
 
-      CourierService.createNewCourier(courierVm.courierForm)
+      CourierService.createNewCourier(courierVm.courier)
         .then(function success(courier) {
           //update auth user
           $auth.user.courier_profile = courier.courier_profile; //jshint ignore:line
