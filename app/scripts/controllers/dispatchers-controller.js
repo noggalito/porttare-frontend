@@ -44,7 +44,7 @@
     }
 
     function submitProcess(id){
-      if (id) {
+      if (!id) {
         newDispatcher();
       }else {
         $ionicPopup.alert({
