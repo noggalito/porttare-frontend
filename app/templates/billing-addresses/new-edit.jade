@@ -28,7 +28,7 @@ ion-modal-view.item-page
             required
           )
           .show-errors(ng-messages="billingAddressesVm.form.ruc.$error" ng-if="billingAddressesVm.form.ruc.$touched")
-            span(ng-message="required" class="message-error") {{::("billingAddress.isRequired"|translate)}}
+            span(ng-message="required" class="message-error") {{::("form.requiredField"|translate)}}
             span(ng-message="pattern" class="message-error") {{::("billingAddress.isPatternRuc"|translate)}}
         show-error(array-messages="billingAddressesVm.messages.ruc")
 
@@ -44,7 +44,7 @@ ion-modal-view.item-page
             required
           )
           .show-errors(ng-messages="billingAddressesVm.form.razon_social.$error" ng-if="billingAddressesVm.form.razon_social.$touched")
-            span(ng-message="required" class="message-error") {{::("billingAddress.isRequired"|translate)}}
+            span(ng-message="required" class="message-error") {{::("form.requiredField"|translate)}}
         show-error(array-messages="billingAddressesVm.messages.razon_social")
 
         label.item.item-input.item-stacked-label(
@@ -59,7 +59,7 @@ ion-modal-view.item-page
             required
           )
           .show-errors(ng-messages="billingAddressesVm.form.direccion.$error" ng-if="billingAddressesVm.form.direccion.$touched")
-            span(ng-message="required" class="message-error") {{::("billingAddress.isRequired"|translate)}}
+            span(ng-message="required" class="message-error") {{::("form.requiredField"|translate)}}
         show-error(array-messages="billingAddressesVm.messages.direccion")
 
         label.item.item-input.item-stacked-label
@@ -82,7 +82,7 @@ ion-modal-view.item-page
             ng-class="input-error"
           )
           .show-errors(ng-messages="billingAddressesVm.form.email.$error" ng-if="billingAddressesVm.form.email.$touched")
-            span(ng-message="email" class="message-error") {{::("billingAddress.isEmail"|translate)}}
+            span(ng-message="email" class="message-error") {{::("form.wrongEmail"|translate)}}
         show-error(array-messages="billingAddressesVm.messages.email")
 
         label.item.item-input.item-stacked-label

@@ -7,6 +7,7 @@
 
   function BillingAddressesController(BillingAddressesService,
                                       ModalService,
+                                      ErrorHandlerService,
                                       $scope,
                                       $ionicPopup,
                                       $ionicLoading) {
@@ -21,14 +22,7 @@
     function getBillingAddresses() {
       BillingAddressesService.getBillingAddresses().then(function(results){
         billingAddressesVm.billingAddresses = results.customer_billing_addresses; //jshint ignore:line
-      }, function error(resp) {
-        var msg= resp.data.error ? resp.data.error : '{{::("globals.pleaseTryAgain"|translate)}}';
-        $ionicLoading.hide();
-        $ionicPopup.alert({
-          title: 'Error',
-          template: msg
-        });
-      });
+      }, ErrorHandlerService.handleCommonErrorGET);
     }
 
     function showNewModal() {

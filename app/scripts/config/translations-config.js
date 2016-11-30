@@ -278,9 +278,7 @@
         anyBillingAddress: 'No dispone de ninguna dirección de facturación.',
         successSave: 'La dirección de facturación ha sido guardado éxitosamente',
         successUpdate: 'La dirección de facturación ha sido actualizado éxitosamente',
-        isRequired: 'Este campo es obligatorio',
-        isPatternRuc: 'Debe contener solo dígitos y una longitud de 13 caracteres',
-        isEmail: 'Correo electrónico no valido',
+        isPatternRuc: 'Debe contener solo dígitos y una longitud de 13 caracteres'
       }
     });
 
