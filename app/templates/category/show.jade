@@ -8,11 +8,4 @@ ion-view(
   )
     .category-title {{categoryVm.category.titulo}}
     .category-description {{categoryVm.category.descripcion}}
-    slick(settings="categoryVm.slickConfig")
-      .slick-container(ng-repeat="provider in categoryVm.providers")
-        .slick-content(ui-sref='app.categories.provider({categoryId: categoryVm.category.id, providerId: provider.id })')
-          .provider-card
-            .img(style="background-image: url('{{provider.imagen|defaultImage:'../images/ionic.png'}}')")
-            .provider-card-footer
-              .nombre {{provider.nombre_establecimiento}}
-              .horario {{provider.horario}}
+    slick-provider(options="categoryVm.options")

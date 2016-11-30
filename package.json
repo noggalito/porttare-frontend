@@ -63,6 +63,7 @@
     "plist": "1.1.0",
     "ripple-emulator": "~0.9.24",
     "sinon": "^1.17.2",
+    "slack-node": "^0.1.8",
     "win-spawn": "^2.0.0"
   },
   "engines": {

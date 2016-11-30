@@ -55,12 +55,6 @@
       dest: '<%= yeoman.dist %>/',
       src: '**/*'
     },
-    staging: {
-      expand: true,
-      cwd: '.temp',
-      dest: '<%= yeoman.app %>/',
-      src: '**/*'
-    },
     images: {
       expand: true,
       cwd: '<%= yeoman.app %>/<%= yeoman.images %>',

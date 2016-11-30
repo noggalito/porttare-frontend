@@ -13,8 +13,9 @@
     var courierVm = this;
     var stateRedirect = 'courier.orders';
     courierVm.createCourier = createCourier;
-    courierVm.courierForm = {};
     courierVm.messages = {};
+    initCourier();
+
     courierVm.locations = [
       'Loja',
       'Quito'
@@ -44,12 +45,18 @@
       'Especiales'
     ];
 
+    function initCourier(){
+      courierVm.courier = {};
+      courierVm.courier.nombres = $auth.user.name;
+      courierVm.courier.email = $auth.user.email;
+    }
+
     function createCourier() {
       $ionicLoading.show({
         template: '{{::("globals.sending"|translate)}}'
       });
 
-      CourierService.createNewCourier(courierVm.courierForm)
+      CourierService.createNewCourier(courierVm.courier)
         .then(function success(courier) {
           //update auth user
           $auth.user.courier_profile = courier.courier_profile; //jshint ignore:line
@@ -64,12 +71,6 @@
         function error(resp) {
           if (resp && resp.errors) {
             courierVm.messages = resp.errors;
-          } else {
-            $ionicPopup.alert({
-              title: 'Error',
-              template: resp && resp.error ? resp.error :
-                '{{::("globals.pleaseTryAgain"|translate)}}'
-            });
           }
           $ionicLoading.hide();
         });

@@ -20,11 +20,6 @@ function ProductsService($http, ENV, $ionicPopup, $q) {
       params: params
     }).then(function(results){
       return results.data;
-    }, function(){
-      $ionicPopup.alert({
-        title: 'Error',
-        template: 'Hubo un error, intentalo nuevamente.'
-      });
     });
   }
 

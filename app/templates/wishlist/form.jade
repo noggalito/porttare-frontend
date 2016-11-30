@@ -1,0 +1,35 @@
+.list.list-inset.wishlist-form-content
+  label.item.item-input.item-stacked-label
+    span.input-label {{::("wishlist.listName"|translate)}}
+    input(
+      class="input-wishlist-name"
+      type="text"
+      ng-model="wishlistsVm.wishlist.nombre"
+    )
+  show-error(array-messages="wishlistsVm.messages.nombre")
+
+  label.item.item-input.item-stacked-label
+    span.input-label {{::("wishlist.items"|translate)}}
+    .row-wishlist-action
+      span(ng-if="!wishlistsVm.wishlist.provider_items || wishlistsVm.wishlist.provider_items.length === 0")
+        | {{::("wishlist.noItems"|translate)}}
+      ion-list(ng-if="wishlistsVm.wishlist.provider_items.length > 0")
+        ion-item(ng-repeat="item in ::wlist.provider_items")
+          | {{::item.titulo)}}
+
+  label.item.item-input.item-stacked-label
+    span.input-label {{::("wishlist.dateDelivery"|translate)}}
+    .row-wishlist-action
+      button(
+        ion-datetime-picker
+        date
+        time
+        am-pm
+        only-valid="{'after': 'today', 'inclusive': true}"
+        ng-model='wishlistsVm.wishlist.entregar_en'
+      ).button-text-yellow
+        span(ng-if="!wishlistsVm.wishlist.entregar_en")
+          | {{::("wishlist.buttonAddDate"|translate)}}
+        span(ng-if="wishlistsVm.wishlist.entregar_en")
+          | {{wishlistsVm.wishlist.entregar_en | customDate:'YYYY-MM-DD HH:mm'}}
+  show-error(array-messages="wishlistsVm.messages.entregar_en")

@@ -9,7 +9,7 @@
     var directive = {
       restrict: 'EA',
       templateUrl: 'templates/directives/back-button/back-button.html',
-      controller: BackButtonController,
+      controller: ['$window', BackButtonController],
       controllerAs: 'bbVm',
       bindToController: true
     };

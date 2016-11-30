@@ -7,7 +7,7 @@ ion-view(
       .col.header-text {{::("password.updatePassword"|translate)}}
     .row
       form(ng-submit='resetVm.updatePassword()')
-        .list.list-inset
+        .list.list-inset.constraint-width
           label.item.item-input
             i.icon.ion.ion-android-lock.placeholder-icon
             input(
@@ -28,7 +28,7 @@ ion-view(
             )
           show-error(array-messages='resetVm.messages.password_confirmation')
 
-        .list.list-inset.button-actions
+        .list.list-inset.constraint-width.button-actions
           button(
             type='submit'
           ).button.button-full.button-primary.spaced

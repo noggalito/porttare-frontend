@@ -1,0 +1,53 @@
+.wishlist-page {
+  margin: 0 0.25rem;
+  .list-header {
+    border-bottom: 1px solid #ddd;
+    margin: 0.5rem 0;
+    padding: 0;
+    .list-title{
+      color: $base-grey;
+      text-transform: uppercase;
+    }
+  }
+  .ion-close.button-clear {
+    color: $base-yellow;
+  }
+  .list-content {
+    margin: 0.25rem 0;
+    .list-item{
+      color: $base-grey;
+    }
+  }
+
+  .input-wishlist-name {
+    text-align: center;
+  }
+
+  .col-wishlist-edit {
+    text-align: center;
+  }
+
+  .label-select {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding: 0;
+  }
+  .bar-wishlist-header {
+    border-bottom: none;
+  }
+  .title {
+    font-size: 1.5em;
+  }
+  .row-wishlist-action {
+    display: block;
+    text-align: center;
+  }
+  .wishlist-form-content {
+    margin-bottom: 50px;
+  }
+}
+
+.footer-wishlist-container {
+  display: flex;
+  justify-content: center;
+}

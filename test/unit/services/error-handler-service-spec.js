@@ -28,12 +28,12 @@
     }));
 
     it('Should hide loading', function () {
-      service.handleCommonErrorGET();
+      service.handleCommonErrorGET({status: 411});
       sinon.assert.calledOnce($ionicLoading.hide);
     });
 
     it('Should show a message in popup', function () {
-      service.handleCommonErrorGET({error: 'test message'});
+      service.handleCommonErrorGET({status: 411, error: 'test message'});
       sinon.assert.calledOnce($ionicPopup.alert);
       sinon.assert.calledWithExactly($ionicPopup.alert, {
         title: 'Error',
@@ -42,12 +42,17 @@
     });
 
     it('Should show a default message in popup', function () {
-      service.handleCommonErrorGET();
+      service.handleCommonErrorGET({status: 411});
       sinon.assert.calledOnce($ionicPopup.alert);
       sinon.assert.calledWithExactly($ionicPopup.alert, {
         title: 'Error',
         template: '{{::("globals.pleaseTryAgain"|translate)}}'
       });
+    });
+
+    it('Should not excecute on 401', function () {
+      service.handleCommonErrorGET({status: 401});
+      sinon.assert.notCalled($ionicPopup.alert);
     });
   });
 })();

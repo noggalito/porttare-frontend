@@ -9,6 +9,7 @@
       $ionicLoading,
       CourierService,
       deferCreateCourier,
+      ErrorHandlerService,
       deferStateGo,
       $state,
       $auth,
@@ -40,7 +41,10 @@
           createNewCourier: sinon.stub().returns(deferCreateCourier.promise)
         };
         $auth = {
-          user: {}
+          user: {name:'', email:''}
+        };
+        ErrorHandlerService = {
+          handleCommonErrorGET: sinon.stub()
         };
         stateRedirect = 'courier.orders';
       })
@@ -53,6 +57,7 @@
           $ionicLoading: $ionicLoading,
           $ionicPopup: $ionicPopup,
           $state: $state,
+          ErrorHandlerService: ErrorHandlerService,
           CourierService: CourierService
         };
 
@@ -63,6 +68,16 @@
         expect(ctrl.locations).to.not.empty; //jshint ignore:line
         expect(ctrl.licenses).to.not.empty; //jshint ignore:line
         expect(ctrl.mobilization).to.not.empty; //jshint ignore:line
+      });
+
+      it('name and email should exist in authenticated user', function () {
+        expect($auth.user.name).to.exist; //jshint ignore:line
+        expect($auth.user.email).to.exist; //jshint ignore:line
+      });
+
+      it('names and email should not be empty', function () {
+        chai.assert.isNotNull(ctrl.courier.nombres, 'exists!'); //jshint ignore:line
+        chai.assert.isNotNull(ctrl.courier.email, 'exists!');
       });
 
     });
@@ -108,12 +123,6 @@
         sinon.assert.calledOnce($ionicPopup.alert);
       });
 
-      it('if unsuccessful, should show a alert', function () {
-        deferCreateCourier.reject({ data: { error: 'error' } });
-        $rootScope.$digest();
-        sinon.assert.calledOnce($ionicPopup.alert);
-      });
-
       it('if unsuccessful by validation error, should create a object', function () {
         ctrl.messages = {};
         var backendErrors = {
@@ -125,6 +134,7 @@
         $rootScope.$digest();
         expect(ctrl.messages).to.not.empty; //jshint ignore:line
       });
+
     });
   });
 })();

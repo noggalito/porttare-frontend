@@ -26,16 +26,19 @@
 
     beforeEach(function () {
       dependencies = {
-        data: resolve
+        data: resolve,
+        $scope: $scope
       };
-
+      $scope.$parent.menuVm = {
+        categories: []
+      };
       ctrl = $controller('CategoriesController', dependencies);
     });
 
     describe('on init', function () {
       it('categories should not be empty', function () {
         $scope.$digest();
-        expect(ctrl.categories).to.not.be.null; //jshint ignore:line
+        expect(ctrl.categories()).to.not.be.null; //jshint ignore:line
       });
 
     });

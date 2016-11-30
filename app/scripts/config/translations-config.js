@@ -41,7 +41,8 @@
           coupon: 'Cuponera',
           payments: 'Pagos',
           provider: 'Proveedor',
-          cart: 'Mi carro'
+          cart: 'Mi carro',
+          wishlist: 'Wishlist'
         },
         provider: {
           orders: 'Pedidos',
@@ -65,9 +66,8 @@
       },
       provider: {
         itemsProvider: 'Productos de Proveedor',
-        formLegendFirts: 'Datos nuevo proveedor - Paso 1',
-        formLegendSecond: 'Datos bancarios proveedor - Paso 2',
-        formLegendThird: 'Matriz proveedor - Paso 3',
+        formLegendFirst: 'Proveedor nuevo - Paso 1',
+        formLegendSecond: 'Proveedor nuevo - Paso 2',
         businessName: 'Razón social',
         name: 'Nombre Establecimiento',
         economicActivity: 'Actividad económica',
@@ -141,7 +141,8 @@
         sending: 'Enviando',
         start: 'Empezar',
         sendRequest: 'Enviar solicitud',
-        isRequired: 'Este campo es obligatorio'
+        isRequired: 'Este campo es obligatorio',
+        disabledUser: 'Su cuenta ha sido deshabilitada'
       },
       item: {
         item: 'Producto',
@@ -191,6 +192,28 @@
         direccion: 'Dirección',
         telefono: 'Teléfono',
         email: 'email'
+      },
+      wishlist: {
+        wishlists: 'Listas de deseos',
+        searchBox: 'Buscar lista',
+        new: 'Nueva lista',
+        id: 'id',
+        name: 'Nombre de la lista',
+        edit: 'Ver lista',
+        titleNew: 'Nueva lista',
+        titleEdit: 'Editar lista',
+        listName: 'Nombre de la lista',
+        items: 'Items',
+        dateDelivery: 'Fecha y hora de entrega',
+        shareWith: 'Compartir lista con',
+        save: 'Guardar lista',
+        remove: 'Eliminar lista',
+        buttonAddItems: 'Agregar ítems +',
+        buttonAddDate: 'Agregar hora y fecha +',
+        buttonShare: 'Escoger usuario +',
+        titleSelectItems: 'Seleccionar Items',
+        cancel: 'Cancelar',
+        noItems: 'No se han cargado items al wishlist'
       },
       password: {
         updatePassword: 'Actualizar contraseña',
@@ -243,6 +266,10 @@
       },
       cart: {
         successfullyAdded: 'Ítem agregado exitosamente'
+      },
+      form: {
+        requiredField: 'Campo requerido. ',
+        wrongEmail: 'Email incorrecto. '
       }
     });
 

@@ -13,6 +13,8 @@
                               $ionicLoading,
                               $ionicScrollDelegate) {
     var providerVm = this;
+    initProvider();
+
     var stateRedirect = 'provider.items';
     var transKeys = [
       'provider.methods.cash',
@@ -82,6 +84,12 @@
         }
       ];
     });
+
+    function initProvider(){
+      providerVm.provider = {};
+      providerVm.provider.representante_legal = $auth.user.name;
+      providerVm.provider.email = $auth.user.email;
+    }
 
     function checked(element){
       providerVm.touchedPayments = true;

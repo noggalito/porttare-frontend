@@ -1,8 +1,7 @@
 .resource-form {
-  height: 100%;
-
-  form {
+  .fields-wrapper {
     width: 100%;
+    padding-bottom: 100px; // some padding because of fixed bottom bar
   }
 
   legend {
@@ -15,18 +14,22 @@
 
   .item-error {
     border-color: $error-red;
+
+    .input-label {
+      color: $error-red;
+    }
   }
 
   label.item-input.item-stacked-label,
   label.item-input.item-select {
     // override default
     margin-top: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 30px;
     padding-bottom: 0;
     padding-left: 0;
 
     .input-label {
-      font-size: 15px;
+      font-size: 14px;
       text-transform: uppercase;
       font-family: Montserrat-Regular;
     }
@@ -40,11 +43,21 @@
         padding-left: 15px;
         padding-bottom: 0;
         padding-top: 0;
+        font-size: 16px;
+        height: 25px;
       }
     }
   }
 
   .bar.bar-footer {
     position: relative;
+  }
+}
+
+// hacking error messages so they float below inputs
+.resource-form {
+  .errors-wrapper {
+    position: absolute;
+    margin-top: -30px;
   }
 }

@@ -433,10 +433,10 @@ module.exports = function (grunt) {
     'newer:copy:tmp'
   ]);
 
-
+  var compressEnv = process.env.NODE_ENV;
   grunt.registerTask('compress', [
     'clean',
-    'ngconstant:production',
+    'ngconstant:' + compressEnv,
     'wiredep',
     'useminPrepare',
     'concurrent:dist',

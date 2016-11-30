@@ -6,7 +6,8 @@
       resolve,
       dependencies,
       $controller,
-      $scope;
+      $scope,
+      $state;
 
     beforeEach(module('porttare.controllers'));
     beforeEach(angular.mock.module(function ($provide) {
@@ -15,20 +16,25 @@
           provider_profiles: []
         }
       });
+      $provide.factory('$state', function(){
+        return {
+          go: sinon.stub()
+        };
+      });
     }));
 
-    beforeEach(inject(function (_$rootScope_,
-        _$controller_,
-        data) {
+    beforeEach(inject(function (_$rootScope_, _$controller_, data, _$state_) {
         $scope = _$rootScope_.$new();
         $controller = _$controller_;
         resolve = data;
+        $state = _$state_;
       })
     );
 
     beforeEach(function () {
       dependencies = {
-        data: resolve
+        data: resolve,
+        $state: $state
       };
 
       ctrl = $controller('CategoryController', dependencies);

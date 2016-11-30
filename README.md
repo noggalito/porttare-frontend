@@ -26,3 +26,8 @@
 For translations, we're using [angular-translate](https://angular-translate.github.io/).
 You need to add translations in app/scripts/config/translations-config.js, then you can use them in templates.
 templates/login/login.jade has an usage example.
+
+### deployment
+
+- `npm install -g pm2`
+- `./deploy.bash demo`

@@ -5,7 +5,7 @@
     .module('porttare.controllers')
     .controller('CategoryController', CategoryController);
 
-  function CategoryController(data) {
+  function CategoryController(data, $state) {
     var categoryVm = this;
 
     categoryVm.category = data.provider_category;//jshint ignore:line
@@ -15,35 +15,51 @@
     // one provider. Otherwise unique provider
     // is moved to the left
     var centerMode = categoryVm.providers.length > 1;
-
-    categoryVm.slickConfig = {
-      slidesToShow: 1,
-      arrows: false,
-      centerMode: centerMode,
-      mobileFirst: true,
-      swipeToSlide: true,
-      responsive: [
-        {
-          breakpoint: 425,
-          settings: {
-            slidesToShow: 2
-          }
+    categoryVm.options = {
+      model: {
+        data: {
+          category: categoryVm.category,
+          providers: categoryVm.providers
         },
-        {
-          breakpoint: 700,
-          settings: {
-            slidesToShow: 3,
-            centerMode: false
-          }
-        },
-        {
-          breakpoint: 1000,
-          settings: {
-            slidesToShow: 4,
-            centerMode: false
+        actions: {
+          onCardClick: function(data) {
+            var itemsRoute = 'app.categories.provider';
+            $state.go(itemsRoute, {
+              categoryId: data.category.id,
+              providerId: data.provider.id
+            });
           }
         }
-      ]
+      },
+      slickSettings: {
+        centerMode: centerMode,
+        responsive: [
+          {
+            breakpoint: 320,
+            settings: {
+              slidesToShow: 1
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 2
+            }
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 3
+            }
+          },
+          {
+            breakpoint: 992,
+            settings: {
+              slidesToShow: 4
+            }
+          }
+        ]
+      }
     };
   }
 })();

@@ -5,7 +5,7 @@
     .module('porttare.controllers')
     .controller('SiteController', SiteController);
 
-  function SiteController($rootScope, $ionicLoading, $auth) {
+  function SiteController($rootScope, $ionicLoading, $auth, CartService) {
     var siteVm = this,
         currentUser = null;
 
@@ -13,7 +13,11 @@
 
     $auth.validateUser()
       .then(function userAuthorized(user) {
-        currentUser = user;
+        return CartService.getCart().then(function(response){
+          user.customer_order = response.customer_order; //jshint ignore:line
+          currentUser = user;
+          return currentUser;          
+        });
       });
 
     $rootScope.$on('$stateChangeStart', function(){

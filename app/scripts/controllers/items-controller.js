@@ -10,6 +10,7 @@
                            $ionicLoading,
                            $ionicPopup,
                            $scope,
+                           ErrorHandlerService,
                            APP) {
     var itemsVm = this;
     itemsVm.showNewModal = showNewModal;
@@ -26,14 +27,7 @@
       ItemsService.getItems()
         .then(function success(resp) {
           itemsVm.items = resp.provider_items; //jshint ignore:line
-        },
-        function error(resp) {
-          $ionicPopup.alert({
-            title: 'Error',
-            template: resp.data ? resp.data.error :
-              '{{::("globals.pleaseTryAgain"|translate)}}'
-          });
-        });
+        },ErrorHandlerService.handleCommonErrorGET);
     }
 
     function submitProcess(id){

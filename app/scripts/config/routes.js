@@ -72,9 +72,21 @@ function routes($stateProvider, $urlRouterProvider) {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu/menu.html',
+    controller: 'MenuController',
+    controllerAs: 'menuVm',
     //only logged users will allow to go to /app/*
     resolve: {
-      currentUser: accessIfUserAuth
+      currentUser: accessIfUserAuth,
+      categories: function (CategoriesService, $q, $ionicLoading, $ionicPopup, ErrorHandlerService) {
+        $ionicLoading.show({
+          template: '{{::("globals.loading"|translate)}}'
+        });
+        return CategoriesService.getCategories()
+          .then(function success(res) {
+            $ionicLoading.hide();
+            return res.data;
+          }, ErrorHandlerService.handleCommonErrorGET);
+      }
     }
   })
   .state('app.cart', {
@@ -102,18 +114,7 @@ function routes($stateProvider, $urlRouterProvider) {
         templateUrl: 'templates/category/index.html',
         controller: 'CategoriesController',
         controllerAs: 'categoryVm',
-        resolve: {
-          data: function (CategoriesService, $q, $ionicLoading, $ionicPopup, ErrorHandlerService) {
-            $ionicLoading.show({
-              template: '{{::("globals.loading"|translate)}}'
-            });
-            return CategoriesService.getCategories()
-              .then(function success(res) {
-                $ionicLoading.hide();
-                return res.data;
-              }, ErrorHandlerService.handleCommonErrorGET);
-          }
-        }
+        cache: false
       }
     }
   })
@@ -252,7 +253,12 @@ function routes($stateProvider, $urlRouterProvider) {
   .state('provider', {
     url: '/provider',
     abstract: true,
-    templateUrl: 'templates/menu/menu-provider.html'
+    templateUrl: 'templates/menu/menu-provider.html',
+    resolve: {
+      auth: function ( UserAuthService) {
+              return UserAuthService.checkIfEnabledProvider();
+            }
+    }
   })
   .state('provider.items', {
     url: '/items',
@@ -404,6 +410,33 @@ function routes($stateProvider, $urlRouterProvider) {
         }
       }
     }
+  })
+  .state('disabledUserError', {
+    url: '/disabled-user',
+    templateUrl: 'templates/error/disabled-user-error.html'
+  })
+  .state('app.wishlist', {
+    url: '/wishlist',
+    abstract: true
+  })
+  .state('app.wishlist.index', {
+    url: '/',
+    views: {
+      'menuContent@app': {
+        templateUrl: 'templates/wishlist/wishlists.html',
+        controller: 'WishlistsController',
+        controllerAs: 'wishlistsVm',
+        resolve: {
+          data: function ($ionicLoading, WishlistsService, ErrorHandlerService) {
+            return WishlistsService.getWishlists()
+              .then(function success(res) {
+                  $ionicLoading.hide();
+                  return res;
+                }, ErrorHandlerService.handleCommonErrorGET);
+          }
+        }
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise(function ($injector, $location) {
@@ -430,10 +463,13 @@ function routes($stateProvider, $urlRouterProvider) {
       });
   }
 
-  function accessIfUserAuth($auth, $state, $ionicLoading, APP) {
+  function accessIfUserAuth($auth, $state, $ionicLoading, APP, CartService) {
     return $auth.validateUser()
       .then(function userAuthorized(user) {
-        return user;
+        return CartService.getCart().then(function(response){
+          user.customer_order = response.customer_order; //jshint ignore:line
+          return user;
+        });
       }, function userNotAuthorized() {
         $state.go(APP.preloginState).then(function () {
           $ionicLoading.hide();

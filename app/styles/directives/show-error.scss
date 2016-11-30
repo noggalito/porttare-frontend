@@ -1,5 +1,9 @@
-.show-errors {
-  .message-error {
-    color: $error-red;
-  }
+.errors-wrapper {
+  font-size: 13px;
+}
+
+.errors-wrapper,
+.message-error {
+  color: $error-red;
+  font-family: Montserrat-Light;
 }

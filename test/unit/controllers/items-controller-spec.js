@@ -16,6 +16,7 @@
       $rootScope,
       deferNewItem,
       deferEditItem,
+      ErrorHandlerService,
       deferDeleteItem;
 
     beforeEach(module('porttare.controllers'));
@@ -53,6 +54,9 @@
       APP = {
         centsInDollar: '100'
       };
+      ErrorHandlerService = {
+        handleCommonErrorGET: sinon.stub()
+      };
     }));
 
     beforeEach(inject(
@@ -86,6 +90,7 @@
           ModalService: ModalService,
           $ionicLoading: $ionicLoading,
           $ionicPopup: $ionicPopup,
+          ErrorHandlerService: ErrorHandlerService,
           APP: APP
         };
 
@@ -100,11 +105,11 @@
           chai.assert.isArray(ctrl.items);
         });
 
-        it('if successful, ionicPopup.alert should be called', function () {
+        it('if unsuccessful, ErrorHandlerService should be called', function () {
           var data = {provider_items: []}; //jshint ignore:line
           deferGetItems.reject(data);
           $scope.$digest();
-          sinon.assert.calledOnce($ionicPopup.alert);
+          sinon.assert.calledOnce(ErrorHandlerService.handleCommonErrorGET);
         });
       });
 
@@ -250,6 +255,7 @@
             ModalService: ModalService,
             $ionicLoading: $ionicLoading,
             $ionicPopup: $ionicPopup,
+            ErrorHandlerService: ErrorHandlerService,
             APP: APP
           };
 

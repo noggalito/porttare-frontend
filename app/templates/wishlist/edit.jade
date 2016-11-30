@@ -1,0 +1,23 @@
+ion-modal-view.wishlist-page
+  ion-header-bar.bar.bar-header.bar-light.bar-wishlist-header(
+    align-title="center"
+  )
+    .title {{::("wishlist.titleEdit"|translate)}}
+    .buttons
+      button.button.ion-close.button-clear(
+        ng-click="wishlistsVm.closeModal()"
+      )
+  ion-content
+    .resource-form
+      form(name="form" novalidate)
+        div(ng-include="'templates/wishlist/form.html'")
+        .bar.bar-footer.footer-wishlist-container
+          action-button(
+            on-click="wishlistsVm.runAction(wishlistsVm.actions.edit)"
+            text="{{::('wishlist.save'|translate)}}"
+          )
+          action-button(
+            on-click="wishlistsVm.runAction(wishlistsVm.actions.remove)"
+            text="{{::('wishlist.remove'|translate)}}"
+            color="red"
+          )

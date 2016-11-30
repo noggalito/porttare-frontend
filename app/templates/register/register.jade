@@ -12,45 +12,66 @@ ion-view(
         p Una cuenta, muchos perfiles
 
     .row
-      form(ng-submit='registerVm.register()')
-        .list.list-inset
-          label.item.item-input
+      form(name='registerVm.registerForm'
+          ng-submit='registerVm.register()'
+          novalidate)
+        .list.list-inset.constraint-width
+          label.item.item-input(
+            ng-class="{'item-error': registerVm.registerForm.email.$touched && registerVm.registerForm.email.$invalid}"
+          )
             i.icon.ion-email.placeholder-icon
             input(
-              type='email',
-              ng-model='registerVm.registerForm.email'
-              required='required'
+              type='email'
+              ng-model='registerVm.user.email'
+              name="email"
+              required
               placeholder='Correo electrónico'
               autosize-input
             )
-          label.item.item-input
+          .show-errors(ng-messages="registerVm.registerForm.email.$error" ng-if="registerVm.registerForm.email.$touched")
+            span(ng-message="required" class="message-error") Campo requerido
+            span(ng-message="email" class="message-error") E-mail no válido
+          show-error(array-messages="registerVm.errors.email")
+          label.item.item-input(
+            ng-class="{'item-error': registerVm.registerForm.password.$touched && registerVm.registerForm.password.$invalid}"
+          )
             i.icon.ion.ion-android-lock.placeholder-icon
             input(
-              type='password',
-              ng-model='registerVm.registerForm.password',
-              required='required',
+              type='password'
+              name='password'
+              ng-model='registerVm.user.password'
+              required
               placeholder="Contraseña"
             )
-          label.item.item-input
+          .show-errors(ng-messages="registerVm.registerForm.password.$error" ng-if="registerVm.registerForm.password.$touched")
+            span(ng-message="required" class="message-error") Campo requerido
+          show-error(array-messages="registerVm.errors.password")
+          label.item.item-input(
+            ng-class="{'item-error': registerVm.registerForm.password_confirmation.$touched && registerVm.registerForm.password_confirmation.$invalid}"
+          )
             i.icon.ion.ion-android-lock.placeholder-icon
             input(
-              type='password',
-              ng-model='registerVm.registerForm.password_confirmation',
-              required='required',
+              type='password'
+              name='password_confirmation'
+              ng-model='registerVm.user.password_confirmation'
+              required
               placeholder="Confirmar contraseña"
             )
+          .show-errors(ng-messages="registerVm.registerForm.password_confirmation.$error" ng-if="registerVm.registerForm.password_confirmation.$touched")
+            span(ng-message="required" class="message-error") Campo requerido
+          show-error(array-messages="registerVm.errors.password_confirmation")
 
-        .button-actions.list.list-inset
+        .button-actions.list.list-inset.constraint-width
           input(
             type='submit',
             value="¡Regístrame!"
           ).button.button-primary.button-block
-      
+
     .list.list-inset
       .or-option
         span {{::("globals.or"|translate)}}
-    
-    .list.list-inset
+
+    .list.list-inset.constraint-width
       .button.facebook-login(ng-click="registerVm.loginWithFB()")
         span.fb-left-icon
         span.fb-copytext Continuar con facebook
