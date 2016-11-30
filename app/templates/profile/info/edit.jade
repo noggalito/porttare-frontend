@@ -9,7 +9,7 @@ ion-modal-view.client-page
       )
   ion-content.resource-form
     form(
-      name="form"
+      name="piVm.updateProfileForm"
       ng-submit="piVm.submitProcess(piVm.userEdit)"
       novalidate
     )
@@ -18,7 +18,7 @@ ion-modal-view.client-page
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("item.imagen"|translate|uppercase)}}
-          input(
+          input.button.ion-button(
             type='file'
             ngf-select
             ng-model="piVm.userEdit.custom_image"
@@ -27,14 +27,19 @@ ion-modal-view.client-page
         show-error(array-messages='piVm.user.custom_image')
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': piVm.user.email}"
+          ng-class="{'item-error': piVm.updateProfileForm.email.$touched && piVm.updateProfileForm.email.$invalid}"
         )
           span.input-label {{::("user.email"|translate)}}
           input(
-            type="text"
+            type="email"
+            name="email"
             ng-model="piVm.userEdit.email"
             ng-class="input-error"
+            required
           )
+        .show-errors(ng-messages="piVm.updateProfileForm.email.$error" ng-if="piVm.updateProfileForm.email.$touched")
+          span(ng-message="required" class="message-error") Campo requerido
+          span(ng-message="email" class="message-error") E-mail no válido
         show-error(array-messages="piVm.messages.email")
 
         label.item.item-input.item-stacked-label(
@@ -67,7 +72,8 @@ ion-modal-view.client-page
         show-error(array-messages="piVm.messages.ciudad")
 
       .bar.bar-footer
-        action-button(
+        input.button.button-primary(
           type="submit"
           text="{{::('globals.save'|translate)}}"
+          ng-class='{disabled: piVm.updateProfileForm.$invalid}'
         )

@@ -43,16 +43,16 @@
         }
       );
       $auth.updateAccount(user)
-        .then(function() {
+        .then(function () {
+          $ionicLoading.hide();
           $ionicPopup.alert({
             title: 'Éxito',
             template: '{{::("user.successUpdateProfile"|translate)}}'
           });
-          $ionicLoading.hide();
           closeModal();
         })
         .catch(function error(resp) {
-          if (resp && resp.data.errors) {
+          if (resp.data && resp.data.errors) {
             piVm.messages = resp.data.errors;
           } else {
             $ionicPopup.alert({
