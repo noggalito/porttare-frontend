@@ -1,10 +1,10 @@
 .slider {
   height: 100%;
   font-family: "Montserrat-Regular";
+  background-image: url('../images/bg.png');
 
   .slider-slide {
     padding-top: 3%;
-    background-image: url('../images/bg.png');
     text-align: center;
   }
 }
@@ -24,7 +24,7 @@
 
     @media (min-height: $grid-responsive-sm-break) {
       // add some spacing for tall devices
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
   }
 
@@ -47,16 +47,17 @@
     @include background-centered('../images/price_tag.png');
   }
 
-  .text {
+  .intro-copytext {
     width: 100%;
     color: $white;
     padding-left: 5%;
     padding-right: 5%;
     border: none;
     background-color: transparent;
-    margin-top: 5%;
+    @media (min-height: 550px) {
+      margin-top: 5%;
+    }
   }
-
 }
 
 .slider-pager {
@@ -101,5 +102,47 @@
 
   .slider-pager {
     bottom: 25%;
+  }
+}
+
+// HACKS for small devices
+@media (max-height: 400px) {
+  .bar-intro-button {
+    margin-bottom: 15px;
+    margin-top: 30px;
+  }
+  .intro-copytext-wrapper {
+    position: absolute;
+    bottom: 80px;
+  }
+  .slider-pager {
+    bottom: 70px;
+  }
+}
+@media (orientation: portrait) and
+       (max-height: 400px) {
+  .intro-copytext-wrapper {
+    top: 160px;
+    bottom: initial;
+  }
+  .list-logo.below {
+    display: none;
+  }
+}
+@media (orientation: landscape) and
+       (max-height: 300px) {
+  .intro-copytext-wrapper {
+    top: 110px;
+    bottom: initial;
+  }
+  .slider-pager {
+    display: none;
+  }
+  .list-logo.above {
+    height: 90px;
+    margin-top: 20px;
+  }
+  .list-logo.below {
+    display: none;
   }
 }

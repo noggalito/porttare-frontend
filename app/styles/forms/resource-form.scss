@@ -1,6 +1,7 @@
 .resource-form {
-  form {
+  .fields-wrapper {
     width: 100%;
+    padding-bottom: 100px; // some padding because of fixed bottom bar
   }
 
   legend {
@@ -13,6 +14,10 @@
 
   .item-error {
     border-color: $error-red;
+
+    .input-label {
+      color: $error-red;
+    }
   }
 
   label.item-input.item-stacked-label,
@@ -40,5 +45,9 @@
         padding-top: 0;
       }
     }
+  }
+
+  .bar.bar-footer {
+    position: relative;
   }
 }

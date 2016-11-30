@@ -12,7 +12,7 @@ function InterceptorsService($injector, $q) {
   return service;
 
   function responseError(rejection) {
-    if (rejection.status === 401) {
+    if (rejection.status === 401 && !rejection.config.url.match('api/auth/user/sign_in')) {
       $injector.get('$ionicPopup').alert({
         title: 'Ups!',
         template: 'No tienes permisos para realizar eso!'

@@ -48,7 +48,7 @@
           createNewProvider: sinon.stub().returns(deferCreateProvider.promise)
         };
         $auth = {
-          user: {}
+          user: {name:'', email:''}
         };
         stateRedirect = 'provider.items';
       })
@@ -76,6 +76,16 @@
         ctrl.matrizProvider = {'direccion':'Aqui','hora_de_apertura':'1899-12-31T11:28:00.000Z','hora_de_cierre':'1899-12-31T15:28:00.000Z','inicio_de_labores':{'label':'Lunes','name':'mon','$$hashKey':'object:159'},'final_de_labores':{'label':'Domingo','name':'sun','$$hashKey':'object:165'},'telefono':'666666666'};
         ctrl.submit();
       }));
+
+      it('name and email should exist in authenticated user', function () {
+        expect($auth.user.name).to.exist; //jshint ignore:line
+        expect($auth.user.email).to.exist; //jshint ignore:line
+      });
+
+      it('legal representative and email  should not be empty', function () {
+        chai.assert.isNotNull(ctrl.provider.representante_legal, 'exists!'); //jshint ignore:line
+        chai.assert.isNotNull(ctrl.provider.email, 'exists!');
+      });
 
       it('ionicLoading.show should be called', function () {
         sinon.assert.calledOnce($ionicLoading.show);

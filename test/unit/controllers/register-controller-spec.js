@@ -50,6 +50,9 @@
     describe('#register', function() {
 
       beforeEach(inject(function() {
+        controller.registerForm = {
+          $invalid: false
+        };
         controller.register();
       }));
 

@@ -15,16 +15,18 @@
 
     function handleCommonErrorGET(backendResponse) {
       $ionicLoading.hide();
-      var message = null;
-      if (backendResponse && backendResponse.error) {
-        message = backendResponse.error;
-      } else {
-        message = '{{::("globals.pleaseTryAgain"|translate)}}';
+      if (backendResponse.status !== 401) {
+        var message = null;
+        if (backendResponse && backendResponse.error) {
+          message = backendResponse.error;
+        } else {
+          message = '{{::("globals.pleaseTryAgain"|translate)}}';
+        }
+        $ionicPopup.alert({
+          title: 'Error',
+          template: message
+        });
       }
-      $ionicPopup.alert({
-        title: 'Error',
-        template: message
-      });
     }
 
   }

@@ -31,6 +31,8 @@
           $state.go(successState);
         })
         .catch(function (resp) {
+          loginVm.loginForm.password = null;
+
           $ionicPopup.alert({
             title: 'Error',
             template: resp.errors[0]

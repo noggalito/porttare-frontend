@@ -7,8 +7,8 @@
 
   function exceptionHandler($log, ENV) {
     var airbrake = new airbrakeJs.Client({
-      projectId: ENV.projectId,
-      projectKey: ENV.projectKey,
+      projectId: ENV.airbrakeProjectId,
+      projectKey: ENV.airbrakeProjectKey,
       reporter: 'xhr',
       host: ENV.airbrakeHost
     });

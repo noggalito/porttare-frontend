@@ -1,4 +1,5 @@
 .grid-parent {
+  display: block; // no flex support
   display: flex;
   flex-wrap: wrap;
   padding: 1px;
@@ -11,7 +12,12 @@
     width: 50%;
   }
 
-  .grid-content{
+  .grid-content {
+    // no flex support
+    vertical-align: top;
+    display: inline-block;
+
+    display: flex;
     margin: 1px 0;
     text-decoration: none;
     height: 150px;
@@ -19,18 +25,29 @@
     padding: 1px;
     background-repeat: no-repeat;
     background-size: cover;
-    display: flex;
     align-items: center;
     justify-content: center;
     background-position: 50%;
 
     .title{
       font-size: 18px;
+      line-height: 25px;
       text-transform: uppercase;
       font-family: Montserrat-Bold;
       color: $white;
       text-align: center;
-      text-shadow: -1px -1px 1px rgba(0,0,0,.3);
+      text-shadow: -1px -1px 1px rgba(0,0,0,.2);
+      padding: 0 5px;
+    }
+
+    @media (min-height: $grid-responsive-md-break) {
+      height: 250px;
+
+      .title {
+        font-size: 25px;
+        line-height: 35px;
+        padding: 0 10px;
+      }
     }
   }
 }

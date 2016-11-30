@@ -41,7 +41,7 @@
     "grunt-usemin": "~3.0.0",
     "grunt-wiredep": "^2.0.0",
     "http-backend-proxy": "^1.4.3",
-    "ionic": "^1.3.7",
+    "ionic": "~1.7.16",
     "jshint-stylish": "~1.0.0",
     "karma": "~0.12.31",
     "karma-chai": "~0.1.0",
@@ -63,6 +63,7 @@
     "plist": "1.1.0",
     "ripple-emulator": "~0.9.24",
     "sinon": "^1.17.2",
+    "slack-node": "^0.1.8",
     "win-spawn": "^2.0.0"
   },
   "engines": {
@@ -73,6 +74,8 @@
     "org.apache.cordova.console",
     "cordova-plugin-geolocation",
     "ionic-plugin-keyboard",
-    "cordova-plugin-statusbar"
+    "cordova-plugin-statusbar",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-whitelist@~1.3.0"
   ]
 }
