@@ -41,7 +41,6 @@
     }
 
     function newItem() {
-      itemsVm.item.cantidad=0;
       $ionicLoading.show({
         template: '{{::("globals.saving"|translate)}}'
       });
@@ -115,10 +114,7 @@
       itemsVm.messages = {};
     }
     function stockNotification(){
-      //itemsVm.item.cantidad=0;
-      //itemsVm.item.cantidad = !(itemsVm.item.enStock) ?  0 : itemsVm.item.cantidad ;
       itemsVm.item.cantidad = !(itemsVm.item.enStock) ?  0 :  (itemsVm.item.cantidad ?  itemsVm.item.cantidad: 0);
-      console.log(itemsVm.item.cantidad);
     }
   }
 })();
