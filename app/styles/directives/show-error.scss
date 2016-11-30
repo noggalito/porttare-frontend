@@ -1,5 +1,9 @@
 .errors-wrapper {
-  font-family: Montserrat-Light;
   font-size: 13px;
+}
+
+.errors-wrapper,
+.message-error {
   color: $error-red;
+  font-family: Montserrat-Light;
 }
