@@ -308,7 +308,15 @@ function routes($stateProvider, $urlRouterProvider) {
       'menuContent@provider': {
         templateUrl: 'templates/dispatcher/detail.html',
         controller: 'DispatcherDetailController',
-        controllerAs: 'dispatchersVm'
+        controllerAs: 'dispatchersVm',
+        resolve: {
+          detailDispatcher: function (DispatchersService, $stateParams) {
+            return DispatchersService.getDispatcher($stateParams.id)
+              .then(function (res) {
+                return res;
+              });
+          }
+        }
       }
     }
   })

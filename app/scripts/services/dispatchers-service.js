@@ -8,6 +8,7 @@
   function DispatchersService(CommonService) {
 
     var service = {
+      getDispatcher: getDispatcher,
       getDispatchers: getDispatchers,
       getProviderOffices: getProviderOffices,
       newDispatcher: newDispatcher,
@@ -16,6 +17,27 @@
     };
 
     return service;
+
+    function getDispatcher(id) {
+      return CommonService.getObjects('/api/provider/dispatchers')
+        .then(function success(res) {
+          var selectedDispatcher = filterDispatchers(res, id);
+          return selectedDispatcher;
+        });
+    }
+
+    function filterDispatchers(res, id) {
+      var dispatcher = null;
+      var parsedId = parseInt(id);
+      if (res && res.provider_dispatchers) { //jshint ignore:line
+        angular.forEach(res.provider_dispatchers, function (elem) { //jshint ignore:line
+          if (elem.id === parsedId) {
+            dispatcher = elem;
+          }
+        });
+      }
+      return dispatcher;
+    }
 
     function getDispatchers() {
       return CommonService.getObjects('/api/provider/dispatchers');

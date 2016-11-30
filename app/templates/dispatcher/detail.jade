@@ -16,6 +16,6 @@ ion-view(
     .row
       .col.detailSubTitle {{::("dispatcher.dataDispatcher"|translate)}}
     .containerDispatcher
-      .row.row-border-buttom(ng-repeat="(key, value) in dispatchersVm.detailDispatcher")
+      .row.row-border-buttom(ng-repeat="(key, value) in dispatchersVm.detailDispatcher track by $index")
         .col.col-50.col-border-right {{::("dispatcher." + key|translate)}}
         .col.text-center {{value}}

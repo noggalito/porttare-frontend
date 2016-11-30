@@ -10,7 +10,6 @@
                              $ionicLoading,
                              $ionicPopup,
                              $scope,
-                             $localStorage,
                              $state) {
     var dispatchersVm = this;
     dispatchersVm.showNewModal = showNewModal;
@@ -25,31 +24,27 @@
     function getDispatchers() {
       DispatchersService.getDispatchers()
         .then(function success(resp) {
-          localStorage.removeItem('dispatcher');
           dispatchersVm.dispatchers = resp.provider_dispatchers; //jshint ignore:line
-        });
+        }, error);
     }
 
     function getProviderOffices() {
       DispatchersService.getProviderOffices()
         .then(function success(resp) {
           dispatchersVm.providerOffices = resp.provider_offices; //jshint ignore:line
-        });
+        }, error);
     }
 
-    function error(resp){
-      dispatchersVm.messages = resp.status===422 ? resp.data.errors:undefined;
-      $ionicLoading.hide();
+    function error (){
+      $ionicPopup.alert({
+        title: 'Error',
+        template: '{{::("globals.pleaseTryAgain"|translate)}}'
+      });
     }
 
     function submitProcess(id){
       if (!id) {
         newDispatcher();
-      }else {
-        $ionicPopup.alert({
-          title: 'Error',
-          template: '{{::("globals.pleaseTryAgain"|translate)}}'
-        });
       }
     }
 
@@ -66,12 +61,14 @@
           });
           dispatchersVm.dispatchers.push(resp.provider_dispatcher); //jshint ignore:line
           dispatchersVm.closeModal();
-        }, error);
+        }, function error(resp){
+          dispatchersVm.messages = resp.status===422 ? resp.data.errors:undefined;
+          $ionicLoading.hide();
+        });
     }
 
-    function detailDispatcher(dispatcher){
-      $localStorage.setObject('dispatcher', dispatcher);
-      $state.go('provider.dispatchers.detail');
+    function detailDispatcher(dispatcherId){
+      $state.go('provider.dispatchers.detail', {'id': dispatcherId});
     }
 
     function showNewModal() {

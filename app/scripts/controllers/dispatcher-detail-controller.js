@@ -5,13 +5,13 @@
     .module('porttare.controllers')
     .controller('DispatcherDetailController', DispatchersController);
 
-  function DispatchersController(DispatchersService,
+  function DispatchersController(detailDispatcher,
+                              DispatchersService,
                               ModalService,
                               $ionicLoading,
                               $ionicPopup,
                               $scope,
-                              $state,
-                              $localStorage) {
+                              $state) {
 
     var dispatchersVm = this;
     dispatchersVm.showNewModal = showNewModal;
@@ -20,24 +20,19 @@
     dispatchersVm.submitProcess = submitProcess;
     dispatchersVm.deleteDispatcher = deleteDispatcher;
     dispatchersVm.query = '';
-    dispatchersVm.detailDispatcher = $localStorage.getObject('dispatcher');
+    dispatchersVm.detailDispatcher = detailDispatcher;
     getProviderOffices();
 
     function getProviderOffices() {
       DispatchersService.getProviderOffices()
         .then(function success(resp) {
           dispatchersVm.providerOffices = resp.provider_offices; //jshint ignore:line
-        });
+        }, error);
     }
 
     function submitProcess(id) {
       if (id) {
         editDispatcher();
-      }else {
-        $ionicPopup.alert({
-          title: 'Error',
-          template: '{{::("globals.pleaseTryAgain"|translate)}}'
-        });
       }
     }
 
@@ -72,16 +67,16 @@
             title: 'Éxito',
             template: '{{::("dispatcher.successDeleteDispatcher"|translate)}}'
           });
-          localStorage.removeItem('dispatcher');
           $state.go('provider.dispatchers.index');
-        },
-        function error(){
-          $ionicLoading.hide();
-          $ionicPopup.alert({
-            title: 'Error',
-            template: '{{::("globals.pleaseTryAgain"|translate)}}'
-          });
-        });
+        }, error);
+    }
+
+    function error(){
+      $ionicLoading.hide();
+      $ionicPopup.alert({
+        title: 'Error',
+        template: '{{::("globals.pleaseTryAgain"|translate)}}'
+      });
     }
 
     function showNewModal() {
