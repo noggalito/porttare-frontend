@@ -243,6 +243,10 @@
       },
       cart: {
         successfullyAdded: 'Ítem agregado exitosamente'
+      },
+      form: {
+        requiredField: 'Campo requerido. ',
+        wrongEmail: 'Email incorrecto. '
       }
     });
 

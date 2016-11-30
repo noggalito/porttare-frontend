@@ -24,7 +24,7 @@
   label.item-input.item-select {
     // override default
     margin-top: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 30px;
     padding-bottom: 0;
     padding-left: 0;
 
@@ -49,5 +49,13 @@
 
   .bar.bar-footer {
     position: relative;
+  }
+}
+
+// hacking error messages so they float below inputs
+.resource-form {
+  .errors-wrapper {
+    position: absolute;
+    margin-top: -30px;
   }
 }
