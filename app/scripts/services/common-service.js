@@ -8,9 +8,10 @@
   function CommonService($http, ENV) {
 
     var service = {
-      editObject: editObject,
+      getObjects: getObjects,
       newObject: newObject,
-      getObjects: getObjects
+      editObject: editObject,
+      deleteObject: deleteObject
     };
 
     return service;
@@ -41,6 +42,16 @@
         method: 'PUT',
         url: ENV.apiHost + url + data.id,
         data: data
+      })
+        .then(function success(resp){
+          return resp.data;
+        });
+    }
+
+    function deleteObject(id, url) {
+      return $http({
+        method: 'DELETE',
+        url: ENV.apiHost + url + id,
       })
         .then(function success(resp){
           return resp.data;

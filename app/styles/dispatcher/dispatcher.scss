@@ -1,0 +1,92 @@
+.dispatcher-page{
+  margin: 0 5px;
+  .list-header{
+    border-bottom: 1px solid #ddd;
+    margin: 10px 0;
+    padding: 0;
+    .list-title{
+      color: #666;
+      font-size: 0.9em;
+      text-transform: uppercase;
+    }
+  }
+  .list-content{
+    margin: 5px 0;
+    .list-item{
+      color: $base-grey;
+    }
+    .action{
+      text-align: right;
+    }
+  }
+  .bar-base-yellow{
+    background-color: $base-yellow !important;
+  }
+  .title{
+    color: $white !important;
+  }
+  .detailTitle{
+    font-size: 1.5em;
+  }
+  .detailSubTitle{
+    font-size: 1em;
+  }
+  .detailActions{
+    text-align: right;
+  }
+  .edit,
+  .delete{
+    margin: 0 4px;
+  }
+  .light-blue{
+    color: $light-blue;
+  }
+  .light-red{
+    color: $button-red;
+  }
+  .containerDispatcher{
+    margin-top: 15px;
+  }
+  .row{
+    margin: 0;
+    padding: 0;
+  }
+  .row-border-buttom {
+    border-bottom: 1px solid $base-yellow;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  .col-border-right {
+    color: $search-label-grey;
+    border-right: 1px solid $base-yellow;
+  }
+  .text-center {
+    text-align: center;
+  }
+}
+
+.footer-dispatcher-container {
+  display: block;
+  text-align: center;
+  .button-secondary {
+    background-color: $white;
+    height: 30px;
+    line-height: normal;
+    margin: 0 10px;
+    padding: 0 20px;
+    text-align: center;
+    text-transform: uppercase;
+    width: auto;
+  }
+  .button-secondary-yellow {
+    @extend .button-secondary;
+    border: 3px solid $base-yellow;
+    color: $base-yellow;
+  }
+  .button-secondary-red {
+    @extend .button-secondary;
+    border: 3px solid $button-red;
+    color: $button-red;
+  }
+}

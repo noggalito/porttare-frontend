@@ -1,0 +1,43 @@
+ion-modal-view.dispatcher-page
+  ion-header-bar.bar-stable.bar.bar-header(
+    align-title='center'
+  )
+    .ion-nav-buttons(side="left")
+      button.button.ion-chevron-left.button-clear.left(
+        ng-click='dispatchersVm.closeModal()'
+      )
+    .title.alt-logo
+  ion-content.resource-form
+    form(
+      name='dispatchersVm.dispatcherForm'
+      ng-submit='dispatchersVm.submitProcess(dispatchersVm.dispatcher.id)'
+      novalidate
+    )
+      .list.list-inset
+        legend {{::("dispatcher.formLegend"|translate)}}
+        label.item.item-input.item-stacked-label(
+          ng-class='{"item-error": dispatchersVm.dispatcherForm.email.$touched && dispatchersVm.dispatcherForm.email.$invalid}'
+        )
+          span.input-label {{::("dispatcher.email"|translate)}}
+          input(
+            name='email'
+            type='email'
+            ng-class='input-error'
+            ng-model='dispatchersVm.dispatcher.email'
+            required
+          )
+        .show-errors(ng-messages='dispatchersVm.dispatcherForm.email.$error' ng-if='dispatchersVm.dispatcherForm.email.$touched')
+          span(ng-message='required' class="message-error") {{::("globals.isRequired"|translate)}}
+        show-error(array-messages='dispatchersVm.messages.email')
+        label.item.item-input.item-select
+          span.input-label {{::("dispatcher.providerOfficeId"|translate)}}
+          select(
+            ng-model='dispatchersVm.dispatcher.provider_office_id'
+            ng-options='office.id as office.direccion for office in dispatchersVm.providerOffices'
+          )
+        show-error(array-messages='dispatchersVm.messages.provider_office_id')
+      .bar.bar-footer.bar-light.footer-dispatcher-container
+        button.button-secondary-yellow(
+          type='submit'
+          ng-disabled='dispatchersVm.dispatcherForm.$invalid'
+        ) {{::("dispatcher.saveDispatcher"|translate)}}

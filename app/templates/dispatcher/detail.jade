@@ -1,0 +1,21 @@
+ion-view(
+  view-title="{{:: categoryVm.category.titulo}}"
+)
+  ion-nav-title
+    .alt-logo
+  ion-content.dispatcher-page
+    .row
+      .col.col-67.detailTitle {{dispatchersVm.dispatcher.user.name}}
+      .col.col-33.detailActions
+        a.edit.light-blue(
+          ng-click='dispatchersVm.showEditModal()'
+        ) {{::("globals.edit"|translate)}}
+        a.delete.light-red(
+          ng-click='dispatchersVm.deleteDispatcher()'
+        ) {{::("globals.delete"|translate)}}
+    .row
+      .col.detailSubTitle {{::("dispatcher.dataDispatcher"|translate)}}
+    .containerDispatcher
+      .row.row-border-buttom(ng-repeat="(key, value) in dispatchersVm.detailDispatcher track by $index")
+        .col.col-50.col-border-right {{::("dispatcher." + key|translate)}}
+        .col.text-center {{value}}

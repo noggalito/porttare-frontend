@@ -126,6 +126,7 @@
         save: 'Guardar',
         list: 'Listar',
         edit: 'Editar',
+        delete: 'Eliminar',
         options: 'Opciones',
         success: 'Éxito',
         saving: 'Guardando',
@@ -141,7 +142,8 @@
         start: 'Empezar',
         sendRequest: 'Enviar solicitud',
         isRequired: 'Este campo es obligatorio',
-        disabledUser: 'Su cuenta ha sido deshabilitada'
+        disabledUser: 'Su cuenta ha sido deshabilitada',
+        seeMore: 'Ver más'
       },
       item: {
         item: 'Producto',
@@ -191,6 +193,26 @@
         direccion: 'Dirección',
         telefono: 'Teléfono',
         email: 'email'
+      },
+      dispatcher: {
+        dispatcher: 'Despachador',
+        dispatchers: 'Despachadores',
+        dispatcherId: 'Id',
+        dispatcherEmail: 'Email del despachador',
+        office: 'Sucursal',
+        dispatcherSearch: 'Buscar despachador',
+        dispatcherName: 'Nombre del despachador',
+        formLegend: 'Información del despachador',
+        dataDispatcher: 'Datos del despachador',
+        selectOffice: 'Selecciona una sucursal',
+        saveDispatcher: 'Agregar despachador',
+        successDispatcherSave: 'Despachador guardado éxitosamente',
+        successUpdateDispatcher: 'Despachador actualizado éxitosamente',
+        successDeleteDispatcher: 'Despachador eliminado éxitosamente',
+        id:'ID',
+        email: 'Email del despachador',
+        provider_office_id: 'Sucursal', //jshint ignore:line
+        providerOfficeId: 'Sucursal'
       },
       password: {
         updatePassword: 'Actualizar contraseña',
