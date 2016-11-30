@@ -7,6 +7,7 @@
 
   function OfficesController(OfficesService,
                               ModalService,
+                              ErrorHandlerService,
                               $ionicLoading,
                               $ionicPopup,
                               $scope,
@@ -18,18 +19,12 @@
     officesVm.closeModal = closeModal;
     officesVm.submitOffice = submitOffice;
     officesVm.seeMore = seeMore;
-    getoffices();
+    getOffices();
 
-    function getoffices() {
+    function getOffices() {
       OfficesService.getOffices().then(function(results){
         officesVm.offices = results.provider_offices; //jshint ignore:line
-      }, function error(resp) {
-        $ionicLoading.hide();
-        $ionicPopup.alert({
-          title: 'Error',
-          template: resp.data.error ? resp.data.error : '{{::("globals.pleaseTryAgain"|translate)}}'
-        });
-      });
+      }, ErrorHandlerService.handleCommonErrorGET);
     }
 
     function showNewOffice() {
