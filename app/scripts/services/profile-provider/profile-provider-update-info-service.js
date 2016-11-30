@@ -22,7 +22,7 @@
 
             }).then(function success(res) {
                 return res.data;
-                console.log(res.data)
+                //console.log(res.data)
             }, function error(res) {
                 return $q.reject(res.data);
             });
