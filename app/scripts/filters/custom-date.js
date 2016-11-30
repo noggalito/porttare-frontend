@@ -7,7 +7,8 @@
 
   function customDate() {
     return function (currentValue, formatStr) {
-      return moment(currentValue).format(formatStr);
+      var _date = new Date(currentValue);
+      return moment(_date).format(formatStr);
     };
   }
 
