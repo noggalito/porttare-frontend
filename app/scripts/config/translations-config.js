@@ -46,6 +46,7 @@
           billingAddresses : 'Direcciones de facturación'
         },
         provider: {
+          profile:'Perfil de Proveedor',
           orders: 'Pedidos',
           products: 'Productos',
           clients: 'Clientes',
@@ -66,6 +67,7 @@
         }
       },
       provider: {
+        successUpdateProfileProvider: 'Perfil actualizado éxitosamente',
         itemsProvider: 'Productos de Proveedor',
         formLegendFirst: 'Proveedor nuevo - Paso 1',
         formLegendSecond: 'Proveedor nuevo - Paso 2',
