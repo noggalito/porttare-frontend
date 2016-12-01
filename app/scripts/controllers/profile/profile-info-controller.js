@@ -6,11 +6,11 @@
     .controller('ProfileInfoController', ProfileInfoController);
 
   function ProfileInfoController($auth,
-                                ModalService,
-                                ProfileService,
-                                $ionicLoading,
-                                $ionicPopup,
-                                $scope) {
+                                 ModalService,
+                                 ProfileService,
+                                 $ionicLoading,
+                                 $ionicPopup,
+                                 $scope) {
     var piVm = this;
     piVm.showNewModal = showNewModal;
     piVm.closeModal = closeModal;
@@ -37,23 +37,28 @@
     }
 
     function submitProcess(user){
+      $ionicLoading.show({
+          template: 'Guardando...'
+        }
+      );
       $auth.updateAccount(user)
-        .then(function(response) {
-          piVm.user = response.data.user;
-          $ionicLoading.hide().then(function(){
-            $ionicPopup.alert({
-              title: 'Éxito',
-              template: '{{::("user.successUpdateProfile"|translate)}}'
-            }).then(function(){
-              closeModal();
-            });
-          });
-        })
-        .catch(function() {
+        .then(function () {
+          $ionicLoading.hide();
           $ionicPopup.alert({
-            title: 'Error',
-            template:'Hubo un error, inténtalo nuevamente.'
+            title: 'Éxito',
+            template: '{{::("user.successUpdateProfile"|translate)}}'
           });
+          closeModal();
+        })
+        .catch(function error(resp) {
+          if (resp.data && resp.data.errors) {
+            piVm.messages = resp.data.errors;
+          } else {
+            $ionicPopup.alert({
+              title: 'Error',
+              template: 'Hubo un error, intentalo nuevamente.'
+            });
+          }
           $ionicLoading.hide();
         });
     }
