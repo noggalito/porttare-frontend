@@ -42,26 +42,30 @@
     }
 
     function submitProcess(user){
-      $ionicLoading.show({template: '{{::("globals.sending"|translate)}}'});
-
-      ProfileService.editProfile(user)
-        .then(function (response) {
-          piVm.user = response.data.data;
-          $scope.$emit('currentUserUpdated', piVm.user);
-
-          $ionicLoading.hide().then(function () {
-            $ionicPopup.alert({
-              title: 'Éxito',
-              template: '{{::("user.successUpdateProfile"|translate)}}'
-            }).then(closeModal);
-          });
+      $ionicLoading.show({
+        template: '{{::("globals.updating"|translate)}}'
+      });
+      $auth.updateAccount(user)
+        .then(function(resp) {
+          piVm.user = resp.data.data;
+          $ionicPopup.alert({
+            title: 'Éxito',
+            template: '{{::("user.successUpdateProfile"|translate)}}'
+          }).then(closeModal);
         })
-        .catch(function error(resp) {
-          if (resp.data && resp.data.errors) {
-            piVm.messages = resp.data.errors;
-          }
+        .finally(function () {
           $ionicLoading.hide();
         });
     }
+
+    $scope.$on('auth:account-update-error', function(ev, reason) {
+      if (reason && reason.errors) {
+        piVm.messages = reason.errors;
+      }
+      $ionicPopup.alert({
+        title: 'Error',
+        template:'{{::("globals.pleaseTryAgain"|translate)}}'
+      });
+    });
   }
 })();
