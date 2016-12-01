@@ -76,6 +76,7 @@
     "ionic-plugin-keyboard",
     "cordova-plugin-statusbar",
     "cordova-plugin-whitelist",
-    "cordova-plugin-whitelist@~1.3.0"
+    "cordova-plugin-whitelist@~1.3.0",
+    "https://github.com/Wizcorp/phonegap-facebook-plugin.git"
   ]
 }
