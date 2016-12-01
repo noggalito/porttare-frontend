@@ -5,14 +5,13 @@
     .module('porttare.controllers')
     .controller('ProfileProviderUpdateController', ProfileProviderUpdateController);
 
-  function ProfileProviderUpdateController(ProfileProviderUpdateService,
+  function ProfileProviderUpdateController(ProfileService,
                                    ModalService,
                                    $ionicLoading,
                                    $ionicPopup,
                                    $scope,
                                    $auth,
-                                   $translate
-        ) {
+                                   $translate) {
     var providerProfileVm = this;
     providerProfileVm.showNewModal = showNewModal;
     providerProfileVm.showEditModal = showEditModal;
@@ -117,7 +116,7 @@
       }).map(function(row){
         return row.value;
       });
-      ProfileProviderUpdateService.updateProfileProvider(providerProfileVm.profileProvider)
+      ProfileService.updateProfileProvider(providerProfileVm.profileProvider)
         .then(function success(resp) {
           $ionicLoading.hide();
           $ionicPopup.alert({
@@ -128,7 +127,7 @@
           closeModal();
         },
           function error(resp){
-            providerProfileVm.messages = resp.status===422 ? resp.data.errors:undefined;
+            providerProfileVm.errors = resp.errors;
             $ionicLoading.hide();
           });
     }
