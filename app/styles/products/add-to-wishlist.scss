@@ -1,0 +1,28 @@
+.add-to-wishlist {
+  .bar-modal-header {
+    border-bottom: none;
+    .title {
+      text-transform: uppercase;
+    }
+  }
+  .modal-container {
+    padding: 0 1rem;
+    .modal-item {
+      border: none;
+      cursor: pointer;
+      border-bottom: 0.2rem solid $light-grey;
+      &:last-child {
+        border-bottom: none;
+      }
+      &:hover {
+        background-color: $light-grey;
+      }
+    }
+  }
+  .modal-footer {
+    height: 60px;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+  }
+}

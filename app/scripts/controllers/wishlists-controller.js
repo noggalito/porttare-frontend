@@ -42,20 +42,16 @@
 
     wishlistsVm.actions = {
       new: {
-        listener: createWishlist,
-        modalId: wishlistsVm.modalSettings.newWishlist.id
+        listener: createWishlist
       },
       edit: {
-        listener: updateWishlist,
-        modalId: wishlistsVm.modalSettings.editWishlist.id
+        listener: updateWishlist
       },
       remove: {
-        listener: removeWishlist,
-        modalId: wishlistsVm.modalSettings.editWishlist.id
+        listener: removeWishlist
       },
       cancel: {
-        listener: cancelAction,
-        modalId: wishlistsVm.modalSettings.newWishlist.id
+        listener: cancelAction
       }
     };
 
@@ -64,7 +60,9 @@
     }
 
     function runAction(action) {
-      action.listener(action.modalId);
+      if (action && action.listener) {
+        action.listener();
+      }
     }
 
     function closeModal() {
@@ -85,27 +83,27 @@
       wishlistsVm.showModal(wishlistsVm.modalSettings.editWishlist);
     }
 
-    function removeWishlist(modalId) {
+    function removeWishlist() {
       WishlistsService.removeWishlist(wishlistsVm.wishlist.id)
         .then(function success() {
           wishlistsVm.wishlists.splice(currentIndex, 1);
-          cancelAction(modalId);
+          cancelAction();
         }, onError);
     }
 
-    function updateWishlist(modalId) {
+    function updateWishlist() {
       WishlistsService.updateWishlist(wishlistsVm.wishlist)
         .then(function success(res) {
           wishlistsVm.wishlists[currentIndex] = res.customer_wishlist; //jshint ignore: line
-          cancelAction(modalId);
+          cancelAction();
         }, onError);
     }
 
-    function createWishlist(modalId) {
+    function createWishlist() {
       WishlistsService.createWishlist(wishlistsVm.wishlist)
         .then(function success(res) {
           wishlistsVm.wishlists.push(res.customer_wishlist); //jshint ignore: line
-          cancelAction(modalId);
+          cancelAction();
         }, onError);
     }
 

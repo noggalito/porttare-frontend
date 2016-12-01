@@ -45,6 +45,14 @@
   .wishlist-form-content {
     margin-bottom: 50px;
   }
+  .wishlist-item {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    .ion-checkmark {
+      padding: 0 0.2rem;
+    }
+  }
 }
 
 .footer-wishlist-container {

@@ -238,7 +238,9 @@
         less: 'mostrar menos',
         buyNow: 'Comprar Ahora',
         addCar: 'Añadir al carrito',
-        addWishlist: 'Añadir a mi whishlist'
+        addWishlist: 'Añadir a mi whishlist',
+        modalTitle: 'Agregar a mi Wishlist o lista personalizada',
+        modalButtonNew: 'Nueva lista'
       },
       profile: {
         title: 'Perfil',

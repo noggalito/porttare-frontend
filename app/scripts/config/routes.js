@@ -421,6 +421,7 @@ function routes($stateProvider, $urlRouterProvider) {
   })
   .state('app.wishlist.index', {
     url: '/',
+    cache: false,
     views: {
       'menuContent@app': {
         templateUrl: 'templates/wishlist/wishlists.html',

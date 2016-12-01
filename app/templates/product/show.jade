@@ -25,12 +25,14 @@ ion-view(
         textarea(ng-model='productVm.item.observaciones')
         .add-product
           action-button.add-product-button(
-            ng-click="productVm.addToCart()"
+            ng-click="productVm.runAction(productVm.actions.cart)"
             ng-disabled="!productVm.item.cantidad"
             text="{{::('product.addCar'|translate)}}"
           )
           action-button.add-product-button(
+            ng-click="productVm.runAction(productVm.actions.wishlist)"
             text="{{::('product.addWishlist'|translate)}}"
+            ng-disabled="!productVm.item.cantidad"
             color="blue"
           )
   ion-footer-bar.bar-stable(align-title='center')

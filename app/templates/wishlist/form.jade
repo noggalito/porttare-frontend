@@ -14,8 +14,9 @@
       span(ng-if="!wishlistsVm.wishlist.provider_items || wishlistsVm.wishlist.provider_items.length === 0")
         | {{::("wishlist.noItems"|translate)}}
       ion-list(ng-if="wishlistsVm.wishlist.provider_items.length > 0")
-        ion-item(ng-repeat="item in ::wlist.provider_items")
-          | {{::item.titulo)}}
+        ion-item.wishlist-item(ng-repeat="item in ::wishlistsVm.wishlist.provider_items track by $index")
+           i.icon.ion-checkmark
+           .text {{item.titulo}}
 
   label.item.item-input.item-stacked-label
     span.input-label {{::("wishlist.dateDelivery"|translate)}}

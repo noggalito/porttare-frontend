@@ -1,0 +1,20 @@
+ion-modal-view.add-to-wishlist
+  ion-header-bar.bar.bar-header.bar-light.bar-modal-header(align-title="center")
+    .title {{::("product.modalTitle"|translate)}}
+    .buttons
+      button.button.ion-close.button-clear(
+        ng-click="productVm.closeModal()"
+      )
+  ion-content
+    .modal-container
+      ion-list
+        ion-item.modal-item(
+            ng-repeat="wishlist in productVm.wishlists track by $index"
+            ng-click="productVm.onWishlistSelect(wishlist)"
+        )
+          span {{wishlist.nombre}}
+  ion-footer-bar.modal-footer
+    action-button(
+      on-click="productVm.createNewWishlist()"
+      text="{{::('product.modalButtonNew'|translate)}}"
+    )

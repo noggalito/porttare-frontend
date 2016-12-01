@@ -11,13 +11,14 @@ ion-modal-view.wishlist-page
     .resource-form
       form(name="form" novalidate)
         div(ng-include="'templates/wishlist/form.html'")
-        .bar.bar-footer.footer-wishlist-container
-          action-button(
-            on-click="wishlistsVm.runAction(wishlistsVm.actions.edit)"
-            text="{{::('wishlist.save'|translate)}}"
-          )
-          action-button(
-            on-click="wishlistsVm.runAction(wishlistsVm.actions.remove)"
-            text="{{::('wishlist.remove'|translate)}}"
-            color="red"
-          )
+
+  ion-footer-bar.footer-wishlist-container
+    action-button(
+      on-click="wishlistsVm.runAction(wishlistsVm.actions.edit)"
+      text="{{::('wishlist.save'|translate)}}"
+    )
+    action-button(
+      on-click="wishlistsVm.runAction(wishlistsVm.actions.remove)"
+      text="{{::('wishlist.remove'|translate)}}"
+      color="red"
+    )
