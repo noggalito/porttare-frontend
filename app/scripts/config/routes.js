@@ -265,22 +265,22 @@ function routes($stateProvider, $urlRouterProvider) {
     url: '/items',
     abstract: true
   })
-  //PERFIL DE PROVEEDOR
-      .state('provider.profile-provider', {
-        url: '/profile',
-        abstract: true
 
-      })
-      .state('provider.profile-provider.update', {
-        url: '/',
-        views: {
-          'menuContent@provider': {
-            templateUrl: 'templates/profile-provider/profileProvider.html',
-            controller: 'ProfileProviderUpdateController',
-            controllerAs: 'providerProfileVm'
-          }
-        }
-      })
+  .state('provider.profile-provider', {
+    url: '/profile',
+    abstract: true
+  })
+
+  .state('provider.profile-provider.update', {
+    url: '/',
+    views: {
+      'menuContent@provider': {
+        templateUrl: 'templates/profile-provider/profileProvider.html',
+        controller: 'ProfileProviderUpdateController',
+        controllerAs: 'providerProfileVm'
+      }
+    }
+  })
 
   .state('provider.items.index', {
     url: '/',

@@ -8,126 +8,126 @@ ion-view(
         .address-container()
             .profile-page
                 .profile-header
-                    .user-name
-                        | {{ siteVm.user.provider_profile.razon_social }}
+                    .providerProfileVm-name
+                        | {{providerProfileVm.profileProvider.razon_social }}
             .edit
                 link-button(ng-click="providerProfileVm.showEditModal(idx)" text="{{::('globals.edit'|translate)}}")
             .address-grid
 
                 .row
 
-                    .col.col-label {{::("RUC"|translate)}}
-                    .col {{user.provider_profile.ruc}}
+                    .col.col-label {{::("RUC*"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.ruc}}
 
                 .row
 
                     .col.col-label {{::("provider.businessName"|translate)}}
-                    .col {{user.provider_profile.razon_social}}
+                    .col {{providerProfileVm.profileProvider.razon_social}}
 
                 .row
 
-                    .col.col-label {{::("provider.name"|translate)}}
-                    .col {{user.provider_profile.nombre_establecimiento}}
+                    .col.col-label {{::("provider.name"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.nombre_establecimiento}}
 
                 .row
 
-                    .col.col-label {{::("provider.economicActivity"|translate)}}
-                    .col {{user.provider_profile.actividad_economica}}
+                    .col.col-label {{::("provider.economicActivity"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.actividad_economica}}
 
                 .row
 
-                    .col.col-label {{::("provider.LegalRepresentative"|translate)}}
-                    .col {{user.provider_profile.representante_legal}}
+                    .col.col-label {{::("provider.LegalRepresentative"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.representante_legal}}
 
                 .row
 
-                    .col.col-label {{::("provider.phone"|translate)}}
-                    .col {{user.provider_profile.telefono}}
+                    .col.col-label {{::("provider.phone"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.telefono}}
 
                 .row
 
-                    .col.col-label {{::("provider.email"|translate)}}
-                    .col {{user.provider_profile.email}}
+                    .col.col-label {{::("provider.email"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.email}}
 
                 .row
 
-                    .col.col-label {{::("provider.webSite"|translate)}}
-                    .col {{user.provider_profile.website}}
+                    .col.col-label {{::("provider.webSite"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.website}}
 
                 .row
 
-                    .col.col-label {{::("provider.methodPayment"|translate)}}
-                    .col {{user.provider_profile.formas_de_pago[0]}}
+                    .col.col-label {{::("provider.methodPayment"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.formas_de_pago[0]}} {{providerProfileVm.profileProvider.formas_de_pago[1]}}
 
                 .row
 
-                    .col.col-label {{::("provider.bank.name"|translate)}}
-                    .col {{user.provider_profile.banco_nombre}}
+                    .col.col-label {{::("provider.bank.name"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.banco_nombre}}
 
                 .row
 
-                    .col.col-label {{::("provider.bank.account"|translate)}}
-                    .col {{user.provider_profile.banco_numero_cuenta}}
+                    .col.col-label {{::("provider.bank.account"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.banco_numero_cuenta}}
 
                 .row
 
-                    .col.col-label {{::("provider.bank.type"|translate)}}
-                    .col {{user.provider_profile.banco_nombre.banco_tipo_cuenta}}
-                //oficina
+                    .col.col-label {{::("provider.bank.type"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.banco_nombre.banco_tipo_cuenta}}
+                
                 .row
 
-                    .col.col-label {{::("provider.openTime"|translate)}}
-                    .col {{user.provider_profile.provider_offices[0].hora_de_apertura | date:'h:mm a'}}
-
-                .row
-
-                    .col.col-label {{::("provider.closeTime"|translate)}}
-                    .col {{user.provider_profile.provider_offices[0].hora_de_cierre | date:'h:mm a'}}
+                    .col.col-label {{::("provider.openTime"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.provider_offices[0].hora_de_apertura}}
 
                 .row
 
-                    .col.col-label {{::("provider.initialLaborDay"|translate)}}
-                    .col {{user.provider_profile.provider_offices[0].inicio_de_labores }}
+                    .col.col-label {{::("provider.closeTime"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.provider_offices[0].hora_de_cierre}}
 
                 .row
 
-                    .col.col-label {{::("provider.finalLaborDay"|translate)}}
-                    .col {{user.provider_profile.provider_offices[0].final_de_labores }}
+                    .col.col-label {{::("provider.initialLaborDay"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.provider_offices[0].inicio_de_labores}}
 
                 .row
 
-                    .col.col-label {{::("TELEFONO DE OFICINA"|translate)}}
-                    .col {{user.provider_profile.provider_offices[0].telefono}}
+                    .col.col-label {{::("provider.finalLaborDay"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.provider_offices[0].final_de_labores}}
 
                 .row
 
-                    .col.col-label {{::("DIRECCION"|translate)}}
-                    .col {{user.provider_profile.provider_offices[0].direccion}}
-
-
-                .row
-                    .col.col-label {{::("CIUDAD"|translate)}}
-                    .col {{user.provider_profile.provider_offices[0].cuidad}}
+                    .col.col-label {{::("provider.phone"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.provider_offices[0].telefono}}
 
                 .row
 
-                    .col.col-label {{::("FACEBOOK"|translate)}}
-                    .col {{user.provider_profile.facebook_handle}}
+                    .col.col-label {{::("provider.address"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.provider_offices[0].direccion}}
+
+
+                .row
+                    .col.col-label {{::("provider.city"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.provider_offices[0].cuidad}}
 
                 .row
 
-                    .col.col-label {{::("TWITTER"|translate)}}
-                    .col {{user.provider_profile.twitter_handle}}
+                    .col.col-label {{::("provider.facebook"|translate|uppercase)}}
+                    .col {{providerProfileVm.provider_profile.facebook_handle}}
 
                 .row
 
-                    .col.col-label {{::("INSTAGRAM"|translate)}}
-                    .col {{user.provider_profile.instagram_handle}}
+                    .col.col-label {{::("provider.twitter"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.twitter_handle}}
 
                 .row
 
-                    .col.col-label {{::("YOUTUBE"|translate)}}
-                    .col  {{user.provider_profile.youtube_handle}}
+                    .col.col-label {{::("provider.instagram"|translate|uppercase)}}
+                    .col {{providerProfileVm.provider_profile.instagram_handle}}
+
+                .row
+
+                    .col.col-label {{::("provider.youtube"|translate|uppercase)}}
+                    .col  {{providerProfileVm.profileProvider.youtube_handle}}
 
 
 
