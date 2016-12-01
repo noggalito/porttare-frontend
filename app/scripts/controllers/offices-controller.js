@@ -60,7 +60,7 @@
 
     function seeMore(office){
       $localStorage.setObject('office', office);
-      $state.go('provider.office');
+      $state.go('provider.office', { id: office.id});
     }
 
   }

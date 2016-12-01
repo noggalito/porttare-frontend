@@ -299,7 +299,7 @@ function routes($stateProvider, $urlRouterProvider) {
     }
   })
   .state('provider.office', {
-    url: '/office',
+    url: '/office/:id',
     views: {
       'menuContent@provider': {
         templateUrl: 'templates/offices/detail.html',

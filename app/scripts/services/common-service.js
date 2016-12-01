@@ -10,7 +10,8 @@
     var service = {
       editObject: editObject,
       newObject: newObject,
-      getObjects: getObjects
+      getObjects: getObjects,
+      getObject: getObject
     };
 
     return service;
@@ -41,6 +42,16 @@
         method: 'PUT',
         url: ENV.apiHost + url + data.id,
         data: data
+      })
+        .then(function success(resp){
+          return resp.data;
+        });
+    }
+
+    function getObject(objectId, url) {
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + url + objectId
       })
         .then(function success(resp){
           return resp.data;

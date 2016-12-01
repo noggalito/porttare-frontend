@@ -5,10 +5,11 @@
     .module('porttare.services')
     .factory('OfficesService', OfficesService);
 
-  function OfficesService($http, ENV, $q, CommonService) {
+  function OfficesService($http, ENV, $q, CommonService, $localStorage) {
 
     var service = {
       getOffices: getOffices,
+      getOffice: getOffice,
       createOffice: createOffice,
       updateOffice: updateOffice
     };
@@ -19,17 +20,15 @@
       return CommonService.getObjects('/api/provider/offices');
     }
 
+    function getOffice(officeId) {
+      var deferred = $q.defer();
+      deferred.resolve($localStorage.getObject('office'));
+      return deferred.promise;
+    }
+
     function createOffice(office) {
       var data = convertDateToString(office);
-      return $http({
-        method: 'POST',
-        url: ENV.apiHost + '/api/provider/offices',
-        data:data
-      }).then(function success(res){
-        return res.data;
-      }, function error(res) {
-        return $q.reject(res.data);
-      });
+      return CommonService.newObject(data, '/api/provider/offices');
     }
 
     function updateOffice(office) {
