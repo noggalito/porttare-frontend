@@ -1,0 +1,192 @@
+ion-modal-view.item-page
+  ion-header-bar.bar-stable.bar.bar-header(
+  align-title="center"
+  )
+    .ion-nav-buttons(side="left")
+      button.button.ion-chevron-left.button-clear.left(
+      ng-click="providerProfileVm.closeModal()"
+      )
+    .title.alt-logo
+  ion-content.resource-form
+    form(
+    name="providerProfileVm.providerProfileForm"
+    ng-submit="providerProfileVm.edit()"
+    novalidate
+    )
+      .list.list-inset
+        legend {{::("provider.updateInforProvider"|translate)}}
+
+        label.item.item-input.item-stacked-label(
+        ng-class="{'item-error': providerProfileVm.providerProfileForm.ruc.$touched && providerProfileVm.providerProfileForm.ruc.$invalid}"
+        )
+          span.input-label {{::("RUC*"|translate)}}
+          input(
+          name="ruc"
+          type="text"
+          ng-model="providerProfileVm.profileProvider.ruc"
+          required
+          )
+        .show-errors(ng-messages="providerProfileVm.providerProfileForm.ruc.$error" ng-if="providerProfileVm.providerProfileForm.ruc.$touched")
+          span(ng-message="required" class="message-error") Campo requerido
+        show-error(array-messages="providerProfileVm.providerProfileForm.ruc")
+
+        label.item.item-input.item-stacked-label(
+        ng-class="{'item-error': providerProfileVm.profileProvider.razon_social.$touched && providerProfileVm.profileProvider.razon_social.$invalid}"
+        )
+          span.input-label {{::("provider.businessName"|translate|uppercase)}}
+          input(
+          name="razon_social"
+          type="text"
+          ng-model="providerProfileVm.profileProvider.razon_social"
+          required
+          )
+        .show-errors(ng-messages="providerProfileVm.providerProfileForm.razon_social.$error" ng-if="providerProfileVm.providerProfileForm.razon_social.$touched")
+          span(ng-message="required" class="message-error") Campo requerido
+        show-error(array-messages="providerProfileVm.providerProfileForm.razon_social")
+
+        label.item.item-input.item-stacked-label(
+        ng-class="{'item-error': providerProfileVm.profileProvider.nombre_establecimiento.$touched && providerProfileVm.profileProvider.nombre_establecimiento.$invalid}"
+        )
+          span.input-label {{::("provider.name"|translate|uppercase)}}
+          input(
+          name="nombre_establecimiento"
+          type="text"
+          ng-model="providerProfileVm.profileProvider.nombre_establecimiento"
+          required
+          )
+        .show-errors(ng-messages="providerProfileVm.providerProfileForm.nombre_establecimiento.$error" ng-if="providerProfileVm.providerProfileForm.nombre_establecimiento.$touched")
+          span(ng-message="required" class="message-error") Campo requerido
+        show-error(array-messages="providerProfileVm.providerProfileForm.nombre_establecimiento")
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("provider.economicActivity"|translate|uppercase)}}
+          input(
+          name="actividad_economica"
+          type="text"
+          ng-model="providerProfileVm.profileProvider.actividad_economica"
+          )
+
+        label.item.item-input.item-stacked-label(
+        ng-class="{'item-error': providerProfileVm.profileProvider.representante_legal.$touched && providerProfileVm.profileProvider.representante_legal.$invalid}"
+        )
+          span.input-label {{::("provider.LegalRepresentative"|translate|uppercase)}}
+          input(
+          name="representante_legal"
+          type="text"
+          ng-model="providerProfileVm.profileProvider.representante_legal"
+          required
+          )
+        .show-errors(ng-messages="providerProfileVm.providerProfileForm.representante_legal.$error" ng-if="providerProfileVm.providerProfileForm.representante_legal.$touched")
+          span(ng-message="required" class="message-error") Campo requerido
+        show-error(array-messages="providerProfileVm.providerProfileForm.representante_legal")
+
+        label.item.item-input.item-stacked-label(
+        ng-class="{'item-error': providerProfileVm.profileProvider.telefono.$touched && providerProfileVm.profileProvider.telefono.$invalid}"
+        )
+          span.input-label {{::("provider.phone"|translate|uppercase)}}
+          input(
+          name="telefono"
+          type="text"
+          ng-model="providerProfileVm.profileProvider.telefono"
+          required
+          )
+        .show-errors(ng-messages="providerProfileVm.providerProfileForm.telefono.$error" ng-if="providerProfileVm.providerProfileForm.telefono.$touched")
+          span(ng-message="required" class="message-error") Campo requerido
+        show-error(array-messages="providerProfileVm.providerProfileForm.telefono")
+
+        label.item.item-input.item-stacked-label(
+        ng-class="{'item-error': providerProfileVm.profileProvider.email.$touched && providerProfileVm.profileProvider.email.$invalid}"
+        )
+          span.input-label {{::("provider.email"|translate|uppercase)}}
+          input(
+          name="email"
+          type="text"
+          ng-model="providerProfileVm.profileProvider.email"
+          required
+          )
+        .show-errors(ng-messages="providerProfileVm.providerProfileForm.email.$error" ng-if="providerProfileVm.providerProfileForm.email.$touched")
+          span(ng-message="required" class="message-error") Campo requerido
+        show-error(array-messages="providerProfileVm.providerProfileForm.email")
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("provider.webSite"|translate|uppercase)}}
+          input(
+          name="website"
+          type="text"
+          ng-model="providerProfileVm.profileProvider.website"
+          )
+
+        label.item.item-input.item-stacked-label(
+        ng-class="{'item-error': providerProfileVm.touchedPayments && providerProfileVm.providerProfileForm.methodsPayment.$invalid}"
+        )
+          span.input-label {{::("provider.methodPayment"|translate|uppercase)}}
+          ion-list
+            ion-checkbox(
+            ng-repeat="method in providerProfileVm.methodsPayment",
+            ng-model="method.checked"
+            name="formas_pago"
+            ng-checked="method.checked"
+            ng-change="providerProfileVm.checked(method)"
+            ) {{ ::method.label }}
+        .show-errors.ng-active(ng-if="providerProfileVm.touchedPayments && providerProfileVm.providerProfileForm.methodsPayment.$invalid")
+          span(class='message-error' class="message-error") Campo requerido
+        show-error(array-messages="providerProfileVm.errors.formas_de_pago")
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("provider.bank.name"|translate|uppercase)}}
+          input(
+          type="text"
+          ng-model="providerProfileVm.profileProvider.banco_nombre"
+          )
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("provider.bank.account"|translate|uppercase)}}
+          input(
+          type="text"
+          ng-model="providerProfileVm.profileProvider.banco_numero_cuenta"
+          )
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("provider.bank.type"|translate|uppercase)}}
+          ion-list
+            ion-checkbox(
+            ng-repeat="type in providerProfileVm.accountType",
+            ng-model="type.checked"
+            name="bankType"
+            ng-checked="type.checked"
+            ng-change="providerProfileVm.checkedBank(type)"
+            ) {{ ::type.label }}
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("provider.facebook"|translate|uppercase)}}
+          input(
+          type="text"
+          ng-model="providerProfileVm.profileProvider.facebook_handle"
+          )
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("provider.twitter"|translate|uppercase)}}
+          input(
+          type="text"
+          ng-model="providerProfileVm.profileProvider.twitter_handle"
+          )
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("provider.instagram"|translate|uppercase)}}
+          input(
+          type="text"
+          ng-model="providerProfileVm.profileProvider.instagram_handle"
+          )
+
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("provider.youtube"|translate|uppercase)}}
+          input(
+          type="text"
+          ng-model="providerProfileVm.profileProvider.youtube_handle"
+          )
+
+      .bar.bar-footer.footer-client-container
+        button.button-secondary-yellow(
+        type="submit"
+        ng-disabled="providerProfileVm.providerProfileForm.$invalid"
+        ) {{::("globals.save"|translate)}}
