@@ -5,7 +5,7 @@
     .module('porttare.services')
     .factory('BillingAddressesService', BillingAddressesService);
 
-  function BillingAddressesService(CommonService, $http, $q, ENV) {
+  function BillingAddressesService(CommonService) {
 
     var service = {
       getBillingAddresses: getBillingAddresses,
