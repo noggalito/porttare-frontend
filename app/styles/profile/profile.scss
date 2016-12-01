@@ -31,20 +31,28 @@
       }
     }
 
-    .item {
-      border-color: transparent;
-      background-color: transparent;
-      padding: 1rem;
-      border-bottom: 0.1rem solid #FDC30D;
+    .row {
+      border-bottom: 0.1rem solid $energized;
       width: 100%;
+      padding: 0;
+
+      .col {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+
+        @media (max-width: $grid-responsive-md-break) {
+          margin-bottom: 0;
+        }
+      }
+
+      .col-label {
+        border-right: 0.1rem solid $energized;
+      }
+
     }
 
     .profile-index {
       margin-top: 2rem;
-    }
-
-    .label-profile-customer {
-      border-right: 0.1rem solid #FDC30D;
     }
 
   }

@@ -1,36 +1,21 @@
-ion-content.profile-page.responsive-sm
+ion-content.profile-page.responsive-md
   .text-center
     link-button(on-click="piVm.showNewModal(piVm.user)" text="{{::('globals.edit'|translate)}}")
   .col.col-offset-25.col-50
     .row
-      label.item.label-profile-customer
-        span.input-label {{::("user.name"|translate)}}
-
-      label.item
-        span.input-label {{piVm.user.name}}
+      .col.col-label {{::("user.name"|translate)}}
+      .col {{piVm.user.name}}
     .row
-      label.item.label-profile-customer
-        span.input-label {{::("user.email"|translate)}}
-
-      label.item
-        span.input-label {{piVm.user.email}}
+      .col.col-label {{::("user.email"|translate)}}
+      .col {{piVm.user.email}}
     .row
-      label.item.label-profile-customer
-        span.input-label {{::("user.age"|translate)}}
-
-      label.item
-        span.input-label {{piVm.user.fecha_nacimiento | age}}
+      .col.col-label {{::("user.age"|translate)}}
+      .col {{piVm.user.fecha_nacimiento | age}}
 
     .row
-      label.item.label-profile-customer
-        span.input-label {{::("user.country"|translate)}}
-
-      label.item
-        span.input-label {{piVm.user.ciudad}}
+      .col.col-label {{::("user.country"|translate)}}
+      .col {{piVm.user.ciudad}}
 
     .row
-      label.item.label-profile-customer
-        span.input-label {{::("user.password"|translate)}}
-
-      label.item
-        span.input-label ********
+      .col.col-label {{::("user.password"|translate)}}
+      .col ********
