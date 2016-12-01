@@ -13,7 +13,6 @@
                                    $auth,
                                    $translate
         ) {
-
     var providerProfileVm = this;
     providerProfileVm.showNewModal = showNewModal;
     providerProfileVm.showEditModal = showEditModal;
