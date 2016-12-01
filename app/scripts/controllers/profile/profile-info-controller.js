@@ -49,7 +49,7 @@
         .catch(function() {
           $ionicPopup.alert({
             title: 'Error',
-            template:'Hubo un error, intentalo nuevamente.'
+            template:'Hubo un error, inténtalo nuevamente.'
           });
           $ionicLoading.hide();
         });

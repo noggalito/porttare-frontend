@@ -5,7 +5,11 @@
     .module('porttare.services')
     .factory('LoginService', LoginService);
 
-  function LoginService($auth, $state, $ionicPopup, APP) {
+  function LoginService($auth,
+                        $state,
+                        $ionicPopup,
+                        APP,
+                        NativeLoginService) {
 
     var service = {
       loginWithFB: loginWithFB
@@ -15,16 +19,23 @@
 
     function loginWithFB() {
       var successState = APP.successState;
-      $auth.authenticate('facebook')
-        .then(function () {
+      fbAuthenticate().then(function () {
           $state.go(successState);
-        })
-        .catch(function () {
+        }).catch(function () {
           $ionicPopup.alert({
             title: 'Error',
-            template: 'Hubo un error, intentalo nuevamente.'
+            template: 'Hubo un error, inténtalo nuevamente.'
           });
         });
+    }
+
+    function fbAuthenticate() {
+      var isNative = !!window.cordova;
+      if (isNative) {
+        return NativeLoginService.loginWithFB();
+      } else {
+        return $auth.authenticate('facebook');
+      }
     }
   }
 })();

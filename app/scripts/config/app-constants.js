@@ -7,6 +7,7 @@
     successState: 'app.categories.index',
     preloginState: 'prelogin',
     defaultImage: '../images/404.png',
-    centsInDollar: '100'
+    centsInDollar: '100',
+    fbAuthScope: ['public_profile', 'email', 'user_birthday']
   });
 })();
