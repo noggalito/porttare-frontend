@@ -61,10 +61,7 @@
       BillingAddressesService.createBillingAddress(billingAddressesVm.billingAddress).then(function success(resp){
         showMessage('billingAddress.successSave');
         billingAddressesVm.billingAddresses.push(resp.customer_billing_address); //jshint ignore:line
-      }, function (res){
-        billingAddressesVm.messages = res.errors ? res.errors:undefined;
-        $ionicLoading.hide();
-      });
+      }, error);
     }
 
     function  updateBillingAddress(){
@@ -74,10 +71,12 @@
       BillingAddressesService.updateBillingAddress(billingAddressesVm.billingAddress).then(function success(resp){
         showMessage('billingAddress.successUpdate');
         billingAddressesVm.billingAddresses[billingAddressesIndex] = resp.customer_billing_address; //jshint ignore:line
-      }, function (res){
-        billingAddressesVm.messages = res.status===422 ? res.data.errors:undefined;
-        $ionicLoading.hide();
-      });
+      }, error);
+    }
+
+    function error(res){
+      billingAddressesVm.messages = res.status===422 ? res.data.errors:undefined;
+      $ionicLoading.hide();
     }
 
     function showMessage(template){

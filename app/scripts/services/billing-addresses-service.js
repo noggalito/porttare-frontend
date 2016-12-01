@@ -20,15 +20,7 @@
     }
 
     function createBillingAddress(billingAddress) {
-      return $http({
-        method: 'POST',
-        url: ENV.apiHost + '/api/customer/billing_addresses',
-        data:billingAddress
-      }).then(function success(res){
-        return res.data;
-      }, function error(res) {
-        return $q.reject(res.data);
-      });
+      return CommonService.newObject(billingAddress, '/api/customer/billing_addresses');
     }
 
     function updateBillingAddress(billingAddress) {
