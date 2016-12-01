@@ -8,12 +8,12 @@ ion-content(scroll="false")
     .profile-body
       ion-tabs.state-tabs
         ion-tab(
-          title="{{::('profile.tabs.info'|translate)}}"
-          ui-sref="app.profile.info"
+        title="{{::('profile.tabs.info'|translate)}}"
+        ui-sref="app.profile.info"
         )
           ion-nav-view(name='menuContent@profileInfo')
         ion-tab(
-          title="{{::('profile.tabs.addresses'|translate)}}"
-          ui-sref="app.profile.addresses.index"
+        title="{{::('profile.tabs.addresses'|translate)}}"
+        ui-sref="app.profile.addresses.index"
         )
           ion-nav-view(name='menuContent@addressesIndex')
