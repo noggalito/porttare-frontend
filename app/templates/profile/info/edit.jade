@@ -37,10 +37,11 @@ ion-modal-view.client-page
             ng-class="input-error"
             required
           )
-        .show-errors(ng-messages="piVm.updateProfileForm.email.$error" ng-if="piVm.updateProfileForm.email.$touched")
-          span(ng-message="required" class="message-error") Campo requerido
-          span(ng-message="email" class="message-error") E-mail no válido
-        show-error(array-messages="piVm.messages.email")
+        .errors-wrapper
+          span.show-errors(ng-messages="piVm.updateProfileForm.email.$error" ng-if="piVm.updateProfileForm.email.$touched")
+            span.message-error(ng-message="required") Campo requerido
+            span.message-error(ng-message="email") E-mail no válido
+          show-error(array-messages="piVm.messages.email")
 
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': piVm.messages.fecha_de_nacimiento}"
