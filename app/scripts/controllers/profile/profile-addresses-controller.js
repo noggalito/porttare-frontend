@@ -11,8 +11,7 @@
     pfaVm.redirectToUpdateAddressView = redirectToUpdateAddressView;
     pfaVm.redirectToNewAddressView = redirectToNewAddressView;
     var addressStates = {
-      new: 'app.profile.addresses.new',
-      update: 'app.profile.addresses.update'
+           update: 'app.profile.addresses.update'
     };
 
     function redirectToUpdateAddressView(id) {

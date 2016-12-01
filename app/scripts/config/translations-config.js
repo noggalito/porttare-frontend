@@ -45,6 +45,7 @@
           wishlist: 'Wishlist'
         },
         provider: {
+          profile:'Perfil de Proveedor',
           orders: 'Pedidos',
           products: 'Productos',
           clients: 'Clientes',
@@ -65,9 +66,11 @@
         }
       },
       provider: {
+        successUpdateProfileProvider: 'Perfil actualizado éxitosamente',
         itemsProvider: 'Productos de Proveedor',
         formLegendFirst: 'Proveedor nuevo - Paso 1',
         formLegendSecond: 'Proveedor nuevo - Paso 2',
+        updateInforProvider:'Actualizar datos de Proveedor',
         businessName: 'Razón social',
         name: 'Nombre Establecimiento',
         economicActivity: 'Actividad económica',
@@ -75,6 +78,10 @@
         phone: 'Número de teléfono',
         email: 'Correo electrónico',
         webSite: 'Sitio web',
+        youtube:'Youtube',
+        facebook:'Faceebook',
+        twitter:'Twitter',
+        instagram:'Instagram',
         methodPayment: 'Forma de pago',
         methods: {
           cash: 'Efectivo',
@@ -274,5 +281,6 @@
     });
 
     $translateProvider.preferredLanguage('es');
+
   }
 })();

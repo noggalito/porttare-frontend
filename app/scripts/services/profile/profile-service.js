@@ -20,8 +20,11 @@
       })
       .then(function success(resp){
         return resp.data.user;
+        console.log("Hla")
+
       }, function error(res) {
         return $q.reject(res.data);
+
       });
     }
   }

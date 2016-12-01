@@ -1,0 +1,130 @@
+ion-view(
+
+)
+    ion-nav-title
+        .alt-logo
+    ion-content.addresses-page
+
+        .address-container()
+            .profile-page
+                .profile-header
+                    .user-name
+                        | {{providerProfileVm.profileProvider.razon_social }}
+            .edit
+                link-button(ng-click="providerProfileVm.showEditModal(idx)" text="{{::('globals.edit'|translate)}}")
+            .address-grid
+
+                .row
+
+                    .col.col-label {{::("RUC*"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.ruc}}
+
+                .row
+
+                    .col.col-label {{::("provider.businessName"|translate)}}
+                    .col {{providerProfileVm.profileProvider.razon_social}}
+
+                .row
+
+                    .col.col-label {{::("provider.name"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.nombre_establecimiento}}
+
+                .row
+
+                    .col.col-label {{::("provider.economicActivity"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.actividad_economica}}
+
+                .row
+
+                    .col.col-label {{::("provider.LegalRepresentative"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.representante_legal}}
+
+                .row
+
+                    .col.col-label {{::("provider.phone"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.telefono}}
+
+                .row
+
+                    .col.col-label {{::("provider.email"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.email}}
+
+                .row
+
+                    .col.col-label {{::("provider.webSite"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.website}}
+
+                .row
+
+                    .col.col-label {{::("provider.methodPayment"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.formas_de_pago[0]}} {{providerProfileVm.profileProvider.formas_de_pago[1]}}
+
+                .row
+
+                    .col.col-label {{::("provider.bank.name"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.banco_nombre}}
+
+                .row
+
+                    .col.col-label {{::("provider.bank.account"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.banco_numero_cuenta}}
+
+                .row
+
+                    .col.col-label {{::("provider.bank.type"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.banco_nombre.banco_tipo_cuenta}}
+                
+                .row
+
+                    .col.col-label {{::("provider.openTime"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.provider_offices[0].hora_de_apertura}}
+
+                .row
+
+                    .col.col-label {{::("provider.closeTime"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.provider_offices[0].hora_de_cierre}}
+
+                .row
+
+                    .col.col-label {{::("provider.initialLaborDay"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.provider_offices[0].inicio_de_labores}}
+
+                .row
+
+                    .col.col-label {{::("provider.finalLaborDay"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.provider_offices[0].final_de_labores}}
+
+                .row
+
+                    .col.col-label {{::("provider.phone"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.provider_offices[0].telefono}}
+
+                .row
+
+                    .col.col-label {{::("provider.address"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.provider_offices[0].direccion}}
+
+
+                .row
+                    .col.col-label {{::("provider.city"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.provider_offices[0].cuidad}}
+
+                .row
+
+                    .col.col-label {{::("provider.facebook"|translate|uppercase)}}
+                    .col {{providerProfileVm.provider_profile.facebook_handle}}
+
+                .row
+
+                    .col.col-label {{::("provider.twitter"|translate|uppercase)}}
+                    .col {{providerProfileVm.profileProvider.twitter_handle}}
+
+                .row
+
+                    .col.col-label {{::("provider.instagram"|translate|uppercase)}}
+                    .col {{providerProfileVm.provider_profile.instagram_handle}}
+
+                .row
+
+                    .col.col-label {{::("provider.youtube"|translate|uppercase)}}
+                    .col  {{providerProfileVm.profileProvider.youtube_handle}}
