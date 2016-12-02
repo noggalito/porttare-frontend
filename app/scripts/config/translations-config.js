@@ -240,7 +240,10 @@
         addCar: 'Añadir al carrito',
         addWishlist: 'Añadir a mi whishlist',
         modalTitle: 'Agregar a mi Wishlist o lista personalizada',
-        modalButtonNew: 'Nueva lista'
+        modalButtonNew: 'Nueva Wishlist',
+        modalInputNew: 'Nombre Wishlist',
+        modalButtonSave: 'Guardar',
+        modalButtonCancel: 'Cancelar'
       },
       profile: {
         title: 'Perfil',
