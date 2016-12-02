@@ -33,7 +33,8 @@
       $http({
         method: 'POST',
         data: postData,
-        url: ENV.apiHost + '/api/auth/native_login'
+        url: ENV.apiHost + '/api/auth/native_login',
+        headers: { 'Accept': 'application/json' }
       }).then(function () {
         return validateUser();
       }, authorizationFailure);
