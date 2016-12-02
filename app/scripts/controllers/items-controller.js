@@ -114,7 +114,7 @@
       itemsVm.messages = {};
     }
     function statusStock(){
-      itemsVm.item.cantidad = !(itemsVm.item.enStock) ?  0 :  (itemsVm.item.cantidad ?  itemsVm.item.cantidad: 0);
+      itemsVm.item.cantidad = !(itemsVm.item.en_stock) ?  0 :  (itemsVm.item.cantidad ?  itemsVm.item.cantidad: 0);
     }
   }
 })();
