@@ -54,7 +54,7 @@
         ng-change="providerVm.checked(method)"
       ) {{ ::method.label }}
   .errors-wrapper
-    span.show-errors.ng-active(ng-if="providerVm.touchedPayments && providerVm.providerForm.methodsPayment.$invalid")
+    span.show-errors.ng-active(ng-messages="providerVm.providerForm.methodsPayment.$invalid" ng-if="providerVm.touchedPayments && providerVm.providerForm.methodsPayment.$invalid")
       span.message-error(ng-message="required") {{::("form.requiredField"|translate)}}
     show-error(array-messages="providerVm.errors.formas_de_pago")
 
