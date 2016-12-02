@@ -28,8 +28,11 @@
       'provider.bank.savings',
       'provider.bank.credit'
     ];
+    init();
 
-    providerProfileVm.profileProvider  = $auth.user.provider_profile;
+    function init(){
+      providerProfileVm.profileProvider  = $auth.user.provider_profile;// jshint ignore:line
+    }
 
     $translate(transKeys).then(function (trans) {
       providerProfileVm.methodsPayment = [
@@ -54,38 +57,9 @@
           value: 'Crédito',
           label: trans[transKeys[3]],
           checked: false
-        }
-      ];
+        }];
     });
 
-    providerProfileVm.laborDays = [{
-      label: 'Lunes',
-      name: 'mon'
-    },
-      {
-        label: 'Martes',
-        name: 'tue'
-      },
-      {
-        label: 'Miércoles',
-        name: 'wed'
-      },
-      {
-        label: 'Jueves',
-        name: 'thu'
-      },
-      {
-        label: 'Viernes',
-        name: 'fri'
-      },
-      {
-        label: 'Sábado',
-        name: 'sat'
-      },
-      {
-        label: 'Domingo',
-        name: 'sun'
-      }];
     function checked(element){
       providerProfileVm.touchedPayments = true;
       providerProfileVm.checkedItems = 0;
@@ -94,37 +68,36 @@
       }else{
         providerProfileVm.checkedItems++;
       }
-      providerProfileVm.providerProfileForm.formas_pago.$invalid = providerProfileVm.checkedItems > 0;
+      providerProfileVm.providerProfileForm.formasPago.$invalid = providerProfileVm.checkedItems > 0;
     }
 
     function checkedBank(element){
       if (element.checked) {
         providerProfileVm.accountType.map(function(row){
-          providerProfileVm.banco_tipo_cuenta=providerProfileVm.accountType;
           if (row !== element) {
             row.checked = false;
           }
         });
       }
     }
-    function editProfile() {
+    function editProfile(profileEdit) {
       $ionicLoading.show({
         template: '{{::("globals.updating"|translate)}}'
       });
-      providerProfileVm.profileProvider.formas_de_pago = providerProfileVm.methodsPayment.filter(function(row){
+      profileEdit.formas_de_pago = providerProfileVm.methodsPayment.filter(function(row){//jshint ignore:line
         return row.checked;
       }).map(function(row){
         return row.value;
       });
-      ProfileService.updateProfileProvider(providerProfileVm.profileProvider)
+      ProfileService.updateProfileProvider(profileEdit)
         .then(function success(resp) {
           $ionicLoading.hide();
           $ionicPopup.alert({
             title: 'Éxito',
             template: '{{::("provider.successUpdateProfileProvider"|translate)}}'
           });
-          providerProfileVm.profileProvider = angular.copy(providerProfileVm.profileProvider);
-          closeModal();
+            providerProfileVm.profileProvider = resp.provider_profile;//jshint ignore:line
+            closeModal();
         },
           function error(resp){
             providerProfileVm.errors = resp.errors;
@@ -133,6 +106,7 @@
     }
 
     function showNewModal() {
+      providerProfileVm.profileEdit = angular.copy(providerProfileVm.profileProvider);
       ModalService.showModal({
         parentScope: $scope,
         fromTemplateUrl: 'templates/profile-provider/edit.html'
@@ -140,15 +114,11 @@
     }
 
     function showEditModal() {
-      providerProfileVm.profileProvider = angular.copy(providerProfileVm.profileProvider);
       providerProfileVm.showNewModal();
     }
 
     function closeModal() {
-      providerProfileVm.profileProvider = angular.copy(providerProfileVm.profileProvider);
       ModalService.closeModal();
-      providerProfileVm.messages = {};
-
     }
   }
 })();
