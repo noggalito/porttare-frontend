@@ -1,21 +1,51 @@
 .profile-page {
-  margin-top: 5rem;
+  margin-top: 3rem;
+
   .profile-header {
     text-align: center;
-    height: 5rem;
+    padding: 2rem;
+    height: 21rem;
     .user-name {
       font-family: Montserrat-Light;
       font-size: 2rem;
+      margin: 3rem;
+
+      @media (max-width: $grid-responsive-md-break) {
+        font-size: 1rem;
+      }
     }
+
+    .img-profile {
+      height: 12rem;
+      width: 12rem;
+      border-radius: 50%;
+    }
+
   }
+
   .profile-body {
+
     .state-tabs {
       .tab-item {
         text-transform: uppercase;
       }
     }
+
+    .item {
+      border-color: transparent;
+      background-color: transparent;
+      padding: 1rem;
+      border-bottom: 0.1rem solid #FDC30D;
+      width: 100%;
+    }
+
     .profile-index {
       margin-top: 2rem;
     }
+
+    .label-profile-customer {
+      border-right: 0.1rem solid #FDC30D;
+    }
+
   }
 }

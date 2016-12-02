@@ -10,7 +10,6 @@
                            $ionicLoading,
                            $ionicPopup,
                            $scope,
-                           ErrorHandlerService,
                            APP) {
     var itemsVm = this;
     itemsVm.showNewModal = showNewModal;
