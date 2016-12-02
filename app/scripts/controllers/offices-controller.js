@@ -11,8 +11,7 @@
                               $ionicLoading,
                               $ionicPopup,
                               $scope,
-                              $state,
-                              $localStorage) {
+                              $state) {
 
     var officesVm = this;
     officesVm.showNewOffice = showNewOffice;

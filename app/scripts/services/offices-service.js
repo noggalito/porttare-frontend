@@ -5,7 +5,7 @@
     .module('porttare.services')
     .factory('OfficesService', OfficesService);
 
-  function OfficesService($http, ENV, $q, CommonService, $localStorage) {
+  function OfficesService($http, ENV, $q, CommonService) {
 
     var service = {
       getOffices: getOffices,
