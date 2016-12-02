@@ -1,21 +1,21 @@
 ion-content.profile-page.responsive-md
-  .text-center
+  .btn-edit
     link-button(on-click="piVm.showNewModal(piVm.user)" text="{{::('globals.edit'|translate)}}")
   .col.col-offset-25.col-50
     .row
       .col.col-label {{::("user.name"|translate)}}
-      .col {{piVm.user.name}}
+      .col.col-value {{piVm.user.name}}
     .row
       .col.col-label {{::("user.email"|translate)}}
-      .col {{piVm.user.email}}
+      .col.col-value {{piVm.user.email}}
     .row
       .col.col-label {{::("user.age"|translate)}}
-      .col {{piVm.user.fecha_nacimiento | age}}
+      .col.col-value {{piVm.user.fecha_nacimiento | age}}
 
     .row
       .col.col-label {{::("user.country"|translate)}}
-      .col {{piVm.user.ciudad}}
+      .col.col-value {{piVm.user.ciudad}}
 
     .row
       .col.col-label {{::("user.password"|translate)}}
-      .col ********
+      .col.col-value ********
