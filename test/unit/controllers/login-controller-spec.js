@@ -48,6 +48,7 @@
       };
       $window           = _$window_;
       SessionService = {
+        logOut: sinon.stub().returns($auth.signOut()),
         loginWithFB: sinon.stub().returns(deferLoginWithFB.promise)
       };
       APP = {
