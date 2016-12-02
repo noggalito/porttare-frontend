@@ -33,7 +33,7 @@
         data: providerData
 
       }).then(function success(res) {
-        return res.data
+        return res.data;
       }, function error(res) {
         return $q.reject(res.data);
       });

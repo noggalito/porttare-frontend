@@ -71,7 +71,7 @@
         itemsProvider: 'Productos de Proveedor',
         formLegendFirst: 'Proveedor nuevo - Paso 1',
         formLegendSecond: 'Proveedor nuevo - Paso 2',
-        updateInforProvider:'Actualizar datos de Proveedor',
+        updateInfoProvider:'Actualizar datos de Proveedor',
         businessName: 'Razón social',
         name: 'Nombre Establecimiento',
         economicActivity: 'Actividad económica',
