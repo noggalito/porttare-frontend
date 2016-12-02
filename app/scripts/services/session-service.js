@@ -3,19 +3,27 @@
 
   angular
     .module('porttare.services')
-    .factory('LoginService', LoginService);
+    .factory('SessionService', SessionService);
 
-  function LoginService($auth,
-                        $state,
-                        $ionicPopup,
-                        APP,
-                        NativeLoginService) {
+  function SessionService($auth,
+                          $state,
+                          $ionicPopup,
+                          APP,
+                          NativeSessionService) {
 
     var service = {
+      logOut: logOut,
       loginWithFB: loginWithFB
     };
 
     return service;
+
+    function logOut() {
+      if (isNative()) {
+        NativeSessionService.logOut();
+      }
+      return $auth.signOut();
+    }
 
     function loginWithFB() {
       var successState = APP.successState;
@@ -30,12 +38,15 @@
     }
 
     function fbAuthenticate() {
-      var isNative = !!window.cordova;
-      if (isNative) {
-        return NativeLoginService.loginWithFB();
+      if (isNative()) {
+        return NativeSessionService.loginWithFB();
       } else {
         return $auth.authenticate('facebook');
       }
+    }
+
+    function isNative() {
+      return !!window.cordova;
     }
   }
 })();

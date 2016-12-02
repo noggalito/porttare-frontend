@@ -8,11 +8,11 @@ function PreController($auth,
                       $state,
                       $ionicPopup,
                       $localStorage,
-                      LoginService,
+                      SessionService,
                       $location,
                       APP) {
   var preVm = this;
-  preVm.loginWithFB = LoginService.loginWithFB;
+  preVm.loginWithFB = SessionService.loginWithFB;
   var successState = APP.successState;
 
   function load(){

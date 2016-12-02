@@ -13,11 +13,11 @@
                             $auth,
                             $ionicHistory,
                             APP,
-                            LoginService) {
+                            SessionService) {
     var loginVm = this;
     loginVm.login = login;
     loginVm.logout = logout;
-    loginVm.loginWithFB = LoginService.loginWithFB;
+    loginVm.loginWithFB = SessionService.loginWithFB;
     loginVm.loginForm = {};
     var successState = APP.successState;
     var loginState = 'login';
@@ -47,7 +47,7 @@
       $ionicLoading.show({
         template: 'Cerrando sesión...'
       });
-      $auth.signOut()
+      SessionService.logOut()
         .then(function () {
           $ionicHistory.clearCache().then(function () {
             $state.go(loginState, {}, { location: 'replace' });

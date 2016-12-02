@@ -4,7 +4,7 @@
   describe('SiteController', function () {
     var ctrl, $controller, dependencies, $rootScope, $ionicLoading, $auth;
 
-    var LoginService,
+    var SessionService,
         deferLoginWithFB,
         deferValidateUser,
         APP,
@@ -43,7 +43,7 @@
             return true;
           }
         };
-        LoginService  = {
+        SessionService  = {
           loginWithFB: sinon.stub().returns(deferLoginWithFB.promise)
         };
         APP = {
@@ -62,7 +62,7 @@
         dependencies = {
           $ionicLoading: $ionicLoading,
           $auth: $auth,
-          LoginService: LoginService,
+          SessionService: SessionService,
           $state: $state,
           APP: APP
         };
@@ -99,7 +99,7 @@
         dependencies = {
           $ionicLoading: $ionicLoading,
           $auth: $auth,
-          LoginService: LoginService,
+          SessionService: SessionService,
           $state: $state,
           APP: APP
         };

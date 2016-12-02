@@ -10,7 +10,7 @@
         $state,
         $ionicPopup,
         $window,
-        LoginService,
+        SessionService,
         $localStorage,
         $location,
         deferLoginWithFB,
@@ -44,7 +44,7 @@
           return 'http://localhost:8100/?error=access_denied&error_code=200';
         }
       };
-      LoginService = {
+      SessionService = {
         loginWithFB: sinon.stub().returns(deferLoginWithFB.promise)
       };
       APP = {
@@ -60,7 +60,7 @@
           '$state': $state,
           '$ionicPopup': $ionicPopup,
           '$localStorage': $localStorage,
-          'LoginService': LoginService,
+          'SessionService': SessionService,
           '$location': $location,
           'APP': APP
         });

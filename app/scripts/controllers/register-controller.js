@@ -10,10 +10,10 @@
                               $ionicPopup,
                               $state,
                               $scope,
-                              LoginService) {
+                              SessionService) {
     var registerVm = this;
     registerVm.register = register;
-    registerVm.loginWithFB = LoginService.loginWithFB;
+    registerVm.loginWithFB = SessionService.loginWithFB;
 
     function register() {
       if (!registerVm.registerForm.$invalid) {

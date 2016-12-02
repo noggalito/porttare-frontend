@@ -11,7 +11,7 @@
         deferredStateGo,
         $scope,
         $ionicLoading,
-        LoginService,
+        SessionService,
         deferLoginWithFB;
 
     beforeEach(module('porttare.controllers'));
@@ -31,7 +31,7 @@
         submitRegistration: sinon.stub()
                           .returns(deferredRegister.promise)
       };
-      LoginService = {
+      SessionService = {
         loginWithFB: sinon.stub().returns(deferLoginWithFB.promise)
       };
       $rootScope = _$rootScope_;
@@ -43,7 +43,7 @@
         '$state': $state,
         '$auth': $auth,
         '$scope': $scope,
-        'LoginService': LoginService
+        'SessionService': SessionService
       });
     }));
 

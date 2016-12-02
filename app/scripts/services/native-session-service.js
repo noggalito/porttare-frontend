@@ -3,24 +3,31 @@
 
   angular
     .module('porttare.services')
-    .factory('NativeLoginService', NativeLoginService);
+    .factory('NativeSessionService', NativeSessionService);
 
-  function NativeLoginService ($auth,
+  function NativeSessionService ($auth,
                                $http,
                                $rootScope,
                                $cordovaFacebook,
                                APP,
                                ENV) {
-    var service = { loginWithFB: loginWithFB };
+    var service = {
+      logOut: logOut,
+      loginWithFB: loginWithFB
+    };
     var deferred;
 
     return service;
+
+    function logOut() {
+      return $cordovaFacebook.logout();
+    }
 
     function loginWithFB() {
       deferred = $auth.initDfd();
       $cordovaFacebook.getLoginStatus()
         .then(function(response) {
-          if (response.status == 'connected') {
+          if (response.status === 'connected') {
             return fbAuthorizationSuccess(response);
           } else {
             $cordovaFacebook.login(APP.fbAuthScope).then(
