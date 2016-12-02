@@ -18,10 +18,17 @@
 
     function loginWithFB() {
       deferred = $auth.initDfd();
-      $cordovaFacebook.login(APP.fbAuthScope).then(
-        fbAuthorizationSuccess,
-        authorizationFailure
-      );
+      $cordovaFacebook.getLoginStatus()
+        .then(function(response) {
+          if (response.status == 'connected') {
+            return fbAuthorizationSuccess(response);
+          } else {
+            $cordovaFacebook.login(APP.fbAuthScope).then(
+              fbAuthorizationSuccess,
+              authorizationFailure
+            );
+          }
+        });
       return deferred.promise;
     }
 
