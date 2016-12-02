@@ -5,20 +5,17 @@
     .module('porttare.controllers')
     .controller('SiteController', SiteController);
 
-  function SiteController($rootScope, $ionicLoading, $auth, CartService) {
+  function SiteController($rootScope, $ionicLoading, $auth) {
     var siteVm = this,
         currentUser = null;
 
     siteVm.userName = userName;
 
-    $auth.validateUser()
-      .then(function userAuthorized(user) {
-        return CartService.getCart().then(function(response){
-          user.customer_order = response.customer_order; //jshint ignore:line
-          currentUser = user;
-          return currentUser;          
-        });
-      });
+    init();
+
+    function init() {
+      currentUser = $auth.user;
+    }
 
     $rootScope.$on('$stateChangeStart', function(){
       $ionicLoading.show({
@@ -36,7 +33,17 @@
 
     function userName () {
       if (currentUser) {
-        return currentUser.name || currentUser.nickname || currentUser.email;
+        var attributes = [
+          'name',
+          'nickname',
+          'email'
+        ];
+        var presentAttribute = attributes.find(function(attribute) {
+          return !angular.element.isEmptyObject(
+            angular.element.trim(currentUser[attribute])
+          );
+        });
+        return currentUser[presentAttribute];
       }
     }
   }
