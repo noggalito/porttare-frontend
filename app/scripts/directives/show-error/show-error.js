@@ -23,6 +23,6 @@
   }
   function ShowErrorController() {
     var seVm = this;
-    seVm.joinedMessages = seVm.arrayMessages && seVm.arrayMessages.join(',');
+    seVm.joinedMessages = seVm.arrayMessages && seVm.arrayMessages.join(', ');
   }
 })();
