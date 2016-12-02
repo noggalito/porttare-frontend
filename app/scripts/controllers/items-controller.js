@@ -19,7 +19,7 @@
     itemsVm.submitProcess = submitProcess;
     itemsVm.deleteItem = deleteItem;
     itemsVm.query = '';
-    itemsVm.stockNotification= stockNotification;
+    itemsVm.statusStock= statusStock;
     var selectedItemIndex;
 
     getItems();
@@ -113,8 +113,8 @@
       itemsVm.item = null;
       itemsVm.messages = {};
     }
-    function stockNotification(){
-      itemsVm.item.cantidad = !(itemsVm.item.enStock) ?  0 :  (itemsVm.item.cantidad ?  itemsVm.item.cantidad: 0);
+    function statusStock(){
+      itemsVm.item.cantidad = !(itemsVm.item.en_tock) ?  0 :  (itemsVm.item.cantidad ?  itemsVm.item.cantidad: 0);
     }
   }
 })();

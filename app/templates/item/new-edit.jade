@@ -17,10 +17,10 @@ ion-modal-view.item-page
         legend {{::("item.formLegend"|translate)}}
 
         ion-toggle(
-          ng-model='itemsVm.item.enStock',
+          ng-model='itemsVm.item.enStock'
           ng-checked='true'
           toggle-class='toggle-calm'
-          ng-change="itemsVm.stockNotification()"
+          ng-change="itemsVm.statusStock()"
         )
             span.input-label{{::("item.stock"|translate|uppercase)}}
 
@@ -103,6 +103,7 @@ ion-modal-view.item-page
         label.item.item-input.item-stacked-label
           span.input-label {{::("item.cantidad"|translate|uppercase)}}
           input(
+            min='0'
             type='number'
             ng-model='itemsVm.item.cantidad'
           )
