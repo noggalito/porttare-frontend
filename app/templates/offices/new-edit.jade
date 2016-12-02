@@ -38,7 +38,7 @@ ion-modal-view.item-page
             required
           )
           .show-errors(ng-messages="officesVm.form.direccion.$error" ng-if="officesVm.form.direccion.$touched")
-            span(ng-message="required" class="message-error") {{::("office.requeredInput"|translate)}}
+            span(ng-message="required" class="message-error") {{::("form.requiredField"|translate)}}
         show-error(array-messages="officesVm.messages.direccion")
 
         label.item.item-input.item-stacked-label(
@@ -53,7 +53,7 @@ ion-modal-view.item-page
             required
           )
           .show-errors(ng-messages="officesVm.form.telefono.$error" ng-if="officesVm.form.telefono.$touched")
-            span(ng-message="required" class="message-error") {{::("office.requeredInput"|translate)}}
+            span(ng-message="required" class="message-error") {{::("form.requiredField"|translate)}}
         show-error(array-messages='officesVm.messages.telefono')
 
         label.item.item-input.item-select

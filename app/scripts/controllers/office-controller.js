@@ -7,6 +7,7 @@
 
   function OfficeController(OfficesService,
                             ModalService,
+                            ErrorHandlerService,
                             $ionicLoading,
                             $ionicPopup,
                             $scope,
@@ -24,9 +25,9 @@
     function getOffice(){
       loading('globals.loading');
       OfficesService.getOffice($stateParams.id).then(function success(resp){
-        officesVm.officeDetail = resp;
+        officesVm.officeDetail = resp.provider_office; //jshint ignore:line
         loadOffice();
-      });
+      }, ErrorHandlerService.handleCommonErrorGET);
     }
 
     function loadOffice(){

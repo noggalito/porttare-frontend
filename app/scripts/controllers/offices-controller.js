@@ -29,6 +29,7 @@
 
     function showNewOffice() {
       officesVm.office = {};
+      officesVm.office.enabled = false;
       ModalService.showModal({
         parentScope: $scope,
         fromTemplateUrl: 'templates/offices/new-edit.html'
@@ -53,7 +54,7 @@
         officesVm.offices.push(resp.provider_office); //jshint ignore:line
         officesVm.closeModal();
       }, function(response){
-        officesVm.messages = response.errors ? response.errors:undefined;
+        officesVm.messages = response.status===422 ? response.data.errors:undefined;
         $ionicLoading.hide();
       });
     }
