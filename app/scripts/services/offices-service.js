@@ -20,10 +20,8 @@
       return CommonService.getObjects('/api/provider/offices');
     }
 
-    function getOffice(officeId) { //jshint ignore:line
-      var deferred = $q.defer();
-      deferred.resolve($localStorage.getObject('office'));
-      return deferred.promise;
+    function getOffice(officeId) {
+      return CommonService.getObject(officeId, '/api/provider/offices/');
     }
 
     function createOffice(office) {
