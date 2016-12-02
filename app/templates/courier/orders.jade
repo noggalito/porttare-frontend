@@ -20,4 +20,5 @@ ion-view(
                 .icon-location
               .location 1.2 km {{::("courier.labels.currentLocation"| translate)}}
               .time 1 hora {{::("courier.labels.forDelivery"| translate)}}
-            
+
+          | {{::("courier.labels.found "| translate)}} {{orVm.totalOrders}} {{("courier.labels.closeToYou "| translate)}}
