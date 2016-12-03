@@ -10,14 +10,12 @@
                               ErrorHandlerService,
                               $ionicLoading,
                               $ionicPopup,
-                              $scope,
-                              $state) {
+                              $scope) {
 
     var officesVm = this;
     officesVm.showNewOffice = showNewOffice;
     officesVm.closeModal = closeModal;
     officesVm.submitOffice = submitOffice;
-    officesVm.seeMore = seeMore;
     getOffices();
 
     function getOffices() {
@@ -57,10 +55,5 @@
         $ionicLoading.hide();
       });
     }
-
-    function seeMore(office){
-      $state.go('provider.office', { id: office.id});
-    }
-
   }
 })();

@@ -75,8 +75,8 @@
             title: 'Éxito',
             template: '{{::("office.officeSuccessUpdate"|translate)}}'
           });
-          officesVm.officeDetail = resp.provider_office; //jshint ignore:line
           officesVm.closeModal();
+          officesVm.officeDetail = resp.provider_office; //jshint ignore:line
           loadOffice();
         }, function(rpta){
           officesVm.messages = rpta.status===422 ? rpta.data.errors:undefined;
