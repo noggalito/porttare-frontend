@@ -269,18 +269,18 @@
 
         it('Show modal', function () {
           var spy = sinon.spy(ModalService, 'showModal');
-          ctrl.showNewModal();
+          ctrl.launchModal();
           chai.expect(spy.called).to.be.equal(true);
         });
 
         beforeEach(inject(function () {
-          ctrl.items = [ { id: 0 }, { id:1 } ];
+          ctrl.items = [ { id: 0, imagenes: [] }, { id:1 } ];
           ctrl.showEditModal(0);
         }));
 
         it('Show edit modal', function () {
           var spy = sinon.spy(ModalService, 'showModal');
-          ctrl.showNewModal();
+          ctrl.launchModal();
           chai.expect(spy.called).to.be.equal(true);
           chai.assert.isObject(ctrl.item, 'This is an object!');
         });
