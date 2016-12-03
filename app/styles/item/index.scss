@@ -3,12 +3,22 @@
     margin: 10px;
   }
 
-  .table-headers {
+  .col:not(:first-child) {
+    align-self: center;
+    text-align: center;
+  }
+
+  .item.table-headers {
     color: $dark;
     font-size: 0.9em;
     text-transform: uppercase;
     font-family: Montserrat-Regular;
-    border-bottom: 1px solid $item-light-border;
+    margin-bottom: 5px;
+
+    .col {
+      padding-bottom: 10px;
+      border-bottom: 1px solid transparentize($base-grey, .5);
+    }
   }
 
   .without-items {
@@ -19,6 +29,18 @@
 
     p {
       margin-bottom: 5px;
+    }
+  }
+
+  .item {
+    font-family: Montserrat-Light;
+
+    .provider-item-title {
+      max-height: 40px;
+      white-space: pre-line;
+      overflow: hidden;
+      text-transform: uppercase;
+      color: $link-blue;
     }
   }
 }

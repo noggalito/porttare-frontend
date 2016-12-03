@@ -19,23 +19,24 @@ ion-view(
           ng-click="itemsVm.launchModal()"
         ) {{::("globals.new"|translate)}} {{::("item.item"|translate)}}
 
-    .list.list-inset
-      .row.table-headers
-        .col.col-50 {{::("item.productName"|translate)}}
-        .col.col-25 {{::("item.quantity"|translate)}}
+    .list.list-inset.list--no-borders
+      .row.item.table-headers
+        .col.col-60 {{::("item.productName"|translate)}}
+        .col.col-15 {{::("item.quantity"|translate)}}
         .col.col-25 {{::("item.price"|translate)}}
 
-    .col.without-items(ng-if="!itemsVm.items.length")
-      p {{::("item.titleWithoutItems"|translate)}}
-      p {{::("item.subtitleWithoutItems"|translate)}}
-    .row.list-content(
-      ng-repeat="item in itemsVm.items | filter:itemsVm.query"
-      ng-init="idx = $index"
-    )
-      .col.col-50.list-item {{ item.titulo }}
-      .col.col-20.list-item
-        span(ng-if="item.unidad_medida=='unidades'") X{{ item.volumen }}
-      .col.col-20.list-item ${{ item.precio_cents/100 }}
-      a.col.action(
-        ng-click="itemsVm.showEditModal(idx)"
-      ) {{::("globals.edit"|translate)}}
+      .col.without-items(ng-if="!itemsVm.items.length")
+        p {{::("item.titleWithoutItems"|translate)}}
+        p {{::("item.subtitleWithoutItems"|translate)}}
+
+      .item.row(
+        ng-repeat="item in itemsVm.items | filter:itemsVm.query"
+        ng-init="idx = $index"
+      )  
+        .col.col-60
+          .provider-item-title(
+            ng-click="itemsVm.showEditModal(idx)"
+          ) {{ item.titulo }}
+        .col.col-15
+          span(ng-if="item.unidad_medida=='unidades'") X {{ item.volumen }}
+        .col.col-25 $ {{ item.precio_cents/100 }}

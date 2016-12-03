@@ -7,4 +7,12 @@
     margin-left: auto;
     margin-right: auto;
   }
+  &--no-borders {
+    .item {
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+    }
+  }
 }

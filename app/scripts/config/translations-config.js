@@ -129,7 +129,6 @@
         edit: 'Editar',
         delete: 'Eliminar',
         seeMore: 'Ver más',
-        options: 'Opciones',
         save: 'Guardar',
         success: 'Éxito',
         cancel: 'Cancelar',
