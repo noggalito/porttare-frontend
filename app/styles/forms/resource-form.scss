@@ -39,7 +39,8 @@
       &[type=text],
       &[type=email],
       &[type=number],
-      &[type=password] {
+      &[type=password],
+      select {
         padding-left: 15px;
         padding-bottom: 0;
         padding-top: 0;
@@ -51,6 +52,25 @@
 
   label.item-stacked-label.item-input--no-borders {
     margin-bottom: 0;
+  }
+
+  label.item-input.item-select {
+    padding-bottom: 20px;
+
+    &:after {
+      top: 40px;
+    }
+
+    select {
+      left: 0;
+      top: 34px;
+      width: 100%;
+      max-width: 100%;
+      right: initial;
+      direction: ltr;
+      font-size: 16px;
+      font-family: Montserrat-Light;
+    }
   }
 
   .bar.bar-footer {
