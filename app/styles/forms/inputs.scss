@@ -9,6 +9,10 @@ input {
   border-left: none;
   border-right: none;
   border-top: none;
+
+  &--no-borders {
+    border-bottom: none;
+  }
 }
 
 .select-position-adjust {

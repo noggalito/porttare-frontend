@@ -1,25 +1,26 @@
-ion-modal-view.item-page
-  ion-header-bar.bar-stable.bar.bar-header(
-    align-title="center"
-  )
-    .ion-nav-buttons(side="left")
-      button.button.ion-chevron-left.button-clear.left(
-        ng-click="itemsVm.closeModal()"
-      )
+ion-modal-view.item-form
+  ion-header-bar.bar-stable.bar.bar-header
     .title.alt-logo
-  ion-content.resource-form
-    form(
-      name='itemsVm.itemForm'
-      ng-submit='itemsVm.submitProcess(itemsVm.item.id)'
-      novalidate
-    )
+    
+    .ion-nav-buttons.buttons(side="primary")
+      button.button.button-clear(
+        ng-click="itemsVm.closeModal()"
+      ) {{::('globals.cancel'|translate)}}
+    
+
+  form(
+    name='itemsVm.itemForm'
+    ng-submit='itemsVm.submitProcess(itemsVm.item.id)'
+    novalidate
+  )
+    ion-content.resource-form
       .list.list-inset
         legend {{::("item.formLegend"|translate)}}
 
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': itemsVm.itemForm.titulo.$touched && itemsVm.itemForm.titulo.$invalid}"
         )
-          span.input-label {{::("item.titulo"|translate|uppercase)}}
+          span.input-label {{::("item.titulo"|translate)}}
           input(
             name='titulo'
             type='text'
@@ -33,7 +34,7 @@ ion-modal-view.item-page
           show-error(array-messages='itemsVm.messages.titulo')
 
         label.item.item-input.item-stacked-label
-          span.input-label {{::("item.descripcion"|translate|uppercase)}}
+          span.input-label {{::("item.descripcion"|translate)}}
           input(
             type='text'
             ng-model='itemsVm.item.descripcion'
@@ -41,7 +42,7 @@ ion-modal-view.item-page
         show-error(array-messages='itemsVm.messages.descripcion')
 
         label.item.item-input.item-stacked-label
-          span.input-label {{::("item.observaciones"|translate|uppercase)}}
+          span.input-label {{::("item.observaciones"|translate)}}
           input(
             type='text'
             ng-model='itemsVm.item.observaciones'
@@ -51,7 +52,7 @@ ion-modal-view.item-page
         label.item.item-input.item-select(
           ng-class="{'item-error': itemsVm.itemForm.unidad_medida.$touched && itemsVm.itemForm.unidad_medida.$invalid}"
         )
-          span.input-label {{::("item.unidadMedida"|translate|uppercase)}}
+          span.input-label {{::("item.unidadMedida"|translate)}}
           select(ng-model='itemsVm.item.unidad_medida' name='unidad_medida' required)
             option(selected='' value='volumen') Volumen
             option(value='unidades') Unidades
@@ -62,7 +63,7 @@ ion-modal-view.item-page
           show-error(array-messages='itemsVm.messages.unidad_medida')
 
         label.item.item-input.item-stacked-label
-          span.input-label {{::("item.volumen"|translate|uppercase)}}
+          span.input-label {{::("item.volumen"|translate)}}
           input(
             type='text'
             ng-model='itemsVm.item.volumen'
@@ -72,7 +73,7 @@ ion-modal-view.item-page
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': itemsVm.itemForm.precio.$touched && itemsVm.itemForm.precio.$invalid}"
         )
-          span.input-label {{::("item.precio"|translate|uppercase)}}
+          span.input-label {{::("item.precio"|translate)}}
           input(
             min='0'
             name='precio'
@@ -87,32 +88,41 @@ ion-modal-view.item-page
           show-error(array-messages='itemsVm.messages.precio')
 
         label.item.item-input.item-stacked-label
-          span.input-label {{::("item.peso"|translate|uppercase)}}
+          span.input-label {{::("item.peso"|translate)}}
           input(
             type='text'
             ng-model='itemsVm.item.peso'
           )
         show-error(array-messages='itemsVm.messages.peso')
-        label.item.item-input.item-stacked-label.imgs
-          span.input-label-imgs {{::("item.imagen"|translate|uppercase)}}
-        .content
-          button(
-            ngf-select="itemsVm.concatImages($files)"
-            accept="image/*"
-            class="inputfile"
-            multiple
+
+        label.item.item-input.item-input--no-borders.item-stacked-label
+          span.input-label {{::("item.imagen"|translate)}}
+        .uploader(
+          ng-if="itemsVm.images.length === 0"
+          ngf-select="itemsVm.concatImages($files)"
+          accept="image/*"
+          multiple
+        )
+          .img-placeholder
+          .img-placeholder--legend {{::("item.addImages"|translate)}}
+
+        .row.images-previews
+          .img-wrapper.col-33(
+            ng-repeat="image in itemsVm.imagesUrls"
           )
-          label
-            figure
-              img(class="img-camera")
-            span.msgImg {{::("item.addImages"|translate)}}
-        .content-prev-images
-          img.item-prev-image(ng-repeat="image in itemsVm.images" ngf-src="image")
-          img.item-prev-image(ng-repeat="image in itemsVm.images" ngf-src="image.imagen_url")
+            img(ngf-src="image")
+          
+          .img-wrapper.col-33(ng-if="itemsVm.images.length > 0")
+            .add-image-placeholder(
+              ngf-select="itemsVm.concatImages($files)"
+              accept="image/*"
+              multiple
+            )
+              i.ion-plus
         show-error(array-messages='itemsVm.messages.imagen')
 
-      .bar.bar-footer.footer-item-container
-        button.button-secondary-yellow(
-          type="submit"
-          ng-disabled="itemsVm.itemForm.$invalid"
-        ) {{::("item.publishItem"|translate)}}
+    .bar.bar-footer.bar-stable
+      button.button.button-small.button-outline.button-energized(
+        type="submit"
+        ng-disabled="itemsVm.itemForm.$invalid"
+      ) {{::("item.publishItem"|translate)}}

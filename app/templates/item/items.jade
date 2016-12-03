@@ -3,26 +3,31 @@ ion-view(
 )
   ion-nav-title
     .alt-logo
-  ion-content.item-page
+  ion-content.item-index-page
     .row
-        label.search-input
-          i.icon.ion-search.placeholder-icon
-          input(
-            ng-model="itemsVm.query"
-            type="text"
-            placeholder='{{::("item.itemSearch"|translate)}}'
-          )
-    .row.footer-item-container
-      button.button-secondary-yellow(
-        ng-click="itemsVm.showNewModal()"
-      ) {{::("globals.new"|translate)}} {{::("item.item"|translate)}}
-    .row.list-header
-      .col.col-50.list-title {{::("item.productName"|translate)}}
-      .col.col-20.list-title {{::("item.quantity"|translate)}}
-      .col.col-20.list-title {{::("item.price"|translate)}}
-      .col.col-10.list-title
-    span(ng-if="!itemsVm.items.length" class="col without-items") {{::("item.titleWithoutItems"|translate)}}
-    span(ng-if="!itemsVm.items.length" class="col without-items") {{::("item.subtitleWithoutItems"|translate)}}
+      label.item.search-input
+        i.icon.ion-search.placeholder-icon
+        input(
+          ng-model="itemsVm.query"
+          type="text"
+          placeholder='{{::("item.itemSearch"|translate)}}'
+        )
+
+    .row.cta-wrapper
+      .list.list--centered
+        button.button.button-outline.button-energized(
+          ng-click="itemsVm.showNewModal()"
+        ) {{::("globals.new"|translate)}} {{::("item.item"|translate)}}
+
+    .list.list-inset
+      .row.table-headers
+        .col.col-50 {{::("item.productName"|translate)}}
+        .col.col-25 {{::("item.quantity"|translate)}}
+        .col.col-25 {{::("item.price"|translate)}}
+
+    .col.without-items(ng-if="!itemsVm.items.length")
+      p {{::("item.titleWithoutItems"|translate)}}
+      p {{::("item.subtitleWithoutItems"|translate)}}
     .row.list-content(
       ng-repeat="item in itemsVm.items | filter:itemsVm.query"
       ng-init="idx = $index"

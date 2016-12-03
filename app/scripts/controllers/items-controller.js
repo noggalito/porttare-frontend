@@ -21,6 +21,7 @@
     itemsVm.query = '';
     itemsVm.concatImages = concatImages;
     itemsVm.images = [];
+    itemsVm.imagesUrls = [];
     var selectedItemIndex;
 
     getItems();
@@ -30,6 +31,16 @@
         .then(function success(resp) {
           itemsVm.items = resp.provider_items; //jshint ignore:line
         },ErrorHandlerService.handleCommonErrorGET);
+    }
+
+    function imagesUrls() {
+      itemsVm.imagesUrls = itemsVm.images.map(function(imagen) {
+        if (imagen.constructor === File) {
+          return imagen;
+        } else if (imagen.constructor === Object) {
+          return imagen.imagen_url; // jshint ignore:line
+        }
+      });
     }
 
     function submitProcess(id){
@@ -43,6 +54,7 @@
 
     function concatImages(files){
       itemsVm.images = itemsVm.images.concat(files);
+      imagesUrls();
     }
 
     function newItem() {
