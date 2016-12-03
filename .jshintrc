@@ -24,6 +24,7 @@
     "StatusBar": false,
     "google": false,
     "airbrakeJs": false,
-    "moment": false
+    "moment": false,
+    "File": false
   }
 }
