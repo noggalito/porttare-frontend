@@ -13,7 +13,7 @@
                            ErrorHandlerService,
                            APP) {
     var itemsVm = this;
-    itemsVm.showNewModal = showNewModal;
+    itemsVm.launchModal = launchModal;
     itemsVm.showEditModal = showEditModal;
     itemsVm.closeModal = closeModal;
     itemsVm.submitProcess = submitProcess;
@@ -33,7 +33,7 @@
         },ErrorHandlerService.handleCommonErrorGET);
     }
 
-    function imagesUrls() {
+    function loadImageUrls() {
       itemsVm.imagesUrls = itemsVm.images.map(function(imagen) {
         if (imagen.constructor === File) {
           return imagen;
@@ -53,8 +53,7 @@
     }
 
     function concatImages(files){
-      itemsVm.images = itemsVm.images.concat(files);
-      imagesUrls();
+      resetImages(itemsVm.images.concat(files));
     }
 
     function newItem() {
@@ -114,7 +113,15 @@
         });
     }
 
-    function showNewModal() {
+    function resetImages(newImages) {
+      itemsVm.images = newImages;
+      loadImageUrls();
+    }
+
+    function launchModal() {
+      resetImages(
+        itemsVm.item ? itemsVm.item.imagenes : []
+      );
       ModalService.showModal({
         parentScope: $scope,
         fromTemplateUrl: 'templates/item/new-edit.html'
@@ -125,7 +132,7 @@
       selectedItemIndex = index;
       itemsVm.item = angular.copy(itemsVm.items[index]);
       itemsVm.item.precio = itemsVm.item.precio_cents/APP.centsInDollar; //jshint ignore:line
-      itemsVm.showNewModal();
+      itemsVm.launchModal();
     }
 
     function closeModal() {

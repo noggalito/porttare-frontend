@@ -125,13 +125,15 @@
       },
       globals: {
         new: 'Nuevo',
-        save: 'Guardar',
         list: 'Listar',
         edit: 'Editar',
         delete: 'Eliminar',
         seeMore: 'Ver más',
         options: 'Opciones',
+        save: 'Guardar',
         success: 'Éxito',
+        cancel: 'Cancelar',
+        options: 'Opciones',
         saving: 'Guardando',
         updating: 'Actualizando',
         deleting: 'Eliminando',
@@ -155,18 +157,18 @@
         successItemSave: 'Producto publicado éxitosamente',
         successUpdateItem: 'Producto actualizado éxitosamente',
         successDeleteItem: 'Producto eliminado éxitosamente',
-        productName: 'Nombre producto',
+        productName: 'Producto',
         quantity: 'Can',
         price: 'Precio',
         itemSearch: 'Buscar producto',
-        titleWithoutItems: 'No tienes ningún producto que mostrar todavía',
-        subtitleWithoutItems: 'Da click en Nuevo Producto para empezar a vender.',
+        titleWithoutItems: 'No tienes ningún producto que mostrar todavía.',
+        subtitleWithoutItems: 'Presiona Nuevo Producto para empezar a vender.',
         titulo: 'Nombre del producto',
         descripcion: 'Descripción corta',
         precio: 'Precio',
         volumen: 'Volumen',
         peso: 'Peso',
-        imagen: 'Fotografias',
+        imagen: 'Fotografías',
         addImages: 'Agregar fotografías',
         observaciones: 'Descripción larga',
         unidadMedida: 'Unidad de medida'
@@ -218,7 +220,6 @@
         buttonAddDate: 'Agregar hora y fecha +',
         buttonShare: 'Escoger usuario +',
         titleSelectItems: 'Seleccionar Items',
-        cancel: 'Cancelar',
         noItems: 'No se han cargado items al wishlist'
       },
       office: {
@@ -289,8 +290,7 @@
         modalTitle: 'Agregar a mi Wishlist o lista personalizada',
         modalButtonNew: 'Nueva Wishlist',
         modalInputNew: 'Nombre Wishlist',
-        modalButtonSave: 'Guardar',
-        modalButtonCancel: 'Cancelar'
+        modalButtonSave: 'Guardar'
       },
       profile: {
         title: 'Perfil',
