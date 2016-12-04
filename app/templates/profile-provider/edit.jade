@@ -156,12 +156,11 @@ ion-modal-view.item-page
         label.item.item-input.item-stacked-label
           span.input-label {{::("provider.bank.type"|translate)}}
           ion-list
-            ion-checkbox(
+            ion-radio(
             ng-repeat="type in providerProfileVm.accountType",
-            ng-model="type.checked"
-            name="bankType"
-            ng-checked="type.checked"
-            ng-change="providerProfileVm.checkedBank(type)"
+            name="type.value",
+            ng-value="type",
+            ng-click="providerProfileVm.checkedBank(type)"
             ) {{ ::type.label }}
 
         label.item.item-input.item-stacked-label

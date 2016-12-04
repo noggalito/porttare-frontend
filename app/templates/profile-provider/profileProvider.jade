@@ -47,22 +47,22 @@ ion-view(
               .col {{providerProfileVm.profileProvider.banco_numero_cuenta}}
             .row
               .col.col-label {{::("provider.bank.type"|translate)}}
-              .col {{providerProfileVm.profileProvider.banco_nombre.banco_tipo_cuenta}}
+              .col {{providerProfileVm.profileProvider.banco_tipo_cuenta}}
             .row
               .col.col-label {{::("provider.facebook"|translate)}}
-              .col {{providerProfileVm.provider_profile.facebook_handle}}
+              .col {{providerProfileVm.profileProvider.facebook_handle}}
             .row
               .col.col-label {{::("provider.twitter"|translate)}}
               .col {{providerProfileVm.profileProvider.twitter_handle}}
             .row
               .col.col-label {{::("provider.instagram"|translate)}}
-              .col {{providerProfileVm.provider_profile.instagram_handle}}
+              .col {{providerProfileVm.profileProvider.instagram_handle}}
             .row
               .col.col-label {{::("provider.youtube"|translate)}}
               .col  {{providerProfileVm.profileProvider.youtube_handle}}
             .address-container(ng-repeat="office in providerProfileVm.profileProvider.provider_offices")
               .row
-                .col.col-label {{::("OFICINA"|translate)}}
+                .col.col-label {{::("oficina"|translate)}}
               .row
                 .col.col-label {{::("provider.openTime"|translate)}}
                 .col {{office.hora_de_apertura}}
