@@ -85,9 +85,10 @@
           $ionicPopup.alert({
             title: 'Éxito',
             template: '{{::("item.successUpdateItem"|translate)}}'
+          }).then(function(){
+            itemsVm.items[selectedItemIndex] = resp.provider_item; //jshint ignore:line
+            itemsVm.closeModal();
           });
-          itemsVm.items[selectedItemIndex] = resp.provider_item; //jshint ignore:line
-          itemsVm.closeModal();
         }, error);
     }
 
