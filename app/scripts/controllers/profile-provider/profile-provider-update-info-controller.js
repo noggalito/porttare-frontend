@@ -27,7 +27,6 @@
       });
 
       profileEdit.formas_de_pago = providerProfileVm.methodsPayment;//jshint ignore:line
-
       ProfileService.updateProfileProvider(profileEdit)
         .then(function success(resp) {
             $ionicLoading.hide();
