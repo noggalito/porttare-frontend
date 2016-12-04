@@ -61,6 +61,7 @@
         template: '{{::("globals.saving"|translate)}}'
       });
       itemsVm.item.imagenes = itemsVm.images;
+      itemsVm.item = removeIfEmptyField(itemsVm.item, 'volumen');
       ItemsService.newItem(itemsVm.item).then(function success(response){
         $ionicLoading.hide().then(function(){
           itemsVm.items.push(response.data.provider_item); //jshint ignore:line
@@ -79,15 +80,17 @@
         template: '{{::("globals.updating"|translate)}}'
       });
       itemsVm.item.imagenes = itemsVm.images;
+      itemsVm.item = removeIfEmptyField(itemsVm.item, 'volumen');
       ItemsService.editItem(itemsVm.item)
         .then(function success(resp) {
           $ionicLoading.hide();
           $ionicPopup.alert({
             title: 'Éxito',
             template: '{{::("item.successUpdateItem"|translate)}}'
+          }).then(function(){
+            itemsVm.items[selectedItemIndex] = resp.provider_item; //jshint ignore:line
+            itemsVm.closeModal();
           });
-          itemsVm.items[selectedItemIndex] = resp.provider_item; //jshint ignore:line
-          itemsVm.closeModal();
         }, error);
     }
 
@@ -141,5 +144,15 @@
       itemsVm.item = null;
       itemsVm.messages = {};
     }
+
+    function removeIfEmptyField(obj, field) {
+      var newObject = angular.copy(obj),
+          fieldCheck = newObject[field];
+      if (fieldCheck === '' || fieldCheck === null) {
+        delete newObject[field];
+      }
+      return newObject;
+    }
+
   }
 })();
