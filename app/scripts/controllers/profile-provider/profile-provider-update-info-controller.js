@@ -21,18 +21,15 @@
     providerProfileVm.touchedPayments = false;
     providerProfileVm.checked = checked;
     providerProfileVm.checkedBank = checkedBank;
-
+    providerProfileVm.type='';
     var transKeys = [
       'provider.methods.cash',
       'provider.methods.creditCard',
       'provider.bank.savings',
       'provider.bank.credit'
     ];
-    init();
 
-    function init(){
-      providerProfileVm.profileProvider  = $auth.user.provider_profile;// jshint ignore:line
-    }
+    providerProfileVm.profileProvider  = $auth.user.provider_profile;// jshint ignore:line
 
     $translate(transKeys).then(function (trans) {
       providerProfileVm.methodsPayment = [
@@ -50,13 +47,11 @@
       providerProfileVm.accountType = [
         {
           value: 'Ahorros',
-          label: trans[transKeys[2]],
-          checked: false
+          label: trans[transKeys[2]]
         },
         {
           value: 'Crédito',
-          label: trans[transKeys[3]],
-          checked: false
+          label: trans[transKeys[3]]
         }];
     });
 
@@ -72,23 +67,24 @@
     }
 
     function checkedBank(element){
-      if (element.checked) {
-        providerProfileVm.accountType.map(function(row){
-          if (row !== element) {
-            row.checked = false;
-          }
-        });
-      }
+      providerProfileVm.type=element.value;
     }
+
     function editProfile(profileEdit) {
       $ionicLoading.show({
         template: '{{::("globals.updating"|translate)}}'
       });
+
       profileEdit.formas_de_pago = providerProfileVm.methodsPayment.filter(function(row){//jshint ignore:line
         return row.checked;
       }).map(function(row){
         return row.value;
       });
+
+      if (providerProfileVm.type!=='') {
+        profileEdit.banco_tipo_cuenta = providerProfileVm.type;//jshint ignore:line
+      }
+
       ProfileService.updateProfileProvider(profileEdit)
         .then(function success(resp) {
           $ionicLoading.hide();
@@ -100,7 +96,7 @@
             closeModal();
         },
           function error(resp){
-            providerProfileVm.errors = resp.errors;
+            providerProfileVm.errors = resp;
             $ionicLoading.hide();
           });
     }
