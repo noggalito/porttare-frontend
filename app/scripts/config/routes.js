@@ -77,7 +77,7 @@ function routes($stateProvider, $urlRouterProvider) {
     //only logged users will allow to go to /app/*
     resolve: {
       currentUser: accessIfUserAuth,
-      categories: function (CategoriesService, $q, $ionicLoading, $ionicPopup, ErrorHandlerService) {
+      categories: function (CategoriesService, $ionicLoading, ErrorHandlerService) {
         $ionicLoading.show({
           template: '{{::("globals.loading"|translate)}}'
         });
@@ -126,7 +126,7 @@ function routes($stateProvider, $urlRouterProvider) {
         controller: 'CategoryController',
         controllerAs: 'categoryVm',
         resolve: {
-          data: function ($ionicLoading, $stateParams, $ionicPopup, CategoryService, ErrorHandlerService) {
+          data: function ($ionicLoading, $stateParams, CategoryService, ErrorHandlerService) {
             $ionicLoading.show({
               template: '{{::("globals.loading"|translate)}}'
             });
@@ -286,7 +286,7 @@ function routes($stateProvider, $urlRouterProvider) {
         templateUrl: 'templates/client/clients.html',
         controller: 'ClientsController',
         controllerAs: 'clientsVm'
-        }
+      }
     }
   })
   .state('provider.offices', {
@@ -388,7 +388,7 @@ function routes($stateProvider, $urlRouterProvider) {
         controller: 'ProfileAddressesController',
         controllerAs: 'pfaVm',
         resolve: {
-          data: function ($ionicLoading, $stateParams, $ionicPopup, ProfileAddressesService, ErrorHandlerService) {
+          data: function ($ionicLoading, $stateParams, ProfileAddressesService, ErrorHandlerService) {
             return ProfileAddressesService.getAddresses()
               .then(function success(res) {
                 $ionicLoading.hide();
@@ -420,7 +420,7 @@ function routes($stateProvider, $urlRouterProvider) {
           id: null
         },
         resolve: {
-          data: function ($ionicLoading, $stateParams, $ionicPopup, ProfileAddressesService, ErrorHandlerService) {
+          data: function ($ionicLoading, $stateParams, ProfileAddressesService, ErrorHandlerService) {
             if ($stateParams.id) {
               return ProfileAddressesService.getAddress($stateParams.id)
               .then(function success(res) {
