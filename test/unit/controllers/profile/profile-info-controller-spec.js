@@ -77,8 +77,7 @@
           ProfileService: ProfileService,
           $ionicLoading: $ionicLoading,
           $ionicPopup: $ionicPopup,
-          $scope: $scope,
-          $rootScope: $rootScope
+          $scope: $scope
         };
 
         ctrl = $controller('ProfileInfoController', dependencies);

@@ -2,7 +2,7 @@
   'use strict';
 
   describe('SiteController', function () {
-    var ctrl, $controller, dependencies, $rootScope, $ionicLoading, $auth, $scope;
+    var ctrl, $controller, dependencies, $rootScope, $ionicLoading, $auth;
 
     var SessionService,
         deferLoginWithFB,
@@ -29,14 +29,12 @@
       function ($q,
                 _$controller_,
                 _$rootScope_,
-                _CartService_,
-                _$scope_) {
+                _CartService_) {
 
         deferLoginWithFB  = $q.defer();
         deferValidateUser = $q.defer();
         $controller = _$controller_;
         $rootScope = _$rootScope_;
-        $scope = _$scope_;
         CartService =_CartService_;
         $ionicLoading = { show: sinon.stub(), hide: sinon.stub()};
         $state        = {

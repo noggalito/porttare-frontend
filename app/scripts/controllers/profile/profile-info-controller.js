@@ -10,7 +10,6 @@
                                  ProfileService,
                                  $ionicLoading,
                                  $ionicPopup,
-                                 $rootScope,
                                  $scope) {
     var piVm = this;
     piVm.showNewModal = showNewModal;
@@ -48,7 +47,7 @@
       ProfileService.editProfile(user)
         .then(function (response) {
           piVm.user = response.data.data;
-          $rootScope.$broadcast('userUpdated', piVm.user);
+          $scope.$emit('currentUserUpdated', piVm.user);
 
           $ionicLoading.hide().then(function () {
             $ionicPopup.alert({
@@ -64,6 +63,5 @@
           $ionicLoading.hide();
         });
     }
-
   }
 })();

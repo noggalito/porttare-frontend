@@ -5,7 +5,7 @@
     .module('porttare.controllers')
     .controller('SiteController', SiteController);
 
-  function SiteController($rootScope, $ionicLoading, $auth, $scope) {
+  function SiteController($rootScope, $ionicLoading, $auth) {
     var siteVm = this,
         currentUser = null;
 
@@ -59,15 +59,12 @@
         var attributes = [
           'custom_image_url'
         ];
-
         return getUserAttributes(attributes);
       }
     }
 
-
-    $scope.$on('userUpdated',function(event, data){
-      currentUser = data;
-
+    $rootScope.$on('currentUserUpdated',function(event, updatedCurrentUser){
+      currentUser = updatedCurrentUser;
     });
   }
 })();

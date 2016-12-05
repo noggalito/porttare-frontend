@@ -6,7 +6,7 @@
     .module('porttare.services')
     .factory('ProfileService', ProfileService);
 
-  function ProfileService($http,$q, ENV, CommonService, $auth,Upload) {
+  function ProfileService($http,$q, ENV, $auth,Upload) {
     var RESOURCE_URI = '/api/users/account';
 
     var service = {
@@ -43,8 +43,6 @@
     }
 
     function editProfile(user){
-      if(!user) {return null;}
-
       var promise;
       if(user.custom_image){
         promise = Upload.upload({
@@ -57,7 +55,6 @@
         promise = $auth.updateAccount(user);
 
       }
-
       return promise;
     }
   }
