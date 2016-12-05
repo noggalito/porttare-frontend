@@ -10,12 +10,14 @@
                                  ProfileService,
                                  $ionicLoading,
                                  $ionicPopup,
+                                 $rootScope,
                                  $scope) {
     var piVm = this;
     piVm.showNewModal = showNewModal;
     piVm.closeModal = closeModal;
     piVm.submitProcess = submitProcess;
     piVm.messages = {};
+
     init();
 
     function init(){
@@ -42,9 +44,12 @@
 
     function submitProcess(user){
       $ionicLoading.show({template: '{{::("globals.sending"|translate)}}'});
-      $auth.updateAccount(user)
+
+      ProfileService.editProfile(user)
         .then(function (response) {
           piVm.user = response.data.data;
+          $rootScope.$broadcast('userUpdated', piVm.user);
+
           $ionicLoading.hide().then(function () {
             $ionicPopup.alert({
               title: 'Éxito',

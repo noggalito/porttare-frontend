@@ -6,10 +6,13 @@
     .module('porttare.services')
     .factory('ProfileService', ProfileService);
 
-  function ProfileService($http,$q, ENV) {
+  function ProfileService($http,$q, ENV, CommonService, $auth,Upload) {
+    var RESOURCE_URI = '/api/users/account';
+
     var service = {
       getProfile: getProfile,
-      updateProfileProvider:updateProfileProvider
+      updateProfileProvider:updateProfileProvider,
+      editProfile: editProfile
     };
 
     return service;
@@ -37,6 +40,25 @@
       }, function error(res) {
         return $q.reject(res.data);
       });
+    }
+
+    function editProfile(user){
+      if(!user) {return null;}
+
+      var promise;
+      if(user.custom_image){
+        promise = Upload.upload({
+          method: 'PUT',
+          url: ENV.apiHost + RESOURCE_URI,
+          data: user
+        });
+      }
+      else{
+        promise = $auth.updateAccount(user);
+
+      }
+
+      return promise;
     }
   }
 })();

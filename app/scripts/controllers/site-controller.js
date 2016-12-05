@@ -5,11 +5,12 @@
     .module('porttare.controllers')
     .controller('SiteController', SiteController);
 
-  function SiteController($rootScope, $ionicLoading, $auth) {
+  function SiteController($rootScope, $ionicLoading, $auth, $scope) {
     var siteVm = this,
         currentUser = null;
 
     siteVm.userName = userName;
+    siteVm.getUserImageURL = getUserImageURL;
 
     init();
 
@@ -31,6 +32,17 @@
       $ionicLoading.hide();
     });
 
+    function getUserAttributes(attributes){
+
+      var presentAttribute = attributes.find(function(attribute) {
+        return !angular.element.isEmptyObject(
+          angular.element.trim(currentUser[attribute])
+        );
+      });
+
+      return currentUser[presentAttribute];
+    }
+
     function userName () {
       if (currentUser) {
         var attributes = [
@@ -38,13 +50,24 @@
           'nickname',
           'email'
         ];
-        var presentAttribute = attributes.find(function(attribute) {
-          return !angular.element.isEmptyObject(
-            angular.element.trim(currentUser[attribute])
-          );
-        });
-        return currentUser[presentAttribute];
+        return getUserAttributes(attributes);
       }
     }
+
+    function getUserImageURL(){
+      if (currentUser) {
+        var attributes = [
+          'custom_image_url'
+        ];
+
+        return getUserAttributes(attributes);
+      }
+    }
+
+
+    $scope.$on('userUpdated',function(event, data){
+      currentUser = data;
+
+    });
   }
 })();

@@ -2,7 +2,7 @@
   'use strict';
 
   describe('SiteController', function () {
-    var ctrl, $controller, dependencies, $rootScope, $ionicLoading, $auth;
+    var ctrl, $controller, dependencies, $rootScope, $ionicLoading, $auth, $scope;
 
     var SessionService,
         deferLoginWithFB,
@@ -29,12 +29,14 @@
       function ($q,
                 _$controller_,
                 _$rootScope_,
-                _CartService_) {
+                _CartService_,
+                _$scope_) {
 
         deferLoginWithFB  = $q.defer();
         deferValidateUser = $q.defer();
         $controller = _$controller_;
         $rootScope = _$rootScope_;
+        $scope = _$scope_;
         CartService =_CartService_;
         $ionicLoading = { show: sinon.stub(), hide: sinon.stub()};
         $state        = {
@@ -87,6 +89,7 @@
         $rootScope.$digest();
         sinon.assert.calledOnce($ionicLoading.hide);
       });
+
     });
 
     describe('without user', function(){

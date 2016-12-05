@@ -14,7 +14,8 @@
       $scope,
       deferredUpdate,
       deferIonic,
-      deferGetProfile;
+      deferGetProfile,
+      deferEditProfile;
     beforeEach(module('porttare.controllers'));
     beforeEach(module('porttare.services', function($provide){
       $provide.factory('ProfileService', function($q){
@@ -22,6 +23,10 @@
           getProfile: function(){
             deferGetProfile = $q.defer();
             return deferGetProfile.promise;
+          },
+          editProfile: function(){
+            deferEditProfile = $q.defer();
+            return deferEditProfile.promise;
           }
         };
       });
@@ -72,7 +77,8 @@
           ProfileService: ProfileService,
           $ionicLoading: $ionicLoading,
           $ionicPopup: $ionicPopup,
-          $scope: $scope
+          $scope: $scope,
+          $rootScope: $rootScope
         };
 
         ctrl = $controller('ProfileInfoController', dependencies);
