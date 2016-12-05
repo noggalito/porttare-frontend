@@ -12,6 +12,7 @@
 
     var service = {
       newItem: newItem,
+      getItem: getItem,
       getItems: getItems,
       editItem: editItem,
       deleteItem: deleteItem
@@ -35,6 +36,10 @@
 
     function getItems() {
       return CommonService.getObjects('/api/provider/items/');
+    }
+
+    function getItem(stateParams) {
+      return CommonService.getObject('/api/provider/items/', stateParams.id);
     }
 
     function editItem(item) {

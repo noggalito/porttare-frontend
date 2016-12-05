@@ -49,14 +49,8 @@
         });
     }
 
-    function getObject(objectId, url) {
-      return $http({
-        method: 'GET',
-        url: ENV.apiHost + url + objectId
-      })
-        .then(function success(resp){
-          return resp.data;
-        });
+    function getObject(url, objectId) {
+      return getObjects(url + objectId);
     }
 
     function deleteObject(objectId, url){

@@ -275,6 +275,29 @@ function routes($stateProvider, $urlRouterProvider) {
       }
     }
   })
+  .state('provider.items.show', {
+    url: '/:id',
+    views: {
+      'menuContent@provider': {
+        templateUrl: 'templates/item/show.html',
+        controller: 'ProviderItemController',
+        controllerAs: 'providerItemVm',
+        resolve: {
+          data: function ($ionicLoading, $stateParams, ItemsService, ErrorHandlerService) {
+            $ionicLoading.show({
+              template: '{{::("globals.loading"|translate)}}'
+            });
+
+            return ItemsService.getItem($stateParams)
+              .then(function success(res) {
+                $ionicLoading.hide();
+                return res;
+              }, ErrorHandlerService.handleCommonErrorGET);
+          }
+        }
+      }
+    }
+  })
   .state('provider.clients', {
     url: '/clients',
     abstract: true

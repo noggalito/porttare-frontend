@@ -24,6 +24,7 @@
   function slickWrapperController() {
     var swcVm = this;
     var defaultSlickConfig = {
+      dots: false,
       infinite: true,
       slidesToShow: 1,
       slidesToScroll: 1,

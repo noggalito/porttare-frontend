@@ -34,9 +34,9 @@ ion-view(
         ng-init="idx = $index"
       )  
         .col.col-60
-          .provider-item-title(
-            ng-click="itemsVm.showEditModal(idx)"
-          ) {{ item.titulo }}
+          a.provider-item-title(
+            ui-sref="provider.items.show({id: item.id})"
+          ) {{ ::item.titulo }}
         .col.col-15
-          span(ng-if="item.unidad_medida=='unidades'") X {{ item.volumen }}
-        .col.col-25 $ {{ item.precio_cents/100 }}
+          span(ng-if="item.unidad_medida=='unidades'") X {{ ::item.volumen }}
+        .col.col-25 $ {{ ::item.precio_cents/100 }}

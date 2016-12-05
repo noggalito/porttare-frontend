@@ -21,7 +21,7 @@
     }
 
     function getOffice(officeId) {
-      return CommonService.getObject(officeId, '/api/provider/offices/');
+      return CommonService.getObject('/api/provider/offices/', officeId);
     }
 
     function createOffice(office) {

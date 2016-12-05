@@ -1,0 +1,53 @@
+ion-view(
+  view-title='{{::item.titulo}}'
+)
+  ion-nav-title
+    .alt-logo
+  ion-content.item-show-page
+    .row
+      .col.col-70
+        ion-toggle(
+          ng-change="providerItemVm.updateStock()"
+          ng-model="providerItemVm.providerItem.en_stock"
+          toggle-class="toggle-energized"
+        ) {{::("item.stockLabel"|translate)}}
+
+      .col.col-30.text-right
+        button.button.button-clear.button-positive(
+          ng-click="providerItemVm.showEditModal()"
+        ) {{::("globals.edit"|translate)}}
+      
+    slick-wrapper(settings="providerItemVm.slickSettings")
+      .slick-container(ng-repeat="image in ::providerItemVm.providerItem.imagenes")
+        .slick-content
+          img(ng-src="{{::image.imagen_url}}")
+    
+    .list.list-inset.list--no-borders
+      h2 {{::providerItemVm.providerItem.titulo}}
+      p {{::providerItemVm.providerItem.descripcion}}
+    
+    .list.list-inset.list--no-borders
+      p {{::("item.productDetails"|translate)}}
+      .row
+        .col.col-50 {{::("item.price"|translate)}}
+        .col.col-50
+          | {{::("item.currency"|translate)}}
+          | {{::providerItemVm.providerItem.precio}}
+      .row
+        .col.col-50 {{::("item.unidadMedida"|translate)}}
+        .col.col-50 {{::providerItemVm.providerItem.unidad_medida}}
+      .row
+        .col.col-50 {{::("item.valorMedida"|translate)}}
+        .col.col-50 {{::providerItemVm.providerItem.volumen}}
+      .row
+        .col.col-50 {{::("item.volumen"|translate)}}
+        .col.col-50 {{::providerItemVm.providerItem.volumen}}
+      .row
+        .col.col-50 {{::("item.cantidad"|translate)}}
+        .col.col-50
+          | {{::("item.cantidadPrefix"|translate)}}{{::(providerItemVm.providerItem.volumen)}}
+
+  ion-footer-bar(class="bar-stable")
+    button.button.button-outline.button-energized.button-small(
+      ng-click="providerItemVm.seeAsCustomer()"
+    ) {{::("item.seeAsCustomer"|translate)}}

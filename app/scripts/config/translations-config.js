@@ -172,7 +172,14 @@
         imagen: 'Fotografías',
         addImages: 'Agregar fotografías',
         observaciones: 'Descripción larga',
-        unidadMedida: 'Unidad de medida'
+        unidadMedida: 'Unidad de medida',
+        valorMedida: 'Valor de medida',
+        stockLabel: 'Producto en stock',
+        productDetails:'Detalles del producto',
+        cantidad: 'Cantidad',
+        cantidadPrefix: 'x',
+        currency: '$ ',
+        seeAsCustomer: 'Ver como cliente'
       },
       actions: {
         showCategory: 'Lista de Categorías',

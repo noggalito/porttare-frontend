@@ -3,14 +3,14 @@ ion-modal-view.item-form
     .title.alt-logo
     
     .ion-nav-buttons.buttons(side="primary")
-      button.button.button-clear(
-        ng-click="itemsVm.closeModal()"
+      button.button.button-clear.button-positive(
+        ng-click="providerItemVm.closeModal()"
       ) {{::('globals.cancel'|translate)}}
     
 
   form(
-    name='itemsVm.itemForm'
-    ng-submit='itemsVm.submitProcess(itemsVm.item.id)'
+    name='providerItemVm.itemForm'
+    ng-submit='providerItemVm.submitProcess(providerItemVm.item.id)'
     novalidate
   )
     ion-content.resource-form
@@ -18,60 +18,60 @@ ion-modal-view.item-form
         legend {{::("item.formLegend"|translate)}}
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': itemsVm.itemForm.titulo.$touched && itemsVm.itemForm.titulo.$invalid}"
+          ng-class="{'item-error': providerItemVm.itemForm.titulo.$touched && providerItemVm.itemForm.titulo.$invalid}"
         )
           span.input-label {{::("item.titulo"|translate)}}
           input(
             name='titulo'
             type='text'
-            ng-model='itemsVm.item.titulo'
+            ng-model='providerItemVm.item.titulo'
             ng-class='input-error'
             required
           )
         .errors-wrapper    
-          .show-errors(ng-messages="itemsVm.itemForm.titulo.$error" ng-if="itemsVm.itemForm.titulo.$touched")
+          .show-errors(ng-messages="providerItemVm.itemForm.titulo.$error" ng-if="providerItemVm.itemForm.titulo.$touched")
             span(ng-message="required" class="message-error") {{::("globals.isRequired"|translate)}}
-          show-error(array-messages='itemsVm.messages.titulo')
+          show-error(array-messages='providerItemVm.messages.titulo')
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("item.descripcion"|translate)}}
           input(
             type='text'
-            ng-model='itemsVm.item.descripcion'
+            ng-model='providerItemVm.item.descripcion'
           )
-        show-error(array-messages='itemsVm.messages.descripcion')
+        show-error(array-messages='providerItemVm.messages.descripcion')
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("item.observaciones"|translate)}}
           input(
             type='text'
-            ng-model='itemsVm.item.observaciones'
+            ng-model='providerItemVm.item.observaciones'
           )
-        show-error(array-messages='itemsVm.messages.observaciones')
+        show-error(array-messages='providerItemVm.messages.observaciones')
 
         label.item.item-input.item-select(
-          ng-class="{'item-error': itemsVm.itemForm.unidad_medida.$touched && itemsVm.itemForm.unidad_medida.$invalid}"
+          ng-class="{'item-error': providerItemVm.itemForm.unidad_medida.$touched && providerItemVm.itemForm.unidad_medida.$invalid}"
         )
           span.input-label {{::("item.unidadMedida"|translate)}}
-          select(ng-model='itemsVm.item.unidad_medida' name='unidad_medida' required)
+          select(ng-model='providerItemVm.item.unidad_medida' name='unidad_medida' required)
             option(value='volumen') Volumen
             option(value='unidades') Unidades
             option(value='longitud') Longitud
         .errors-wrapper    
-          span.show-errors(ng-messages="itemsVm.itemForm.unidad_medida.$error" ng-if="itemsVm.itemForm.unidad_medida.$touched")
+          span.show-errors(ng-messages="providerItemVm.itemForm.unidad_medida.$error" ng-if="providerItemVm.itemForm.unidad_medida.$touched")
             span(ng-message="required" class="message-error") {{::("globals.isRequired"|translate)}}
-          show-error(array-messages='itemsVm.messages.unidad_medida')
+          show-error(array-messages='providerItemVm.messages.unidad_medida')
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("item.volumen"|translate)}}
           input(
             type='text'
-            ng-model='itemsVm.item.volumen'
+            ng-model='providerItemVm.item.volumen'
           )
-        show-error(array-messages='itemsVm.messages.volumen')
+        show-error(array-messages='providerItemVm.messages.volumen')
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': itemsVm.itemForm.precio.$touched && itemsVm.itemForm.precio.$invalid}"
+          ng-class="{'item-error': providerItemVm.itemForm.precio.$touched && providerItemVm.itemForm.precio.$invalid}"
         )
           span.input-label {{::("item.precio"|translate)}}
           input(
@@ -79,27 +79,28 @@ ion-modal-view.item-form
             name='precio'
             step='any'
             type='number'
-            ng-model='itemsVm.item.precio'
+            ng-model='providerItemVm.item.precio'
             required
           )
         .errors-wrapper
-          span.show-errors(ng-messages="itemsVm.itemForm.precio.$error" ng-if="itemsVm.itemForm.precio.$touched")
-            span(ng-message="required" class="message-error") {{::("globals.isRequired"|translate)}}
-          show-error(array-messages='itemsVm.messages.precio')
+          span.show-errors(ng-messages="providerItemVm.itemForm.precio.$error" ng-if="providerItemVm.itemForm.precio.$touched")
+            span.message-error(ng-message="required")
+              | {{::("globals.isRequired"|translate)}}
+          show-error(array-messages='providerItemVm.messages.precio')
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("item.peso"|translate)}}
           input(
             type='text'
-            ng-model='itemsVm.item.peso'
+            ng-model='providerItemVm.item.peso'
           )
-        show-error(array-messages='itemsVm.messages.peso')
+        show-error(array-messages='providerItemVm.messages.peso')
 
         label.item.item-input.item-input--no-borders.item-stacked-label
           span.input-label {{::("item.imagen"|translate)}}
         .uploader(
-          ng-if="itemsVm.images.length === 0"
-          ngf-select="itemsVm.concatImages($files)"
+          ng-if="providerItemVm.images.length === 0"
+          ngf-select="providerItemVm.concatImages($files)"
           accept="image/*"
           multiple
         )
@@ -108,21 +109,21 @@ ion-modal-view.item-form
 
         .row.images-previews
           .img-wrapper.col-33(
-            ng-repeat="image in itemsVm.imagesUrls"
+            ng-repeat="image in providerItemVm.imagesUrls"
           )
             img(ngf-src="image")
           
-          .img-wrapper.col-33(ng-if="itemsVm.images.length > 0")
+          .img-wrapper.col-33(ng-if="providerItemVm.images.length > 0")
             .add-image-placeholder(
-              ngf-select="itemsVm.concatImages($files)"
+              ngf-select="providerItemVm.concatImages($files)"
               accept="image/*"
               multiple
             )
               i.ion-plus
-        show-error(array-messages='itemsVm.messages.imagen')
+        show-error(array-messages='providerItemVm.messages.imagen')
 
     .bar.bar-footer.bar-stable
       button.button.button-small.button-outline.button-energized(
         type="submit"
-        ng-disabled="itemsVm.itemForm.$invalid"
+        ng-disabled="providerItemVm.itemForm.$invalid"
       ) {{::("item.publishItem"|translate)}}
