@@ -6,7 +6,7 @@ ion-view(
   ion-content.billing-addresses-list
     .row.col.text-center
       button.action-button.yellow(ng-click="billingAddressesVm.showNewModal()")
-        {{::("billingAddress.newBillingAddress"|translate)}}
+        | {{::("billingAddress.newBillingAddress"|translate)}}
 
     .row
       .col.col-30
@@ -21,12 +21,12 @@ ion-view(
         hr
 
     .row(ng-repeat='item in billingAddressesVm.billingAddresses')
-      .col.col-30{{item.ruc}}
-      .col.col-30{{item.razon_social}}
-      .col.col-30{{item.direccion}}
+      .col.col-30 {{item.ruc}}
+      .col.col-30 {{item.razon_social}}
+      .col.col-30 {{item.direccion}}
       .col.col-10
         a.action(ng-click='billingAddressesVm.showEditModal(item, $index)')
-          {{::("globals.edit"|translate)}}
+          | {{::("globals.edit"|translate)}}
 
     .row.col.text-center(ng-show="billingAddressesVm.billingAddresses.length==0")
       h5.data {{::("billingAddress.anyBillingAddress"|translate)}}
