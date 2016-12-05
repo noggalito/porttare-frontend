@@ -20,7 +20,7 @@
     itemsVm.deleteItem = deleteItem;
     itemsVm.query = '';
     var selectedItemIndex;
-    initItems();
+    initItem();
     getItems();
 
     function getItems() {
