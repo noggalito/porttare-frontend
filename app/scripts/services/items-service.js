@@ -48,7 +48,7 @@
           item: item
         });
       } else {
-        promise = CommonService.editObject(item, '/api/provider/items');
+        promise = CommonService.editObject(item, '/api/provider/items/');
       }
       return promise;
     }
@@ -61,7 +61,9 @@
     }
 
     function hasNestedImages(item) {
-      return item && item.imagenes.length > 0;
+      return item && item.imagenes && item.imagenes.some(function (instance) {
+        return instance.constructor === File;
+      });
     }
 
     function saveWithNestedImages(options){

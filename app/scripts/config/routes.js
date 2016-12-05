@@ -270,7 +270,8 @@ function routes($stateProvider, $urlRouterProvider) {
       'menuContent@provider': {
         templateUrl: 'templates/item/items.html',
         controller: 'ItemsController',
-        controllerAs: 'itemsVm'
+        controllerAs: 'itemsVm',
+        cache: false
       }
     }
   })
