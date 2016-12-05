@@ -14,19 +14,16 @@ ion-modal-view.item-page
       novalidate
     )
       .list.list-inset
-        legend {{::("item.formLegend"|translate)}}
-
+        legend{{::("item.formLegend"|translate)}}
         ion-toggle(
           ng-model='itemsVm.item.en_stock'
           ng-checked='true'
-          toggle-class='toggle-calm'
+          toggle-class='toggle-energized'
         )
-            span.input-label{{::("item.stock"|translate|uppercase)}}
-
+          span.input-label{{::("item.stock"|translate)}}
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': itemsVm.itemForm.titulo.$touched && itemsVm.itemForm.titulo.$invalid}"
         )
-
           span.input-label {{::("item.titulo"|translate|uppercase)}}
           input(
             name='titulo'

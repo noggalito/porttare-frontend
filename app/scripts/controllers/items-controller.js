@@ -34,7 +34,6 @@
       itemsVm.item.en_stock=true; //jshint ignore:line
     }
 
-
     function submitProcess(id){
       (id) ? editItem() : newItem(); //jshint ignore:line
     }
