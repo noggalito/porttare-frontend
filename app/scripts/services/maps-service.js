@@ -8,33 +8,41 @@
   function MapsService($window, ENV, $q, $ionicPopup) {
     var service = {
       loadGMap: loadGMap,
-      removeGMapScript: removeGMapScript,
       loadGMapAddress: loadGMapAddress
     };
-    var deferred;
+    var deferred,
+        gmapsLoaded;
 
     return service;
 
     function loadGMap() {
-      deferred = $q.defer();
-      $window.launchGMap = function(){
-        showGMap();
-      };
+      if (gmapsLoaded) {
+        return $q.resolve();
+      } else {
+        deferred = $q.defer();
+        appendGMapsScript();
+        gmapsLoaded = true;
+        return deferred.promise;
+      }
+    }
+
+    function appendGMapsScript() {
+      $window.gMapsCallback = function() { gMapsCallback(); };
       var libraries = 'places';
-      var gMapsUrl = '//maps.google.com/maps/api/js?libraries=' + libraries + '&callback=launchGMap&key=';
+      var gMapsUrl = '//maps.google.com/maps/api/js?libraries=' + libraries + '&callback=gMapsCallback&key=';
       var script = document.createElement('script');
       script.src = gMapsUrl + ENV.gMapsKey;
       script.type = 'text/javascript';
       document.getElementsByTagName('head')[0].appendChild(script);
-      return deferred.promise;
     }
 
-    function showGMap(){
+    function gMapsCallback(){
       deferred.resolve();
+      removeGMapsCallback();
     }
 
-    function removeGMapScript(){
-      delete $window.launchGMap;
+    function removeGMapsCallback(){
+      delete $window.gMapsCallback;
     }
 
     function loadGMapAddress(address) {

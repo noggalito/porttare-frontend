@@ -8,8 +8,7 @@
   function MapController($ionicLoading,
                         $ionicPopup,
                         GeolocationService,
-                        MapsService,
-                        $scope)
+                        MapsService)
   {
 
     var mapVm = this;
@@ -170,10 +169,5 @@
           document.getElementById('input-places').blur();
       });
     }
-
-    $scope.$on('$stateChangeStart', function() {
-      MapsService.removeGMapScript();
-    });
-
   }
 })();
