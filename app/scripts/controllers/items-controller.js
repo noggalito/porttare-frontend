@@ -19,9 +19,8 @@
     itemsVm.submitProcess = submitProcess;
     itemsVm.deleteItem = deleteItem;
     itemsVm.query = '';
-    itemsVm.statusStock= statusStock;
     var selectedItemIndex;
-
+    initItems();
     getItems();
 
     function getItems() {
@@ -30,6 +29,11 @@
           itemsVm.items = resp.provider_items; //jshint ignore:line
         },ErrorHandlerService.handleCommonErrorGET);
     }
+    function initItem(){
+      itemsVm.item={};
+      itemsVm.item.en_stock=true; //jshint ignore:line
+    }
+
 
     function submitProcess(id){
       (id) ? editItem() : newItem(); //jshint ignore:line
@@ -112,9 +116,6 @@
       selectedItemIndex = null;
       itemsVm.item = null;
       itemsVm.messages = {};
-    }
-    function statusStock(){
-      itemsVm.item.cantidad = !(itemsVm.item.en_stock) ?  0 :  (itemsVm.item.cantidad ?  itemsVm.item.cantidad: 0); //jshint ignore:line
     }
   }
 })();
