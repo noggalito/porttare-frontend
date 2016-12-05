@@ -11,15 +11,13 @@
         name:'development',
         apiHost:'http://localhost:3785'
       });
-      $provide.factory('Upload', function ($q) {
+      $provide.factory('Upload', function () {
+        return {};
+      });
+      $provide.factory('CommonService', function($q){
         deferUplod = $q.defer();
         return {
-          upload: sinon.stub().returns(deferUplod.promise)
-        };
-      });
-      $provide.factory('CommonService', function(){
-        return {
-          newObject: sinon.stub()
+          newObject: sinon.stub().returns(deferUplod.promise)
         };
       });
     }));

@@ -30,9 +30,7 @@
       } else {
         promise = CommonService.newObject(item, '/api/provider/items');
       }
-      return promise.then(function (resp) {
-        return resp;
-      });
+      return promise;
     }
 
     function getItems() {

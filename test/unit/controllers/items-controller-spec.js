@@ -194,7 +194,7 @@
           ctrl.items = [];
           deferEditItem.resolve({id:0});
           $scope.$digest();
-          sinon.assert.calledOnce($ionicPopup.alert);
+          return $ionicPopup.alert.should.have.been.calledOnce;
         });
 
         it('if unsuccessful, ionicLoading.hide should be called', function () {
