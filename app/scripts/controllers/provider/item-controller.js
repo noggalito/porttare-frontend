@@ -5,11 +5,11 @@
     .module('porttare.controllers')
     .controller('ProviderItemController', ProviderItemController);
 
-  function ProviderItemController(data,
+  function ProviderItemController(resources,
                                   APP,
                                   ModalService) {
     var providerItemVm = this,
-        providerItem = data.provider_item; // jshint ignore:line
+        providerItem = resources.provider_item; // jshint ignore:line
 
     providerItem.precio = providerItem.precio_cents / APP.centsInDollar;
     console.log(providerItem);
