@@ -11,7 +11,7 @@
     "angular-translate": "^2.11.1",
     "airbrake-js-client": "^0.5.9",
     "angular-slick-carousel": "^3.1.7",
-    "ng-file-upload": "^12.2.5",
+    "ng-file-upload": "noggalito/ng-file-upload#12.2.13-noggalito",
     "ion-datetime-picker": "0.4.1",
     "moment": "^2.15.1",
     "angular-messages": "1.5.3"
