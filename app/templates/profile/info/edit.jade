@@ -1,80 +1,84 @@
 ion-modal-view.client-page
   ion-header-bar.bar.bar-header.bar-light.bar-base-yellow(
-    align-title="center"
+  align-title="center"
   )
     h4 {{::("globals.edit"|translate)}}
     .ion-nav-buttons(side="left")
       button.button.ion-chevron-left.button-clear.left(
-        ng-click="piVm.closeModal()"
+      ng-click="piVm.closeModal()"
       )
   ion-content.resource-form
     form(
-      name="piVm.updateProfileForm"
-      ng-submit="piVm.submitProcess(piVm.userEdit)"
-      novalidate
+    name="piVm.formUpdateProfile"
+    ng-submit="piVm.submitProcess(piVm.userEdit)"
+    novalidate
     )
       .list.list-inset
         legend {{::("client.formLegend"|translate)}}
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("item.imagen"|translate|uppercase)}}
-          input.button.ion-button(
-            type='file'
-            ngf-select
-            ng-model="piVm.userEdit.custom_image"
-            accept="image/*"
+          input(
+          type='file'
+          ngf-select
+          ng-model="piVm.userEdit.custom_image"
+          accept="image/*"
           )
-        show-error(array-messages='piVm.user.custom_image')
+        show-error(array-messages='piVm.messages.custom_image')
+        .errors-wrapper
+          span.show-errors(ng-if="piVm.messages.custom_image" ng-repeat="errCustom_image in piVm.messages.custom_image")
+            .message-error {{errCustom_image}}
+
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': piVm.updateProfileForm.email.$touched && piVm.updateProfileForm.email.$invalid}"
+          ng-class="{'item-error': piVm.messages.email}"
         )
           span.input-label {{::("user.email"|translate)}}
           input(
-            type="email"
-            name="email"
-            ng-model="piVm.userEdit.email"
-            ng-class="input-error"
-            required
+          type="text"
+          ng-model="piVm.userEdit.email"
+          ng-class="input-error"
           )
         .errors-wrapper
-          span.show-errors(ng-messages="piVm.updateProfileForm.email.$error" ng-if="piVm.updateProfileForm.email.$touched")
-            span.message-error(ng-message="required") Campo requerido
-            span.message-error(ng-message="email") E-mail no válido
-          show-error(array-messages="piVm.messages.email")
+          span.show-errors(ng-if="piVm.messages.email" ng-repeat="errEmail in piVm.messages.email")
+            .message-error {{errEmail}}
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': piVm.messages.fecha_de_nacimiento}"
+        ng-class="{'item-error': piVm.messages.fecha_de_nacimiento}"
         )
-        .item.item-input.item-stacked-label
           span.input-label {{::("user.birthdate"|translate)}}
-          .item(ion-datetime-picker date ng-model='piVm.userEdit.fecha_nacimiento')
-            | {{piVm.userEdit.fecha_nacimiento| date: "yyyy-MM-dd"}}
-        show-error(array-messages="piVm.messages.fecha_nacimiento")
+        .item(ion-datetime-picker date ng-model='piVm.userEdit.fecha_nacimiento')
+          | {{piVm.userEdit.fecha_nacimiento| date: "yyyy-MM-dd"}}
+        .errors-wrapper
+          span.show-errors(ng-if="piVm.messages.fecha_nacimiento" ng-repeat="errNacimiento in piVm.messages.fecha_nacimiento")
+            .message-error {{errNacimiento}}
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': piVm.messages.name}"
+        ng-class="{'item-error': piVm.messages.name}"
         )
           span.input-label {{::("user.name"|translate)}}
           input(
-            type="text"
-            ng-model="piVm.userEdit.name"
+          type="text"
+          ng-model="piVm.userEdit.name"
           )
-        show-error(array-messages="piVm.messages.name")
+        .errors-wrapper
+          span.show-errors(ng-if="piVm.messages.name" ng-repeat="errName in piVm.messages.name")
+            .message-error {{errName}}
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': piVm.messages.ciudad}"
+        ng-class="{'item-error': piVm.messages.ciudad}"
         )
           span.input-label {{::("user.country"|translate)}}
           input(
-            type="text"
-            ng-model="piVm.userEdit.ciudad"
+          type="text"
+          ng-model="piVm.userEdit.ciudad"
           )
-        show-error(array-messages="piVm.messages.ciudad")
+        .errors-wrapper
+          span.show-errors(ng-if="piVm.messages.ciudad" ng-repeat="errCiudad in piVm.messages.ciudad")
+            .message-error {{errCiudad}}
 
       .bar.bar-footer
-        input.button.button-primary(
-          type="submit"
-          value="{{::('globals.save'|translate)}}"
-          ng-class='{disabled: piVm.updateProfileForm.$invalid}'
+        action-button(
+        type="submit"
+        text="{{::('globals.save'|translate)}}"
         )
