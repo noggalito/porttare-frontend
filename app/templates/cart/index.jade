@@ -3,6 +3,15 @@ ion-view(
 )
   ion-nav-title
     .alt-logo
-  ion-content
+  ion-content.cart-page
     .item(ng-repeat="item in cartVm.cart.customer_order_items track by $index")
-      | {{item.cantidad}} {{item.provider_item.descripcion}}
+      | {{item.cantidad}} {{item.provider_item.titulo}}
+  ion-footer-bar.cart-page-footer
+    action-button(
+      on-click="cartVm.buyItems()"
+      text="{{::('cart.buyItems'|translate)}}"
+    )
+    .total
+      | (Subtotal)
+      span.value
+        | {{cartVm.total | currency}}

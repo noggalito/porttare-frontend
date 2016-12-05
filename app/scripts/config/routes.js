@@ -95,6 +95,7 @@ function routes($stateProvider, $urlRouterProvider) {
   })
   .state('app.cart.index', {
     url: '/',
+    cache: false,
     views: {
       'menuContent@app': {
         templateUrl: 'templates/cart/index.html',

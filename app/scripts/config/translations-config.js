@@ -329,7 +329,8 @@
         }
       },
       cart: {
-        successfullyAdded: 'Ítem agregado exitosamente'
+        successfullyAdded: 'Ítem agregado exitosamente',
+        buyItems: 'Comprar Items',
       },
       form: {
         requiredField: 'Campo requerido. ',

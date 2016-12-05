@@ -1,0 +1,13 @@
+.cart-page-footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  .total {
+    font-family: Montserrat-Regular;
+    .value {
+      margin-left: 0.5rem;
+      font-size: 2em;
+      color: $button-blue
+    }
+  }
+}
