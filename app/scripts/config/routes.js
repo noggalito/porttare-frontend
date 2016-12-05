@@ -283,15 +283,15 @@ function routes($stateProvider, $urlRouterProvider) {
         controller: 'ProviderItemController',
         controllerAs: 'providerItemVm',
         resolve: {
-          resources: function ($ionicLoading, $stateParams, ItemsService, ErrorHandlerService) {
+          apiResources: function ($ionicLoading, $stateParams, ItemsService, ErrorHandlerService) {
             $ionicLoading.show({
               template: '{{::("globals.loading"|translate)}}'
             });
 
             return ItemsService.getItem($stateParams)
-              .then(function success(res) {
+              .then(function success(response) {
                 $ionicLoading.hide();
-                return res;
+                return response;
               }, ErrorHandlerService.handleCommonErrorGET);
           }
         }
