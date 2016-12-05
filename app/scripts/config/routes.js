@@ -254,16 +254,39 @@ function routes($stateProvider, $urlRouterProvider) {
 
   .state('provider.profile-provider', {
     url: '/profile',
-    abstract: true
+    abstract: true,
+    views: {
+      'menuContent': {
+        templateUrl:'templates/profile-provider/profileProvider.html'
+      }
+    }
   })
 
-  .state('provider.profile-provider.update', {
-    url: '/',
+  .state('provider.profile-provider.info', {
+    url: '/info',
     views: {
-      'menuContent@provider': {
-        templateUrl: 'templates/profile-provider/profileProvider.html',
+      'menuContent@profileProviderInfo': {
+        templateUrl: 'templates/profile-provider/info.html',
         controller: 'ProfileProviderUpdateController',
         controllerAs: 'providerProfileVm'
+      }
+    }
+  })
+
+  .state('provider.profile-provider.metrics', {
+    url: '/metrics',
+    views: {
+      'menuContent@profileProviderMetrics': {
+        templateUrl: 'templates/profile-provider/metrics.html'
+      }
+    }
+  })
+
+  .state('provider.profile-provider.managements', {
+    url: '/managements',
+    views: {
+      'menuContent@profileProviderManagements': {
+        templateUrl: 'templates/profile-provider/managements.html'
       }
     }
   })

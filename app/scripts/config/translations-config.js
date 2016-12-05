@@ -315,7 +315,9 @@
         title: 'Perfil',
         tabs: {
           info: 'Datos',
-          addresses: 'Direcciones'
+          addresses: 'Direcciones',
+          metrics:'Metricas',
+          managements:'Gestiones'
         },
         addresses: {
           buttonEdit: 'Editar',
