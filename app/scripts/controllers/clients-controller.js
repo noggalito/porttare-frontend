@@ -16,7 +16,7 @@
     clientsVm.showEditModal = showEditModal;
     clientsVm.closeModal = closeModal;
     clientsVm.submitProcess = submitProcess;
-    clientsVm.deleteClient = askToDeleteClient;
+    clientsVm.askToDeleteClient = askToDeleteClient;
     clientsVm.listOptions = [
       {name: 'Nombres', filterField: 'nombres'},
       {name: 'Antigüedad', filterField: 'created_at'}
@@ -75,7 +75,7 @@
     }
 
     function askToDeleteClient(clientId) {
-      $translate('globals.confirmTitle').then(function (confirmationTitle){
+      $translate('globals.confirmTitle').then(function(confirmationTitle) {
         $ionicPopup.confirm({
           title: confirmationTitle,
           template: '{{::("client.confirmDisable"|translate)}}'

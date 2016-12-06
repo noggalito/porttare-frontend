@@ -13,9 +13,12 @@
       $ionicPopup,
       $scope,
       $rootScope,
+      $translate,
+      translateDeferred,
       deferNewClient,
       deferEditClient,
-      deferDeleteClient;
+      deferDeleteClient,
+      confirmationDeferred;
 
     beforeEach(module('porttare.controllers'));
     beforeEach(module('porttare.services', function($provide){
@@ -64,13 +67,17 @@
         ClientsService = _ClientsService_;
         ModalService = _ModalService_;
         $controller = _$controller_;
+        confirmationDeferred = $q.defer();
         $ionicLoading = {
           show: sinon.stub(),
           hide: sinon.stub()
         };
         $ionicPopup = {
-          alert: sinon.stub()
+          alert: sinon.stub().returns($q.defer().promise),
+          confirm: sinon.stub().returns(confirmationDeferred.promise)
         };
+        translateDeferred = $q.defer();
+        $translate = sinon.stub().returns(translateDeferred.promise);
       })
     );
 
@@ -81,7 +88,8 @@
           ClientsService: ClientsService,
           ModalService: ModalService,
           $ionicLoading: $ionicLoading,
-          $ionicPopup: $ionicPopup
+          $ionicPopup: $ionicPopup,
+          $translate: $translate
         };
 
         ctrl = $controller('ClientsController', dependencies);
@@ -200,11 +208,15 @@
       describe('Delete client', function () {
 
         beforeEach(inject(function () {
-          ctrl.deleteClient(0);
+          ctrl.askToDeleteClient(0);
+          translateDeferred.resolve('');
+          confirmationDeferred.resolve(true);
+          $scope.$digest();
         }));
 
         it('ionicLoading.show should be called', function () {
-          sinon.assert.calledOnce($ionicLoading.show);
+          $scope.$digest();
+          sinon.assert.called($ionicPopup.confirm);
         });
 
         it('if successful, ionicLoading.hide should be called', function () {
@@ -236,7 +248,8 @@
             ClientsService: ClientsService,
             ModalService: ModalService,
             $ionicLoading: $ionicLoading,
-            $ionicPopup: $ionicPopup
+            $ionicPopup: $ionicPopup,
+            $translate: $translate
           };
 
           ctrl = $controller('ClientsController', dependencies);
