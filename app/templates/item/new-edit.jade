@@ -39,7 +39,8 @@ ion-modal-view.item-form
             type='text'
             ng-model='modalVm.item.descripcion'
           )
-        show-error(array-messages='modalVm.messages.descripcion')
+        .errors-wrapper
+          show-error(array-messages='modalVm.messages.descripcion')
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("item.observaciones"|translate)}}
@@ -47,7 +48,8 @@ ion-modal-view.item-form
             type='text'
             ng-model='modalVm.item.observaciones'
           )
-        show-error(array-messages='modalVm.messages.observaciones')
+        .errors-wrapper
+          show-error(array-messages='modalVm.messages.observaciones')
 
         label.item.item-input.item-select(
           ng-class="{'item-error': modalVm.itemForm.unidad_medida.$touched && modalVm.itemForm.unidad_medida.$invalid}"
@@ -68,7 +70,8 @@ ion-modal-view.item-form
             type='text'
             ng-model='modalVm.item.volumen'
           )
-        show-error(array-messages='modalVm.messages.volumen')
+        .errors-wrapper
+          show-error(array-messages='modalVm.messages.volumen')
 
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': modalVm.itemForm.precio.$touched && modalVm.itemForm.precio.$invalid}"
@@ -94,7 +97,8 @@ ion-modal-view.item-form
             type='text'
             ng-model='modalVm.item.peso'
           )
-        show-error(array-messages='modalVm.messages.peso')
+        .errors-wrapper
+          show-error(array-messages='modalVm.messages.peso')
 
         label.item.item-input.item-input--no-borders.item-stacked-label
           span.input-label {{::("item.imagen"|translate)}}
