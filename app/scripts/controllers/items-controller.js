@@ -10,9 +10,7 @@
                            $scope,
                            apiResources,
                            ItemsService,
-                           ModalService,
-                           ErrorHandlerService,
-                           APP) {
+                           ModalService) {
     var itemsVm = this,
         modalScope;
     itemsVm.newItemModal = launchModal;
@@ -26,7 +24,7 @@
     }
 
     function error(resp){
-      itemsVm.messages = resp.status===422 ? resp.data.errors:undefined;
+      modalScope.modalVm.messages = resp.status===422 ? resp.data.errors:undefined;
       $ionicLoading.hide();
     }
 

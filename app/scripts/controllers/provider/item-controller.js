@@ -23,12 +23,12 @@
     init();
 
     function init() {
-      providerItemVm.providerItem.precio = providerItemVm.providerItem.precio_cents / APP.centsInDollar;
+      providerItemVm.providerItem.precio = providerItemVm.providerItem.precio_cents / APP.centsInDollar; // jshint ignore:line
     }
 
     function updateStock() {
       console.log('post to backend!');
-      console.log(providerItemVm.providerItem.en_stock);
+      // console.log(providerItemVm.providerItem.en_stock);
     }
 
     function loadImagesUrls() {
@@ -85,7 +85,7 @@
     }
 
     function error(resp){
-      itemsVm.messages = resp.status===422 ? resp.data.errors:undefined;
+      modalScope.modalVm.messages = resp.status===422 ? resp.data.errors:undefined;
       $ionicLoading.hide();
     }
   }
