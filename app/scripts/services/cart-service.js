@@ -8,7 +8,8 @@
   function CartService($http, ENV, $q, ErrorHandlerService) {
     var service = {
       addItem: addItem,
-      getCart: getCart
+      getCart: getCart,
+      checkout : checkout
     };
 
     return service;
@@ -34,6 +35,19 @@
         .then(function success(response){
           return response.data;
         }, ErrorHandlerService.handleCommonErrorGET);
+    }
+
+    function checkout(cartData) {
+      return $http({
+        method: 'POST',
+        url: ENV.apiHost + '/api/customer/cart/checkout',
+        data: cartData
+      })
+        .then(function success(response) {
+          return response.data;
+        }, function error(response) {
+          return $q.reject(response.data);
+        });
     }
   }
 })();

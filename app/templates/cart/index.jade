@@ -8,6 +8,7 @@ ion-view(
       | {{item.cantidad}} {{item.provider_item.titulo}}
   ion-footer-bar.cart-page-footer
     action-button(
+      ng-disabled="!cartVm.cart.customer_order_items"
       on-click="cartVm.showCheckoutModal()"
       text="{{::('cart.buyItems'|translate)}}"
     )

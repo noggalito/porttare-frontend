@@ -5,29 +5,80 @@ ion-modal-view.cart-page
       button.button.ion-close.button-clear(
         ng-click="cartVm.closeModal()"
       )
-  ion-content.modal-content
-    .list.list-inset.checkout-form
-      label.item.item-input.item-stacked-label
-        span.input-label {{::("wishlist.dateDelivery"|translate)}}
-        .row-select-date
-          span.placeholder(ng-if="!cartVm.checkoutForm.deliver_at")
-            | dd/mm/yyyy hh:mm
-          span(ng-if="cartVm.checkoutForm.deliver_at")
-            | {{cartVm.checkoutForm.deliver_at | customDate:'DD/MM/YYYY HH:mm'}}
-          button.button-edit(
-            ion-datetime-picker
-            date
-            time
-            am-pm
-            only-valid="{'after': 'today', 'inclusive': true}"
-            ng-model='cartVm.checkoutForm.deliver_at'
-          )
-            span {{::('globals.edit'|translate)}}
-      show-error(array-messages="cartVm.messages.deliver_at")
+  form(
+    name="courierVm.courierForm"
+    ng-submit='cartVm.runCheckout()'
+    novalidate
+  )
+    ion-content.modal-content
+      .list.list-inset.checkout-form
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("globals.dateDelivery"|translate)}}
+          .row-select-date
+            span.placeholder(ng-if="!cartVm.checkoutForm.deliver_at")
+              | dd/mm/yyyy hh:mm
+            span(ng-if="cartVm.checkoutForm.deliver_at")
+              | {{cartVm.checkoutForm.deliver_at | customDate:'DD/MM/YYYY HH:mm'}}
+            button.button-edit(
+              type="button"
+              ion-datetime-picker
+              date
+              time
+              am-pm
+              only-valid="{'after': 'today', 'inclusive': true}"
+              ng-model='cartVm.checkoutForm.deliver_at'
+            )
+              span {{::('globals.edit'|translate)}}
+        show-error(array-messages="cartVm.messages.deliver_at")
 
-  ion-footer-bar.modal-footer
-    action-button(
-      on-click="cartVm.runCheckout()"
-      text="{{::('cart.modalBtnOk'|translate)}}"
-      color="blue"
-    )
+        label.item.item-input.item-stacked-label
+          span.input-label {{::("cart.observations"|translate)}}
+          input(
+            type="text"
+            ng-model="cartVm.checkoutForm.observaciones"
+            placeholder="{{::('cart.observations'|translate)}}"
+          )
+        show-error(array-messages="cartVm.messages.observaciones")
+
+        label.item.item-input.item-select
+          span.input-label {{::("cart.paymentMethod"|translate)}}
+          select(
+            ng-model='cartVm.checkoutForm.forma_de_pago'
+            ng-options="paymentMethod as paymentMethod for paymentMethod in cartVm.paymentMethods")
+        show-error(array-messages='cartVm.messages.forma_de_pago')
+
+        label.item.item-input.item-select
+          span.input-label {{::("cart.deliveryMethod"|translate)}}
+          select(
+            ng-model='cartVm.checkoutForm.delivery_method'
+            ng-options="deliveryMethod as deliveryMethod for deliveryMethod in cartVm.deliveryMethods")
+        show-error(array-messages='cartVm.messages.delivery_method')
+
+        .modal-list
+          span.input-label.label-list {{::("billingAddress.legendForm"|translate)}}
+          ion-list
+            ion-item.modal-item(
+                ng-repeat="billingAddress in cartVm.billingAddresses track by $index"
+                ng-click="cartVm.assignBillingAddress(billingAddress)"
+                ng-class="{'selected': billingAddress.selected}"
+            )
+              i.ion-android-checkmark-circle
+              span {{billingAddress.razon_social}} {{billingAddress.direccion}}
+
+        .modal-list(ng-if="cartVm.checkoutForm.delivery_method === 'shipping'")
+          span.input-label.label-list
+            {{::("cart.deliveryAddress"|translate)}}
+          ion-list
+            ion-item.modal-item(
+                ng-repeat="address in cartVm.addresses track by $index"
+                ng-click="cartVm.assignAddress(address)"
+                ng-class="{'selected': address.selected}"
+            )
+              i.ion-android-checkmark-circle
+              span {{address.nombre || address.direccion_uno}}
+    ion-footer-bar.modal-footer
+      action-button(
+        type="submit"
+        text="{{::('cart.modalBtnOk'|translate)}}"
+        color="blue"
+      )

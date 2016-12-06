@@ -5,6 +5,12 @@
       text-transform: uppercase;
     }
   }
+  .item-stacked-label {
+    margin: 10px 0;
+  }
+  .item-select {
+    margin: 20px 0;
+  }
   .modal-content {
     .row-select-date {
       display: flex;
@@ -24,6 +30,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .modal-item {
+    border: none;
+    cursor: pointer;
+    border-bottom: 0.2rem solid $light-grey;
+    &:last-child {
+      border-bottom: none;
+    }
+    &:hover {
+      background-color: $light-grey;
+    }
+    &.selected {
+      background-color: $base-yellow;
+      color: $white;
+    }
+  }
+  .ion-android-checkmark-circle {
+    margin-right: 0.5rem;
+  }
+  .input-label {
+    width: 100%;
+    max-width: 100%;
+  }
+  .label-list {
+    margin-top: 30px;
   }
 }
 
