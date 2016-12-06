@@ -1,0 +1,23 @@
+.clients-index-page {
+  .item-select {
+    height: 22px;
+    padding-left: 0;
+
+    select {
+      padding-left: 0;
+      padding-right: 35px;
+      max-width: 100%;
+      font-family: Montserrat-Light;
+
+      @media (max-width: $grid-responsive-sm-break) {
+        letter-spacing: -0.5px;
+      }
+    }
+  }
+}
+
+.clients-footer-constraint-width {
+  width: 280px;
+  display: inherit;
+  margin: auto;
+}

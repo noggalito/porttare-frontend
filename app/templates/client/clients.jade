@@ -3,36 +3,52 @@ ion-view(
 )
   ion-nav-title
     .alt-logo
-  ion-content.client-page
+  ion-content.clients-index-page.resource-collection
     .row
-      label.search-input
+      label.item.search-input
         i.icon.ion-search.placeholder-icon
         input(
           ng-model="clientsVm.query"
           type="text"
           placeholder='{{::("client.clientSearch"|translate)}}'
         )
-    .row.footer-client-container
-      button.button-secondary-yellow(
-        ng-click="clientsVm.showNewModal()"
-      ) {{::("globals.new"|translate)}} {{::("client.client"|translate)}}
-    .row.list-header
-      .col.col-50.list-title {{::("client.clientName"|translate)}}
-      .col
-        item.item-input.item-select.select-position-adjust
-          select(
-            ng-model="selectedOption"
-            ng-options="option.name for option in clientsVm.listOptions"
-          )
-            option(value="") Ordenar por
-    .row.list-content(
-      ng-repeat="client in clientsVm.clients | filter:clientsVm.query | orderBy:selectedOption.filterField"
-      ng-init="idx = $index"
-    )
-      .col.col-75.list-item {{ client.nombres }}
-      a.col.action(
-        ng-click="clientsVm.showEditModal(idx)"
-      ) {{::("globals.edit"|translate)}}
-  .bar.bar-footer.footer-client-container
-    button.button-secondary-yellow {{::("client.import"|translate)}}
-    button.button-secondary-yellow {{::("client.export"|translate)}}
+
+    .row
+      .list.list--centered
+        button.button.button-outline.button-energized(
+          ng-click="clientsVm.showNewModal()"
+        ) {{::("globals.new"|translate)}} {{::("client.client"|translate)}}
+
+    .list.list-inset.list--no-borders.resource-collection-table
+      .row.table-headers
+        .col.col-60 {{::("client.clientName"|translate)}}
+        .col
+          .item.item-input.item-select
+            select(
+              ng-model="selectedOption"
+              ng-options="option.name for option in clientsVm.listOptions"
+            )
+              option(value="") Ordenar por
+    
+      .col.without-items(ng-if="clientsVm.clients.length === 0")
+        p {{::("client.noClients"|translate)}}
+
+      .item.row(
+        ng-repeat="client in clientsVm.clients | filter:clientsVm.query | orderBy:selectedOption.filterField"
+        ng-init="idx = $index"
+      )
+        .col.col-60 {{ client.nombres }}
+        .col
+          .button.button-clear(
+            ng-click="clientsVm.showEditModal(idx)"
+          ) {{::("globals.edit"|translate)}}
+
+  ion-footer-bar(class="bar-stable")
+    .clients-footer-constraint-width
+      .side-by-side
+        button.button.button-outline.button-energized.button-xsmall
+          | {{::("client.import"|translate)}}
+
+      .side-by-side
+        button.button.button-outline.button-energized.button-xsmall
+          | {{::("client.export"|translate)}}

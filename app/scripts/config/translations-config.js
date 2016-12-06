@@ -207,7 +207,8 @@
         nombres: 'Nombres',
         direccion: 'Dirección',
         telefono: 'Teléfono',
-        email: 'email'
+        email: 'email',
+        noClients: 'No tienes ningún cliente todavía.'
       },
       wishlist: {
         wishlists: 'Listas de deseos',

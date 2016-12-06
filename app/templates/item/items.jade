@@ -3,7 +3,7 @@ ion-view(
 )
   ion-nav-title
     .alt-logo
-  ion-content.item-index-page
+  ion-content.item-index-page.resource-collection
     .row
       label.item.search-input
         i.icon.ion-search.placeholder-icon
@@ -19,8 +19,8 @@ ion-view(
           ng-click="itemsVm.newItemModal()"
         ) {{::("globals.new"|translate)}} {{::("item.item"|translate)}}
 
-    .list.list-inset.list--no-borders
-      .row.item.table-headers
+    .list.list-inset.list--no-borders.resource-collection-table
+      .row.table-headers
         .col.col-60 {{::("item.productName"|translate)}}
         .col.col-15 {{::("item.quantity"|translate)}}
         .col.col-25 {{::("item.price"|translate)}}
