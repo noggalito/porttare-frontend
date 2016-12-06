@@ -1,0 +1,31 @@
+.slick-item {
+  .slick-container {
+    .slick-content {
+      text-align: center;
+      margin: 5px;
+      .item-card {
+        max-width: 180px;
+        margin: 5px auto;
+        color: $base-grey;
+        position: relative;
+        .img-container {
+          height: 200px;
+          .img {
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+          }
+        }
+        &-footer {
+          height: 50px;
+          text-align: left;
+          padding: 0 1rem;
+          .nombre {
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+  }
+}

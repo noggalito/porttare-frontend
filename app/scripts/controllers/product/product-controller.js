@@ -7,7 +7,7 @@
 
   function ProductController(data, CartService, $ionicPopup, $state,
                             $scope, WishlistsService, ModalService,
-                            ErrorHandlerService, $ionicLoading) {
+                            ErrorHandlerService, $ionicLoading, $auth) {
     var productVm = this;
     productVm.more = false;
     productVm.toggleShow = toggleShow;
@@ -117,7 +117,11 @@
       productVm.wishlistName = '';
     }
 
-    function onSuccess() {
+    function onSuccess(res) {
+      if (res && res.customer_order) {//jshint ignore:line
+        validateOrderCreated(res.customer_order);//jshint ignore:line
+      }
+
       var providerRoute = 'app.categories.provider';
       var params = {
         categoryId: $state.params.categoryId,
@@ -154,6 +158,14 @@
           closeModal();
           onSuccess();
         }, onError);
+    }
+
+    function validateOrderCreated(order) {
+      if (!$auth.user.customer_order) { //jshint ignore:line
+        $scope.$emit('order-created', order);
+      } else {
+        $auth.user.customer_order = order//jshint ignore:line
+      }
     }
 
     //jshint ignore:start

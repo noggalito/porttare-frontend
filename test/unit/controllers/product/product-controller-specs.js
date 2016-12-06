@@ -37,6 +37,9 @@
           closeModal: sinon.stub()
         };
       });
+      $provide.factory('$auth', function () {
+        return {};
+      });
       $provide.factory('ErrorHandlerService', function () {
         return {};
       });
@@ -66,7 +69,7 @@
 
     beforeEach(inject(function (_$q_, _$rootScope_, _$controller_,
       _WishlistsService_, _data_, _CartService_, _$ionicPopup_,
-      _$state_, _ModalService_, _ErrorHandlerService_, _$ionicLoading_) {
+      _$state_, _ModalService_, _ErrorHandlerService_, _$ionicLoading_, _$auth_) {
 
       $scope = _$rootScope_.$new();
       $q = _$q_;
@@ -86,7 +89,8 @@
         data: _data_,
         $ionicPopup: _$ionicPopup_,
         $state: $state,
-        $ionicLoading: _$ionicLoading_
+        $ionicLoading: _$ionicLoading_,
+        $auth: _$auth_
       };
 
       ctrl = $controller('ProductController', dependencies);

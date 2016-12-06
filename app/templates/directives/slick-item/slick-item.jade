@@ -1,0 +1,10 @@
+.slick-item
+  slick-wrapper(settings="sicVm.settings")
+    .slick-container(ng-repeat="item in sicVm.data.customer_order_items track by $index")
+      .slick-content
+        .item-card
+          .img-container
+            .img(style="background-image: url('{{item.provider_item.imagenes[0] | defaultImage:'../images/ionic.png'}}')")
+          .item-card-footer
+            .title {{item.provider_item.titulo}}
+            .value {{item.provider_item_precio_cents * sicVm.centsVal | currency}} / {{item.cantidad}}

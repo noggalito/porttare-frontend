@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-
+  /*jshint camelcase:false */
   angular
     .module('porttare.controllers')
     .controller('CartController', CartController);
@@ -21,11 +21,40 @@
     cartVm.assignBillingAddress = assignBillingAddress;
     cartVm.assignAddress = assignAddress;
     cartVm.messages = {};
+    cartVm.slickSettings = {
+      centerMode: true,
+      responsive: [
+        {
+          breakpoint: 320,
+          settings: {
+            slidesToShow: 1
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 2
+          }
+        },
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 3
+          }
+        },
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 4
+          }
+        }
+      ]
+    };
 
     init();
 
     function init() {
-      cartVm.cart = $auth.user.customer_order; //jshint ignore:line
+      cartVm.cart = $auth.user.customer_order;
       cartVm.total = calculateTotal();
     }
 
@@ -59,10 +88,12 @@
           var categoryRoute = 'app.categories.index';
           $state.go(categoryRoute)
             .then(function () {
+              $auth.user.customer_order = null;
               $ionicPopup.alert({
                 title: 'Alerta',
                 template: '{{::("cart.successfullyOrder"|translate)}}'
               });
+              $scope.$emit('order-finished');
             });
         }, function error(res) {
           $ionicLoading.hide();
@@ -79,12 +110,12 @@
     }
 
     function assignBillingAddress(billingAddress) {
-      cartVm.checkoutForm.customer_billing_address_id = billingAddress.id; //jshint ignore:line
+      cartVm.checkoutForm.customer_billing_address_id = billingAddress.id;
       selectItem(billingAddress, cartVm.billingAddresses);
     }
 
     function assignAddress(address) {
-      cartVm.checkoutForm.customer_address_id = address.id; //jshint ignore:line
+      cartVm.checkoutForm.customer_address_id = address.id;
       selectItem(address, cartVm.addresses);
     }
 
@@ -105,26 +136,32 @@
       ];
       $q.all(promises)
         .then(function success(res) {
-          cartVm.billingAddresses = res[0].customer_billing_addresses; //jshint ignore:line
-          cartVm.addresses = res[1].customer_addresses; //jshint ignore:line
+          cartVm.billingAddresses = res[0].customer_billing_addresses;
+          cartVm.addresses = res[1].customer_addresses;
           $ionicLoading.hide();
         }, ErrorHandlerService.handleCommonErrorGET);
     }
 
     function calculateTotal() {
-      //jshint ignore:start
       var totalCents = 0,
-        totalItems = 0,
         centValue = 0.01;
 
-      if (cartVm.cart && cartVm.cart.customer_order_item) {
-        totalItems = cartVm.cart.customer_order_items.length;
-          angular.forEach(cartVm.cart.customer_order_items, function (item) {
-          totalCents = totalCents + item.provider_item_precio_cents
+      if (cartVm.cart && cartVm.cart.provider_profiles) {
+        angular.forEach(cartVm.cart.provider_profiles, function (provider) {
+          totalCents = totalCents + getTotalValueItems(provider);
         });
       }
       return totalCents * centValue;
-      //jshint ignore:end
+    }
+
+    function getTotalValueItems(provider) {
+      var total = 0;
+      if(provider.customer_order_items) {
+        angular.forEach(provider.customer_order_items, function (item) {
+          total = total + item.provider_item_precio_cents;
+        });
+      }
+      return total;
     }
 
   }

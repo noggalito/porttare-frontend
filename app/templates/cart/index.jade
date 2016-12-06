@@ -4,11 +4,14 @@ ion-view(
   ion-nav-title
     .alt-logo
   ion-content.cart-page
-    .item(ng-repeat="item in cartVm.cart.customer_order_items track by $index")
-      | {{item.cantidad}} {{item.provider_item.titulo}}
+    .item(ng-repeat="provider in cartVm.cart.provider_profiles track by $index")
+      .provider-items-container
+        .business-name {{provider.razon_social}}
+        slick-item(settings="cartVm.slickSettings" data="provider")
+
   ion-footer-bar.cart-page-footer
     action-button(
-      ng-disabled="!cartVm.cart.customer_order_items"
+      ng-disabled="!cartVm.cart.provider_profiles"
       on-click="cartVm.showCheckoutModal()"
       text="{{::('cart.buyItems'|translate)}}"
     )
