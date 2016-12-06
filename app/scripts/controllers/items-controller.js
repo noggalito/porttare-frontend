@@ -20,7 +20,6 @@
     itemsVm.deleteItem = deleteItem;
     itemsVm.query = '';
     var selectedItemIndex;
-    initItem();
     getItems();
 
     function getItems() {
@@ -28,10 +27,6 @@
         .then(function success(resp) {
           itemsVm.items = resp.provider_items; //jshint ignore:line
         },ErrorHandlerService.handleCommonErrorGET);
-    }
-    function initItem(){
-      itemsVm.item={};
-      itemsVm.item.en_stock=true; //jshint ignore:line
     }
 
     function submitProcess(id){
