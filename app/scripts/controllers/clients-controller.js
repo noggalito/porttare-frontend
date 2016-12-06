@@ -9,13 +9,14 @@
                              ModalService,
                              $ionicLoading,
                              $ionicPopup,
-                             $scope) {
+                             $scope,
+                             $translate) {
     var clientsVm = this;
     clientsVm.showNewModal = showNewModal;
     clientsVm.showEditModal = showEditModal;
     clientsVm.closeModal = closeModal;
     clientsVm.submitProcess = submitProcess;
-    clientsVm.deleteClient = deleteClient;
+    clientsVm.deleteClient = askToDeleteClient;
     clientsVm.listOptions = [
       {name: 'Nombres', filterField: 'nombres'},
       {name: 'Antigüedad', filterField: 'created_at'}
@@ -73,6 +74,19 @@
         });
     }
 
+    function askToDeleteClient(clientId) {
+      $translate('globals.confirmTitle').then(function (confirmationTitle){
+        $ionicPopup.confirm({
+          title: confirmationTitle,
+          template: '{{::("client.confirmDisable"|translate)}}'
+        }).then(function (confirmed) {
+          if (confirmed) {
+            deleteClient(clientId);
+          }
+        });
+      });
+    }
+
     function deleteClient(clientId) {
       $ionicLoading.show({
         template: '{{::("globals.deleting"|translate)}}'
@@ -85,7 +99,6 @@
             template: '{{::("client.successDeleteClient"|translate)}}'
           });
           clientsVm.clients.splice(selectedClientIndex, 1);
-          closeModal();
         },
         function error(){
           $ionicLoading.hide();

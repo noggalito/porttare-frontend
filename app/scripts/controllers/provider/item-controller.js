@@ -94,12 +94,10 @@
 
     function unregisterItem() {
       $translate('globals.confirmTitle').then(function (confirmationTitle) {
-        var confirmation = $ionicPopup.confirm({
+        $ionicPopup.confirm({
           title: confirmationTitle,
           template: '{{::("item.confirmUnregisterItem"|translate)}}'
-        });
-
-        confirmation.then(function(confirmed) {
+        }).then(function(confirmed) {
           if (confirmed) {
             $ionicLoading.show({
               template: '{{::("globals.deleting"|translate)}}'

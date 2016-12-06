@@ -182,7 +182,7 @@
         currency: '$ ',
         seeAsCustomer: 'Ver como cliente',
         unregisterItem: 'Dar de baja',
-        confirmUnregisterItem: 'Estás seguro de querer dar de baja este producto?'
+        confirmUnregisterItem: '¿Estás seguro de querer dar de baja este producto?'
       },
       actions: {
         showCategory: 'Lista de Categorías',
@@ -200,6 +200,7 @@
         successUpdateClient: 'Cliente actualizado éxitosamente',
         successDeleteClient: 'Cliente eliminado éxitosamente',
         disable: 'Eliminar',
+        confirmDisable: '¿Estás seguro de querer eliminar este cliente?',
         import: 'Importar',
         export: 'Exportar',
         clientName: 'Nombre del cliente',
