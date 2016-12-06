@@ -6,6 +6,8 @@
     .controller('ProviderItemController', ProviderItemController);
 
   function ProviderItemController($scope,
+                                  $state,
+                                  $translate,
                                   $ionicPopup,
                                   $ionicLoading,
                                   apiResources,
@@ -18,6 +20,7 @@
     providerItemVm.providerItem = apiResources.provider_item;  // jshint ignore:line
     providerItemVm.updateStock = updateStock;
     providerItemVm.showEditModal = launchModal;
+    providerItemVm.unregisterItem = unregisterItem;
     providerItemVm.slickSettings = { dots: true };
 
     init();
@@ -87,6 +90,33 @@
     function error(resp){
       modalScope.modalVm.messages = resp.status===422 ? resp.data.errors:undefined;
       $ionicLoading.hide();
+    }
+
+    function unregisterItem() {
+      $translate('globals.confirmTitle').then(function (confirmationTitle) {
+        var confirmation = $ionicPopup.confirm({
+          title: confirmationTitle,
+          template: '{{::("item.confirmUnregisterItem"|translate)}}'
+        });
+
+        confirmation.then(function(confirmed) {
+          if (confirmed) {
+            $ionicLoading.show({
+              template: '{{::("globals.deleting"|translate)}}'
+            });
+            ItemsService.deleteItem(providerItemVm.providerItem.id).then(function success(){
+              $ionicLoading.hide();
+              $state.go('provider.items.index');
+            }, function error(){
+              $ionicLoading.hide();
+              $ionicPopup.alert({
+                title: 'Error',
+                template: '{{::("globals.pleaseTryAgain"|translate)}}'
+              });
+            });
+          }
+        });
+      });
     }
   }
 })();

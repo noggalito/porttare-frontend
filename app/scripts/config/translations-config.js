@@ -149,6 +149,7 @@
         disabledUser: 'Su cuenta ha sido deshabilitada',
         id: 'Id',
         email: 'Email',
+        confirmTitle: '¿Estás seguro?'
       },
       item: {
         item: 'Producto',
@@ -179,7 +180,9 @@
         cantidad: 'Cantidad',
         cantidadPrefix: 'x',
         currency: '$ ',
-        seeAsCustomer: 'Ver como cliente'
+        seeAsCustomer: 'Ver como cliente',
+        unregisterItem: 'Dar de baja',
+        confirmUnregisterItem: 'Estás seguro de querer dar de baja este producto?'
       },
       actions: {
         showCategory: 'Lista de Categorías',

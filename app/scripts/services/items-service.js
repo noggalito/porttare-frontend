@@ -56,10 +56,10 @@
       return promise;
     }
 
-    function deleteItem(item) {
+    function deleteItem(itemId) {
       return $http({
         method: 'DELETE',
-        url: ENV.apiHost + '/api/provider/items/' + item
+        url: ENV.apiHost + '/api/provider/items/' + itemId
       });
     }
 

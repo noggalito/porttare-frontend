@@ -15,7 +15,6 @@
         modalScope;
     itemsVm.newItemModal = launchModal;
     itemsVm.submitProcess = newItem; // NB currently here only to honour specs. wipe me?
-    // itemsVm.deleteItem = deleteItem;
     itemsVm.query = '';
 
     init();
@@ -48,28 +47,6 @@
         });
       }, error);
     }
-
-    // function deleteItem(itemId) {
-    //   $ionicLoading.show({
-    //     template: '{{::("globals.deleting"|translate)}}'
-    //   });
-    //   ItemsService.deleteItem(itemId)
-    //     .then(function success(){
-    //       $ionicLoading.hide();
-    //       $ionicPopup.alert({
-    //         title: 'Éxito',
-    //         template: '{{::("item.successDeleteItem"|translate)}}'
-    //       });
-    //       itemsVm.items.splice(selectedItemIndex, 1);
-    //     },
-    //     function error(){
-    //       $ionicLoading.hide();
-    //       $ionicPopup.alert({
-    //         title: 'Error',
-    //         template: '{{::("globals.pleaseTryAgain"|translate)}}'
-    //       });
-    //     });
-    // }
 
     function launchModal() {
       modalScope = $scope.$new(true); // isolated

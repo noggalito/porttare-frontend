@@ -50,6 +50,11 @@ ion-view(
         .col.col-50.label {{::("item.observaciones"|translate)}}
         .col.col-50.value {{providerItemVm.providerItem.observaciones}}
 
+    .list.list-inset.list--no-borders.text-center
+      .button.button-clear.button-assertive(
+        ng-click="providerItemVm.unregisterItem()"
+      ) {{::("item.unregisterItem"|translate)}}
+
   ion-footer-bar(class="bar-stable")
     button.button.button-outline.button-energized.button-small(
       ng-click="providerItemVm.seeAsCustomer()"
