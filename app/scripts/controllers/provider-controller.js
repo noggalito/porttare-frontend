@@ -102,15 +102,15 @@
 
     function checked(element){
       providerVm.touchedPayments = true;
-        if (!element.checked) {
-          providerVm.methodsPayment.map(function(row){
-            if (row !== element) {
-              row.checked == false?
-                providerVm.providerProfileForm.methodsPayment.$invalid=true :
-                providerVm.providerProfileForm.methodsPayment.$invalid=false ;
-            }
-          });
+      providerVm.methodsPayment.map(function(row){
+      if (row !== element) {
+        if(row.checked === false && element.checked===false ){
+          providerVm.providerProfileForm.methodsPayment.$invalid=true;
+        }else{
+          providerVm.providerProfileForm.methodsPayment.$invalid=false;
         }
+      }
+      });
     }
 
     function checkedBank(element){
