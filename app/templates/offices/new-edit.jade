@@ -1,18 +1,18 @@
-ion-modal-view.item-page
-  ion-header-bar.bar-stable.bar.bar-header(
-    align-title="center"
-  )
-    .ion-nav-buttons(side="left")
-      button.button.ion-chevron-left.button-clear.left(
-        ng-click="officesVm.closeModal()"
-      )
+ion-modal-view
+  ion-header-bar.bar-stable.bar.bar-header
     .title.alt-logo
-  ion-content.resource-form
-    form(
-      name='officesVm.form'
-      ng-submit='officesVm.submitOffice()'
-      novalidate
-    )
+
+    .ion-nav-buttons.buttons(side="primary")
+      button.button.button-clear.button-positive(
+        ng-click="officesVm.closeModal()"
+      ) {{::('globals.cancel'|translate)}}
+
+  form(
+    name='officesVm.form'
+    ng-submit='officesVm.submitOffice()'
+    novalidate
+  )
+    ion-content.resource-form
       .list.list-inset
         legend(ng-hide="officesVm.office.id").title {{::("globals.new"|translate)}} {{::("office.office"|translate)}}
         legend(ng-show="officesVm.office.id").title {{::("globals.edit"|translate)}} {{::("office.office"|translate)}}
@@ -24,11 +24,12 @@ ion-modal-view.item-page
             ng-class="input-error"
             ng-model="officesVm.office.ciudad"
           )
-        show-error(array-messages="officesVm.messages.ciudad")
+        .errors-wrapper
+          show-error(array-messages="officesVm.messages.ciudad")
 
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': officesVm.form.direccion.$touched && officesVm.form.direccion.$invalid}"
-          )
+        )
           span.input-label {{::("office.direccion"|translate|uppercase)}}
           input(
             type='text'
@@ -37,9 +38,14 @@ ion-modal-view.item-page
             ng-class="input-error"
             required
           )
-          .show-errors(ng-messages="officesVm.form.direccion.$error" ng-if="officesVm.form.direccion.$touched")
-            span.message-error(ng-message="required") {{::("form.requiredField"|translate)}}
-        show-error(array-messages="officesVm.messages.direccion")
+        .errors-wrapper
+          span.show-errors(
+            ng-messages="officesVm.form.direccion.$error"
+            ng-if="officesVm.form.direccion.$touched"
+          )
+            span.message-error(ng-message="required")
+              | {{::("form.requiredField"|translate)}}
+          show-error(array-messages="officesVm.messages.direccion")
 
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': officesVm.form.telefono.$touched && officesVm.form.telefono.$invalid}"
@@ -52,9 +58,14 @@ ion-modal-view.item-page
             ng-class="input-error"
             required
           )
-          .show-errors(ng-messages="officesVm.form.telefono.$error" ng-if="officesVm.form.telefono.$touched")
-            span.message-error(ng-message="required") {{::("form.requiredField"|translate)}}
-        show-error(array-messages='officesVm.messages.telefono')
+        .errors-wrapper
+          span.show-errors(
+            ng-messages="officesVm.form.telefono.$error"
+            ng-if="officesVm.form.telefono.$touched"
+          )
+            span.message-error(ng-message="required")
+              | {{::("form.requiredField"|translate)}}
+          show-error(array-messages='officesVm.messages.telefono')
 
         label.item.item-input.item-select
           span.input-label {{::("office.officeStart"|translate)}}
@@ -84,8 +95,8 @@ ion-modal-view.item-page
             | {{officesVm.office.hora_de_cierre| date: 'HH:mm a'}}
         show-error(array-messages='officesVm.messages.hora_de_cierre')
 
-      .bar.bar-footer
-        .row.col.text-center
-          button.action-button.yellow(
-            type="submit"
-          ) {{::("globals.save"|translate)}}
+    .bar.bar-footer.bar-stable
+      button.button.button-small.button-outline.button-energized(
+        type="submit"
+        ng-disabled="officesVm.form.$invalid"
+      ) {{::("globals.save"|translate)}}
