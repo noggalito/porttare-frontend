@@ -188,20 +188,6 @@ function routes($stateProvider, $urlRouterProvider) {
     url: '/items',
     abstract: true
   })
-  .state('app.clients', {
-    url: '/clients',
-    abstract: true
-  })
-  .state('app.clients.index', {
-    url: '/',
-    views: {
-      'menuContent@app': {
-        templateUrl: 'templates/client/clients.html',
-        controller: 'ClientsController',
-        controllerAs: 'clientsVm'
-      }
-    }
-  })
   .state('app.map', {
     url: '/map',
     views: {
