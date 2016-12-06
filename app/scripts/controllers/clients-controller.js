@@ -42,12 +42,11 @@
       ClientsService.newClient(clientsVm.client)
         .then(function success(resp){
           $ionicLoading.hide();
+          clientsVm.clients.push(resp);
           $ionicPopup.alert({
             title: 'Éxito',
             template: '{{::("client.successClientSave"|translate)}}'
-          });
-          clientsVm.clients.push(resp);
-          clientsVm.closeModal();
+          }).then(closeModal);
         },
         function error(resp){
           clientsVm.messages = resp.status===422 ? resp.data.errors:undefined;
@@ -62,12 +61,11 @@
       ClientsService.editClient(clientsVm.client)
         .then(function success(resp) {
           $ionicLoading.hide();
+          clientsVm.clients[selectedClientIndex] = resp.provider_client; //jshint ignore:line
           $ionicPopup.alert({
             title: 'Éxito',
             template: '{{::("client.successUpdateClient"|translate)}}'
-          });
-          clientsVm.clients[selectedClientIndex] = resp.provider_client; //jshint ignore:line
-          closeModal();
+          }).then(closeModal);
         },
         function error(resp){
           clientsVm.messages = resp.status===422 ? resp.data.errors:undefined;

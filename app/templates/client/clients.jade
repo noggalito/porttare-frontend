@@ -43,7 +43,7 @@ ion-view(
             ng-click="clientsVm.showEditModal(idx)"
           ) {{::("globals.edit"|translate)}}
           .button.button-clear.button-assertive(
-            ng-click="clientsVm.deleteClient(clientsVm.client.id)"
+            ng-click="clientsVm.deleteClient(client.id)"
           ) {{::("client.disable"|translate)}}
 
   ion-footer-bar(class="bar-stable")
