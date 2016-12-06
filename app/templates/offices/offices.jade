@@ -3,21 +3,25 @@ ion-view(
 )
   ion-nav-title
     .alt-logo
-  ion-content
-    .row.col.text-center
-      button.action-button.yellow(
+  ion-content.offices-index-page.resource-collection
+    .list.list-inset.list--no-borders.text-center
+      button.button.button-outline.button-energized(
         ng-click="officesVm.showNewOffice()"
       ) {{::("globals.new"|translate)}} {{::("office.office"|translate)}}
-    .row.content-office
-      .col
-        h4.item-title {{::("office.officeAddress"|translate)}}
-        hr.line
-        .row(ng-repeat='item in officesVm.offices')
-          .col
-            h5(ng-class="{'content-office-disabled': item.enabled==false}") {{item.direccion}}
-              span(ng-show="$first") ({{::("office.officeMatrix"|translate)}})
-          .col.text-right
-            a(ui-sref='provider.office({ id: item.id})') {{::("globals.seeMore"|translate)}}
-        .row(ng-show="!officesVm.offices.length")
-          .col.text-center.content-office-disabled
-            strong {{::("office.officesAny"|translate)}}
+
+    .list.list-inset.list--no-borders.resource-collection-table
+      .row.table-headers
+        .col.col-60 {{::("office.officeAddress"|translate)}}
+        .col
+      
+      .row.without-items(ng-if="officesVm.offices.length === 0")
+        p {{::("office.officesAny"|translate)}}
+
+      .item.row(
+        ng-repeat='item in officesVm.offices track by $index'
+      )
+        .col.col-60 {{item.direccion}}
+        .col.text-right
+          a.button.button-clear.button-positive.button-small(
+            ui-sref='provider.office({ id: item.id})'
+          ) {{::("globals.seeMore"|translate)}}
