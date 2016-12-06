@@ -3,57 +3,59 @@ ion-content.addresses-page
     .profile-page
       .profile-header
         .edit
-          link-button(ng-click="providerProfileVm.showEditModal(idx)" text="{{::('globals.edit'|translate)}}")
+          link-button(ng-click="providerVm.showEditModal()" text="{{::('globals.edit'|translate)}}")
         .address-grid
           .row
             .col.col-label {{::("RUC"|translate)}}
-            .col {{providerProfileVm.profileProvider.ruc}}
+            .col {{providerVm.profileProvider.ruc}}
           .row
             .col.col-label {{::("provider.businessName"|translate)}}
-            .col {{providerProfileVm.profileProvider.razon_social}}
+            .col {{providerVm.profileProvider.razon_social}}
           .row
             .col.col-label {{::("provider.name"|translate)}}
-            .col {{providerProfileVm.profileProvider.nombre_establecimiento}}
+            .col {{providerVm.profileProvider.nombre_establecimiento}}
           .row
             .col.col-label {{::("provider.economicActivity"|translate)}}
-            .col {{providerProfileVm.profileProvider.actividad_economica}}
+            .col {{providerVm.profileProvider.actividad_economica}}
           .row
             .col.col-label {{::("provider.LegalRepresentative"|translate)}}
-            .col {{providerProfileVm.profileProvider.representante_legal}}
+            .col {{providerVm.profileProvider.representante_legal}}
           .row
             .col.col-label {{::("provider.phone"|translate)}}
-            .col {{providerProfileVm.profileProvider.telefono}}
+            .col {{providerVm.profileProvider.telefono}}
           .row
             .col.col-label {{::("provider.email"|translate)}}
-            .col {{providerProfileVm.profileProvider.email}}
+            .col {{providerVm.profileProvider.email}}
           .row
             .col.col-label {{::("provider.webSite"|translate)}}
-            .col {{providerProfileVm.profileProvider.website}}
+            .col {{providerVm.profileProvider.website}}
           .row
             .col.col-label {{::("provider.methodPayment"|translate)}}
-            .col {{providerProfileVm.profileProvider.formas_de_pago[0]}} {{providerProfileVm.profileProvider.formas_de_pago[1]}}
+            .col {{providerVm.profileProvider.formas_de_pago[0]}} {{providerVm.profileProvider.formas_de_pago[1]}}
           .row
             .col.col-label {{::("provider.bank.name"|translate)}}
-            .col {{providerProfileVm.profileProvider.banco_nombre}}
+            .col {{providerVm.profileProvider.banco_nombre}}
           .row
             .col.col-label {{::("provider.bank.account"|translate)}}
-            .col {{providerProfileVm.profileProvider.banco_numero_cuenta}}
+            .col {{providerVm.profileProvider.banco_numero_cuenta}}
           .row
             .col.col-label {{::("provider.bank.type"|translate)}}
-            .col {{providerProfileVm.profileProvider.banco_tipo_cuenta}}
+            .col {{providerVm.profileProvider.banco_tipo_cuenta}}
           .row
             .col.col-label {{::("provider.facebook"|translate)}}
-            .col {{providerProfileVm.profileProvider.facebook_handle}}
+            .col {{providerVm.profileProvider.facebook_handle}}
           .row
             .col.col-label {{::("provider.twitter"|translate)}}
-            .col {{providerProfileVm.profileProvider.twitter_handle}}
+            .col {{providerVm.profileProvider.twitter_handle}}
           .row
             .col.col-label {{::("provider.instagram"|translate)}}
-            .col {{providerProfileVm.profileProvider.instagram_handle}}
+            .col {{providerVm.profileProvider.instagram_handle}}
           .row
             .col.col-label {{::("provider.youtube"|translate)}}
-            .col  {{providerProfileVm.profileProvider.youtube_handle}}
-          .address-container(ng-repeat="office in providerProfileVm.profileProvider.provider_offices")
+            .col  {{providerVm.profileProvider.youtube_handle}}
+          .address-container(
+            ng-repeat="office in providerVm.profileProvider.provider_offices"
+            )
             .row
               .col.col-label {{::("oficina"|translate)}}
             .row
