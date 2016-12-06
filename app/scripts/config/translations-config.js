@@ -157,7 +157,8 @@
         id: 'Id',
         email: 'Email',
         confirmTitle: '¿Estás seguro?',
-        dateDelivery: 'Fecha y hora de entrega'
+        dateDelivery: 'Fecha y hora de entrega',
+        accept:'Aceptar'
       },
       item: {
         item: 'Producto',
@@ -372,6 +373,10 @@
         dispatchersDelete: 'El Despachador ha sido eliminado éxitosamente',
         dispatchersData: 'Datos del Despachador',
         notAccepted: 'Esta invitación no ha sido aceptada todavía.'
+      },
+      termsAndConditions: {
+        termsAndConditions: 'Términos y Condiciones',
+        description: 'Usted acepta los términos y condiciones?'
       }
     });
 

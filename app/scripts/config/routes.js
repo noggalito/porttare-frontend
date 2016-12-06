@@ -88,6 +88,12 @@ function routes($stateProvider, $urlRouterProvider) {
       }
     }
   })
+  .state('termsAndCond', {
+    url: '/terms-and-conditions',
+    templateUrl: 'templates/terms-and-cond/terms-and-cond.html',
+    controller: 'TermsAndCondController',
+    controllerAs: 'terCondVm'
+  })
   .state('app.cart', {
     url: '/cart',
     abstract: true
@@ -577,13 +583,19 @@ function routes($stateProvider, $urlRouterProvider) {
       });
   }
 
-  function accessIfUserAuth($auth, $state, $ionicLoading, APP, CartService) {
+  function accessIfUserAuth($auth, $state, $ionicLoading, APP, UserAuthService, CartService) {
     return $auth.validateUser()
       .then(function userAuthorized(user) {
-        return CartService.getCart().then(function(response){
-          user.customer_order = response.customer_order; //jshint ignore:line
-          return user;
-        });
+          if (user.agreed_tos) { //jshint ignore:line
+            return CartService.getCart().then(function(response){
+              user.customer_order = response.customer_order; //jshint ignore:line
+              return user;
+            });
+          } else {
+            $state.go('termsAndCond').then(function () {
+              $ionicLoading.hide();
+            });
+          }
       }, function userNotAuthorized() {
         $state.go(APP.preloginState).then(function () {
           $ionicLoading.hide();
