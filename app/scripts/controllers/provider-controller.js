@@ -5,15 +5,19 @@
     .module('porttare.controllers')
     .controller('ProviderController', ProviderController);
 
-  function ProviderController(ProviderService,
+  function ProviderController(ProfileService,
+                              ProviderService,
+                              ModalService,
                               $translate,
                               $ionicPopup,
                               $state,
                               $auth,
                               $ionicLoading,
-                              $ionicScrollDelegate) {
+                              $ionicScrollDelegate,
+                              $scope) {
     var providerVm = this;
     initProvider();
+
 
     var stateRedirect = 'provider.items.index';
     var transKeys = [
@@ -29,6 +33,12 @@
     providerVm.touchedPayments = false;
     providerVm.checked = checked;
     providerVm.checkedBank = checkedBank;
+    providerVm.showNewModal = showNewModal;
+    providerVm.showEditModal=showEditModal;
+    providerVm.closeModal = closeModal;
+    providerVm.edit = editProfile;
+    providerVm.type='';
+
     providerVm.laborDays = [{
       label: 'Lunes',
       name: 'mon'
@@ -74,18 +84,17 @@
       providerVm.accountType = [
         {
           value: 'Ahorros',
-          label: trans[transKeys[2]],
-          checked: false
+          label: trans[transKeys[2]]
         },
         {
           value: 'Crédito',
-          label: trans[transKeys[3]],
-          checked: false
+          label: trans[transKeys[3]]
         }
       ];
     });
 
     function initProvider(){
+      providerVm.profileProvider  = $auth.user.provider_profile;
       providerVm.provider = {};
       providerVm.provider.representante_legal = $auth.user.name;
       providerVm.provider.email = $auth.user.email;
@@ -93,23 +102,19 @@
 
     function checked(element){
       providerVm.touchedPayments = true;
-      providerVm.checkedItems = 0;
-      if(element.checked){
-        providerVm.checkedItems--;
-      }else{
-        providerVm.checkedItems++;
-      }
-      providerVm.providerForm.methodsPayment.$invalid = providerVm.checkedItems > 0;
+        if (!element.checked) {
+          providerVm.methodsPayment.map(function(row){
+            if (row !== element) {
+              row.checked == false?
+                providerVm.providerProfileForm.methodsPayment.$invalid=true :
+                providerVm.providerProfileForm.methodsPayment.$invalid=false ;
+            }
+          });
+        }
     }
 
     function checkedBank(element){
-      if (element.checked) {
-        providerVm.accountType.map(function(row){
-          if (row !== element) {
-            row.checked = false;
-          }
-        });
-      }
+      providerVm.type=element.value;
     }
 
     function createOffice(office){
@@ -161,5 +166,51 @@
       $ionicScrollDelegate.scrollTop();
     }
 
+    function editProfile(profileEdit) {
+      $ionicLoading.show({
+        template: '{{::("globals.updating"|translate)}}'
+      });
+
+      profileEdit.formas_de_pago = providerVm.methodsPayment.filter(function(row){//jshint ignore:line
+        return row.checked;
+      }).map(function(row){
+        return row.value;
+      });
+
+      if (providerVm.type!=='') {
+        profileEdit.banco_tipo_cuenta = providerVm.type;//jshint ignore:line
+      }
+
+      ProfileService.updateProfileProvider(profileEdit)
+        .then(function success(resp) {
+            $ionicLoading.hide();
+            $ionicPopup.alert({
+              title: 'Éxito',
+              template: '{{::("provider.successUpdateProfileProvider"|translate)}}'
+            });
+            providerVm.profileProvider = resp.provider_profile;//jshint ignore:line
+            closeModal();
+          },
+          function error(resp){
+            providerVm.errors = resp;
+            $ionicLoading.hide();
+          });
+    }
+
+    function showEditModal() {
+      providerVm.showNewModal();
+    }
+
+    function showNewModal() {
+      providerVm.profileEdit = angular.copy(providerVm.profileProvider);
+      ModalService.showModal({
+        parentScope: $scope,
+        fromTemplateUrl: 'templates/profile-provider/edit.html'
+      });
+    }
+
+    function closeModal() {
+      ModalService.closeModal();
+    }
   }
 })();
