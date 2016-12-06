@@ -1,0 +1,33 @@
+ion-modal-view.cart-page
+  ion-header-bar.bar.bar-header.bar-light.modal-header(align-title="center")
+    .title {{::("cart.modalTitle"|translate)}}
+    .buttons
+      button.button.ion-close.button-clear(
+        ng-click="cartVm.closeModal()"
+      )
+  ion-content.modal-content
+    .list.list-inset.checkout-form
+      label.item.item-input.item-stacked-label
+        span.input-label {{::("wishlist.dateDelivery"|translate)}}
+        .row-select-date
+          span.placeholder(ng-if="!cartVm.checkoutForm.deliver_at")
+            | dd/mm/yyyy hh:mm
+          span(ng-if="cartVm.checkoutForm.deliver_at")
+            | {{cartVm.checkoutForm.deliver_at | customDate:'DD/MM/YYYY HH:mm'}}
+          button.button-edit(
+            ion-datetime-picker
+            date
+            time
+            am-pm
+            only-valid="{'after': 'today', 'inclusive': true}"
+            ng-model='cartVm.checkoutForm.deliver_at'
+          )
+            span {{::('globals.edit'|translate)}}
+      show-error(array-messages="cartVm.messages.deliver_at")
+
+  ion-footer-bar.modal-footer
+    action-button(
+      on-click="cartVm.runCheckout()"
+      text="{{::('cart.modalBtnOk'|translate)}}"
+      color="blue"
+    )

@@ -331,6 +331,8 @@
       cart: {
         successfullyAdded: 'Ítem agregado exitosamente',
         buyItems: 'Comprar Items',
+        modalTitle: 'Finalizar pedido',
+        modalBtnOk: 'Listo'
       },
       form: {
         requiredField: 'Campo requerido. ',

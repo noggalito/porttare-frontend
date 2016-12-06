@@ -8,7 +8,7 @@ ion-view(
       | {{item.cantidad}} {{item.provider_item.titulo}}
   ion-footer-bar.cart-page-footer
     action-button(
-      on-click="cartVm.buyItems()"
+      on-click="cartVm.showCheckoutModal()"
       text="{{::('cart.buyItems'|translate)}}"
     )
     .total

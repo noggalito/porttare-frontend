@@ -1,3 +1,32 @@
+.cart-page {
+  .modal-header {
+    border: none;
+    .title {
+      text-transform: uppercase;
+    }
+  }
+  .modal-content {
+    .row-select-date {
+      display: flex;
+      justify-content: space-between;
+    }
+    .placeholder {
+      opacity: 0.7;
+    }
+    .button-edit {
+      border: none;
+      background: none;
+      text-transform: uppercase;
+      color: $button-blue;
+    }
+  }
+  .modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 .cart-page-footer {
   display: flex;
   justify-content: space-around;
