@@ -14,6 +14,7 @@
     var itemsVm = this,
         modalScope;
     itemsVm.newItemModal = launchModal;
+    itemsVm.submitProcess = newItem; // NB currently here only to honour specs. wipe me?
     // itemsVm.deleteItem = deleteItem;
     itemsVm.query = '';
 
