@@ -35,12 +35,11 @@ ion-view(
 
       .item.row(
         ng-repeat="client in clientsVm.clients | filter:clientsVm.query | orderBy:selectedOption.filterField"
-        ng-init="idx = $index"
       )
         .col.col-60 {{ client.nombres }}
         .col
           .button.button-clear.button-positive(
-            ng-click="clientsVm.showEditModal(idx)"
+            ng-click="clientsVm.showEditModal($index)"
           ) {{::("globals.edit"|translate)}}
           .button.button-clear.button-assertive(
             ng-click="clientsVm.deleteClient(client.id)"

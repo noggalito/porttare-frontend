@@ -297,6 +297,7 @@ function routes($stateProvider, $urlRouterProvider) {
   })
   .state('provider.clients.index', {
     url: '/',
+    cache: false,
     views: {
       'menuContent@provider': {
         templateUrl: 'templates/client/clients.html',
