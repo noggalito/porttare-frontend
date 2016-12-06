@@ -5,13 +5,13 @@ ion-modal-view.client-page
     h4 {{::("globals.edit"|translate)}}
     .ion-nav-buttons(side="left")
       button.button.ion-chevron-left.button-clear.left(
-      ng-click="piVm.closeModal()"
+        ng-click="piVm.closeModal()"
       )
   ion-content.resource-form
     form(
-    name="piVm.updateProfileForm"
-    ng-submit="piVm.submitProcess(piVm.userEdit)"
-    novalidate
+      name="piVm.updateProfileForm"
+      ng-submit="piVm.submitProcess(piVm.userEdit)"
+      novalidate
     )
       .list.list-inset
         legend {{::("client.formLegend"|translate)}}
@@ -19,10 +19,10 @@ ion-modal-view.client-page
         label.item.item-input.item-stacked-label
           span.input-label {{::("item.imagen"|translate|uppercase)}}
           input.button.ion-button(
-          type='file'
-          ngf-select
-          ng-model="piVm.userEdit.custom_image"
-          accept="image/*"
+            type='file'
+            ngf-select
+            ng-model="piVm.userEdit.custom_image"
+            accept="image/*"
           )
         show-error(array-messages='piVm.messages.custom_image')
           .errors-wrapper
@@ -30,15 +30,15 @@ ion-modal-view.client-page
               .message-error {{errCustom_image}}
 
         label.item.item-input.item-stacked-label(
-        ng-class="{'item-error': (piVm.updateProfileForm.email.$touched && piVm.updateProfileForm.email.$invalid) || piVm.messages.email}"
+          ng-class="{'item-error': (piVm.updateProfileForm.email.$touched && piVm.updateProfileForm.email.$invalid) || piVm.messages.email}"
         )
           span.input-label {{::("user.email"|translate)}}
           input(
-          type="email"
-          name="email"
-          ng-model="piVm.userEdit.email"
-          ng-class="input-error"
-          required
+            type="email"
+            name="email"
+            ng-model="piVm.userEdit.email"
+            ng-class="input-error"
+            required
           )
         .errors-wrapper
           span.show-errors(ng-messages="piVm.updateProfileForm.email.$error" ng-if="piVm.updateProfileForm.email.$touched || piVm.messages.email")
@@ -47,7 +47,7 @@ ion-modal-view.client-page
             .message-error(ng-repeat="errEmail in piVm.messages.email") {{errEmail}}
 
         label.item.item-input.item-stacked-label(
-        ng-class="{'item-error': piVm.messages.fecha_de_nacimiento}"
+          ng-class="{'item-error': piVm.messages.fecha_de_nacimiento}"
         )
           span.input-label {{::("user.birthdate"|translate)}}
         .item(ion-datetime-picker date ng-model='piVm.userEdit.fecha_nacimiento')
@@ -57,24 +57,24 @@ ion-modal-view.client-page
             .message-error {{errNacimiento}}
 
         label.item.item-input.item-stacked-label(
-        ng-class="{'item-error': piVm.messages.name}"
+          ng-class="{'item-error': piVm.messages.name}"
         )
           span.input-label {{::("user.name"|translate)}}
           input(
-          type="text"
-          ng-model="piVm.userEdit.name"
+            type="text"
+            ng-model="piVm.userEdit.name"
           )
         .errors-wrapper
           span.show-errors(ng-if="piVm.messages.name" ng-repeat="errName in piVm.messages.name")
             .message-error {{errName}}
 
         label.item.item-input.item-stacked-label(
-        ng-class="{'item-error': piVm.messages.ciudad}"
+          ng-class="{'item-error': piVm.messages.ciudad}"
         )
           span.input-label {{::("user.country"|translate)}}
           input(
-          type="text"
-          ng-model="piVm.userEdit.ciudad"
+            type="text"
+            ng-model="piVm.userEdit.ciudad"
           )
         .errors-wrapper
           span.show-errors(ng-if="piVm.messages.ciudad" ng-repeat="errCiudad in piVm.messages.ciudad")
@@ -82,7 +82,7 @@ ion-modal-view.client-page
 
       .bar.bar-footer
         input.button.button-primary(
-        type="submit"
-        value="{{::('globals.save'|translate)}}"
-        ng-class='{disabled: piVm.updateProfileForm.$invalid}'
+          type="submit"
+          value="{{::('globals.save'|translate)}}"
+          ng-class='{disabled: piVm.updateProfileForm.$invalid}'
         )
