@@ -266,12 +266,19 @@ function routes($stateProvider, $urlRouterProvider) {
   })
   .state('provider.items.index', {
     url: '/',
+    cache: false,
     views: {
       'menuContent@provider': {
         templateUrl: 'templates/item/items.html',
         controller: 'ItemsController',
         controllerAs: 'itemsVm',
-        cache: false
+        resolve: {
+          apiResources: function (ItemsService) {
+            return ItemsService.getItems().then(function (response) {
+              return response;
+            });
+          }
+        }
       }
     }
   })

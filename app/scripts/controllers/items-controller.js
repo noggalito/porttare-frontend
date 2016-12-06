@@ -5,46 +5,24 @@
     .module('porttare.controllers')
     .controller('ItemsController', ItemsController);
 
-  function ItemsController(ItemsService,
-                           ModalService,
-                           $ionicLoading,
+  function ItemsController($ionicLoading,
                            $ionicPopup,
                            $scope,
+                           apiResources,
+                           ItemsService,
+                           ModalService,
                            ErrorHandlerService,
                            APP) {
-    var itemsVm = this;
-    itemsVm.launchModal = launchModal;
-    itemsVm.showEditModal = showEditModal;
-    itemsVm.closeModal = closeModal;
-    itemsVm.submitProcess = submitProcess;
-    itemsVm.deleteItem = deleteItem;
+    var itemsVm = this,
+        modalScope;
+    itemsVm.newItemModal = launchModal;
+    // itemsVm.deleteItem = deleteItem;
     itemsVm.query = '';
-    itemsVm.concatImages = concatImages;
-    itemsVm.images = [];
-    itemsVm.imagesUrls = [];
-    var selectedItemIndex;
 
-    getItems();
+    init();
 
-    function getItems() {
-      ItemsService.getItems()
-        .then(function success(resp) {
-          itemsVm.items = resp.provider_items; //jshint ignore:line
-        },ErrorHandlerService.handleCommonErrorGET);
-    }
-
-    function loadImageUrls() {
-      itemsVm.imagesUrls = itemsVm.images.map(function(imagen) {
-        if (imagen.constructor === File) {
-          return imagen;
-        } else if (imagen.constructor === Object) {
-          return imagen.imagen_url; // jshint ignore:line
-        }
-      });
-    }
-
-    function submitProcess(id){
-      (id) ? editItem() : newItem(); //jshint ignore:line
+    function init() {
+      itemsVm.items = apiResources.provider_items; //jshint ignore:line
     }
 
     function error(resp){
@@ -53,93 +31,66 @@
     }
 
     function concatImages(files){
-      resetImages(itemsVm.images.concat(files));
+      modalScope.modalVm.item.imagenes = modalScope.modalVm.item.imagenes.concat(files);
+      modalScope.modalVm.imagesUrls = modalScope.modalVm.item.imagenes;
     }
 
     function newItem() {
       $ionicLoading.show({
         template: '{{::("globals.saving"|translate)}}'
       });
-      itemsVm.item.imagenes = itemsVm.images;
-      ItemsService.newItem(itemsVm.item).then(function success(response){
+      ItemsService.newItem(modalScope.modalVm.item).then(function success(response){
         $ionicLoading.hide().then(function(){
           itemsVm.items.push(response.provider_item); //jshint ignore:line
           $ionicPopup.alert({
             title: 'Éxito',
             template: '{{::("item.successItemSave"|translate)}}'
-          }).then(function(){
-            itemsVm.closeModal();
-          });
+          }).then(closeModal);
         });
       }, error);
     }
 
-    function editItem() {
-      $ionicLoading.show({
-        template: '{{::("globals.updating"|translate)}}'
-      });
-      itemsVm.item.imagenes = itemsVm.images;
-      ItemsService.editItem(itemsVm.item).then(function success(resp) {
-        itemsVm.items[selectedItemIndex] = resp.provider_item; //jshint ignore:line
-
-        $ionicLoading.hide().then(function () {
-          $ionicPopup.alert({
-            title: 'Éxito',
-            template: '{{::("item.successUpdateItem"|translate)}}'
-          }).then(itemsVm.closeModal);
-        });
-      }, error);
-    }
-
-    function deleteItem(itemId) {
-      $ionicLoading.show({
-        template: '{{::("globals.deleting"|translate)}}'
-      });
-      ItemsService.deleteItem(itemId)
-        .then(function success(){
-          $ionicLoading.hide();
-          $ionicPopup.alert({
-            title: 'Éxito',
-            template: '{{::("item.successDeleteItem"|translate)}}'
-          });
-          itemsVm.items.splice(selectedItemIndex, 1);
-        },
-        function error(){
-          $ionicLoading.hide();
-          $ionicPopup.alert({
-            title: 'Error',
-            template: '{{::("globals.pleaseTryAgain"|translate)}}'
-          });
-        });
-    }
-
-    function resetImages(newImages) {
-      itemsVm.images = newImages;
-      loadImageUrls();
-    }
+    // function deleteItem(itemId) {
+    //   $ionicLoading.show({
+    //     template: '{{::("globals.deleting"|translate)}}'
+    //   });
+    //   ItemsService.deleteItem(itemId)
+    //     .then(function success(){
+    //       $ionicLoading.hide();
+    //       $ionicPopup.alert({
+    //         title: 'Éxito',
+    //         template: '{{::("item.successDeleteItem"|translate)}}'
+    //       });
+    //       itemsVm.items.splice(selectedItemIndex, 1);
+    //     },
+    //     function error(){
+    //       $ionicLoading.hide();
+    //       $ionicPopup.alert({
+    //         title: 'Error',
+    //         template: '{{::("globals.pleaseTryAgain"|translate)}}'
+    //       });
+    //     });
+    // }
 
     function launchModal() {
-      resetImages(
-        itemsVm.item ? itemsVm.item.imagenes : []
-      );
+      modalScope = $scope.$new(true); // isolated
+      modalScope.modalVm = itemsVm;
+      // unfortunately item is the providerItem we'll edit
+      modalScope.modalVm.item = { imagenes: [] };
+      modalScope.modalVm.closeModal = closeModal;
+      modalScope.modalVm.submitProcess = newItem;
+      modalScope.modalVm.concatImages = concatImages;
+      modalScope.modalVm.imagesUrls = modalScope.modalVm.item.imagenes;
       ModalService.showModal({
-        parentScope: $scope,
+        parentScope: modalScope,
         fromTemplateUrl: 'templates/item/new-edit.html'
       });
     }
 
-    function showEditModal(index) {
-      selectedItemIndex = index;
-      itemsVm.item = angular.copy(itemsVm.items[index]);
-      itemsVm.item.precio = itemsVm.item.precio_cents/APP.centsInDollar; //jshint ignore:line
-      itemsVm.launchModal();
-    }
-
     function closeModal() {
       ModalService.closeModal();
-      selectedItemIndex = null;
-      itemsVm.item = null;
-      itemsVm.messages = {};
+      modalScope.modalVm.messages = {};
+      modalScope.modalVm.item = null;
     }
   }
 })();

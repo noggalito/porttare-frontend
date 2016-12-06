@@ -1,0 +1,38 @@
+.resource-details-table {
+  font-size: 16px;
+
+  .label {
+    color: $base-grey;
+  }
+  .value {
+    text-align: center;
+  }
+
+  .row, .col {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .row {
+    .col {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid $base-yellow;
+
+      &.label {
+        padding-right: 5px;
+        border-right: 1px solid $base-yellow;
+      }
+
+      &.value {
+        padding-left: 5px;
+      }
+    }
+
+    &:last-child {
+      .col {
+        border-bottom: 0;
+      }
+    }
+  }
+}

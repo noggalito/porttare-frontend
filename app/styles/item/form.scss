@@ -39,7 +39,8 @@
     .add-image-placeholder {
       color: $white;
       height: 90px;
-      margin: 0 10px;
+      max-width: 90px;
+      margin: 10px auto;
       flex: 1;
       display: flex;
       align-items: center;
