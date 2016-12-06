@@ -1,1 +1,3 @@
-span.message-error {{ seVm.joinedMessages }}
+span.message-error(
+  ng-repeat='message in seVm.arrayMessages track by $index'
+) {{ message }}.

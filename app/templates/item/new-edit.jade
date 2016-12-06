@@ -1,16 +1,15 @@
 ion-modal-view.item-form
   ion-header-bar.bar-stable.bar.bar-header
     .title.alt-logo
-    
+
     .ion-nav-buttons.buttons(side="primary")
       button.button.button-clear.button-positive(
         ng-click="modalVm.closeModal()"
       ) {{::('globals.cancel'|translate)}}
-    
 
   form(
     name='modalVm.itemForm'
-    ng-submit='modalVm.submitProcess(modalVm.item.id)'
+    ng-submit='modalVm.submitProcess()'
     novalidate
   )
     ion-content.resource-form
@@ -30,7 +29,8 @@ ion-modal-view.item-form
           )
         .errors-wrapper    
           .show-errors(ng-messages="modalVm.itemForm.titulo.$error" ng-if="modalVm.itemForm.titulo.$touched")
-            span(ng-message="required" class="message-error") {{::("globals.isRequired"|translate)}}
+            span.message-error(ng-message="required")
+              | {{::("globals.isRequired"|translate)}}
           show-error(array-messages='modalVm.messages.titulo')
 
         label.item.item-input.item-stacked-label

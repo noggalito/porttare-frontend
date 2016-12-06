@@ -1,8 +1,17 @@
 .resource-collection {
   .resource-collection-table {
-    .col:not(:first-child) {
+    .col {
       align-self: center;
-      text-align: center;
+
+      &:first-child {
+        max-height: 50px;
+        white-space: pre-line;
+        overflow: hidden;
+      }
+
+      &:not(:first-child) {
+        text-align: center;
+      }
     }
 
     .table-headers {
@@ -15,6 +24,7 @@
       .col {
         padding-bottom: 10px;
         border-bottom: 1px solid transparentize($base-grey, .5);
+        align-self: flex-end;
       }
     }
   }

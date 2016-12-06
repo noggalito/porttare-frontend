@@ -3,6 +3,12 @@
     height: 22px;
     padding-left: 0;
 
+    @media (max-width: $grid-responsive-sm-break) {
+      &:after {
+        right: 5px;
+      }
+    }
+
     select {
       padding-left: 0;
       padding-right: 35px;
@@ -10,7 +16,27 @@
       font-family: Montserrat-Light;
 
       @media (max-width: $grid-responsive-sm-break) {
+        padding-right: 20px;
         letter-spacing: -0.5px;
+      }
+    }
+  }
+
+  .resource-collection-table {
+    .item.row {
+      .col:last-child {
+        text-align: right;
+      }
+
+      @media (max-width: $grid-responsive-sm-break) {
+        font-size: 14px;
+
+        .button-clear {
+          font-size: 12px;
+          letter-spacing: -0.5px;
+          min-height: 25px;
+          line-height: 25px;
+        }
       }
     }
   }

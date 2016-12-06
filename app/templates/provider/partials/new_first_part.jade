@@ -54,6 +54,8 @@
       name='actividad_economica',
       ng-model='providerVm.provider.actividad_economica'
     )
+  .errors-wrapper
+    show-error(array-messages="providerVm.errors.actividad_economica")
 
   label.item.item-input.item-stacked-label(
     ng-class="{'item-error': providerVm.providerForm.representante.$touched && providerVm.providerForm.representante.$invalid}"

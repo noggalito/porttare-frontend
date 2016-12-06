@@ -39,9 +39,12 @@ ion-view(
       )
         .col.col-60 {{ client.nombres }}
         .col
-          .button.button-clear(
+          .button.button-clear.button-positive(
             ng-click="clientsVm.showEditModal(idx)"
           ) {{::("globals.edit"|translate)}}
+          .button.button-clear.button-assertive(
+            ng-click="clientsVm.deleteClient(clientsVm.client.id)"
+          ) {{::("client.disable"|translate)}}
 
   ion-footer-bar(class="bar-stable")
     .clients-footer-constraint-width

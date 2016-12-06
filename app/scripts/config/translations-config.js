@@ -199,7 +199,7 @@
         successClientSave: 'Cliente guardado éxitosamente',
         successUpdateClient: 'Cliente actualizado éxitosamente',
         successDeleteClient: 'Cliente eliminado éxitosamente',
-        unsubscribe: 'Dar de baja',
+        disable: 'Eliminar',
         import: 'Importar',
         export: 'Exportar',
         clientName: 'Nombre del cliente',

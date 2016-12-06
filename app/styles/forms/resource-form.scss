@@ -83,5 +83,9 @@
   .errors-wrapper {
     position: absolute;
     margin-top: -30px;
+
+    .message-error {
+      margin-right: 5px;
+    }
   }
 }

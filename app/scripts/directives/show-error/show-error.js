@@ -21,8 +21,5 @@
 
     return directive;
   }
-  function ShowErrorController() {
-    var seVm = this;
-    seVm.joinedMessages = seVm.arrayMessages && seVm.arrayMessages.join(', ');
-  }
+  function ShowErrorController() {}
 })();
