@@ -24,10 +24,9 @@ ion-modal-view.client-page
             ng-model="piVm.userEdit.custom_image"
             accept="image/*"
           )
-        show-error(array-messages='piVm.messages.custom_image')
-          .errors-wrapper
-            span.show-errors(ng-if="piVm.messages.custom_image" ng-repeat="errCustom_image in piVm.messages.custom_image")
-              .message-error {{errCustom_image}}
+        .errors-wrapper
+          span.show-errors(ng-if="piVm.messages.custom_image" ng-repeat="errCustom_image in piVm.messages.custom_image")
+            .message-error {{errCustom_image}}
 
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': (piVm.updateProfileForm.email.$touched && piVm.updateProfileForm.email.$invalid) || piVm.messages.email}"
