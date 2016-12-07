@@ -5,13 +5,12 @@
     .module('porttare.controllers')
     .controller('SiteController', SiteController);
 
-  function SiteController($rootScope, $ionicLoading, $auth) {
+  function SiteController($rootScope, $ionicLoading, $auth, APP) {
     var siteVm = this,
         currentUser = null;
 
     siteVm.userName = userName;
     siteVm.getUserImageURL = getUserImageURL;
-    siteVm.getUserFacebookImage = getUserFacebookImage;
 
     init();
 
@@ -56,23 +55,12 @@
     }
 
     function getUserImageURL(){
-      if (currentUser) {
-        var imageUrl = getUserAttributes(['custom_image_url']);
-
-        if(!imageUrl){
-          var customImage = getUserAttributes(['custom_image']);
-
-          if(customImage && customImage.url){
-            imageUrl = customImage.url;
-          }
-        }
-
-        return imageUrl;
-      }
-    }
-
-    function getUserFacebookImage(){
-      return currentUser.image;
+      /* jshint ignore:start */
+      return currentUser.custom_image_url 
+              || ( currentUser.custom_image && currentUser.custom_image.url ) 
+              || currentUser.image 
+              || APP.defaultProfileImage;
+      /* jshint ignore:end */
     }
 
     $rootScope.$on('currentUserUpdated',function(event, updatedCurrentUser){
