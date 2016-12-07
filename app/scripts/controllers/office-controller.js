@@ -20,6 +20,7 @@
     officesVm.closeModal = closeModal;
     officesVm.submitOffice = submitOffice;
     officesVm.submitOfficeDelete = submitOfficeDelete;
+    officesVm.updateOfficeState = updateOfficeState;
     getOffice();
 
     function getOffice(){
@@ -32,9 +33,13 @@
 
     function loadOffice(){
       convertStringToDate();
-      MapsService.loadGMap().then(function(){
+      MapsService.loadGMaps().then(function(){
         $ionicLoading.hide();
-        MapsService.loadGMapAddress(officesVm.officeDetail.direccion);
+        var map = MapsService.renderMap('office-map');
+        MapsService.renderAddressMarker(
+          map,
+          officesVm.officeDetail.direccion
+        );
       });
     }
 
@@ -100,6 +105,10 @@
       $ionicLoading.show({
         template: '{{::("'+template+'"|translate)}}'
       });
+    }
+
+    function updateOfficeState() {
+      console.log('updateOfficeState!' + officesVm.officeDetail.enabled);
     }
   }
 })();

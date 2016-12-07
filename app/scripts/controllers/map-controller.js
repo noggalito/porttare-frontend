@@ -20,7 +20,7 @@
       $ionicLoading.show({
         template: 'cargando...'
       });
-      MapsService.loadGMap().then(function(){
+      MapsService.loadGMaps().then(function(){
         GeolocationService
           .getCurrentPosition()
           .then(
@@ -85,6 +85,7 @@
     }
 
     function loadMap(position, useMarker) {
+      // TODO use MapsService
       var lat = position.coords.latitude;
       var long = position.coords.longitude;
 

@@ -3,37 +3,38 @@ ion-view(
 )
   ion-nav-title
     .alt-logo
-  ion-content
-    .div(ng-class="{'content-office-disabled': officesVm.officeDetail.enabled==false}")
-      .row.content-office
-        h4.item-title {{::("office.office"|translate)}}
-          span(ng-if="officesVm.officeDetail.enabled") {{::("office.activo"|translate)}}
-          span(ng-if="!officesVm.officeDetail.enabled") {{::("office.inactivo"|translate)}}
-        ion-toggle.toogle(ng-checked="officesVm.officeDetail.enabled" ng-disabled="true")
+  ion-content.office-show-page(
+    ng-class="{'content-office-disabled': officesVm.officeDetail.enabled==false}"
+  )
+    ion-toggle(
+      ng-change="officesVm.updateOfficeState()"
+      ng-model="officesVm.officeDetail.enabled"
+      toggle-class="toggle-energized"
+    ) {{::("office.officeEnabled"|translate)}}
 
-      .row.content-office-map
-        div(id="map" data-tap-disabled="true")
+    .office-map
+      #office-map(data-tap-disabled="true")
 
-      .row.content-office
-        h2 {{officesVm.officeDetail.direccion}}
+    .row.content-office
+      h2 {{officesVm.officeDetail.direccion}}
 
-      .row.content-office
-        .col {{::("office.officeLegend"|translate)}}
-        .col
-          a(ng-class="{'action': officesVm.officeDetail.enabled==true}"
-          ng-click="officesVm.officeDetail.enabled && officesVm.showEditOffice()") {{::("globals.edit"|translate)}}
-        .col
-          a.delete(ng-class="{'action': officesVm.officeDetail.enabled==true}"
-          ng-click="officesVm.officeDetail.enabled && officesVm.showDeleteOffice()") {{::("globals.delete"|translate)}}
+    .row.content-office
+      .col {{::("office.officeLegend"|translate)}}
+      .col
+        a(ng-class="{'action': officesVm.officeDetail.enabled==true}"
+        ng-click="officesVm.officeDetail.enabled && officesVm.showEditOffice()") {{::("globals.edit"|translate)}}
+      .col
+        a.delete(ng-class="{'action': officesVm.officeDetail.enabled==true}"
+        ng-click="officesVm.officeDetail.enabled && officesVm.showDeleteOffice()") {{::("globals.delete"|translate)}}
 
-      .row.content-office
-        table.table
-          tr
-            td.disabled {{::("office.officeNumber"|translate)}}
-            td.text-center {{officesVm.officeDetail.id}}
-          tr
-            td.disabled {{::("office.ciudad"|translate)}}
-            td.text-center {{officesVm.officeDetail.ciudad}}
-          tr
-            td.disabled {{::("office.officeAttention"|translate)}}
-            td.text-center {{officesVm.officeDetail.hora_de_apertura|date: "HH:mm a"}}-{{officesVm.officeDetail.hora_de_cierre| date: "HH:mm a"}}
+    .row.content-office
+      table.table
+        tr
+          td.disabled {{::("office.officeNumber"|translate)}}
+          td.text-center {{officesVm.officeDetail.id}}
+        tr
+          td.disabled {{::("office.ciudad"|translate)}}
+          td.text-center {{officesVm.officeDetail.ciudad}}
+        tr
+          td.disabled {{::("office.officeAttention"|translate)}}
+          td.text-center {{officesVm.officeDetail.hora_de_apertura|date: "HH:mm a"}}-{{officesVm.officeDetail.hora_de_cierre| date: "HH:mm a"}}

@@ -32,7 +32,7 @@
           getCurrentPosition: sinon.stub().returns(deferredGeolocation.promise)
         };
         MapsService = {
-          loadGMap: sinon.stub().returns(deferredMaps.promise)
+          loadGMaps: sinon.stub().returns(deferredMaps.promise)
         };
         $scope = $rootScope.$new();
         window.google = {
@@ -88,7 +88,7 @@
 
       beforeEach(inject(function (_$rootScope_) {
         $rootScope = _$rootScope_;
-        MapsService.loadGMap();
+        MapsService.loadGMaps();
       }));
 
       it('ionicLoading.show should be called', function () {

@@ -7,22 +7,23 @@
 
   function MapsService($window, ENV, $q, $ionicPopup) {
     var service = {
-      loadGMap: loadGMap,
-      loadGMapAddress: loadGMapAddress
+      loadGMaps: loadGMaps,
+      renderMap: renderMap,
+      renderAddressMarker: renderAddressMarker
     };
-    var deferred,
+    var loadDefered,
         gmapsLoaded;
 
     return service;
 
-    function loadGMap() {
+    function loadGMaps() {
       if (gmapsLoaded) {
         return $q.resolve();
       } else {
-        deferred = $q.defer();
+        loadDefered = $q.defer();
         appendGMapsScript();
         gmapsLoaded = true;
-        return deferred.promise;
+        return loadDefered.promise;
       }
     }
 
@@ -37,7 +38,7 @@
     }
 
     function gMapsCallback(){
-      deferred.resolve();
+      loadDefered.resolve();
       removeGMapsCallback();
     }
 
@@ -45,15 +46,20 @@
       delete $window.gMapsCallback;
     }
 
-    function loadGMapAddress(address) {
+    function renderMap(domId) {
+      return new google.maps.Map(
+        document.getElementById(domId),
+        mapOptionsDefault()
+      );
+    }
+
+    function renderAddressMarker(map, address) {
       var geocoder = new google.maps.Geocoder();
       geocoder.geocode({'address': address}, function(results, status) {
-        var options = mapOptionsDefault();
-        var map = new google.maps.Map(document.getElementById('map'), options);
         if (status === 'OK') {
           map.setCenter(results[0].geometry.location);
           displayMarker(map, results[0].geometry.location);
-        }else{
+        } else {
           var positionDefault = mapPositionDefault();
           map.setCenter(positionDefault);
           displayMarker(map, positionDefault);
@@ -76,11 +82,8 @@
       return {
         zoom: 17,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        mapTypeControl: true,
-        mapTypeControlOptions: {
-          style: google.maps.MapTypeControlStyle.VERTICAL_BAR,
-          position: google.maps.ControlPosition.LEFT_BOTTOM
-        }
+        mapTypeControl: false,
+        disableDefaultUI: true
       };
     }
 

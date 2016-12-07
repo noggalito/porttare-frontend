@@ -247,8 +247,6 @@
         telefono: 'Teléfono',
         horaApertura: 'Hora de apertura',
         horaCierre: 'Hora de cierre',
-        activo: 'Activo',
-        inactivo: 'Inactivo',
         officeNumber: 'Sucursal número',
         officeAttention:'Horario de atención',
         officeStart:'Inicio de labores',
@@ -273,8 +271,8 @@
         sat: 'Sabado',
         sun: 'Domingo',
         yes: 'Si',
-        not: 'No'
-
+        not: 'No',
+        officeEnabled: 'Establecimiento activo'
       },
       password: {
         updatePassword: 'Actualizar contraseña',
