@@ -5,8 +5,13 @@ ion-modal-view
     .ion-nav-buttons(side="left")
       button.button.ion-chevron-left.button-clear.left(
         ng-click="providerProfileVm.closeModal()"
+<<<<<<< c37a280c27fdbe46fe6657b93443d87e01b8b6e7
       ) {{::('globals.cancel'|translate)}}
 
+=======
+      )
+    .title.alt-logo
+>>>>>>> directivas methodsPayment y Acounnttype
   ion-content.resource-form
     form(
       name="providerProfileVm.providerProfileForm"
@@ -126,7 +131,11 @@ ion-modal-view
           ng-class="{'item-error': providerProfileVm.touchedPayments && providerProfileVm.providerProfileForm.methodsPayment.$invalid}"
         )
           span.input-label {{::("provider.methodPayment"|translate)}}
+<<<<<<< c37a280c27fdbe46fe6657b93443d87e01b8b6e7
           methods-payment(methods="providerProfileVm.methodsPayment" profile-form="providerProfileVm.providerProfileForm" touched="providerProfileVm.touchedPayments")
+=======
+          methods-payment(vm="providerProfileVm")
+>>>>>>> directivas methodsPayment y Acounnttype
         .errors-wrapper
           span.show-errors(ng-messages="providerProfileVm.touchedPayments && providerProfileVm.providerProfileForm.methodsPayment.$invalid")
             span.message-error(ng-message="required") {{::("form.requiredField"|translate)}}

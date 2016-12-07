@@ -11,6 +11,7 @@
                                            $ionicPopup,
                                            $scope,
                                            $auth) {
+
     var providerProfileVm = this;
     providerProfileVm.showNewModal = showNewModal;
     providerProfileVm.showEditModal = showEditModal;
@@ -25,7 +26,6 @@
       $ionicLoading.show({
         template: '{{::("globals.updating"|translate)}}'
       });
-
       profileEdit.formas_de_pago = providerProfileVm.methodsPayment;//jshint ignore:line
       ProfileService.updateProfileProvider(profileEdit)
         .then(function success(resp) {

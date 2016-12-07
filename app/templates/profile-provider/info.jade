@@ -3,62 +3,58 @@ ion-content.addresses-page
     .profile-page
       .profile-header
         .edit
-<<<<<<< 7ed1e3351fff59034733d69094c024c6703324a8
           link-button(ng-click="providerProfileVm.showEditModal()" text="{{::('globals.edit'|translate)}}")
-=======
-          link-button(ng-click="providerVm.showEditModal()" text="{{::('globals.edit'|translate)}}")
->>>>>>> eliminando duplicacion
         .address-grid
           .row
             .col.col-label {{::("RUC"|translate)}}
-            .col {{providerVm.profileProvider.ruc}}
+            .col {{providerProfileVm.profileProvider.ruc}}
           .row
             .col.col-label {{::("provider.businessName"|translate)}}
-            .col {{providerVm.profileProvider.razon_social}}
+            .col {{providerProfileVm.profileProvider.razon_social}}
           .row
             .col.col-label {{::("provider.name"|translate)}}
-            .col {{providerVm.profileProvider.nombre_establecimiento}}
+            .col {{providerProfileVm.profileProvider.nombre_establecimiento}}
           .row
             .col.col-label {{::("provider.economicActivity"|translate)}}
-            .col {{providerVm.profileProvider.actividad_economica}}
+            .col {{providerProfileVm.profileProvider.actividad_economica}}
           .row
             .col.col-label {{::("provider.LegalRepresentative"|translate)}}
-            .col {{providerVm.profileProvider.representante_legal}}
+            .col {{providerProfileVm.profileProvider.representante_legal}}
           .row
             .col.col-label {{::("provider.phone"|translate)}}
-            .col {{providerVm.profileProvider.telefono}}
+            .col {{providerProfileVm.profileProvider.telefono}}
           .row
             .col.col-label {{::("provider.email"|translate)}}
-            .col {{providerVm.profileProvider.email}}
+            .col {{providerProfileVm.profileProvider.email}}
           .row
             .col.col-label {{::("provider.webSite"|translate)}}
-            .col {{providerVm.profileProvider.website}}
+            .col {{providerProfileVm.profileProvider.website}}
           .row
             .col.col-label {{::("provider.methodPayment"|translate)}}
-            .col {{providerVm.profileProvider.formas_de_pago[0]}} {{providerVm.profileProvider.formas_de_pago[1]}}
+            .col {{providerProfileVm.profileProvider.formas_de_pago[0]}} {{providerProfileVm.profileProvider.formas_de_pago[1]}}
           .row
             .col.col-label {{::("provider.bank.name"|translate)}}
-            .col {{providerVm.profileProvider.banco_nombre}}
+            .col {{providerProfileVm.profileProvider.banco_nombre}}
           .row
             .col.col-label {{::("provider.bank.account"|translate)}}
-            .col {{providerVm.profileProvider.banco_numero_cuenta}}
+            .col {{providerProfileVm.profileProvider.banco_numero_cuenta}}
           .row
             .col.col-label {{::("provider.bank.type"|translate)}}
-            .col {{providerVm.profileProvider.banco_tipo_cuenta}}
+            .col {{providerProfileVm.profileProvider.banco_tipo_cuenta}}
           .row
             .col.col-label {{::("provider.facebook"|translate)}}
-            .col {{providerVm.profileProvider.facebook_handle}}
+            .col {{providerProfileVm.profileProvider.facebook_handle}}
           .row
             .col.col-label {{::("provider.twitter"|translate)}}
-            .col {{providerVm.profileProvider.twitter_handle}}
+            .col {{providerProfileVm.profileProvider.twitter_handle}}
           .row
             .col.col-label {{::("provider.instagram"|translate)}}
-            .col {{providerVm.profileProvider.instagram_handle}}
+            .col {{providerProfileVm.profileProvider.instagram_handle}}
           .row
             .col.col-label {{::("provider.youtube"|translate)}}
-            .col  {{providerVm.profileProvider.youtube_handle}}
+            .col  {{providerProfileVm.profileProvider.youtube_handle}}
           .address-container(
-            ng-repeat="office in providerVm.profileProvider.provider_offices"
+            ng-repeat="office in providerProfileVm.profileProvider.provider_offices"
             )
             .row
               .col.col-label {{::("oficina"|translate)}}
