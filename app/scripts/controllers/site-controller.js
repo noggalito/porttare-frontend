@@ -56,10 +56,21 @@
 
     function getUserImageURL(){
       if (currentUser) {
-        var attributes = [
-          'custom_image_url'
-        ];
-        return getUserAttributes(attributes);
+        var customImageUrl = getUserAttributes(['custom_image_url']);
+
+        if(customImageUrl){
+          return customImageUrl;
+        }
+        else{
+          var customImage = getUserAttributes(['custom_image']);
+
+          if(customImage){
+            return customImage.url;
+          }
+          else{
+            return currentUser.image;
+          }
+        }
       }
     }
 
