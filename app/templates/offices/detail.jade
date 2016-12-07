@@ -1,5 +1,5 @@
 ion-view(
-  view-title="{{::('office.office'|translate)}}"
+  view-title="{{::('office.officeTitle'|translate)}}"
 )
   ion-nav-title
     .alt-logo
@@ -15,26 +15,30 @@ ion-view(
     .office-map
       #office-map(data-tap-disabled="true")
 
-    .row.content-office
+    .list.list-inset.list--no-borders.resource-detail-summary
       h2 {{officesVm.officeDetail.direccion}}
 
-    .row.content-office
-      .col {{::("office.officeLegend"|translate)}}
-      .col
-        a(ng-class="{'action': officesVm.officeDetail.enabled==true}"
-        ng-click="officesVm.officeDetail.enabled && officesVm.showEditOffice()") {{::("globals.edit"|translate)}}
-      .col
-        a.delete(ng-class="{'action': officesVm.officeDetail.enabled==true}"
-        ng-click="officesVm.officeDetail.enabled && officesVm.showDeleteOffice()") {{::("globals.delete"|translate)}}
+    .row.details-table-header
+      .col.col-60 {{::("office.officeLegend"|translate)}}
+      .col.col-40.text-right
+        .button.button-clear.button-positive.button-xsmall(
+          ng-click="officesVm.showEditOffice()"
+        ) {{::("globals.edit"|translate)}}
+        .button.button-clear.button-assertive.button-xsmall(
+          ng-click="officesVm.showDeleteOffice()"
+        ) {{::("globals.delete"|translate)}}
 
-    .row.content-office
-      table.table
-        tr
-          td.disabled {{::("office.officeNumber"|translate)}}
-          td.text-center {{officesVm.officeDetail.id}}
-        tr
-          td.disabled {{::("office.ciudad"|translate)}}
-          td.text-center {{officesVm.officeDetail.ciudad}}
-        tr
-          td.disabled {{::("office.officeAttention"|translate)}}
-          td.text-center {{officesVm.officeDetail.hora_de_apertura|date: "HH:mm a"}}-{{officesVm.officeDetail.hora_de_cierre| date: "HH:mm a"}}
+    
+    .list.list-inset.list--no-borders.resource-details-table
+      .row
+        .col.col-50.label {{::("office.officeNumber"|translate)}}
+        .col.col-50.value {{officesVm.officeDetail.id}}
+      .row
+        .col.col-50.label {{::("office.ciudad"|translate)}}
+        .col.col-50.value {{officesVm.officeDetail.ciudad}}
+      .row
+        .col.col-50.label {{::("office.officeAttention"|translate)}}
+        .col.col-50.value
+          | {{officesVm.officeDetail.hora_de_apertura|date: "HH:mm a"}}
+          | -
+          | {{officesVm.officeDetail.hora_de_cierre|date: "HH:mm a"}}
