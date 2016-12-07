@@ -126,7 +126,7 @@ ion-modal-view.item-page
           ng-class="{'item-error': providerProfileVm.touchedPayments && providerProfileVm.providerProfileForm.methodsPayment.$invalid}"
         )
           span.input-label {{::("provider.methodPayment"|translate)}}
-          methods-payment(vm="providerProfileVm")
+          methods-payment(provider-profile-vm="providerProfileVm")
         .errors-wrapper
           span.show-errors(ng-messages="providerProfileVm.touchedPayments && providerProfileVm.providerProfileForm.methodsPayment.$invalid")
             span.message-error(ng-message="required") {{::("form.requiredField"|translate)}}
@@ -148,7 +148,7 @@ ion-modal-view.item-page
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("provider.bank.type"|translate)}}
-          account-type(vm="providerProfileVm")
+          account-type(provider-profile-vm="providerProfileVm")
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("provider.facebook"|translate)}}

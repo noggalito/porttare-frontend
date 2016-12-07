@@ -9,17 +9,18 @@
     var directive = {
       restrict: 'E',
       templateUrl: 'templates/directives/methods-payment/methods-payment.html',
-      controller: ['$translate','$scope',methodsPaymentController],
       scope: {
-        vm: '='
+        providerProfileVm: '='
       },
-      controllerAs: 'checkedVm'
+      controller: methodsPaymentController,
+      controllerAs: 'checkedVm',
+      bindToController: true
     };
 
     return directive;
   }
 
-  function methodsPaymentController($translate,$scope) {
+  function methodsPaymentController($translate) {
     var checkedVm = this;// jshint ignore:line
     checkedVm.checked=checked;
 
@@ -44,18 +45,18 @@
     });
 
     function checked(element){
-      $scope.vm.touchedPayments = true;
+      checkedVm.providerProfileVm.touchedPayments = true;
       checkedVm.methodsPayment.map(function(row){
         if (row !== element) {
           if(row.checked === false && element.checked===false ){
-            $scope.vm.providerProfileForm.methodsPayment.$invalid=true;
+            checkedVm.providerProfileVm.providerProfileForm.methodsPayment.$invalid=true;
           }else{
-            $scope.vm.providerProfileForm.methodsPayment.$invalid=false;
+            checkedVm.providerProfileVm.providerProfileForm.methodsPayment.$invalid=false;
           }
         }
       });
 
-      $scope.vm.methodsPayment= checkedVm.methodsPayment.filter(function(row){
+      checkedVm.providerProfileVm.methodsPayment= checkedVm.methodsPayment.filter(function(row){
         return row.checked;
       }).map(function(row){
         return row.value;

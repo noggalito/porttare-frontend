@@ -9,17 +9,18 @@
     var directive = {
       restrict: 'E',
       templateUrl: 'templates/directives/account-type/account-type.html',
-      controller: accountTypeController,
       scope: {
-        vm: '='
+        providerProfileVm: '='
       },
-      controllerAs: 'radioButtonVm'
+      controller: accountTypeController,
+      controllerAs: 'radioButtonVm',
+      bindToController: true
     };
 
     return directive;
   }
 
-  function accountTypeController($translate,$scope) {
+  function accountTypeController($translate) {
     var radioButtonVm=this;// jshint ignore:line
     radioButtonVm.radioButtonBank = radioButtonBank;
 
@@ -41,7 +42,7 @@
     });
 
     function radioButtonBank(element){
-      $scope.vm.type=element.value;
+      radioButtonVm.providerProfileVm.type=element.value;
     }
   }
 })();
