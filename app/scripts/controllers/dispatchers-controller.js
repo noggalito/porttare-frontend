@@ -72,7 +72,7 @@
 
     function dispatcherName(dispatcher) {
       if (dispatcher.user) {
-        return dispatcher.user.name;
+        return dispatcher.user.to_s; // jshint ignore:line
       } else {
         return dispatcher.email;
       }

@@ -352,7 +352,8 @@
         dispatchersCreate: 'El Despachador ha sido guardado éxitosamente',
         dispatchersUpdate: 'El Despachador ha sido actualizado éxitosamente',
         dispatchersDelete: 'El Despachador ha sido eliminado éxitosamente',
-        dispatchersData: 'Datos del Despachador'
+        dispatchersData: 'Datos del Despachador',
+        notAccepted: 'Esta invitación no ha sido aceptada todavía.'
       }
     });
 

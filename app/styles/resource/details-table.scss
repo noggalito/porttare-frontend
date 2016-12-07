@@ -1,17 +1,25 @@
 .resource-detail-summary {
-  h2, p {
-    color: $base-grey
+  margin-bottom: 0;
+
+  h2, h3, p {
+    color: $base-grey;
+    font-family: Montserrat-Light;
   }
 
   h2 {
-    font-family: Montserrat-Light;
     font-size: 24px;
+    margin-bottom: 5px;
+  }
+
+  h3 {
+    font-size: 20px;
     margin-bottom: 5px;
   }
 }
 
 .resource-details-table {
   font-size: 16px;
+  margin-top: 0;
 
   .label {
     color: $base-grey;
@@ -41,10 +49,32 @@
       }
     }
 
+    &:first-child {
+      padding-top: 0;
+    }
+
     &:last-child {
       .col {
         border-bottom: 0;
       }
+    }
+  }
+}
+
+.details-table-header {
+  font-size: 16px;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  .col {
+    align-self: center;
+  }
+
+  .button-xsmall {
+    @media (max-width: $grid-responsive-sm-break) {
+      line-height: 25px;
+      font-size: 14px;
+      min-height: 30px;
     }
   }
 }
