@@ -11,6 +11,7 @@
 
     siteVm.userName = userName;
     siteVm.getUserImageURL = getUserImageURL;
+    siteVm.getUserFacebookImage = getUserFacebookImage;
 
     init();
 
@@ -56,22 +57,22 @@
 
     function getUserImageURL(){
       if (currentUser) {
-        var customImageUrl = getUserAttributes(['custom_image_url']);
+        var imageUrl = getUserAttributes(['custom_image_url']);
 
-        if(customImageUrl){
-          return customImageUrl;
-        }
-        else{
+        if(!imageUrl){
           var customImage = getUserAttributes(['custom_image']);
 
-          if(customImage){
-            return customImage.url;
-          }
-          else{
-            return currentUser.image;
+          if(customImage && customImage.url){
+            imageUrl = customImage.url;
           }
         }
+
+        return imageUrl;
       }
+    }
+
+    function getUserFacebookImage(){
+      return currentUser.image;
     }
 
     $rootScope.$on('currentUserUpdated',function(event, updatedCurrentUser){
