@@ -22,15 +22,15 @@
     }
 
     function getDispatcher(id) {
-      return CommonService.getObject(id, '/api/provider/dispatchers/');
+      return CommonService.getObject('/api/provider/dispatchers/', id);
     }
 
-    function createDispatcher(data) {
-      return CommonService.newObject(data, '/api/provider/dispatchers');
+    function createDispatcher(dispatcher) {
+      return CommonService.newObject(dispatcher, '/api/provider/dispatchers');
     }
 
-    function updateDispatcher(data) {
-      return CommonService.editObject(data, '/api/provider/dispatchers/');
+    function updateDispatcher(dispatcher) {
+      return CommonService.editObject(dispatcher, '/api/provider/dispatchers/');
     }
 
     function deleteDispatcher(id) {
