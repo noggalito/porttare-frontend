@@ -267,8 +267,8 @@ function routes($stateProvider, $urlRouterProvider) {
     views: {
       'menuContent@profileProviderInfo': {
         templateUrl: 'templates/profile-provider/info.html',
-        controller: 'ProviderController',
-        controllerAs: 'providerVm'
+        controller: 'ProfileProviderUpdateController',
+        controllerAs: 'providerProfileVm'
       }
     }
   })

@@ -1,0 +1,6 @@
+ion-list
+  ion-radio(
+    ng-repeat="type in radioButtonVm.accountType",
+    name="type.value",
+    ng-click="radioButtonVm.radioButtonBank(type)"
+  ) {{ ::type.label }}

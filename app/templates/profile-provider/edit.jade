@@ -4,195 +4,182 @@ ion-modal-view.item-page
   )
     .ion-nav-buttons(side="left")
       button.button.ion-chevron-left.button-clear.left(
-        ng-click="providerVm.closeModal()"
+        ng-click="providerProfileVm.closeModal()"
       )
     .title.alt-logo
   ion-content.resource-form
     form(
-      name="providerVm.providerProfileForm"
-      ng-submit="providerVm.edit(providerVm.profileEdit)"
+      name="providerProfileVm.providerProfileForm"
+      ng-submit="providerProfileVm.edit(providerProfileVm.profileEdit)"
       novalidate
     )
       .list.list-inset
         legend {{::("provider.updateInfoProvider"|translate)}}
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': providerVm.providerProfileForm.ruc.$touched && providerVm.providerProfileForm.ruc.$invalid}"
+          ng-class="{'item-error': providerProfileVm.providerProfileForm.ruc.$touched && providerProfileVm.providerProfileForm.ruc.$invalid}"
         )
           span.input-label {{::("RUC"|translate)}}
           input(
             name="ruc"
             type="text"
-            ng-model="providerVm.profileEdit.ruc"
+            ng-model="providerProfileVm.profileEdit.ruc"
             required
           )
         .errors-wrapper
-          span.show-errors(ng-messages="providerVm.providerProfileForm.ruc.$error" ng-if="providerVm.providerProfileForm.ruc.$touched")
+          span.show-errors(ng-messages="providerProfileVm.providerProfileForm.ruc.$error" ng-if="providerProfileVm.providerProfileForm.ruc.$touched")
             span.message-error(ng-message="required") {{::("form.requiredField"|translate)}}
-          show-error(array-messages="providerVm.errors.ruc")
+          show-error(array-messages="providerProfileVm.errors.ruc")
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': providerVm.profileEdit.razon_social.$touched && providerVm.profileEdit.razon_social.$invalid}"
+          ng-class="{'item-error': providerProfileVm.profileEdit.razon_social.$touched && providerProfileVm.profileEdit.razon_social.$invalid}"
         )
           span.input-label {{::("provider.businessName"|translate)}}
           input(
             name="razon_social"
             type="text"
-            ng-model="providerVm.profileEdit.razon_social"
+            ng-model="providerProfileVm.profileEdit.razon_social"
             required
           )
         .errors-wrapper
-          span.show-errors(ng-messages="providerVm.providerProfileForm.razon_social.$error" ng-if="providerVm.providerProfileForm.razon_social.$touched")
+          span.show-errors(ng-messages="providerProfileVm.providerProfileForm.razon_social.$error" ng-if="providerProfileVm.providerProfileForm.razon_social.$touched")
             span.message-error(ng-message="required") {{::("form.requiredField"|translate)}}
-          show-error(array-messages="providerVm.errors.razon_social")
+          show-error(array-messages="providerProfileVm.errors.razon_social")
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': providerVm.profileEdit.nombre_establecimiento.$touched && providerVm.profileEdit.nombre_establecimiento.$invalid}"
+          ng-class="{'item-error': providerProfileVm.profileEdit.nombre_establecimiento.$touched && providerProfileVm.profileEdit.nombre_establecimiento.$invalid}"
         )
           span.input-label {{::("provider.name"|translate)}}
           input(
             name="nombre_establecimiento"
             type="text"
-            ng-model="providerVm.profileEdit.nombre_establecimiento"
+            ng-model="providerProfileVm.profileEdit.nombre_establecimiento"
             required
           )
         .errors-wrapper
-          span.show-errors(ng-messages="providerVm.providerProfileForm.nombre_establecimiento.$error" ng-if="providerVm.providerProfileForm.nombre_establecimiento.$touched")
+          span.show-errors(ng-messages="providerProfileVm.providerProfileForm.nombre_establecimiento.$error" ng-if="providerProfileVm.providerProfileForm.nombre_establecimiento.$touched")
             span.message-error(ng-message="required") {{::("form.requiredField"|translate)}}
-          show-error(array-messages="providerVm.errors.nombre_establecimiento")
+          show-error(array-messages="providerProfileVm.errors.nombre_establecimiento")
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("provider.economicActivity"|translate)}}
           input(
             name="actividad_economica"
             type="text"
-            ng-model="providerVm.profileEdit.actividad_economica"
+            ng-model="providerProfileVm.profileEdit.actividad_economica"
           )
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': providerVm.profileEdit.representante_legal.$touched && providerVm.profileEdit.representante_legal.$invalid}"
+          ng-class="{'item-error': providerProfileVm.profileEdit.representante_legal.$touched && providerProfileVm.profileEdit.representante_legal.$invalid}"
         )
           span.input-label {{::("provider.LegalRepresentative"|translate)}}
           input(
             name="representante_legal"
             type="text"
-            ng-model="providerVm.profileEdit.representante_legal"
+            ng-model="providerProfileVm.profileEdit.representante_legal"
             required
           )
         .errors-wrapper
-          span.show-errors(ng-messages="providerVm.providerProfileForm.representante_legal.$error" ng-if="providerVm.providerProfileForm.representante_legal.$touched")
+          span.show-errors(ng-messages="providerProfileVm.providerProfileForm.representante_legal.$error" ng-if="providerProfileVm.providerProfileForm.representante_legal.$touched")
             span.message-error(ng-message="required") {{::("form.requiredField"|translate)}}
-          show-error(array-messages="providerVm.errors.representante_legal")
+          show-error(array-messages="providerProfileVm.errors.representante_legal")
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': providerVm.profileEdit.telefono.$touched && providerVm.profileEdit.telefono.$invalid}"
+          ng-class="{'item-error': providerProfileVm.profileEdit.telefono.$touched && providerProfileVm.profileEdit.telefono.$invalid}"
         )
           span.input-label {{::("provider.phone"|translate)}}
           input(
             name="telefono"
             type="text"
-            ng-model="providerVm.profileEdit.telefono"
+            ng-model="providerProfileVm.profileEdit.telefono"
             required
           )
         .errors-wrapper
-          span.show-errors(ng-messages="providerVm.providerProfileForm.telefono.$error" ng-if="providerVm.providerProfileForm.telefono.$touched")
+          span.show-errors(ng-messages="providerProfileVm.providerProfileForm.telefono.$error" ng-if="providerProfileVm.providerProfileForm.telefono.$touched")
             span.message-error(ng-message="required") {{::("form.requiredField"|translate)}}
-          show-error(array-messages="providerVm.errors.telefono")
+          show-error(array-messages="providerProfileVm.errors.telefono")
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': providerVm.profileEdit.email.$touched && providerVm.profileEdit.email.$invalid}"
+          ng-class="{'item-error': providerProfileVm.profileEdit.email.$touched && providerProfileVm.profileEdit.email.$invalid}"
         )
           span.input-label {{::("provider.email"|translate)}}
           input(
             name="email"
             type="text"
-            ng-model="providerVm.profileEdit.email"
+            ng-model="providerProfileVm.profileEdit.email"
             required
           )
         .errors-wrapper
-          span.show-errors(ng-messages="providerVm.providerProfileForm.email.$error" ng-if="providerVm.providerProfileForm.email.$touched")
+          span.show-errors(ng-messages="providerProfileVm.providerProfileForm.email.$error" ng-if="providerProfileVm.providerProfileForm.email.$touched")
             span.message-error(ng-message="required") {{::("form.requiredField"|translate)}}
-          show-error(array-messages="providerVm.errors.email")
+          show-error(array-messages="providerProfileVm.errors.email")
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("provider.webSite"|translate)}}
           input(
             name="website"
             type="text"
-            ng-model="providerVm.profileEdit.website"
+            ng-model="providerProfileVm.profileEdit.website"
           )
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': providerVm.touchedPayments && providerVm.providerProfileForm.methodsPayment.$invalid}"
+          ng-class="{'item-error': providerProfileVm.touchedPayments && providerProfileVm.providerProfileForm.methodsPayment.$invalid}"
         )
           span.input-label {{::("provider.methodPayment"|translate)}}
-          ion-list
-            ion-checkbox(
-              ng-repeat="method in providerVm.methodsPayment",
-              ng-model="method.checked"
-              name="methodsPayment"
-              ng-checked="method.checked"
-              ng-change="providerVm.checked(method)"
-            ) {{ ::method.label }}
+          methods-payment(vm="providerProfileVm")
         .errors-wrapper
-          span.show-errors(ng-messages="providerVm.touchedPayments && providerVm.providerProfileForm.methodsPayment.$invalid")
+          span.show-errors(ng-messages="providerProfileVm.touchedPayments && providerProfileVm.providerProfileForm.methodsPayment.$invalid")
             span.message-error(ng-message="required") {{::("form.requiredField"|translate)}}
-          show-error(array-messages="providerVm.errors.formas_de_pago")
+          show-error(array-messages="providerProfileVm.errors.formas_de_pago")
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("provider.bank.name"|translate)}}
           input(
             type="text"
-            ng-model="providerVm.profileEdit.banco_nombre"
+            ng-model="providerProfileVm.profileEdit.banco_nombre"
           )
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("provider.bank.account"|translate)}}
           input(
             type="text"
-            ng-model="providerVm.profileEdit.banco_numero_cuenta"
+            ng-model="providerProfileVm.profileEdit.banco_numero_cuenta"
           )
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("provider.bank.type"|translate)}}
-          ion-list
-            ion-radio(
-              ng-repeat="type in providerVm.accountType",
-              name="type.value",
-              ng-value="type",
-              ng-click="providerVm.checkedBank(type)"
-            ) {{ ::type.label }}
+          account-type(vm="providerProfileVm")
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("provider.facebook"|translate)}}
           input(
             type="text"
-            ng-model="providerVm.profileEdit.facebook_handle"
+            ng-model="providerProfileVm.profileEdit.facebook_handle"
           )
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("provider.twitter"|translate)}}
           input(
             type="text"
-            ng-model="providerVm.profileEdit.twitter_handle"
+            ng-model="providerProfileVm.profileEdit.twitter_handle"
           )
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("provider.instagram"|translate)}}
           input(
             type="text"
-            ng-model="providerVm.profileEdit.instagram_handle"
+            ng-model="providerProfileVm.profileEdit.instagram_handle"
           )
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("provider.youtube"|translate)}}
           input(
             type="text"
-            ng-model="providerVm.profileEdit.youtube_handle"
+            ng-model="providerProfileVm.profileEdit.youtube_handle"
           )
 
       .bar.bar-footer.footer-client-container
         button.button-secondary-yellow(
           type="submit"
-          ng-disabled="providerVm.providerProfileForm.$invalid"
+          ng-disabled="providerProfileVm.providerProfileForm.$invalid"
         ) {{::("globals.save"|translate)}}
