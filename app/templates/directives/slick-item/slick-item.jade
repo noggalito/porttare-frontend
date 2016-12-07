@@ -7,4 +7,4 @@
             .img(style="background-image: url('{{item.provider_item.imagenes[0] | defaultImage:'../images/ionic.png'}}')")
           .item-card-footer
             .title {{item.provider_item.titulo}}
-            .value {{item.provider_item_precio_cents * sicVm.centsVal | currency}} / {{item.cantidad}}
+            .value {{(item.provider_item_precio_cents * item.cantidad) * sicVm.centsVal | currency}} / {{item.cantidad}}

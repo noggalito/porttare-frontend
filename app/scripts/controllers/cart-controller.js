@@ -22,7 +22,6 @@
     cartVm.assignAddress = assignAddress;
     cartVm.messages = {};
     cartVm.slickSettings = {
-      centerMode: true,
       responsive: [
         {
           breakpoint: 320,
@@ -158,7 +157,7 @@
       var total = 0;
       if(provider.customer_order_items) {
         angular.forEach(provider.customer_order_items, function (item) {
-          total = total + item.provider_item_precio_cents;
+          total = total + (item.provider_item_precio_cents * item.cantidad);
         });
       }
       return total;
