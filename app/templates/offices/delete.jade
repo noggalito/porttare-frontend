@@ -1,49 +1,60 @@
-ion-modal-view.item-page
-  ion-header-bar.bar.bar-header.bar-light(
-    align-title="center"
-  )
-    .ion-nav-buttons(side="left")
-      button.button.ion-chevron-left.button-clear.left(
+ion-modal-view
+  ion-header-bar.bar-stable.bar.bar-header
+    .title.alt-logo
+
+    .ion-nav-buttons.buttons(side="primary")
+      button.button.button-clear.button-positive(
         ng-click="officesVm.closeModal()"
-      )
-    h4.title {{::("office.officeDelete"|translate|uppercase)}}
-  ion-content.resource-form
-    form(
-      name='form'
-      ng-submit='officesVm.submitOfficeDelete()'
-      novalidate
-    )
+      ) {{::('globals.cancel'|translate)}}
+      
+  form(
+    name='officesVm.cancelationForm'
+    ng-submit='officesVm.submitOfficeDelete()'
+    novalidate
+  )
+    ion-content.resource-form
       .list.list-inset
-        h4.text-center {{::("office.officeDeleteReasons"|translate|uppercase)}}
+        legend.title {{::("office.officeDeleteReasons"|translate)}}
+
         label.item.item-input.item-stacked-label
-          span.input-label {{::("office.officeDeleteMotive"|translate|uppercase)}}
+          span.input-label {{::("office.officeDeleteMotive"|translate)}}
           input(
             type="text"
             ng-class="input-error"
-            ng-model="officesVm.office.motivo"
+            ng-model="officesVm.cancelationForm.motivo"
           )
-        show-error(array-messages="officesVm.messages.motivo")
+        .errors-wrapper
+          show-error(array-messages="officesVm.messages.motivo")
 
-        label.item.item-input.item-stacked-label
-          span.input-label {{::("office.officeDeleteTime"|translate|uppercase)}}
+        label.item.item-input.item-radio
+          span.input-label {{::("office.officeDeleteDefinitive"|translate)}}
+        .row.item-radios
+          ion-list.ion-list
+            ion-radio(
+              ng-value="true"
+              ng-model="officesVm.cancelationForm.definitivo"
+            ) Sí
+            ion-radio(
+              ng-value="false"
+              ng-model="officesVm.cancelationForm.definitivo"
+            ) No
+
+        .errors-wrapper
+          show-error(array-messages="officesVm.messages.definitivo")
+          
+        label.item.item-input.item-stacked-label(
+          ng-if="!officesVm.cancelationForm.definitivo"
+        )
+          span.input-label {{::("office.officeDeleteTime"|translate)}}
           input(
             type='text'
-            ng-model='officesVm.office.tiempo'
+            ng-model='officesVm.cancelationForm.tiempo'
             ng-class="input-error"
           )
-        show-error(array-messages="officesVm.messages.tiempo")
+        .errors-wrapper
+          show-error(array-messages="officesVm.messages.tiempo")
 
-        label.item.item-input.item-select
-          span.input-label {{::("office.officeDeleteDefinitive"|translate)}}
-          select(ng-model='officesVm.office.definitivo')
-            option(value='1')
-              | {{::("office.yes"|translate)}}
-            option(value='2')
-              | {{::("office.not"|translate)}}
-        show-error(array-messages="officesVm.messages.definitivo")
-
-      .bar.bar-footer
-        row.col.text-center
-          button.action-button.red(
-            type="submit"
-          ) {{::("office.officeDeleteClose"|translate|uppercase)}}
+    .bar.bar-footer.bar-stable
+      button.button.button-small.button-outline.button-assertive(
+        type="submit"
+      ) {{::("office.disableOffice"|translate)}}

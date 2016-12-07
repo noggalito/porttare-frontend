@@ -21,7 +21,8 @@
   }
 
   label.item-input.item-stacked-label,
-  label.item-input.item-select {
+  label.item-input.item-select,
+  label.item-input.item-radio {
     // override default
     margin-top: 15px;
     margin-bottom: 30px;
@@ -70,6 +71,17 @@
       direction: ltr;
       font-size: 16px;
       font-family: Montserrat-Light;
+    }
+  }
+
+  label.item-input.item-radio {
+    margin-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .item-radios {
+    .ion-list {
+      width: 100%;
     }
   }
 

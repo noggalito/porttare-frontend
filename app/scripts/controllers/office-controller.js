@@ -69,9 +69,9 @@
     }
 
     function closeModal() {
-      ModalService.closeModal();
       officesVm.office = {};
       officesVm.messages = {};
+      return ModalService.closeModal();
     }
 
     function submitOffice(){
@@ -81,11 +81,11 @@
           $ionicLoading.hide().then(function(){
             officesVm.officeDetail = resp.provider_office; //jshint ignore:line
             loadOffice();
-            $ionicPopup.alert({
-              title: 'Éxito',
-              template: '{{::("office.officeSuccessUpdate"|translate)}}'
-            }).then(function(){
-              closeModal();
+            closeModal().then(function () {
+              $ionicPopup.alert({
+                title: 'Éxito',
+                template: '{{::("office.officeSuccessUpdate"|translate)}}'
+              });
             });
           });
         }, function(rpta){

@@ -41,8 +41,9 @@
     }
 
     function closeModal(){
-      modalInstance.scope.modal.remove();
-      modalInstance.scope = null;
+      return modalInstance.scope.modal.remove().then(function () {
+        modalInstance.scope = null;
+      });
     }
   }
 })();
