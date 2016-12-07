@@ -36,10 +36,13 @@
       MapsService.loadGMaps().then(function(){
         $ionicLoading.hide();
         var map = MapsService.renderMap('office-map');
-        MapsService.renderAddressMarker(
-          map,
-          officesVm.officeDetail.direccion
-        );
+        MapsService.renderAddressMarker(map, {
+          address: officesVm.officeDetail.direccion,
+          componentRestrictions: {
+            country: 'EC',
+            locality: officesVm.officeDetail.ciudad
+          }
+        });
       });
     }
 

@@ -260,7 +260,7 @@
         officeSuccessDelete: 'Local eliminado',
         officeSuccess: 'Correctamente',
         officesAny: 'No dispone de ningún Establecimiento o Sucursal',
-        locationNotFound: 'No se ha encontrado la ubicación especificada',
+        locationNotFound: 'No he encontrado la dirección: ',
         taskInProgress: 'Tarea en progreso',
         selectHourPlaceholder: 'Seleccionar hora',
         mon: 'Lunes',

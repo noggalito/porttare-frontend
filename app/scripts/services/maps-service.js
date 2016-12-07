@@ -53,19 +53,18 @@
       );
     }
 
-    function renderAddressMarker(map, address) {
+    function renderAddressMarker(map, options) {
       var geocoder = new google.maps.Geocoder();
-      geocoder.geocode({'address': address}, function(results, status) {
+      geocoder.geocode(options, function(results, status) {
         if (status === 'OK') {
           map.setCenter(results[0].geometry.location);
           displayMarker(map, results[0].geometry.location);
         } else {
           var positionDefault = mapPositionDefault();
           map.setCenter(positionDefault);
-          displayMarker(map, positionDefault);
           $ionicPopup.alert({
             title: 'Error',
-            template: '{{::("office.locationNotFound"|translate)}}'
+            template: '{{::("office.locationNotFound"|translate)}}' + options.address
           });
         }
       });
@@ -83,13 +82,14 @@
         zoom: 17,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         mapTypeControl: false,
-        disableDefaultUI: true
+        disableDefaultUI: true,
+        center: mapPositionDefault()
       };
     }
 
     function mapPositionDefault(){
-      var latitude = -4.0078909;
-      var longitude = -79.21127690000003;
+      var latitude = -3.996704;
+      var longitude = -79.201699;
       return new google.maps.LatLng(latitude, longitude);
     }
 
