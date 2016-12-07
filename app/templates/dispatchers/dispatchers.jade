@@ -3,8 +3,8 @@ ion-view(
 )
   ion-nav-title
     .alt-logo
-  ion-content.content-dispatchers
-    .row.margin
+  ion-content.resource-collection
+    .row
       label.search-input
         i.icon.ion-search.placeholder-icon
         input(
@@ -12,28 +12,27 @@ ion-view(
           type="text"
           placeholder='{{::("dispatchers.dispatcherSearch"|translate)}}'
         )
-    .row.margin
-      .col.text-center
-        button.action-button.yellow(ng-click="dispatchersVm.showNewDispatcher()")
-          {{::("globals.new"|translate)}} {{::("dispatchers.dispatcher"|translate)}}
 
     .row
-      .col.col-10
-        strong {{::("globals.id"|translate|uppercase)}}
-      .col.col-80
-        strong {{::("dispatchers.dispatcher"|translate|uppercase)}}
-      .col.col-10
+      .list.list--centered
+        button.button.button-outline.button-energized(
+          ng-click="dispatchersVm.newDispatcherModal()"
+        ) {{::("globals.new"|translate)}} {{::("dispatchers.dispatcher"|translate)}}
 
-     .row.col
-        hr.opacity
-
-    .row(ng-repeat='item in dispatchersVm.dispatchers | filter: dispatchersVm.filtro track by $index')
-      .col.col-10{{$index+1}}
-      .col.col-80{{item.email}}
-      .col.col-10.text-right
-        a(ui-sref='provider.dispatchers.show({ id: item.id})'){{::("globals.seeMore"|translate)}}
-
-    .row.margin(ng-show="!dispatchersVm.dispatchers.length")
-      .col.text-center
+    .list.list-inset.list--no-borders.resource-collection-table
+      .row.table-headers
+        .col.col-60 {{::("dispatchers.dispatcher"|translate)}}
+        .col
+      
+      .col.without-items(ng-if="dispatchersVm.dispatchers.length === 0")
         p {{::("dispatchers.dispatcherAny"|translate)}}
         p {{::("dispatchers.dispacherClick"|translate)}}
+
+      .item.row(
+        ng-repeat='dispatcher in dispatchersVm.dispatchers | filter: dispatchersVm.filtro track by $index'
+      )
+        .col.col-60 {{dispatchersVm.dispatcherName(dispatcher)}}
+        .col.text-right
+          a.button.button-clear.button-positive.button-small(
+            ui-sref='provider.dispatchers.show({ id: dispatcher.id })'
+          ) {{::("globals.seeMore"|translate)}}

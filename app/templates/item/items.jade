@@ -30,8 +30,7 @@ ion-view(
         p {{::("item.subtitleWithoutItems"|translate)}}
 
       .item.row(
-        ng-repeat="item in itemsVm.items | filter:itemsVm.query"
-        ng-init="idx = $index"
+        ng-repeat="item in itemsVm.items | filter:itemsVm.query track by $index"
       )  
         .col.col-60
           a.provider-item-title(

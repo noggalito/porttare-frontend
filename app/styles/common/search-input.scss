@@ -18,7 +18,7 @@
 
   input {
     width: 100%;
-    padding: 0 5px;
+    padding: 0 10px;
     @include input-placeholder {
       text-align: center;
       color: $search-input-grey;

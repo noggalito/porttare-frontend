@@ -5,12 +5,13 @@ ion-view(
     .alt-logo
   ion-content.content-dispatchers
     .row
+      .col {{::("dispatchers.dispatchersData"|translate)}}
       .col
-        {{::("dispatchers.dispatchersData"|translate)}}
+        a.action(ng-click="dispatchersVm.showEditDispatcher()")
+          | {{::("globals.edit"|translate)}}
       .col
-        a.action(ng-click="dispatchersVm.showEditDispatcher()") {{::("globals.edit"|translate)}}
-      .col
-        a.action.delete(ng-click="dispatchersVm.showDeleteDispatcher()") {{::("globals.delete"|translate)}}
+        a.action.delete(ng-click="dispatchersVm.showDeleteDispatcher()")
+          | {{::("globals.delete"|translate)}}
 
     .row
         table.table

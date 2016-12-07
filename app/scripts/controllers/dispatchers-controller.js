@@ -14,9 +14,10 @@
                                  $ionicPopup) {
 
     var dispatchersVm = this;
-    dispatchersVm.showNewDispatcher = showNewDispatcher;
+    dispatchersVm.newDispatcherModal = newDispatcherModal;
     dispatchersVm.submitDispatcher = submitDispatcher;
     dispatchersVm.closeDispatcher = closeDispatcher;
+    dispatchersVm.dispatcherName = dispatcherName;
     getDispatchers();
 
     function getDispatchers() {
@@ -25,14 +26,18 @@
       }, ErrorHandlerService.handleCommonErrorGET);
     }
 
-    function showNewDispatcher(){
-      OfficesService.getOffices().then(function success(respuesta){
-        dispatchersVm.offices= respuesta.provider_offices; //jshint ignore:line
-        showDispatcher();
-      }, ErrorHandlerService.handleCommonErrorGET);
+    function newDispatcherModal(){
+      if (dispatchersVm.offices) {
+        triggerNewDispatcherModal();
+      } else {
+        OfficesService.getOffices().then(function success(respuesta){
+          dispatchersVm.offices = respuesta.provider_offices; //jshint ignore:line
+          triggerNewDispatcherModal();
+        }, ErrorHandlerService.handleCommonErrorGET);
+      }
     }
 
-    function showDispatcher(){
+    function triggerNewDispatcherModal(){
       dispatchersVm.dispatcher = {};
       ModalService.showModal({
         parentScope: $scope,
@@ -63,6 +68,14 @@
     function closeDispatcher() {
       ModalService.closeModal();
       dispatchersVm.messages = {};
+    }
+
+    function dispatcherName(dispatcher) {
+      if (dispatcher.user) {
+        return dispatcher.user.name;
+      } else {
+        return dispatcher.email;
+      }
     }
   }
 })();
