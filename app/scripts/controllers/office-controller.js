@@ -90,7 +90,7 @@
     function submitOfficeDelete(){
       $ionicPopup.alert({
         title: 'Error',
-        template: '{{::("office.taskInProgress"|translate|uppercase)}} !!!'
+        template: '{{::("office.taskInProgress"|translate)}} !!!'
       }).then(function(){
         officesVm.closeModal();
       });

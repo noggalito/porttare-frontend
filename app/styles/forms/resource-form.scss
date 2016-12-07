@@ -73,6 +73,16 @@
     }
   }
 
+  .datetime-picker {
+    .input-label {
+      padding-bottom: 7px;
+    }
+    .datetime-picker-value,
+    .datetime-picker-placeholder {
+      padding-left: 15px;
+    }
+  }
+
   .bar.bar-footer {
     position: relative;
   }

@@ -264,7 +264,7 @@
         officesAny: 'No dispone de ningún Establecimiento o Sucursal',
         locationNotFound: 'No se ha encontrado la ubicación especificada',
         taskInProgress: 'Tarea en progreso',
-        placeholderDate: 'Click para seleccionar',
+        selectHourPlaceholder: 'Seleccionar hora',
         mon: 'Lunes',
         tue: 'Martes',
         wed: 'Miercoles',

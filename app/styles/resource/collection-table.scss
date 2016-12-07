@@ -12,6 +12,17 @@
       &:not(:first-child) {
         text-align: center;
       }
+
+      &.text-right {
+        text-align: right;
+      }
+
+      .button-clear.button-small {
+        font-size: 12px;
+        letter-spacing: -0.5px;
+        min-height: 25px;
+        line-height: 25px;
+      }
     }
 
     .table-headers {

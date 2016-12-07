@@ -79,7 +79,7 @@ ion-modal-view
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': clientsVm.clientForm.telefono.$touched && cliensVm.clientForm.telefono.$invalid}"
         )
-          span.input-label {{::("client.telefono"|translate|uppercase)}}
+          span.input-label {{::("client.telefono"|translate)}}
           input(
             name="telefono"
             type="tel"
@@ -99,7 +99,7 @@ ion-modal-view
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': clientsVm.clientForm.email.$touched && cliensVm.clientForm.email.$invalid}"
         )
-          span.input-label {{::("client.email"|translate|uppercase)}}
+          span.input-label {{::("client.email"|translate)}}
           input(
             name="email"
             type="email"

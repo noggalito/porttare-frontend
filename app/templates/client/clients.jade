@@ -37,11 +37,11 @@ ion-view(
         ng-repeat="client in clientsVm.clients | filter:clientsVm.query | orderBy:selectedOption.filterField"
       )
         .col.col-60 {{ client.nombres }}
-        .col
-          .button.button-clear.button-positive(
+        .col.text-right
+          .button.button-clear.button-positive.button-small(
             ng-click="clientsVm.showEditModal($index)"
           ) {{::("globals.edit"|translate)}}
-          .button.button-clear.button-assertive(
+          .button.button-clear.button-assertive.button-small(
             ng-click="clientsVm.askToDeleteClient(client.id)"
           ) {{::("client.disable"|translate)}}
 
