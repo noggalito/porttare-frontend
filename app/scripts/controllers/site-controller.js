@@ -5,7 +5,8 @@
     .module('porttare.controllers')
     .controller('SiteController', SiteController);
 
-  function SiteController($rootScope, $ionicLoading, $auth, APP) {
+  function SiteController($rootScope, $ionicLoading, $auth, 
+                          APP) {// jshint ignore:line
     var siteVm = this,
         currentUser = null;
 
