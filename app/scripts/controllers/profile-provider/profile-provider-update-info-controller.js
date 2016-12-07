@@ -10,8 +10,7 @@
                                            $ionicLoading,
                                            $ionicPopup,
                                            $scope,
-                                           $auth,
-                                           $translate) {
+                                           $auth) {
     var providerProfileVm = this;
     providerProfileVm.showNewModal = showNewModal;
     providerProfileVm.showEditModal = showEditModal;
@@ -27,7 +26,7 @@
         template: '{{::("globals.updating"|translate)}}'
       });
 
-      profileEdit.formas_de_pago = providerProfileVm.methodsPayment;
+      profileEdit.formas_de_pago = providerProfileVm.methodsPayment;//jshint ignore:line
 
       if (providerProfileVm.type!=='') {
         profileEdit.banco_tipo_cuenta = providerProfileVm.type;//jshint ignore:line

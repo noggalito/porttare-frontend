@@ -9,7 +9,7 @@
     var directive = {
       restrict: 'E',
       templateUrl: 'templates/directives/methods-payment/methods-payment.html',
-      controller: methodsPaymentController,
+      controller: ['$translate','$scope',methodsPaymentController],
       scope: {
         vm: '='
       },
@@ -20,7 +20,7 @@
   }
 
   function methodsPaymentController($translate,$scope) {
-    var checkedVm = this;
+    var checkedVm = this;// jshint ignore:line
     checkedVm.checked=checked;
 
     var transKeys = [

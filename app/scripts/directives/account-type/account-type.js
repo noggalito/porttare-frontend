@@ -20,7 +20,7 @@
   }
 
   function accountTypeController($translate,$scope) {
-    var radioButtonVm = this;
+    var radioButtonVm=this;// jshint ignore:line
     radioButtonVm.radioButtonBank = radioButtonBank;
 
     var transKeys = [
