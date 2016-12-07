@@ -2,7 +2,8 @@ ion-content(scroll="false")
   .profile-page
     .profile-header.responsive-sm
       .col.col-offset-25.col-50
-        img.img-profile(src="images/camera.png")
+        img.img-profile(ng-src="{{ siteVm.getUserImageURL() }}" ng-if="siteVm.getUserImageURL()")
+        img.img-profile(src="images/camera.png" ng-if="!siteVm.getUserImageURL()")
       .user-name
         |{{ siteVm.userName() }}
     .profile-body
