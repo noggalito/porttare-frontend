@@ -56,7 +56,6 @@ ion-modal-view.client-page
           input(
             type="text"
             ng-model="piVm.userEdit.name"
-            ng-change="piVm.messages.name = null"
           )
         show-error(array-messages="piVm.messages.name" ng-if="piVm.messages.name")
 
@@ -67,7 +66,6 @@ ion-modal-view.client-page
           input(
             type="text"
             ng-model="piVm.userEdit.ciudad"
-            ng-change="piVm.messages.ciudad = null"
           )
         show-error(array-messages="piVm.messages.ciudad" ng-if="piVm.messages.ciudad")
 
