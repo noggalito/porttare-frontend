@@ -35,7 +35,6 @@ ion-modal-view.client-page
             name="email"
             ng-model="piVm.userEdit.email"
             ng-class="input-error"
-            ng-change="piVm.messages.email = null"
           )
         .errors-wrapper
           span.show-errors.ng-active(ng-messages="piVm.updateProfileForm.email.$error" ng-if="piVm.updateProfileForm.email.$touched")
