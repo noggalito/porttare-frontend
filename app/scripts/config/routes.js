@@ -591,4 +591,3 @@ function routes($stateProvider, $urlRouterProvider) {
       });
   }
 }
-
