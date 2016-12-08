@@ -46,8 +46,8 @@ ion-modal-view.item-form
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("item.observaciones"|translate)}}
-          input(
-            type='text'
+          textarea(
+            rows="5"
             ng-model='modalVm.item.observaciones'
           )
         .errors-wrapper
@@ -120,7 +120,7 @@ ion-modal-view.item-form
           ng-model='modalVm.item.en_stock'
           toggle-class='toggle-energized'
         )
-          span.input-label{{::("item.stock"|translate)}}
+          span.input-label {{::("item.stock"|translate)}}
         .errors-wrapper
           show-error(array-messages='modalVm.messages.stock')
 
