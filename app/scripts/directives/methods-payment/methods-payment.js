@@ -10,7 +10,9 @@
       restrict: 'E',
       templateUrl: 'templates/directives/methods-payment/methods-payment.html',
       scope: {
-        providerProfileVm: '='
+        profileForm: '=',
+        methods:'=',
+        touched:'='
       },
       controller: methodsPaymentController,
       controllerAs: 'checkedVm',
@@ -45,18 +47,18 @@
     });
 
     function checked(element){
-      checkedVm.providerProfileVm.touchedPayments = true;
+      checkedVm.touched = true;
       checkedVm.methodsPayment.map(function(row){
         if (row !== element) {
           if(row.checked === false && element.checked===false ){
-            checkedVm.providerProfileVm.providerProfileForm.methodsPayment.$invalid=true;
+            checkedVm.profileForm.methodsPayment.$invalid=true;
           }else{
-            checkedVm.providerProfileVm.providerProfileForm.methodsPayment.$invalid=false;
+            checkedVm.profileForm.methodsPayment.$invalid=false;
           }
         }
       });
 
-      checkedVm.providerProfileVm.methodsPayment= checkedVm.methodsPayment.filter(function(row){
+      checkedVm.methods= checkedVm.methodsPayment.filter(function(row){
         return row.checked;
       }).map(function(row){
         return row.value;

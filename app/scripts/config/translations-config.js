@@ -316,7 +316,7 @@
         tabs: {
           info: 'Datos',
           addresses: 'Direcciones',
-          metrics:'Metricas',
+          metrics:'Métricas',
           managements:'Gestiones'
         },
         addresses: {

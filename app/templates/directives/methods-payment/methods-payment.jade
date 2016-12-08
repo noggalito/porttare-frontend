@@ -1,6 +1,6 @@
 ion-list
   ion-checkbox(
-    ng-repeat="method in checkedVm.methodsPayment",
+    ng-repeat="method in checkedVm.methodsPayment track by $index",
     ng-model="method.checked"
     name="methodsPayment"
     ng-checked="method.checked"

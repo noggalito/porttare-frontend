@@ -1,7 +1,7 @@
 ion-modal-view
   ion-header-bar.bar-stable.bar.bar-header
     .title.alt-logo
-    
+
     .ion-nav-buttons.buttons(side="primary")
       button.button.button-clear.button-positive(
         ng-click="clientsVm.closeModal()"
@@ -49,7 +49,7 @@ ion-modal-view
           )
         .errors-wrapper
           span.show-errors(
-            ng-messages="clientsVm.clientForm.nombres.$error" 
+            ng-messages="clientsVm.clientForm.nombres.$error"
             ng-if="clientsVm.clientForm.nombres.$touched"
           )
             span.message-error(ng-message="required")
@@ -89,7 +89,7 @@ ion-modal-view
           )
         .errors-wrapper
           span.show-errors(
-            ng-messages="clientsVm.clientForm.telefono.$error" 
+            ng-messages="clientsVm.clientForm.telefono.$error"
             ng-if="clientsVm.clientForm.telefono.$touched"
           )
             span.message-error(ng-message="required")
@@ -109,13 +109,13 @@ ion-modal-view
           )
         .errors-wrapper
           span.show-errors(
-            ng-messages="clientsVm.clientForm.email.$error" 
+            ng-messages="clientsVm.clientForm.email.$error"
             ng-if="clientsVm.clientForm.email.$touched"
           )
             span.message-error(ng-message="required")
               | {{::("globals.isRequired"|translate)}}.
           show-error(array-messages="clientsVm.messages.email")
-        
+
         label.item.item-input.item-stacked-label
           span.input-label {{::("client.notas"|translate)}}
           input(

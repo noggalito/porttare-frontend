@@ -10,7 +10,7 @@
       restrict: 'E',
       templateUrl: 'templates/directives/account-type/account-type.html',
       scope: {
-        providerProfileVm: '='
+        type: '='
       },
       controller: accountTypeController,
       controllerAs: 'radioButtonVm',
@@ -42,7 +42,7 @@
     });
 
     function radioButtonBank(element){
-      radioButtonVm.providerProfileVm.type=element.value;
+      radioButtonVm.type=element.value;
     }
   }
 })();
