@@ -34,18 +34,17 @@
 
       ProfileService.updateProfileProvider(profileEdit)
         .then(function success(resp) {
-            $ionicLoading.hide();
-            $ionicPopup.alert({
-              title: 'Éxito',
-              template: '{{::("provider.successUpdateProfileProvider"|translate)}}'
-            });
-            providerProfileVm.profileProvider = resp.provider_profile;//jshint ignore:line
-            closeModal();
-          },
-          function error(resp){
-            providerProfileVm.errors = resp;
-            $ionicLoading.hide();
-          });
+          $ionicLoading.hide();
+          providerProfileVm.profileProvider = resp.provider_profile;//jshint ignore:line
+          $ionicPopup.alert({
+            title: 'Éxito',
+            template: '{{::("provider.successUpdateProfileProvider"|translate)}}'
+          }).then(closeModal);
+        },
+        function error(resp){
+          providerProfileVm.errors = resp;
+          $ionicLoading.hide();
+        });
     }
 
     function showNewModal() {

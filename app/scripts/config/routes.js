@@ -16,7 +16,6 @@ function routes($stateProvider, $urlRouterProvider) {
       auth: accessIfUserNotAuth
     }
   })
-
   .state('register', {
     url: '/register',
     controller: 'RegisterController',
@@ -251,7 +250,6 @@ function routes($stateProvider, $urlRouterProvider) {
     url: '/items',
     abstract: true
   })
-
   .state('provider.profile-provider', {
     url: '/profile',
     abstract: true,
@@ -261,7 +259,6 @@ function routes($stateProvider, $urlRouterProvider) {
       }
     }
   })
-
   .state('provider.profile-provider.info', {
     url: '/info',
     views: {
@@ -272,7 +269,6 @@ function routes($stateProvider, $urlRouterProvider) {
       }
     }
   })
-
   .state('provider.profile-provider.metrics', {
     url: '/metrics',
     views: {
@@ -281,7 +277,6 @@ function routes($stateProvider, $urlRouterProvider) {
       }
     }
   })
-
   .state('provider.profile-provider.managements', {
     url: '/managements',
     views: {
@@ -290,7 +285,6 @@ function routes($stateProvider, $urlRouterProvider) {
       }
     }
   })
-
   .state('provider.items.index', {
     url: '/',
     cache: false,

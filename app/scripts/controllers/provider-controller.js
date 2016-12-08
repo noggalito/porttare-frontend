@@ -33,30 +33,30 @@
       label: 'Lunes',
       name: 'mon'
     },
-      {
-        label: 'Martes',
-        name: 'tue'
-      },
-      {
-        label: 'Miércoles',
-        name: 'wed'
-      },
-      {
-        label: 'Jueves',
-        name: 'thu'
-      },
-      {
-        label: 'Viernes',
-        name: 'fri'
-      },
-      {
-        label: 'Sábado',
-        name: 'sat'
-      },
-      {
-        label: 'Domingo',
-        name: 'sun'
-      }];
+    {
+      label: 'Martes',
+      name: 'tue'
+    },
+    {
+      label: 'Miércoles',
+      name: 'wed'
+    },
+    {
+      label: 'Jueves',
+      name: 'thu'
+    },
+    {
+      label: 'Viernes',
+      name: 'fri'
+    },
+    {
+      label: 'Sábado',
+      name: 'sat'
+    },
+    {
+      label: 'Domingo',
+      name: 'sun'
+    }];
 
     $translate(transKeys).then(function (trans) {
       providerVm.methodsPayment = [
@@ -136,21 +136,21 @@
       objectToSend.offices_attributes = [createOffice(providerVm.matrizProvider)];
       ProviderService.createNewProvider(objectToSend)
         .then(function success(provider) {
-            //update auth user
-            $auth.user.provider_profile = provider.provider_profile;
-            $ionicLoading.hide();
-            $state.go(stateRedirect).then(function(){
-              $ionicPopup.alert({
-                title: 'Alerta',
-                template: 'Proveedor creado satisfactoriamente'
-              });
+          //update auth user
+          $auth.user.provider_profile = provider.provider_profile;
+          $ionicLoading.hide();
+          $state.go(stateRedirect).then(function(){
+            $ionicPopup.alert({
+              title: 'Alerta',
+              template: 'Proveedor creado satisfactoriamente'
             });
-          },
-          function error(responseError) {
-            providerVm.errors = responseError.errors;
-            $ionicLoading.hide();
-            providerVm.step = 1;
           });
+        },
+        function error(responseError) {
+          providerVm.errors = responseError.errors;
+          $ionicLoading.hide();
+          providerVm.step = 1;
+        });
     }
 
     function submit() {
