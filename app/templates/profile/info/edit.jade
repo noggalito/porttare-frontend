@@ -1,6 +1,6 @@
 ion-modal-view.client-page
   ion-header-bar.bar.bar-header.bar-light.bar-base-yellow(
-  align-title="center"
+    align-title="center"
   )
     h4 {{::("globals.edit"|translate)}}
     .ion-nav-buttons(side="left")
@@ -24,12 +24,10 @@ ion-modal-view.client-page
             ng-model="piVm.userEdit.custom_image"
             accept="image/*"
           )
-        .errors-wrapper
-          span.show-errors(ng-if="piVm.messages.custom_image" ng-repeat="errCustom_image in piVm.messages.custom_image")
-            .message-error {{errCustom_image}}
+        show-error(array-messages='piVm.messages.custom_image' ng-if="piVm.messages.custom_image")
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': (piVm.updateProfileForm.email.$touched && piVm.updateProfileForm.email.$invalid) || piVm.messages.email}"
+          ng-class="{'item-error': piVm.updateProfileForm.email.$touched && piVm.updateProfileForm.email.$invalid}"
         )
           span.input-label {{::("user.email"|translate)}}
           input(
@@ -37,13 +35,12 @@ ion-modal-view.client-page
             name="email"
             ng-model="piVm.userEdit.email"
             ng-class="input-error"
-            required
+            ng-change="piVm.messages.email = null"
           )
         .errors-wrapper
-          span.show-errors(ng-messages="piVm.updateProfileForm.email.$error" ng-if="piVm.updateProfileForm.email.$touched || piVm.messages.email")
-            .message-error(ng-message="required") {{::("form.requiredField"|translate)}}
-            .message-error(ng-message="email") {{::("form.wrongEmail"|translate)}}
-            .message-error(ng-repeat="errEmail in piVm.messages.email") {{errEmail}}
+          span.show-errors.ng-active(ng-messages="piVm.updateProfileForm.email.$error" ng-if="piVm.updateProfileForm.email.$touched")
+            span.message-error(ng-message="email") {{::("form.wrongEmail"|translate)}}
+          show-error(array-messages="piVm.messages.email" ng-if="piVm.messages.email && !piVm.updateProfileForm.email.$invalid")
 
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': piVm.messages.fecha_de_nacimiento}"
@@ -51,9 +48,7 @@ ion-modal-view.client-page
           span.input-label {{::("user.birthdate"|translate)}}
         .item(ion-datetime-picker date ng-model='piVm.userEdit.fecha_nacimiento')
           | {{piVm.userEdit.fecha_nacimiento| date: "yyyy-MM-dd"}}
-        .errors-wrapper
-          span.show-errors(ng-if="piVm.messages.fecha_nacimiento" ng-repeat="errNacimiento in piVm.messages.fecha_nacimiento")
-            .message-error {{errNacimiento}}
+        show-error(array-messages="piVm.messages.fecha_nacimiento" ng-if="piVm.messages.fecha_naciemiento")
 
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': piVm.messages.name}"
@@ -62,10 +57,9 @@ ion-modal-view.client-page
           input(
             type="text"
             ng-model="piVm.userEdit.name"
+            ng-change="piVm.messages.name = null"
           )
-        .errors-wrapper
-          span.show-errors(ng-if="piVm.messages.name" ng-repeat="errName in piVm.messages.name")
-            .message-error {{errName}}
+        show-error(array-messages="piVm.messages.name" ng-if="piVm.messages.name")
 
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': piVm.messages.ciudad}"
@@ -74,10 +68,9 @@ ion-modal-view.client-page
           input(
             type="text"
             ng-model="piVm.userEdit.ciudad"
+            ng-change="piVm.messages.ciudad = null"
           )
-        .errors-wrapper
-          span.show-errors(ng-if="piVm.messages.ciudad" ng-repeat="errCiudad in piVm.messages.ciudad")
-            .message-error {{errCiudad}}
+        show-error(array-messages="piVm.messages.ciudad" ng-if="piVm.messages.ciudad")
 
       .bar.bar-footer
         input.button.button-primary(
