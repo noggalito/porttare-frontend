@@ -14,3 +14,12 @@ input {
     border-bottom: none;
   }
 }
+
+.txt-area-input{
+  white-space: pre-wrap;
+  min-height: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  cursor: auto;
+  font-family: Montserrat-Light;
+}
