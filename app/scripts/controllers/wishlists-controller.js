@@ -80,6 +80,8 @@
     function showEditModal(wlist, index) {
       currentIndex = index;
       wishlistsVm.wishlist = angular.copy(wlist);
+      var entregar_en = moment(wlist.entregar_en, 'YYYY/MM/DD HH:mm Z');//jshint ignore: line
+      wishlistsVm.wishlist.entregar_en = new Date(entregar_en); //jshint ignore: line
       wishlistsVm.showModal(wishlistsVm.modalSettings.editWishlist);
     }
 
