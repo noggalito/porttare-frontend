@@ -26,6 +26,8 @@
 
     function showNewModal() {
       piVm.userEdit = angular.copy(piVm.user);
+      var fecha_nac = moment(piVm.user.fecha_nacimiento, 'YYYY/MM/DD HH:mm Z');//jshint ignore: line
+      piVm.userEdit.fecha_nacimiento = new Date(fecha_nac); //jshint ignore: line
       ModalService.showModal({
         parentScope: $scope,
         fromTemplateUrl: 'templates/profile/info/edit.html'
@@ -38,7 +40,6 @@
 
     function submitProcess(user){
       $ionicLoading.show({template: '{{::("globals.sending"|translate)}}'});
-
       $auth.updateAccount(user)
         .then(function (response) {
           piVm.user = response.data.data;
