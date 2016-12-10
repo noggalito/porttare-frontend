@@ -27,7 +27,7 @@
     function showNewModal() {
       piVm.userEdit = angular.copy(piVm.user);
       if(piVm.user.fecha_nacimiento){
-        var fecha_nac = moment(piVm.user.fecha_nacimiento, 'YYYY/MM/DD HH:mm Z');//jshint ignore: line
+        var fecha_nac = moment(piVm.user.fecha_nacimiento,'YYYY/MM/DD HH:mm Z');//jshint ignore: line
         piVm.userEdit.fecha_nacimiento = fecha_nac.toDate(); //jshint ignore: line
       }
       ModalService.showModal({
