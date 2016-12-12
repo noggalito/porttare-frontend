@@ -8,7 +8,8 @@
 
   function ProfileService($http,$q, ENV) {
     var service = {
-      getProfile: getProfile
+      getProfile: getProfile,
+      updateProfileProvider:updateProfileProvider
     };
 
     return service;
@@ -20,6 +21,19 @@
       })
       .then(function success(resp){
         return resp.data.user;
+      }, function error(res) {
+        return $q.reject(res.data);
+      });
+    }
+
+    function updateProfileProvider(providerData){
+      return $http({
+        method: 'PUT',
+        url: ENV.apiHost + '/api/provider/profile' ,
+        data: providerData
+
+      }).then(function success(res) {
+        return res.data;
       }, function error(res) {
         return $q.reject(res.data);
       });
