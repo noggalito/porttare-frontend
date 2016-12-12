@@ -1,0 +1,5 @@
+.slick-provider-profile
+  slick-wrapper(settings="spcVm.options.slickSettings")
+    .slick-container(ng-repeat="options in ::spcVm.customOptions track by $index")
+      .slick-content
+        card(options="options")

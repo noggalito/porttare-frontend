@@ -1,0 +1,5 @@
+.slick-provider-item
+  slick-wrapper(settings="sicVm.settings")
+    .slick-container(ng-repeat="options in sicVm.customOptions track by $index")
+      .slick-content
+        card(options="options")

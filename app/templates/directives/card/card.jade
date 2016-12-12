@@ -1,0 +1,13 @@
+.card-directive(ng-click="vm.onCardClick()" ng-class="::{enabled: vm.enableCardPointer}")
+  i.header-icon.icon(
+    ng-if="vm.options.headerButton.show"
+    ng-class="vm.options.headerButton.icon"
+    ng-click="vm.onHeaderButtonClick($event)")
+  .header-image
+    .img(style="background-image: url('{{::vm.options.headerImage}}')")
+  .body-container
+    .text(ng-if="::vm.options.bodyText")
+      | {{::vm.options.bodyText}}
+  .footer-container
+    .text(ng-if="::vm.options.footerText")
+      | {{::vm.options.footerText}}

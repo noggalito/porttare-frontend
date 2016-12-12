@@ -1,0 +1,14 @@
+.slick-provider-profile {
+  .slick-container {
+    .slick-content {
+      text-align: center;
+      margin: 5px;
+      .card-directive {
+        max-width: 250px;
+        .header-image {
+          height: 280px;
+        }
+      }
+    }
+  }
+}
