@@ -22,7 +22,6 @@
 
   function accountTypeController($translate) {
     var radioButtonVm=this;// jshint ignore:line
-    radioButtonVm.radioButtonBank = radioButtonBank;
 
     var transKeys = [
       'provider.bank.savings',
@@ -40,10 +39,6 @@
           label: trans[transKeys[1]]
         }];
     });
-
-    function radioButtonBank(element){
-      radioButtonVm.type=element.value;
-    }
   }
 })();
 

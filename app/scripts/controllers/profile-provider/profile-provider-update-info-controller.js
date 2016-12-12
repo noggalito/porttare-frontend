@@ -16,9 +16,9 @@
     providerProfileVm.showEditModal = showEditModal;
     providerProfileVm.closeModal = closeModal;
     providerProfileVm.edit = editProfile;
-    providerProfileVm.type='';
     providerProfileVm.touchedPayments=false;
     providerProfileVm.methodsPayment=[];
+    providerProfileVm.profileEdit={};
     providerProfileVm.profileProvider  = $auth.user.provider_profile;// jshint ignore:line
 
     function editProfile(profileEdit) {
@@ -27,10 +27,6 @@
       });
 
       profileEdit.formas_de_pago = providerProfileVm.methodsPayment;//jshint ignore:line
-
-      if (providerProfileVm.type!=='') {
-        profileEdit.banco_tipo_cuenta = providerProfileVm.type;//jshint ignore:line
-      }
 
       ProfileService.updateProfileProvider(profileEdit)
         .then(function success(resp) {
