@@ -9,7 +9,6 @@
                               $ionicPopup,
                               $state,
                               $auth,
-                              $filter,
                               $ionicLoading,
                               $ionicScrollDelegate) {
     var providerVm = this;
@@ -18,38 +17,38 @@
     var stateRedirect = 'provider.items.index';
     providerVm.submit = submit;
     providerVm.step = 1;
-    providerVm.paymentMethods = [];
+    providerVm.methodsPayment = [];
     providerVm.matrizProvider = {};
     providerVm.touchedPayments = false;
-    // TODO translate:
+    providerVm.removeImage = removeImage;
     providerVm.laborDays = [{
       label: 'Lunes',
       name: 'mon'
     },
-    {
-      label: 'Martes',
-      name: 'tue'
-    },
-    {
-      label: 'Miércoles',
-      name: 'wed'
-    },
-    {
-      label: 'Jueves',
-      name: 'thu'
-    },
-    {
-      label: 'Viernes',
-      name: 'fri'
-    },
-    {
-      label: 'Sábado',
-      name: 'sat'
-    },
-    {
-      label: 'Domingo',
-      name: 'sun'
-    }];
+      {
+        label: 'Martes',
+        name: 'tue'
+      },
+      {
+        label: 'Miércoles',
+        name: 'wed'
+      },
+      {
+        label: 'Jueves',
+        name: 'thu'
+      },
+      {
+        label: 'Viernes',
+        name: 'fri'
+      },
+      {
+        label: 'Sábado',
+        name: 'sat'
+      },
+      {
+        label: 'Domingo',
+        name: 'sun'
+      }];
 
     function initProvider(){
       providerVm.provider = {};
@@ -57,16 +56,12 @@
       providerVm.provider.email = $auth.user.email;
     }
 
+    function removeImage(){
+      providerVm.provider.logotipo = null;
+    }
+
     function createOffice(office){
       var newOffice = angular.copy(office);
-      newOffice.hora_de_apertura = $filter('formatDate')(
-        newOffice.hora_de_apertura,
-        'H:m Z'
-      );
-      newOffice.hora_de_cierre = $filter('formatDate')(
-        newOffice.hora_de_cierre,
-        'H:m Z'
-      );
       newOffice.inicio_de_labores = newOffice.inicio_de_labores && newOffice.inicio_de_labores.name;
       newOffice.final_de_labores = newOffice.final_de_labores && newOffice.final_de_labores.name;
       return newOffice;
@@ -77,8 +72,12 @@
         template: 'enviando...'
       });
 
-      var objectToSend = angular.copy(providerVm.provider);
-      objectToSend.formas_de_pago = providerVm.paymentMethods;
+      var objectToSend = providerVm.provider;
+      objectToSend.formas_de_pago = providerVm.methodsPayment.filter(function(row){
+        return row.checked;
+      }).map(function(row){
+        return row.value;
+      });
 
       objectToSend.offices_attributes = [createOffice(providerVm.matrizProvider)];
       ProviderService.createNewProvider(objectToSend)

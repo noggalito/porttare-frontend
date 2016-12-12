@@ -5,7 +5,7 @@
     .module('porttare.services')
     .factory('ProviderService', ProviderService);
 
-  function ProviderService($http, $q, ENV) {
+  function ProviderService($http, $q, ENV, Upload) {
 
     var service = {
       createNewProvider: createNewProvider
@@ -14,11 +14,21 @@
     return service;
 
     function createNewProvider(data) {
-      return $http({
-        method: 'POST',
-        url: ENV.apiHost + '/api/provider/profile',
-        data: data
-      }).then(function success(res){
+      var promise;
+      var options = {
+                      method: 'POST',
+                      url: ENV.apiHost + '/api/provider/profile',
+                      data: data
+                    };
+
+      if(data.logotipo){
+        promise = Upload.upload(options);
+      }
+      else{
+        promise = $http(options);
+      }
+      return promise
+      .then(function success(res){
         return res.data;
       }, function error(res) {
         return $q.reject(res.data);
