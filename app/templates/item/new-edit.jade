@@ -19,7 +19,9 @@ ion-modal-view.item-form
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': modalVm.itemForm.titulo.$touched && modalVm.itemForm.titulo.$invalid}"
         )
-          span.input-label {{::("item.titulo"|translate)}}
+          span.input-label
+            | {{::("item.titulo"|translate)}}
+            abbr *
           input(
             name='titulo'
             type='text'
@@ -54,7 +56,9 @@ ion-modal-view.item-form
         label.item.item-input.item-select(
           ng-class="{'item-error': modalVm.itemForm.unidad_medida.$touched && modalVm.itemForm.unidad_medida.$invalid}"
         )
-          span.input-label {{::("item.unidadMedida"|translate)}}
+          span.input-label
+            | {{::("item.unidadMedida"|translate)}}
+            abbr *
           select(ng-model='modalVm.item.unidad_medida' name='unidad_medida' required)
             option(value='volumen') Volumen
             option(value='unidades') Unidades
@@ -76,7 +80,9 @@ ion-modal-view.item-form
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': modalVm.itemForm.precio.$touched && modalVm.itemForm.precio.$invalid}"
         )
-          span.input-label {{::("item.precio"|translate)}}
+          span.input-label
+            | {{::("item.precio"|translate)}}
+            abbr *
           input(
             min='0'
             name='precio'

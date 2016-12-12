@@ -12,6 +12,12 @@
     font-family: Montserrat-SemiBold;
   }
 
+  .input-label {
+    abbr {
+      margin-left: 5px;
+    }
+  }
+
   .item-error {
     border-color: $error-red;
 
