@@ -1,6 +1,6 @@
 .list.list-inset
   legend {{::("provider.formLegendSecond"|translate)}}
-  
+
   label.item.item-input.item-stacked-label(
     ng-class="{'item-error': providerVm.providerForm.telefono.$touched && providerVm.providerForm.telefono.$invalid}"
   )
@@ -44,15 +44,8 @@
   label.item.item-input.item-stacked-label(
     ng-class="{'item-error': providerVm.touchedPayments && providerVm.providerForm.methodsPayment.$invalid}"
   )
-    span.input-label {{::("provider.methodPayment"|translate)}}*
-    ion-list
-      ion-checkbox(
-        ng-repeat="method in providerVm.methodsPayment",
-        ng-model="method.checked"
-        name="methodsPayment"
-        ng-checked="method.checked"
-        ng-change="providerVm.checked(method)"
-      ) {{ ::method.label }}
+    span.input-label {{::("provider.methodPayment"|translate)}}
+    methods-payment(methods="providerVm.methodsPayment" profile-form="providerVm.providerForm" touched="providerVm.touchedPayments")
   .errors-wrapper
     span.show-errors.ng-active(ng-messages="providerVm.providerForm.methodsPayment.$invalid" ng-if="providerVm.touchedPayments && providerVm.providerForm.methodsPayment.$invalid")
       span.message-error(ng-message="required") {{::("form.requiredField"|translate)}}
