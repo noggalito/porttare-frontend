@@ -5,18 +5,7 @@ ion-modal-view
     .ion-nav-buttons(side="left")
       button.button.ion-chevron-left.button-clear.left(
         ng-click="providerProfileVm.closeModal()"
-<<<<<<< df552c9b8b9e145098a1ba7d21e1fbc43b26dae2
-<<<<<<< c37a280c27fdbe46fe6657b93443d87e01b8b6e7
       ) {{::('globals.cancel'|translate)}}
-
-=======
-      )
-    .title.alt-logo
->>>>>>> directivas methodsPayment y Acounnttype
-=======
-      ) {{::('globals.cancel'|translate)}}
-
->>>>>>> nuevos cambios
   ion-content.resource-form
     form(
       name="providerProfileVm.providerProfileForm"
@@ -136,19 +125,8 @@ ion-modal-view
           ng-class="{'item-error': providerProfileVm.touchedPayments && providerProfileVm.providerProfileForm.methodsPayment.$invalid}"
         )
           span.input-label {{::("provider.methodPayment"|translate)}}
-<<<<<<< df552c9b8b9e145098a1ba7d21e1fbc43b26dae2
-<<<<<<< a9d64e383421c8112a0ab6c0a347c982316d893b
-<<<<<<< c37a280c27fdbe46fe6657b93443d87e01b8b6e7
           methods-payment(methods="providerProfileVm.methodsPayment" profile-form="providerProfileVm.providerProfileForm" touched="providerProfileVm.touchedPayments")
-=======
-          methods-payment(vm="providerProfileVm")
->>>>>>> directivas methodsPayment y Acounnttype
-=======
-          methods-payment(provider-profile-vm="providerProfileVm")
->>>>>>> cambios quitando  ,index.html agregando /dist/, quitando gemfile.lock x64
-=======
-          methods-payment(methods="providerProfileVm.methodsPayment" profile-form="providerProfileVm.providerProfileForm" touched="providerProfileVm.touchedPayments")
->>>>>>> nuevos cambios
+
         .errors-wrapper
           span.show-errors(ng-messages="providerProfileVm.touchedPayments && providerProfileVm.providerProfileForm.methodsPayment.$invalid")
             span.message-error(ng-message="required") {{::("form.requiredField"|translate)}}

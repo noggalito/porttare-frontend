@@ -114,7 +114,7 @@ ion-modal-view.item-form
           ng-model='modalVm.item.en_stock'
           toggle-class='toggle-energized'
         )
-          span.input-label{{::("item.stock"|translate)}}
+          span.input-label {{::("item.stock"|translate)}}
         .errors-wrapper
           show-error(array-messages='modalVm.messages.stock')
 
