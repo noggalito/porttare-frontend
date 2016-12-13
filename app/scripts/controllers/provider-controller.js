@@ -6,7 +6,6 @@
     .controller('ProviderController', ProviderController);
 
   function ProviderController(ProviderService,
-                              $translate,
                               $ionicPopup,
                               $state,
                               $auth,
@@ -16,19 +15,11 @@
     initProvider();
 
     var stateRedirect = 'provider.items.index';
-    var transKeys = [
-      'provider.methods.cash',
-      'provider.methods.creditCard',
-      'provider.bank.savings',
-      'provider.bank.credit'
-    ];
     providerVm.submit = submit;
     providerVm.step = 1;
-    providerVm.methodsPayment = [];
+    providerVm.paymentMethods = [];
     providerVm.matrizProvider = {};
     providerVm.touchedPayments = false;
-    providerVm.checked = checked;
-    providerVm.checkedBank = checkedBank;
     providerVm.laborDays = [{
       label: 'Lunes',
       name: 'mon'
@@ -58,58 +49,10 @@
       name: 'sun'
     }];
 
-    $translate(transKeys).then(function (trans) {
-      providerVm.methodsPayment = [
-        {
-          value: 'efectivo',
-          label: trans[transKeys[0]],
-          checked: false
-        },
-        {
-          value: 'tarjeta_credito',
-          label: trans[transKeys[1]],
-          checked: false
-        }
-      ];
-      providerVm.accountType = [
-        {
-          value: 'Ahorros',
-          label: trans[transKeys[2]],
-          checked: false
-        },
-        {
-          value: 'Crédito',
-          label: trans[transKeys[3]],
-          checked: false
-        }
-      ];
-    });
-
     function initProvider(){
       providerVm.provider = {};
       providerVm.provider.representante_legal = $auth.user.name;
       providerVm.provider.email = $auth.user.email;
-    }
-
-    function checked(element){
-      providerVm.touchedPayments = true;
-      providerVm.checkedItems = 0;
-      if(element.checked){
-        providerVm.checkedItems--;
-      }else{
-        providerVm.checkedItems++;
-      }
-      providerVm.providerForm.methodsPayment.$invalid = providerVm.checkedItems > 0;
-    }
-
-    function checkedBank(element){
-      if (element.checked) {
-        providerVm.accountType.map(function(row){
-          if (row !== element) {
-            row.checked = false;
-          }
-        });
-      }
     }
 
     function createOffice(office){
@@ -127,11 +70,7 @@
       });
 
       var objectToSend = angular.copy(providerVm.provider);
-      objectToSend.formas_de_pago = providerVm.methodsPayment.filter(function(row){
-        return row.checked;
-      }).map(function(row){
-        return row.value;
-      });
+      objectToSend.formas_de_pago = providerVm.paymentMethods;
 
       objectToSend.offices_attributes = [createOffice(providerVm.matrizProvider)];
       ProviderService.createNewProvider(objectToSend)

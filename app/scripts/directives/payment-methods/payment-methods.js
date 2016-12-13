@@ -3,18 +3,18 @@
 
   angular
     .module('porttare.directives')
-    .directive('methodsPayment', actionChecked);
+    .directive('paymentMethods', actionChecked);
 
   function actionChecked() {
     var directive = {
       restrict: 'E',
-      templateUrl: 'templates/directives/methods-payment/methods-payment.html',
+      templateUrl: 'templates/directives/payment-methods/payment-methods.html',
       scope: {
         profileForm: '=',
         methods:'=',
         touched:'='
       },
-      controller: methodsPaymentController,
+      controller: paymentMethodsController,
       controllerAs: 'checkedVm',
       bindToController: true
     };
@@ -22,7 +22,7 @@
     return directive;
   }
 
-  function methodsPaymentController($translate) {
+  function paymentMethodsController($translate) {
     var checkedVm = this;// jshint ignore:line
     checkedVm.checked=checked;
 
@@ -32,7 +32,7 @@
     ];
 
     $translate(transKeys).then(function (trans) {
-      checkedVm.methodsPayment = [
+      checkedVm.paymentMethods = [
         {
           value: 'efectivo',
           label: trans[transKeys[0]],
@@ -48,17 +48,17 @@
 
     function checked(element){
       checkedVm.touched = true;
-      checkedVm.methodsPayment.map(function(row){
+      checkedVm.paymentMethods.map(function(row){
         if (row !== element) {
           if(row.checked === false && element.checked===false ){
-            checkedVm.profileForm.methodsPayment.$invalid=true;
+            checkedVm.profileForm.paymentMethods.$invalid=true;
           }else{
-            checkedVm.profileForm.methodsPayment.$invalid=false;
+            checkedVm.profileForm.paymentMethods.$invalid=false;
           }
         }
       });
 
-      checkedVm.methods= checkedVm.methodsPayment.filter(function(row){
+      checkedVm.methods= checkedVm.paymentMethods.filter(function(row){
         return row.checked;
       }).map(function(row){
         return row.value;

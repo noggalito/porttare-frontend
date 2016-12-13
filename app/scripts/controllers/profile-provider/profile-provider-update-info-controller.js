@@ -17,7 +17,7 @@
     providerProfileVm.closeModal = closeModal;
     providerProfileVm.edit = editProfile;
     providerProfileVm.touchedPayments=false;
-    providerProfileVm.methodsPayment=[];
+    providerProfileVm.paymentMethods=[];
     providerProfileVm.profileEdit={};
     providerProfileVm.profileProvider  = $auth.user.provider_profile;// jshint ignore:line
 
@@ -26,7 +26,7 @@
         template: '{{::("globals.updating"|translate)}}'
       });
 
-      profileEdit.formas_de_pago = providerProfileVm.methodsPayment;//jshint ignore:line
+      profileEdit.formas_de_pago = providerProfileVm.paymentMethods;//jshint ignore:line
 
       ProfileService.updateProfileProvider(profileEdit)
         .then(function success(resp) {

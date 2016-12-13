@@ -123,12 +123,12 @@ ion-modal-view
           )
 
         label.item.item-input.item-stacked-label(
-          ng-class="{'item-error': providerProfileVm.touchedPayments && providerProfileVm.providerProfileForm.methodsPayment.$invalid}"
+          ng-class="{'item-error': providerProfileVm.touchedPayments && providerProfileVm.providerProfileForm.paymentMethods.$invalid}"
         )
           span.input-label {{::("provider.methodPayment"|translate)}}
-          methods-payment(methods="providerProfileVm.methodsPayment" profile-form="providerProfileVm.providerProfileForm" touched="providerProfileVm.touchedPayments")
+          payment-methods(methods="providerProfileVm.paymentMethods" profile-form="providerProfileVm.providerProfileForm" touched="providerProfileVm.touchedPayments")
         .errors-wrapper
-          span.show-errors(ng-messages="providerProfileVm.touchedPayments && providerProfileVm.providerProfileForm.methodsPayment.$invalid")
+          span.show-errors(ng-messages="providerProfileVm.touchedPayments && providerProfileVm.providerProfileForm.paymentMethods.$invalid")
             span.message-error(ng-message="required") {{::("form.requiredField"|translate)}}
           show-error(array-messages="providerProfileVm.errors.formas_de_pago")
 
