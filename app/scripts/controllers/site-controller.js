@@ -44,7 +44,7 @@
             angular.element.trim(currentUser[attribute])
           );
         });
-      return currentUser[presentAttribute];
+        return currentUser[presentAttribute];
       }
     }
 
