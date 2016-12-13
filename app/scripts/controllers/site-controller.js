@@ -5,8 +5,7 @@
     .module('porttare.controllers')
     .controller('SiteController', SiteController);
 
-  function SiteController($rootScope, $ionicLoading, $auth, 
-                          APP) {// jshint ignore:line
+  function SiteController($rootScope, $ionicLoading, $auth, APP) {// jshint ignore:line
     var siteVm = this,
         currentUser = null;
 
@@ -33,17 +32,6 @@
       $ionicLoading.hide();
     });
 
-    function getUserAttributes(attributes){
-
-      var presentAttribute = attributes.find(function(attribute) {
-        return !angular.element.isEmptyObject(
-          angular.element.trim(currentUser[attribute])
-        );
-      });
-
-      return currentUser[presentAttribute];
-    }
-
     function userName () {
       if (currentUser) {
         var attributes = [
@@ -51,7 +39,12 @@
           'nickname',
           'email'
         ];
-        return getUserAttributes(attributes);
+        var presentAttribute = attributes.find(function(attribute) {
+          return !angular.element.isEmptyObject(
+            angular.element.trim(currentUser[attribute])
+          );
+        });
+      return currentUser[presentAttribute];
       }
     }
 
