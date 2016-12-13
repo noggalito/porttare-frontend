@@ -32,7 +32,7 @@
       swipeToSlide: true,
       mobileFirst: true
     };
-    swcVm.customSettings = angular.merge({}, defaultSlickConfig, swcVm.settings);
+    swcVm.settings = angular.merge({}, defaultSlickConfig, swcVm.settings);
 
   }
 })();

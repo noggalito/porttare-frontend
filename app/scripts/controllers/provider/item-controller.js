@@ -22,6 +22,7 @@
     providerItemVm.showEditModal = launchModal;
     providerItemVm.unregisterItem = unregisterItem;
     providerItemVm.slickSettings = { dots: true };
+    providerItemVm.imagesLoaded = true;
 
     init();
 
@@ -79,7 +80,9 @@
       $ionicLoading.show({
         template: '{{::("globals.updating"|translate)}}'
       });
+      providerItemVm.imagesLoaded = false;
       ItemsService.editItem(modalScope.modalVm.item).then(function success(resp) {
+        providerItemVm.imagesLoaded = true;
         providerItemVm.providerItem = resp.provider_item; //jshint ignore:line
         init();
 
