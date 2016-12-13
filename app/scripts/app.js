@@ -13,7 +13,8 @@
     'slickCarousel',
     'ngFileUpload',
     'ngMessages',
-    'ion-datetime-picker'
+    'ion-datetime-picker',
+    'monospaced.elastic'
   ])
 
   .run(function($ionicPlatform) {

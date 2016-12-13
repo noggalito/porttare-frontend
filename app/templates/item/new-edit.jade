@@ -46,10 +46,9 @@ ion-modal-view.item-form
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("item.observaciones"|translate)}}
-          .txt-area-input(
-            contenteditable="true"
-            type="text"
-            ng-model='modalVm.item.observaciones'
+          textarea(
+            msd-elastic
+            ng-model="modalVm.item.observaciones"
           )
         .errors-wrapper
           show-error(array-messages='modalVm.messages.observaciones')
