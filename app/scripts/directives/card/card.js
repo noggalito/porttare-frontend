@@ -23,7 +23,7 @@
     function cardController(APP) {
       var vm = this;
       var defaultOptions = {
-        headerImage: APP.defaultCardImage,
+        headerImage: APP.defaultImage,
         bodyText: null,
         footerText: null,
         headerButton: {
