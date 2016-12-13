@@ -25,30 +25,30 @@
       label: 'Lunes',
       name: 'mon'
     },
-      {
-        label: 'Martes',
-        name: 'tue'
-      },
-      {
-        label: 'Miércoles',
-        name: 'wed'
-      },
-      {
-        label: 'Jueves',
-        name: 'thu'
-      },
-      {
-        label: 'Viernes',
-        name: 'fri'
-      },
-      {
-        label: 'Sábado',
-        name: 'sat'
-      },
-      {
-        label: 'Domingo',
-        name: 'sun'
-      }];
+    {
+      label: 'Martes',
+      name: 'tue'
+    },
+    {
+      label: 'Miércoles',
+      name: 'wed'
+    },
+    {
+      label: 'Jueves',
+      name: 'thu'
+    },
+    {
+      label: 'Viernes',
+      name: 'fri'
+    },
+    {
+      label: 'Sábado',
+      name: 'sat'
+    },
+    {
+      label: 'Domingo',
+      name: 'sun'
+    }];
 
     function initProvider(){
       providerVm.provider = {};
@@ -79,7 +79,7 @@
         return row.value;
       });
 
-      objectToSend.offices_attributes = [createOffice(providerVm.matrizProvider)];
+      //objectToSend.offices_attributes = [createOffice(providerVm.matrizProvider)];
       ProviderService.createNewProvider(objectToSend)
         .then(function success(provider) {
           //update auth user
