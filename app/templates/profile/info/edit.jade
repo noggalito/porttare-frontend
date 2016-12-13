@@ -24,7 +24,7 @@ ion-modal-view.client-page
             ng-model="piVm.userEdit.custom_image"
             accept="image/*"
           )
-        show-error(array-messages='piVm.messages.custom_image' ng-if="piVm.messages.custom_image")
+        show-error(array-messages='piVm.messages.custom_image')
 
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': piVm.updateProfileForm.email.$touched && piVm.updateProfileForm.email.$invalid}"
@@ -39,7 +39,7 @@ ion-modal-view.client-page
         .errors-wrapper
           span.show-errors.ng-active(ng-messages="piVm.updateProfileForm.email.$error" ng-if="piVm.updateProfileForm.email.$touched")
             span.message-error(ng-message="email") {{::("form.wrongEmail"|translate)}}
-          show-error(array-messages="piVm.messages.email" ng-if="piVm.messages.email && !piVm.updateProfileForm.email.$invalid")
+          show-error(array-messages="piVm.messages.email")
 
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': piVm.messages.fecha_de_nacimiento}"
@@ -47,7 +47,7 @@ ion-modal-view.client-page
           span.input-label {{::("user.birthdate"|translate)}}
         .item(ion-datetime-picker date ng-model='piVm.userEdit.fecha_nacimiento')
           | {{piVm.userEdit.fecha_nacimiento| date: "yyyy-MM-dd"}}
-        show-error(array-messages="piVm.messages.fecha_nacimiento" ng-if="piVm.messages.fecha_naciemiento")
+        show-error(array-messages="piVm.messages.fecha_nacimiento")
 
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': piVm.messages.name}"
@@ -57,7 +57,7 @@ ion-modal-view.client-page
             type="text"
             ng-model="piVm.userEdit.name"
           )
-        show-error(array-messages="piVm.messages.name" ng-if="piVm.messages.name")
+        show-error(array-messages="piVm.messages.name")
 
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': piVm.messages.ciudad}"
@@ -67,7 +67,7 @@ ion-modal-view.client-page
             type="text"
             ng-model="piVm.userEdit.ciudad"
           )
-        show-error(array-messages="piVm.messages.ciudad" ng-if="piVm.messages.ciudad")
+        show-error(array-messages="piVm.messages.ciudad")
 
       .bar.bar-footer
         input.button.button-primary(
