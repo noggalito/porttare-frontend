@@ -96,6 +96,7 @@
     }
 
     function error(resp){
+      providerItemVm.imagesLoaded = true;
       modalScope.modalVm.messages = resp.status===422 ? resp.data.errors:undefined;
       $ionicLoading.hide();
     }
