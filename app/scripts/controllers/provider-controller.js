@@ -79,7 +79,7 @@
         return row.value;
       });
 
-      //objectToSend.offices_attributes = [createOffice(providerVm.matrizProvider)];
+      objectToSend.offices_attributes = [createOffice(providerVm.matrizProvider)];
       ProviderService.createNewProvider(objectToSend)
         .then(function success(provider) {
           //update auth user
