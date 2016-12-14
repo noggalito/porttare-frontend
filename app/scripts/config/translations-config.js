@@ -221,7 +221,8 @@
         direccion: 'Dirección',
         telefono: 'Teléfono',
         email: 'email',
-        noClients: 'No tienes ningún cliente todavía.'
+        noClients: 'No tienes ningún cliente todavía.',
+        addImage: 'Agregar fotografía'
       },
       wishlist: {
         wishlists: 'Listas de deseos',
