@@ -16,6 +16,8 @@
     piVm.closeModal = closeModal;
     piVm.submitProcess = submitProcess;
     piVm.messages = {};
+    piVm.hasImageFile = hasImageFile;
+
     init();
 
     function init(){
@@ -64,5 +66,8 @@
       });
     });
 
+    function hasImageFile(user){
+      return ProfileService.hasImageFile(user);
+    }
   }
 })();

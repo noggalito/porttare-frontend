@@ -17,16 +17,23 @@ ion-modal-view
         legend {{::("client.formLegend"|translate)}}
 
         label.item.item-input.item-input--no-borders.item-stacked-label
-          span.input-label {{::("user.image"|translate|uppercase)}}
+          span.input-label {{::("user.imagen"|translate)}}
         .picture-uploader(
-          type = "file"
+          type="file"
           ngf-select
-          ng-model = "piVm.userEdit.custom_image"
+          ng-model="piVm.userEdit.custom_image"
           ngf-capture = "'camera'"
-          accept = "image/*"
+          accept="image/*"
         )
           .img-placeholder
-          .img-placeholder--legend {{::("client.addImage"|translate)}}
+          .img-placeholder--legend {{::("user.changeImagen"|translate)}}
+        .row.images-previews
+          .img-wrapper.col-offset-25.col-50
+            img( ng-if="piVm.hasImageFile(piVm.userEdit)" 
+                  ngf-src="piVm.userEdit.custom_image"
+            )
+            user-image( user="piVm.userEdit" ng-if="!piVm.hasImageFile(piVm.userEdit)" )
+
         show-error(array-messages='piVm.user.custom_image')
 
         label.item.item-input.item-stacked-label(

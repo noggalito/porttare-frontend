@@ -6,12 +6,14 @@
     .module('porttare.services')
     .factory('ProfileService', ProfileService);
 
-  function ProfileService($http,$q, ENV, $auth,Upload) {
+  function ProfileService($http,$q, ENV, $auth,Upload, APP) { //jshint ignore: line
 
     var service = {
       getProfile: getProfile,
       updateProfileProvider:updateProfileProvider,
-      editProfile: editProfile
+      editProfile: editProfile,
+      getUserImageURL : getUserImageURL,
+      hasImageFile : hasImageFile
     };
 
     return service;
@@ -55,6 +57,19 @@
 
       }
       return promise;
+    }
+
+    function getUserImageURL(user){ //jshint ignore: line
+      /* jshint ignore:start */
+      return user.custom_image_url 
+              || ( user.custom_image && user.custom_image.url ) 
+              || user.image 
+              || APP.defaultProfileImage;
+      /* jshint ignore:end */
+    }
+
+    function hasImageFile(user){
+      return user.custom_image && !user.custom_image.url;
     }
   }
 })();

@@ -309,6 +309,7 @@
         age:  'Edad',
         country:  'Ciudad',
         image:  'Imagen',
+        changeImagen: 'Cambiar Imagen',
         successUpdateProfile: 'Perfil actualizado éxitosamente',
         password: 'Contraseña',
         birthdate:  'Fecha de Nacimiento'
