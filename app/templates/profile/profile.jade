@@ -5,6 +5,7 @@ ion-view(
     .alt-logo
   ion-content.has-header.show-profile-page(
     scroll="false"
+    overflow-scroll="false"
   )
     .row
       .col.profile-header
@@ -14,7 +15,7 @@ ion-view(
         .user-name {{ siteVm.userName() }}
 
     .profile-body
-      ion-tabs
+      ion-tabs.tabs-top.tabs-striped
         ion-tab(
           title="{{::('profile.tabs.info'|translate)}}"
           ui-sref="app.profile.info"

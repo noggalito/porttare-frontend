@@ -90,7 +90,7 @@
                     fecha_nacimiento:'1973-08-06' //jshint ignore:line
                   };
         ctrl.submitProcess(user);
-        deferEditProfile.resolve({data: { user: {}}});
+        deferredUpdate.resolve({data: { user: {}}});
         deferIonic.resolve();
         $rootScope.$digest();
         sinon.assert.calledOnce($ionicPopup.alert);

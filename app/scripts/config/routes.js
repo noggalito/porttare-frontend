@@ -439,10 +439,9 @@ function routes($stateProvider, $urlRouterProvider) {
         controller: 'ProfileAddressesController',
         controllerAs: 'pfaVm',
         resolve: {
-          data: function ($ionicLoading, $stateParams, ProfileAddressesService, ErrorHandlerService) {
+          data: function (ProfileAddressesService, ErrorHandlerService) {
             return ProfileAddressesService.getAddresses()
               .then(function success(res) {
-                $ionicLoading.hide();
                 return res;
               }, ErrorHandlerService.handleCommonErrorGET);
           }

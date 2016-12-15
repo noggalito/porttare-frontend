@@ -1,38 +1,44 @@
-ion-content
-  .addresses-page
-    .address-container(ng-repeat="address in ::pfaVm.addresses")
-      .edit
-        link-button(on-click="pfaVm.redirectToUpdateAddressView(address.id)" text="{{::('profile.addresses.buttonEdit'|translate)}}")
-      .name {{address.nombre || address.direccion_uno}}
-      .address-grid
-        .row
-          .col.col-label {{::('profile.addresses.city'|translate)}}
-          .col {{address.ciudad}}
-        .row
-          .col.col-label {{::('profile.addresses.parish'|translate)}}
-          .col {{address.parroquia}}
-        .row
-          .col.col-label {{::('profile.addresses.neighborhood'|translate)}}
-          .col {{address.barrio}}
-        .row
-          .col.col-label {{::('profile.addresses.addressOne'|translate)}}
-          .col {{address.direccion_uno}}
-        .row
-          .col.col-label {{::('profile.addresses.addressTwo'|translate)}}
-          .col {{address.direccion_dos}}
-        .row
-          .col.col-label {{::('profile.addresses.zipCode'|translate)}}
-          .col {{address.codigo_postal}}
-        .row
-          .col.col-label {{::('profile.addresses.reference'|translate)}}
-          .col {{address.referencia}}
-        .row
-          .col.col-label {{::('profile.addresses.telephoneNumber'|translate)}}
-          .col {{address.numero_convencional}}
+ion-content(
+  scroll="false"
+)
+  .addresses-wrapper(
+    ng-repeat="address in ::pfaVm.addresses"
+  )
+    .list.list-inset.list--no-borders.text-center.actions-wrapper
+      button.button.button-clear.button-positive(
+        ng-click="pfaVm.redirectToUpdateAddressView(address.id)"
+      ) {{::('profile.addresses.buttonEdit'|translate)}}
+    
+    .list.list-inset.list--no-borders.resource-details-table
+      p {{ address.nombre || address.direccion_uno }}
+      .row
+        .col.col-50.label {{::('profile.addresses.city'|translate)}}
+        .col.col-50.value {{address.ciudad}}
+      .row
+        .col.col-50.label {{::('profile.addresses.parish'|translate)}}
+        .col.col-50.value {{address.parroquia}}
+      .row
+        .col.col-50.label {{::('profile.addresses.neighborhood'|translate)}}
+        .col.col-50.value {{address.barrio}}
+      .row
+        .col.col-50.label {{::('profile.addresses.addressOne'|translate)}}
+        .col.col-50.value {{address.direccion_uno}}
+      .row
+        .col.col-50.label {{::('profile.addresses.addressTwo'|translate)}}
+        .col.col-50.value {{address.direccion_dos}}
+      .row
+        .col.col-50.label {{::('profile.addresses.zipCode'|translate)}}
+        .col.col-50.value {{address.codigo_postal}}
+      .row
+        .col.col-50.label {{::('profile.addresses.reference'|translate)}}
+        .col.col-50.value {{address.referencia}}
+      .row
+        .col.col-50.label {{::('profile.addresses.telephoneNumber'|translate)}}
+        .col.col-50.value {{address.numero_convencional}}
 
-    .address-create-new
-      action-button(
-        on-click="pfaVm.redirectToNewAddressView()"
-        text='{{::("profile.addresses.addAddressBtnText"|translate)}}'
-        color="yellow"
-      )
+  .list.list-inset.list--no-borders.text-center.actions-wrapper
+    action-button(
+      on-click="pfaVm.redirectToNewAddressView()"
+      text='{{::("profile.addresses.addAddressBtnText"|translate)}}'
+      color="yellow"
+    )
