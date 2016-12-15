@@ -17,7 +17,7 @@
     var stateRedirect = 'provider.items.index';
     providerVm.submit = submit;
     providerVm.step = 1;
-    providerVm.methodsPayment = [];
+    providerVm.paymentMethods = [];
     providerVm.matrizProvider = {};
     providerVm.touchedPayments = false;
     providerVm.removeImage = removeImage;
@@ -73,11 +73,7 @@
       });
 
       var objectToSend = providerVm.provider;
-      objectToSend.formas_de_pago = providerVm.methodsPayment.filter(function(row){
-        return row.checked;
-      }).map(function(row){
-        return row.value;
-      });
+      objectToSend.formas_de_pago = providerVm.paymentMethods;
 
       objectToSend.offices_attributes = [createOffice(providerVm.matrizProvider)];
       ProviderService.createNewProvider(objectToSend)

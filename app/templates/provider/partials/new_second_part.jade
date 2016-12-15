@@ -53,7 +53,7 @@
 
   label.item.item-input.item-stacked-label
     span.input-label {{::("provider.logo"|translate)}}
-  .uploader(
+  .picture-uploader(
     ng-if="!providerVm.provider.logotipo"
     type="file"
     ngf-select
@@ -75,6 +75,6 @@
         accept="image/*"
       )
     .row
-      .button.button-clear.button-positive.col-offset-25.col-50(ng-click="removeImage()")
+      .button.button-clear.button-positive.col-offset-25.col-50(ng-click="providerVm.removeImage()")
         | Quitar imagen
   show-error(array-messages='providerVm.errors.imagen')
