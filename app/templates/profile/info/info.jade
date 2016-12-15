@@ -1,23 +1,24 @@
-ion-content.profile-page.responsive-md
-  .btn-edit
-    link-button(on-click="piVm.showNewModal(piVm.user)" text="{{::('globals.edit'|translate)}}")
-  .col.col-offset-25.col-50
-    .row
-      .col.col-label {{::("user.name"|translate)}}
-      .col.col-value {{piVm.user.name}}
+ion-content.profile-details(
+  scroll="false"
+)
+  .list.list-inset.list--no-borders.text-center.actions-wrapper
+    button.button.button-clear.button-positive(
+      ng-click="piVm.showNewModal(piVm.user)"
+    ) {{::('globals.edit'|translate)}}
 
+  .list.list-inset.list--no-borders.resource-details-table
     .row
-      .col.col-label {{::("user.email"|translate)}}
-      .col.col-value {{piVm.user.email}}
-
+      .col.col-50.label {{::("user.name"|translate)}}
+      .col.col-50.value {{piVm.user.name}}
     .row
-      .col.col-label {{::("user.age"|translate)}}
-      .col.col-value {{piVm.user.fecha_nacimiento | age}}
-
+      .col.col-50.label {{::("user.email"|translate)}}
+      .col.col-50.value {{piVm.user.email}}
     .row
-      .col.col-label {{::("user.country"|translate)}}
-      .col.col-value {{piVm.user.ciudad}}
-
+      .col.col-50.label {{::("user.age"|translate)}}
+      .col.col-50.value {{piVm.user.fecha_nacimiento | age}}
     .row
-      .col.col-label {{::("user.password"|translate)}}
-      .col.col-value ********
+      .col.col-50.label {{::("user.country"|translate)}}
+      .col.col-50.value {{piVm.user.ciudad}}
+    .row
+      .col.col-50.label {{::("user.password"|translate)}}
+      .col.col-50.value ********
