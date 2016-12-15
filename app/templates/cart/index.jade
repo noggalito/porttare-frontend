@@ -7,7 +7,7 @@ ion-view(
     .item(ng-repeat="provider in cartVm.cart.provider_profiles track by $index")
       .provider-items-container
         .business-name {{provider.razon_social}}
-        slick-item(settings="cartVm.slickSettings" data="provider")
+        slick-provider-item(settings="cartVm.slickSettings" data="provider")
 
   ion-footer-bar.cart-page-footer
     action-button(

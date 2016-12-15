@@ -1,0 +1,13 @@
+.slick-provider-item {
+  .slick-container {
+    .slick-content {
+      text-align: center;
+      margin: 5px;
+      .card-directive {
+        .body-container {
+          height: auto;
+        }
+      }
+    }
+  }
+}
