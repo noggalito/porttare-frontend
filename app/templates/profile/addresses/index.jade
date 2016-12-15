@@ -1,7 +1,7 @@
-ion-content(
+ion-content.addresses-wrapper(
   scroll="false"
 )
-  .addresses-wrapper(
+  .address-wrapper(
     ng-repeat="address in ::pfaVm.addresses"
   )
     .list.list-inset.list--no-borders.text-center.actions-wrapper
@@ -10,7 +10,7 @@ ion-content(
       ) {{::('profile.addresses.buttonEdit'|translate)}}
     
     .list.list-inset.list--no-borders.resource-details-table
-      p {{ address.nombre || address.direccion_uno }}
+      p.resource-detail-title {{ address.nombre || address.direccion_uno }}
       .row
         .col.col-50.label {{::('profile.addresses.city'|translate)}}
         .col.col-50.value {{address.ciudad}}
@@ -37,8 +37,6 @@ ion-content(
         .col.col-50.value {{address.numero_convencional}}
 
   .list.list-inset.list--no-borders.text-center.actions-wrapper
-    action-button(
-      on-click="pfaVm.redirectToNewAddressView()"
-      text='{{::("profile.addresses.addAddressBtnText"|translate)}}'
-      color="yellow"
-    )
+    button.button.button-outline.button-energized(
+      ng-click="pfaVm.redirectToNewAddressView()"
+    ) {{::("profile.addresses.addAddressBtnText"|translate)}}
