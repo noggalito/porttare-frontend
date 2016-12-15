@@ -8,18 +8,18 @@ ion-modal-view.client-page
       )
         i.icon.ion-android-arrow-back
     .title.alt-logo
-  ion-content.resource-form.item-form
-    form(
-      name="piVm.updateProfileForm"
-      ng-submit="piVm.submitProcess(piVm.userEdit)"
-      novalidate
-    )
+  form(
+    name="piVm.updateProfileForm"
+    ng-submit="piVm.submitProcess(piVm.userEdit)"
+    novalidate
+  )
+    ion-content.resource-form.item-form
       .list.list-inset
         legend {{::("client.formLegend"|translate)}}
 
         label.item.item-input.item-stacked-label
           span.input-label {{::("user.image"|translate|uppercase)}}
-          .uploader(
+          img.uploader(
             type = "file"
             ngf-select
             ng-model = "piVm.userEdit.custom_image"
@@ -74,9 +74,9 @@ ion-modal-view.client-page
           )
         show-error(array-messages="piVm.messages.ciudad")
 
-  ion-footer-bar.bar.bar-footer.bar-stable
-    button.button.button-outline.button-energized.button-small(
-        type="submit"
-        value="{{::('globals.save'|translate)}}"
-        ng-class='{disabled: piVm.updateProfileForm.$invalid}'
-      )
+    ion-footer-bar.bar.bar-footer.bar-stable
+        button.button.button-outline.button-energized.button-small(
+            type="submit"
+            ng-disabled='piVm.updateProfileForm.$invalid'
+        )
+         | {{::('globals.save'|translate)}}
