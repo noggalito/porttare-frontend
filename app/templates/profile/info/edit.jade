@@ -1,12 +1,13 @@
 ion-modal-view.client-page
-  ion-header-bar.bar.bar-header.bar-light.bar-base-yellow(
+  ion-header-bar.bar-stable.bar.bar-header(
     align-title="center"
   )
-    .ion-nav-buttons(side="left")
-      button.button.ion-chevron-left.button-clear.left(
+    .back-button-wrapper
+      span.button.button-clear(
         ng-click="piVm.closeModal()"
       )
-    h4 {{::("globals.edit"|translate)}}
+        i.icon.ion-android-arrow-back
+    .title.alt-logo
   ion-content.resource-form.item-form
     form(
       name="piVm.updateProfileForm"
@@ -73,8 +74,8 @@ ion-modal-view.client-page
           )
         show-error(array-messages="piVm.messages.ciudad")
 
-    .bar.bar-footer.responsive-xs
-      input.button.button-primary.col-offset-40.col-20(
+  ion-footer-bar.bar.bar-footer.bar-stable
+    button.button.button-outline.button-energized.button-small(
         type="submit"
         value="{{::('globals.save'|translate)}}"
         ng-class='{disabled: piVm.updateProfileForm.$invalid}'

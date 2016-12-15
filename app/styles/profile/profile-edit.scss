@@ -1,14 +1,6 @@
 .client-page {
-  .bar-base-yellow {
-    background-color: $energized;
 
-    h4 {
-      margin-top: 6px;
-      margin-left: 3px;
-    }
-  }
-
-  .resource-form label.item-input.item-stacked-label.input-calendar {
+  .resource-form label.input-calendar {
     margin-bottom: 0px;
   }
 
