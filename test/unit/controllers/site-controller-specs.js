@@ -23,7 +23,7 @@
           }
         };
       });
-      $provide.factory('ProfileService', function($q){
+      $provide.factory('ProfileService', function(){
         return {
           getUserImageURL: function(){
           }
