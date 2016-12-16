@@ -14,7 +14,8 @@
       },
       controller: userImageController,
       controllerAs: 'uimVm',
-      bindToController: true
+      bindToController: true,
+      replace:true
     };
 
     return directive;

@@ -18,7 +18,16 @@ ion-modal-view
 
         label.item.item-input.item-input--no-borders.item-stacked-label
           span.input-label {{::("user.image"|translate)}}
-        .picture-uploader(
+        .row.images-previews
+          .img-wrapper.col-offset-25.col-50
+            img( ng-if="piVm.hasImageFile(piVm.userEdit)" 
+                  ngf-src="piVm.userEdit.custom_image"
+                  style="max-width: 70px; max-height: 70px;border-radius: 50%;"
+            )
+            user-image( user="piVm.userEdit" ng-if="!piVm.hasImageFile(piVm.userEdit)" 
+                  style="max-width: 70px; max-height: 70px;border-radius: 50%;"
+            )
+        .uploader(
           type="file"
           ngf-select
           ng-model="piVm.userEdit.custom_image"
@@ -27,12 +36,6 @@ ion-modal-view
         )
           .img-placeholder
           .img-placeholder--legend {{::("user.changeImagen"|translate)}}
-        .row.images-previews
-          .img-wrapper.col-offset-25.col-50
-            img( ng-if="piVm.hasImageFile(piVm.userEdit)" 
-                  ngf-src="piVm.userEdit.custom_image"
-            )
-            user-image( user="piVm.userEdit" ng-if="!piVm.hasImageFile(piVm.userEdit)" )
 
         show-error(array-messages='piVm.user.custom_image')
 
