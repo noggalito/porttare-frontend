@@ -1,5 +1,6 @@
-// Generated on 2015-09-12 using generator-ionic 0.7.3
 'use strict';
+
+require('dotenv').config({silent: true});
 
 var _ = require('lodash');
 var path = require('path');
