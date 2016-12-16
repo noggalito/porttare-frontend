@@ -547,6 +547,26 @@ function routes($stateProvider, $urlRouterProvider) {
         controllerAs: 'dispatchersVm'
       }
     }
+  })
+  .state('app.customerorders', {
+    url: '/customer_orders',
+    abstract: true
+  })
+  .state('app.customerorders.index', {
+    cache: false,
+    url: '/',
+    views: {
+      'menuContent@app': {
+        controllerAs: 'customerOrdersVm',
+        controller: 'CustomerOrdersIndexController',
+        templateUrl: 'templates/customer/orders/index.html',
+        resolve: {
+          customerOrders: function (CustomerOrdersService) {
+            return CustomerOrdersService.getCustomerOrders();
+          }
+        }
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback

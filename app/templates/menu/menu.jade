@@ -23,7 +23,7 @@ ion-side-menus(enable-menu-with-back-views='false')
           li {{::categorie.titulo}}
         ion-item
           | {{::("menu.account"|translate)}}
-        ion-item.gray-item
+        ion-item.gray-item(menu-close='' ui-sref='app.customerorders.index')
           li {{::("menu.client.myOrders"|translate)}}
         ion-item.gray-item
           li {{::("menu.client.myLists"|translate)}}
