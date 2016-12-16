@@ -74,14 +74,14 @@ ion-modal-view
           select(ng-model='officesVm.office.inicio_de_labores')
             each day in ['mon','tue', 'wed', 'thu', 'fri', 'sat', 'sun']
               option(value=day)
-                | {{::("office.#{day}"|translate)}}
+                | {{::("globals.dayNames.#{day}"|translate)}}
 
         label.item.item-input.item-select
           span.input-label {{::("office.officeFinish"|translate)}}
           select(ng-model='officesVm.office.final_de_labores')
             each day in ['mon','tue', 'wed', 'thu', 'fri', 'sat', 'sun']
               option(value=day)
-                | {{::("office.#{day}"|translate)}}
+                | {{::("globals.dayNames.#{day}"|translate)}}
 
         ion-datetime-picker.datetime-picker(
           time

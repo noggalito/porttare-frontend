@@ -159,6 +159,15 @@
         email: 'Email',
         confirmTitle: '¿Estás seguro?',
         dateDelivery: 'Fecha y hora de entrega',
+        dayNames: {
+          mon: 'Lunes',
+          tue: 'Martes',
+          wed: 'Miércoles',
+          thu: 'Jueves',
+          fri: 'Viernes',
+          sat: 'Sábado',
+          sun: 'Domingo'
+        },
         shortDayNames: {
           mon: 'Lun',
           tue: 'Mar',
