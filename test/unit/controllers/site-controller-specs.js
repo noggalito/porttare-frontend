@@ -23,6 +23,12 @@
           }
         };
       });
+      $provide.factory('ProfileService', function($q){
+        return {
+          getUserImageURL: function(){
+          }
+        };
+      });
     }));
 
     beforeEach(inject(
