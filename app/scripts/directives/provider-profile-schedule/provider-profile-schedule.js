@@ -8,7 +8,7 @@
   function providerProfileSchedule() {
     var directive = {
       restrict: 'EA',
-      controller: providerProfileScheduleController,
+      controller: ['$translate', providerProfileScheduleController],
       controllerAs: 'ppSVm',
       bindToController: true,
       scope: {

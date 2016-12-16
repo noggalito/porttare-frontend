@@ -11,7 +11,7 @@
       scope: {
         toggleExpand: '=',
       },
-      controller: toggleExpandController,
+      controller: ['$timeout', '$ionicScrollDelegate', toggleExpandController],
       controllerAs: 'tecVm',
       bindToController: true,
       transclude: true,

@@ -14,7 +14,7 @@
         methods:'=',
         touched:'='
       },
-      controller: paymentMethodsController,
+      controller: ['$translate', paymentMethodsController],
       controllerAs: 'checkedVm',
       bindToController: true
     };

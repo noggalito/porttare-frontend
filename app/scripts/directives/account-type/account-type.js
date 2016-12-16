@@ -12,7 +12,7 @@
       scope: {
         type: '='
       },
-      controller: accountTypeController,
+      controller: ['$translate', accountTypeController],
       controllerAs: 'radioButtonVm',
       bindToController: true
     };
@@ -41,4 +41,3 @@
     });
   }
 })();
-
