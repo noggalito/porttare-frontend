@@ -37,7 +37,7 @@
     border-top: 2px solid $light-grey;
     border-bottom: 2px solid $light-grey;
 
-    .slick-container {
+    .slick-container:not(:last-child) {
       // TODO fix border not reaching top
       border-right: 1px solid $light-grey;
     }
