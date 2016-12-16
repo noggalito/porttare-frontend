@@ -8,7 +8,10 @@
   line-height: 28px;
 }
 
-.bar .button.button-xsmall {
+.bar .button.button-xsmall,
+  .button-positive.button-xsmall,
+  .button-energized.button-xsmall {
+  font-family: Montserrat-Light;
   padding: 0 20px;
   line-height: 25px;
 }
