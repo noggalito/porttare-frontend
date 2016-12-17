@@ -33,7 +33,7 @@
       return $http({
         method: 'DELETE',
         url: ENV.apiHost + '/api/customer/cart/items/'+ id
-      })
+      });
     }
 
     function getCart() {
