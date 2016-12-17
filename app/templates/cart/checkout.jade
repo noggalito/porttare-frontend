@@ -65,7 +65,9 @@ ion-modal-view.cart-page
         .wrapper(
           ng-if="cartVm.checkoutForm.delivery_method === 'shipping'"
           )
-          label.item.item-input.item-input--no-borders.item-stacked-label.select-list-label
+          label.item.item-input.item-input--no-borders.item-stacked-label.select-list-label(
+            ng-class="{'item-error': cartVm.messages.customer_address_id}"
+          )
             span.input-label {{::("cart.deliveryAddress"|translate)}}
           ion-list
             ion-item.select-list-item(
@@ -75,8 +77,11 @@ ion-modal-view.cart-page
             )
               i.ion-android-checkmark-circle
               span {{ address.nombre }} ({{ address.direccion_uno }})
+          show-error(array-messages='cartVm.messages.customer_address_id')
 
-        label.item.item-input.item-input--no-borders.item-stacked-label.select-list-label
+        label.item.item-input.item-input--no-borders.item-stacked-label.select-list-label(
+          ng-class="{'item-error': cartVm.messages.customer_billing_address_id}"
+        )
           span.input-label {{::("billingAddress.legendForm"|translate)}}
         ion-list
           ion-item.select-list-item(
@@ -86,6 +91,7 @@ ion-modal-view.cart-page
           )
             i.ion-android-checkmark-circle
             span {{billingAddress.razon_social}} ({{billingAddress.direccion}})
+        show-error(array-messages='cartVm.messages.customer_billing_address_id')
 
     ion-footer-bar.bar-stable.bar-footer--tall
       button.button.button-outline.button-energized(

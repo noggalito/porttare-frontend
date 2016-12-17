@@ -20,8 +20,8 @@
     getBillingAddresses();
 
     function getBillingAddresses() {
-      BillingAddressesService.getBillingAddresses().then(function(results){
-        billingAddressesVm.billingAddresses = results.customer_billing_addresses; //jshint ignore:line
+      BillingAddressesService.getBillingAddresses().then(function(billingAddresses){
+        billingAddressesVm.billingAddresses = billingAddresses;
       }, ErrorHandlerService.handleCommonErrorGET);
     }
 

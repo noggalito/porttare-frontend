@@ -3,5 +3,8 @@
 )
   .provider-profile--title
     | {{ ::providerProfile.nombre_establecimiento }}
+  .delivery-address
+    span.title-placeholder
+      | {{ ::("cart.deliveryPlaceholder" | translate) }}
   .provider-items-in-cart
     slick-item(settings="cartVm.slickSettings" data="providerProfile")

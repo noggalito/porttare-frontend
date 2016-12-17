@@ -366,6 +366,7 @@
         cantidadSingular: 'unidad',
         title: 'Carrito',
         deliverNow: 'Entregar inmediatamente',
+        deliveryPlaceholder: 'Entrega:',
         deliveryMethods: {
           pickup: 'Recoger en local',
           shipping: 'Enviar a domicilio',

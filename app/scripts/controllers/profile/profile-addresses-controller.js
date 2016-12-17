@@ -5,9 +5,9 @@
     .module('porttare.controllers')
     .controller('ProfileAddressesController', ProfileAddressesController);
 
-  function ProfileAddressesController(data, $state) {
+  function ProfileAddressesController(customerAddresses, $state) {
     var pfaVm = this;
-    pfaVm.addresses = data.customer_addresses || []; //jshint ignore:line
+    pfaVm.addresses = customerAddresses || [];
     pfaVm.redirectToUpdateAddressView = redirectToUpdateAddressView;
     pfaVm.redirectToNewAddressView = redirectToNewAddressView;
     var addressStates = {

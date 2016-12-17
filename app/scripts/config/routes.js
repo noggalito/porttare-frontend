@@ -99,7 +99,23 @@ function routes($stateProvider, $urlRouterProvider) {
       'menuContent@app': {
         templateUrl: 'templates/cart/index.html',
         controller: 'CartController',
-        controllerAs: 'cartVm'
+        controllerAs: 'cartVm',
+        resolve: {
+          deliveryAddresses:
+            function (ProfileAddressesService,
+                      ErrorHandlerService) {
+              return ProfileAddressesService
+                       .getAddresses()
+                       .catch(ErrorHandlerService.handleCommonErrorGET);
+          },
+          billingAddresses:
+            function (BillingAddressesService,
+                      ErrorHandlerService) {
+              return BillingAddressesService
+                       .getBillingAddresses()
+                       .catch(ErrorHandlerService.handleCommonErrorGET);
+          }
+        }
       }
     }
   })
@@ -437,11 +453,10 @@ function routes($stateProvider, $urlRouterProvider) {
         controller: 'ProfileAddressesController',
         controllerAs: 'pfaVm',
         resolve: {
-          data: function (ProfileAddressesService, ErrorHandlerService) {
-            return ProfileAddressesService.getAddresses()
-              .then(function success(res) {
-                return res;
-              }, ErrorHandlerService.handleCommonErrorGET);
+          customerAddresses: function (ProfileAddressesService, ErrorHandlerService) {
+            return ProfileAddressesService
+                     .getAddresses()
+                     .catch(ErrorHandlerService.handleCommonErrorGET);
           }
         }
       }

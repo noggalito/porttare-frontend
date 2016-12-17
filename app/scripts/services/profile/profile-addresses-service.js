@@ -32,7 +32,7 @@
         method: 'GET',
         url: ENV.apiHost + '/api/customer/addresses'
       }).then(function success(res) {
-        return res.data;
+        return res.data.customer_addresses; //jshint ignore:line
       }, function error(res) {
         return $q.reject(res.data);
       });
@@ -64,24 +64,20 @@
 
     function getAddress(id) {
       return $q(function (resolve, reject) {
-        getAddresses().then(function success(res) {
-          var selectedAddress = filterAddresses(res, id);
+        getAddresses().then(function success(customerAddresses) {
+          var selectedAddress = findAddress(customerAddresses, id);
           resolve(selectedAddress);
         }, reject);
       });
     }
 
-    function filterAddresses(res, id) {
-      var address = null;
-      var parsedId = parseInt(id);
-      if (res && res.customer_addresses) { //jshint ignore:line
-        angular.forEach(res.customer_addresses, function (elem) { //jshint ignore:line
-          if (elem.id === parsedId) {
-            address = elem;
-          }
+    function findAddress(customerAddresses, id) {
+      var parsedId = parseInt(id, 10);
+      if (customerAddresses && customerAddresses) {
+        return customerAddresses.find(function(customerAddress) {
+          return customerAddress.id === parsedId;
         });
       }
-      return address;
     }
 
     function reditectToList() {

@@ -85,10 +85,9 @@
       });
 
       it('should get all addresses', function () {
-        service.getAddresses().then(function (response) {
-          expect(response).to.be.an('object');
-          expect(response).to.include.keys('customer_addresses');
-          expect(response.customer_addresses.length).to.be.equal(2);
+        service.getAddresses().then(function (customer_addresses) {
+          expect(customer_addresses).to.be.an('array');
+          expect(customer_addresses.length).to.be.equal(2);
         });
         $httpBackend.flush();
       });

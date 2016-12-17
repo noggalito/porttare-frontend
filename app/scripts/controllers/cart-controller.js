@@ -5,17 +5,23 @@
     .module('porttare.controllers')
     .controller('CartController', CartController);
 
-  function CartController($auth, ModalService, $scope, APP, $ionicLoading,
-    BillingAddressesService, ErrorHandlerService, ProfileAddressesService,
-    $q, CartService, $ionicPopup, $state, $translate) {
+  function CartController($auth,
+                          $scope,
+                          $state,
+                          $translate,
+                          $ionicPopup,
+                          $ionicLoading,
+                          APP,
+                          billingAddresses,
+                          deliveryAddresses,
+                          ModalService,
+                          CartService) {
     var cartVm = this;
     cartVm.total = 0;
     cartVm.showCheckoutModal = showCheckoutModal;
     cartVm.closeModal = closeModal;
     cartVm.runCheckout = runCheckout;
     cartVm.paymentMethods = APP.paymentMethods;
-    cartVm.billingAddresses = [];
-    cartVm.addresses = [];
     cartVm.assignBillingAddress = assignBillingAddress;
     cartVm.assignAddress = assignAddress;
     cartVm.messages = {};
@@ -59,6 +65,8 @@
     function init() {
       cartVm.cart = $auth.user.customer_order;
       cartVm.total = calculateTotal();
+      cartVm.billingAddresses = billingAddresses;
+      cartVm.addresses = deliveryAddresses;
       getDeliveryMethods();
     }
 
@@ -67,7 +75,6 @@
         parentScope: $scope,
         fromTemplateUrl: 'templates/cart/checkout.html'
       });
-      getAddresses();
     }
 
     function closeModal() {
@@ -76,8 +83,6 @@
     }
 
     function clearData() {
-      cartVm.billingAddresses = [];
-      cartVm.addresses = [];
       cartVm.checkoutForm = {};
       cartVm.messages = {};
     }
@@ -129,22 +134,6 @@
       item.selected = true;
     }
 
-    function getAddresses() {
-      $ionicLoading.show({
-        template: '{{::("globals.loading"|translate)}}'
-      });
-      var promises = [
-        BillingAddressesService.getBillingAddresses(),
-        ProfileAddressesService.getAddresses()
-      ];
-      $q.all(promises)
-        .then(function success(res) {
-          cartVm.billingAddresses = res[0].customer_billing_addresses;
-          cartVm.addresses = res[1].customer_addresses;
-          $ionicLoading.hide();
-        }, ErrorHandlerService.handleCommonErrorGET);
-    }
-
     function calculateTotal() {
       var totalCents = 0,
         centValue = 0.01;
@@ -172,13 +161,13 @@
     }
 
     function getDeliveryMethods(){
-      // APP.deliveryMethods
-      var methodsKeys = APP.deliveryMethods;
-      var translationMapping = methodsKeys.reduce(function (memo, method) {
+      var methodsKeys, translationMapping, translationKeys;
+      methodsKeys = APP.deliveryMethods;
+      translationMapping = methodsKeys.reduce(function (memo, method) {
         memo['cart.deliveryMethods.' + method] = method;
         return memo;
       }, {});
-      var translationKeys = Object.keys(translationMapping);
+      translationKeys = Object.keys(translationMapping);
       $translate(translationKeys).then(function (translations) {
         var formattedMethods = translationKeys.map(function (translationKey) {
           return {

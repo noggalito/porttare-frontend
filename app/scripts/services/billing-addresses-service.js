@@ -16,7 +16,11 @@
     return service;
 
     function getBillingAddresses() {
-      return CommonService.getObjects('/api/customer/billing_addresses');
+      return CommonService
+               .getObjects('/api/customer/billing_addresses')
+               .then(function (resp){
+                 return resp.customer_billing_addresses; //jshint ignore:line
+               });
     }
 
     function createBillingAddress(billingAddress) {
