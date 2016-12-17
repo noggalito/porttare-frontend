@@ -10,7 +10,8 @@
       addItem: addItem,
       getCart: getCart,
       checkout : checkout,
-      updateItem: updateItem
+      updateItem: updateItem,
+      deleteItem:deleteItem
     };
 
     return service;
@@ -26,6 +27,13 @@
         }, function error(response){
           return $q.reject(response.data);
         });
+    }
+
+    function deleteItem(id) {
+      return $http({
+        method: 'DELETE',
+        url: ENV.apiHost + '/api/customer/cart/items/'+ id
+      })
     }
 
     function getCart() {

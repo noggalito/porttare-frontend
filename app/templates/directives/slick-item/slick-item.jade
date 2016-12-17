@@ -5,6 +5,7 @@ slick-wrapper(
     ng-repeat="providerItem in sicVm.data.customer_order_items track by $index"
   )
     .slick-content(ng-click="sicVm.onClick()(providerItem)" class="clickeable")
+      i.icon.ion-trash-a
       .img-wrapper
         img(
           data-lazy="{{ ::providerItem.provider_item.imagenes[0].imagen_url }}"
