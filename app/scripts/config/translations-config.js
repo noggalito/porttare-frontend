@@ -367,6 +367,7 @@
         title: 'Carrito',
         deliverNow: 'Entregar inmediatamente',
         shippingCosts: '(costos de envío)',
+        deliveryPlaceholder: 'Entrega:',
         deliveryMethods: {
           pickup: 'Recoger en local',
           shipping: 'Enviar a domicilio',

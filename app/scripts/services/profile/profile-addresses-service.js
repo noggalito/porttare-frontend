@@ -73,7 +73,7 @@
 
     function findAddress(customerAddresses, id) {
       var parsedId = parseInt(id, 10);
-      if (customerAddresses && customerAddresses) {
+      if (customerAddresses) {
         return customerAddresses.find(function(customerAddress) {
           return customerAddress.id === parsedId;
         });
