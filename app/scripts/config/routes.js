@@ -561,8 +561,10 @@ function routes($stateProvider, $urlRouterProvider) {
         controller: 'CustomerOrdersIndexController',
         templateUrl: 'templates/customer/orders/index.html',
         resolve: {
-          customerOrders: function (CustomerOrdersService) {
-            return CustomerOrdersService.getCustomerOrders();
+          customerOrders: function (CustomerOrdersService, ErrorHandlerService){
+            return CustomerOrdersService
+                     .getCustomerOrders()
+                     .catch(ErrorHandlerService.handleCommonErrorGET);
           }
         }
       }

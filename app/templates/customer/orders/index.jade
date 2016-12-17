@@ -6,18 +6,21 @@ ion-view(
   ion-content.resource-collection
     .list.list-inset.list--no-borders.resource-collection-table
       .row.table-headers
-        .col.col-50 {{ ::("orders.collectionTitle"|translate) }}
-        .col.col-20 {{ ::("orders.date"|translate) }}
-        .col.col-20 {{ ::("orders.total"|translate) }}
-        .col.col-10
+        .col.col-30 {{ ::("orders.collectionTitle"|translate) }}
+        .col.col-35 {{ ::("orders.date"|translate) }}
+        .col.col-15.text-right
+          | {{ ::("orders.total"|translate) }}
+        .col.col-20
 
       .item.row(
         ng-repeat='customerOrder in ::customerOrdersVm.customerOrders track by $index'
       )
-        .col.col-50 {{ ::customerOrder.id }}
-        .col.col-20 {{ ::(customerOrder.created_at | formatDate) }}
-        .col.col-20 {{ ::(customerOrder.subtotal_items_cents | priceCurrency | currency) }}
-        .col.col-10.text-right
+        .col.col-30
+          | {{ ::("orders.collectionTitle" | translate) }}{{ ::customerOrder.id }}
+        .col.col-35 {{ ::(customerOrder.created_at | formatDate:'DD MMMYYYY hh:mmA') }}
+        .col.col-15.text-right
+          | {{ ::(customerOrder.subtotal_items_cents | priceCurrency | currency) }}
+        .col.col-20.text-right
           a.button.button-clear.button-positive.button-small(
-            ui-sref='provider.office({ id: customerOrder.id})'
+            ui-sref='app.customerorders.show({ id: customerOrder.id })'
           ) {{::("globals.seeMore"|translate)}}
