@@ -3,8 +3,12 @@
 )
   .provider-profile--title
     | {{ ::providerProfile.nombre_establecimiento }}
-  .delivery-address
-    span.title-placeholder
-      | {{ ::("cart.deliveryPlaceholder" | translate) }}
+  .provider-profile--subtitle
+    span
+      order-items-total(
+        order-items="providerProfile.customer_order_items"
+      )
+    span + $1.50
+    span {{ ::('cart.shippingCosts' | translate) }}
   .provider-items-in-cart
     slick-item(settings="cartVm.slickSettings" data="providerProfile")

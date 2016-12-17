@@ -23,18 +23,29 @@
   .provider-profile-section {
     margin-bottom: 20px;
 
+    .provider-profile--title,
+    .provider-profile--subtitle {
+      padding: 15px;
+    }
+
     .provider-profile--title {
       color: $base-yellow;
       background-color: $white;
-      padding: 15px;
       text-transform: uppercase;
       font-size: 14px;
       font-family: Montserrat-Regular;
     }
 
-    .delivery-address {
-      .title-placeholder {
-        text-transform: uppercase;
+    .provider-profile--subtitle {
+      color: $grey-secondary;
+      font-family: Montserrat-Regular;
+      font-size: 13px;
+      line-height: 13px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+
+      span {
+        margin-right: 5px;
       }
     }
   }
