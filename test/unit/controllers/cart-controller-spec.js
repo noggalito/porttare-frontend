@@ -9,17 +9,16 @@
       $scope,
       $state,
       CartService,
-      ErrorHandlerService,
       ModalService,
-      BillingAddressesService,
-      ProfileAddressesService,
       $ionicLoading,
       deferCheckout,
       deferStateGo,
       $auth,
       $ionicPopup,
       $translate,
-      translateDeferred;
+      translateDeferred,
+      billingAddresses,
+      deliveryAddresses;
 
     beforeEach(module('porttare.controllers'));
     beforeEach(module('porttare.services', function ($provide) {
@@ -51,15 +50,6 @@
           hide: sinon.stub()
         };
       });
-      $provide.factory('BillingAddressesService', function () {
-        return {};
-      });
-      $provide.factory('ErrorHandlerService', function () {
-        return {};
-      });
-      $provide.factory('ProfileAddressesService', function () {
-        return {};
-      });
       $provide.factory('$ionicPopup', function ($q) {
         return {
           alert: sinon.stub().returns($q.defer().promise)
@@ -78,8 +68,8 @@
     }));
 
     beforeEach(inject(function (_$q_, _$rootScope_, _$controller_,
-      _CartService_, _$ionicPopup_, _BillingAddressesService_, _ProfileAddressesService_,
-      _$state_, _ModalService_, _ErrorHandlerService_, _$ionicLoading_, _$auth_, _APP_, _$translate_) {
+      _CartService_, _$ionicPopup_,
+      _$state_, _ModalService_, _$ionicLoading_, _$auth_, _APP_, _$translate_) {
 
       $scope = _$rootScope_.$new();
       $q = _$q_;
@@ -87,9 +77,8 @@
       $state = _$state_;
       CartService = _CartService_;
       ModalService = _ModalService_;
-      ErrorHandlerService = _ErrorHandlerService_;
-      BillingAddressesService = _BillingAddressesService_;
-      ProfileAddressesService = _ProfileAddressesService_;
+      deliveryAddresses = [];
+      billingAddresses = [];
       $ionicLoading = _$ionicLoading_;
       $auth = _$auth_;
       $ionicPopup= _$ionicPopup_;
@@ -99,13 +88,12 @@
         $scope: $scope,
         CartService: CartService,
         ModalService: ModalService,
-        ErrorHandlerService: ErrorHandlerService,
         $ionicPopup: $ionicPopup,
         $state: $state,
         $ionicLoading: $ionicLoading,
         $auth: $auth,
-        BillingAddressesService: BillingAddressesService,
-        ProfileAddressesService: ProfileAddressesService,
+        deliveryAddresses: deliveryAddresses,
+        billingAddresses: billingAddresses,
         APP: _APP_,
         $q: _$q_
       };

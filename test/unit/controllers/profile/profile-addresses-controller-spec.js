@@ -5,7 +5,7 @@
     var ctrl,
       $controller,
       dependencies,
-      data,
+      deliveryAddresses,
       $state;
 
     beforeEach(module('porttare.controllers'));
@@ -23,13 +23,11 @@
 
         $controller = _$controller_;
         $state = _$state_;
-        data = {
-          customer_addresses: [{
-            nombre: 'test 1'
-          }]
-        };
+        deliveryAddresses = [{
+          nombre: 'test 1'
+        }];
         dependencies = {
-          data: data,
+          customerAddresses: deliveryAddresses,
           $state: $state,
         };
 
@@ -37,7 +35,7 @@
       }));
 
     it('Should add data to scope', function () {
-      expect(ctrl.addresses).to.equal(data.customer_addresses);
+      expect(ctrl.addresses).to.equal(deliveryAddresses);
     });
 
     it('Should redirect to view: update', function () {
