@@ -236,6 +236,7 @@ module.exports = function (grunt) {
         frameworks: ['mocha', 'chai', 'sinon'],
         files: [
           'node_modules/phantomjs-polyfill/bind-polyfill.js',
+          'node_modules/phantomjs-polyfill-find/find-polyfill.js',
           '<%= yeoman.app %>/bower_components/angular/angular.js',
           '<%= yeoman.app %>/bower_components/angular-mocks/angular-mocks.js',
           '<%= yeoman.app %>/bower_components/angular-animate/angular-animate.js',
