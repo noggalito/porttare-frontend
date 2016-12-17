@@ -2,14 +2,10 @@ ion-view(
   view-title='{{::("menu.client.cart"|translate)}}'
 )
   ion-nav-title {{ ::('cart.title' | translate) }}
-  ion-content.cart-preview
-    .provider-profile-section(
-      ng-repeat="providerProfile in cartVm.cart.provider_profiles track by $index"
+  ion-content.customer-order-preview
+    ng-include(
+      src="'templates/cart/customer-order.html'"
     )
-      .provider-profile--title
-        | {{ ::providerProfile.nombre_establecimiento }}
-      .provider-items-in-cart
-        slick-item(settings="cartVm.slickSettings" data="providerProfile")
 
   ion-footer-bar.bar-light.cart-page-footer.bar-footer--tall
     button.button.button-small.button-outline.button-energized.button-letter-stretched(

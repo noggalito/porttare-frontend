@@ -7,8 +7,9 @@
 
   function formatDate() {
     return function (currentValue, formatStr) {
-      var _date = new Date(currentValue);
-      return moment(_date).format(formatStr);
+      var defaultFormat = 'DD/MM/YYYY HH:mm',
+          _date = new Date(currentValue);
+      return moment(_date).format(formatStr || defaultFormat);
     };
   }
 

@@ -371,6 +371,11 @@
           shipping: 'Enviar a domicilio',
         }
       },
+      orders: {
+        collectionTitle: 'Orden #',
+        date: 'Fecha',
+        total: 'Total'
+      },
       form: {
         requiredField: 'Campo requerido. ',
         wrongEmail: 'Email incorrecto. '

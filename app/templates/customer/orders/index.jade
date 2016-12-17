@@ -1,3 +1,23 @@
 ion-view(
-  view-title='Orders'
+  view-title="{{ ::('client.myOrders' | translate) }}"
 )
+  ion-nav-title
+    .alt-logo
+  ion-content.resource-collection
+    .list.list-inset.list--no-borders.resource-collection-table
+      .row.table-headers
+        .col.col-50 {{ ::("orders.collectionTitle"|translate) }}
+        .col.col-20 {{ ::("orders.date"|translate) }}
+        .col.col-20 {{ ::("orders.total"|translate) }}
+        .col.col-10
+
+      .item.row(
+        ng-repeat='customerOrder in ::customerOrdersVm.customerOrders track by $index'
+      )
+        .col.col-50 {{ ::customerOrder.id }}
+        .col.col-20 {{ ::(customerOrder.created_at | formatDate) }}
+        .col.col-20 {{ ::(customerOrder.subtotal_items_cents | priceCurrency | currency) }}
+        .col.col-10.text-right
+          a.button.button-clear.button-positive.button-small(
+            ui-sref='provider.office({ id: customerOrder.id})'
+          ) {{::("globals.seeMore"|translate)}}

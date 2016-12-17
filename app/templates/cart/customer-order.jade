@@ -1,0 +1,7 @@
+.provider-profile-section(
+  ng-repeat="providerProfile in cartVm.cart.provider_profiles track by $index"
+)
+  .provider-profile--title
+    | {{ ::providerProfile.nombre_establecimiento }}
+  .provider-items-in-cart
+    slick-item(settings="cartVm.slickSettings" data="providerProfile")

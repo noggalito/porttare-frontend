@@ -28,7 +28,7 @@ ion-modal-view.cart-page
             span.placeholder(ng-if="!cartVm.checkoutForm.deliver_at")
               | {{ ::('cart.deliverNow' | translate) }}
             span(ng-if="cartVm.checkoutForm.deliver_at")
-              | {{ cartVm.checkoutForm.deliver_at | formatDate:'DD/MM/YYYY HH:mm' }}
+              | {{ cartVm.checkoutForm.deliver_at | formatDate }}
           .button.button-clear.button-positive.button-small(
             ng-if="cartVm.checkoutForm.deliver_at"
             ng-click="cartVm.clearDeliveryTime()"
