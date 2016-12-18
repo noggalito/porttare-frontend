@@ -9,12 +9,20 @@
     align-self: flex-end;
     margin: 5px 0;
     padding: 0 5px;
+    background-color: white;
+
+    i{
+      float: right;
+      font-size: 20px;
+      color: #FF0000;
+    }
 
     .img-wrapper {
       height: 180px;
       display: flex;
       align-items: center;
       justify-content: center;
+      background-color: white;
 
       img {
         max-width: 100%;

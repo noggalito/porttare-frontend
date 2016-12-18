@@ -39,7 +39,7 @@
         {
           breakpoint: 320,
           settings: {
-            slidesToShow: 4
+            slidesToShow: 3
           }
         },
         {
