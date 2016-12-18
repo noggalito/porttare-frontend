@@ -11,7 +11,7 @@
       getCart: getCart,
       checkout : checkout,
       updateItem: updateItem,
-      deleteItem:deleteItem
+      removeOrderItem:removeOrderItem
     };
 
     return service;
@@ -29,10 +29,10 @@
         });
     }
 
-    function deleteItem(id) {
+    function removeOrderItem(orderItemId) {
       return $http({
         method: 'DELETE',
-        url: ENV.apiHost + '/api/customer/cart/items/'+ id
+        url: ENV.apiHost + '/api/customer/cart/items/'+ orderItemId
       });
     }
 

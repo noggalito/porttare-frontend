@@ -27,6 +27,7 @@
     cartVm.messages = {};
     cartVm.clearDeliveryTime = clearDeliveryTime;
     cartVm.updateOrderItem = updateOrderItem;
+    cartVm.removeOrderItem = removeOrderItem;
     cartVm.checkoutForm = {
       forma_de_pago: 'efectivo' // only method supported ATM
     };
@@ -38,7 +39,7 @@
         {
           breakpoint: 320,
           settings: {
-            slidesToShow: 3
+            slidesToShow: 4
           }
         },
         {
@@ -153,7 +154,7 @@
 
     function getTotalValueItems(provider) {
       var total = 0;
-      if(provider.customer_order_items) {
+      if (provider.customer_order_items) {
         angular.forEach(provider.customer_order_items, function (item) {
           total = total + (item.provider_item_precio_cents * item.cantidad);
         });
@@ -161,11 +162,11 @@
       return total;
     }
 
-    function clearDeliveryTime(){
+    function clearDeliveryTime() {
       cartVm.checkoutForm.deliver_at = null;
     }
 
-    function getDeliveryMethods(){
+    function getDeliveryMethods() {
       var methodsKeys, translationMapping, translationKeys;
       methodsKeys = APP.deliveryMethods;
       translationMapping = methodsKeys.reduce(function (memo, method) {
@@ -184,7 +185,7 @@
       });
     }
 
-    function openEditModal(item){
+    function openEditModal(item) {
       cartVm.currentItem = angular.copy(item);
       cartVm.counterOptions = {
         limit: 1,
@@ -200,16 +201,25 @@
       });
     }
 
-    function updateOrderItem(){
+    function updateOrderItem() {
       cartVm.slickFlag = false;
-      CartService.updateItem(cartVm.currentItem).then(function(response){
+      CartService.updateItem(cartVm.currentItem).then(function (response) {
         cartVm.cart = response.customer_order; //jshint ignore:line
         cartVm.total = calculateTotal();
         cartVm.slickFlag = true;
         closeModal();
-      }, function(errorResponse){
+      }, function (errorResponse) {
         cartVm.updateErrors = errorResponse.errors;
       });
+    }
+
+    function removeOrderItem(customer_order_items, item) {
+      var index = customer_order_items.indexOf(item);
+      if (index > -1) {
+        CartService.removeOrderItem(item.id);
+        customer_order_items.splice(item, 1);
+        init();
+      }
     }
   }
 })();
