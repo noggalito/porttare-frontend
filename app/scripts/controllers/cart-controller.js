@@ -203,8 +203,6 @@
       CartService.updateItem(cartVm.currentItem).then(function(response){
         cartVm.cart = response.customer_order; //jshint ignore:line
         cartVm.total = calculateTotal();
-        cartVm.billingAddresses = billingAddresses;
-        cartVm.addresses = deliveryAddresses;
         getDeliveryMethods();
         closeModal();
       }, function(errorResponse){
