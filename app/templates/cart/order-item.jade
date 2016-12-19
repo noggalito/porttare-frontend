@@ -1,0 +1,12 @@
+ion-modal-view
+  ion-header-bar.bar-stable.bar.bar-header
+    .title.alt-logo
+
+    .ion-nav-buttons.buttons(side="primary")
+      button.button.button-clear.button-positive(
+        ng-click="cartVm.closeModal()"
+      ) {{::('globals.cancel'|translate)}}
+  ion-content.order-item-modal
+    .item-title {{cartVm.currentItem.provider_item.titulo}}
+    .item-image
+      img(ng-src="{{cartVm.currentItem.provider_item.imagenes[0]}}")
