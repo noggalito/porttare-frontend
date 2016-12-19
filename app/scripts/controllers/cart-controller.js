@@ -66,7 +66,6 @@
 
     function init() {
       cartVm.cart = $auth.user.customer_order;
-      console.log(cartVm.cart.provider_profiles[0].customer_order_items);
       cartVm.total = calculateTotal();
       cartVm.billingAddresses = billingAddresses;
       cartVm.addresses = deliveryAddresses;
@@ -88,6 +87,7 @@
     function clearData() {
       cartVm.checkoutForm = {};
       cartVm.messages = {};
+      cartVm.updateErrors = {};
       cartVm.currentItem = null;
     }
 
@@ -186,6 +186,7 @@
     function openEditModal(item){
       cartVm.currentItem = angular.copy(item);
       cartVm.counterOptions = {
+        limit: 1,
         cantidad: cartVm.currentItem.cantidad,
         priceCents: cartVm.currentItem.provider_item_precio_cents, // jshint ignore:line
         onChangeValue: function (data) {
@@ -201,14 +202,13 @@
     function updateOrderItem(){
       CartService.updateItem(cartVm.currentItem).then(function(response){
         cartVm.cart = response.customer_order; //jshint ignore:line
-        console.log(cartVm.cart.provider_profiles[0].customer_order_items);
         cartVm.total = calculateTotal();
         cartVm.billingAddresses = billingAddresses;
         cartVm.addresses = deliveryAddresses;
         getDeliveryMethods();
         closeModal();
       }, function(errorResponse){
-        console.console.log(errorResponse);
+        cartVm.updateErrors = errorResponse.errors;
       });
     }
   }
