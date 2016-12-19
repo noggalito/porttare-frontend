@@ -9,7 +9,8 @@
     var service = {
       addItem: addItem,
       getCart: getCart,
-      checkout : checkout
+      checkout : checkout,
+      updateItem: updateItem
     };
 
     return service;
@@ -42,6 +43,19 @@
         method: 'POST',
         url: ENV.apiHost + '/api/customer/cart/checkout',
         data: cartData
+      })
+        .then(function success(response) {
+          return response.data;
+        }, function error(response) {
+          return $q.reject(response.data);
+        });
+    }
+
+    function updateItem(cartItem){
+      return $http({
+        method: 'PUT',
+        url: ENV.apiHost + '/api/customer/cart/items/' + cartItem.id,
+        data: cartItem
       })
         .then(function success(response) {
           return response.data;
