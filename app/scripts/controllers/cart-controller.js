@@ -213,13 +213,11 @@
       });
     }
 
-    function removeOrderItem(customer_order_items, item) {
-      var index = customer_order_items.indexOf(item);
-      if (index > -1) {
-        CartService.removeOrderItem(item.id);
-        customer_order_items.splice(item, 1);
-        init();
-      }
+    function removeOrderItem(item){
+      CartService.removeOrderItem(item.id).then(function success(resp){
+        cartVm.cart=resp.data.customer_order;
+        cartVm.total=resp.data.customer_order.subtotal_items_cents*0.01;
+      });
     }
   }
 })();
