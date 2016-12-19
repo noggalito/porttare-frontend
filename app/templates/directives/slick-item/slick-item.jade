@@ -4,12 +4,12 @@ slick-wrapper(
   .slick-container(
     ng-repeat="providerItem in sicVm.data.customer_order_items track by $index"
   )
-    .slick-content
+    .slick-content(ng-click="sicVm.onClick()(providerItem)" class="clickeable")
       .img-wrapper
         img(
           data-lazy="{{ ::providerItem.provider_item.imagenes[0].imagen_url }}"
         )
-        
+
       .customer-item-description
         .customer-item--title
           | {{ ::providerItem.provider_item.titulo }}

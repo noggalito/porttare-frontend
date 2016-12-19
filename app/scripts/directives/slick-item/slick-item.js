@@ -11,7 +11,8 @@
       templateUrl: 'templates/directives/slick-item/slick-item.html',
       scope: {
         settings: '=',
-        data: '='
+        data: '=',
+        onClick: '&'
       },
       controller: slickItemController,
       controllerAs: 'sicVm',

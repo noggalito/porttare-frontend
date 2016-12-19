@@ -29,6 +29,7 @@
     cartVm.checkoutForm = {
       forma_de_pago: 'efectivo' // only method supported ATM
     };
+    cartVm.openEditModal = openEditModal;
     cartVm.slickSettings = {
       infinite: false,
       lazyLoad: 'progressive',
@@ -85,6 +86,7 @@
     function clearData() {
       cartVm.checkoutForm = {};
       cartVm.messages = {};
+      cartVm.currentItem = null;
     }
 
     function runCheckout() {
@@ -176,6 +178,15 @@
           };
         });
         cartVm.formattedDeliveryMethods = formattedMethods;
+      });
+    }
+
+    function openEditModal(item){
+      cartVm.currentItem = item;
+      console.log(item);
+      ModalService.showModal({
+        parentScope: $scope,
+        fromTemplateUrl: 'templates/cart/order-item.html'
       });
     }
   }
