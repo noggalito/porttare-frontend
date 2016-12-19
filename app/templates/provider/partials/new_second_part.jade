@@ -64,7 +64,7 @@
     .img-placeholder
     .img-placeholder--legend {{::("item.addImages"|translate)}}
 
-  .images-previews(ng-if="providerVm.provider.logotipo")
+  .images-previews.text-center(ng-if="providerVm.provider.logotipo")
     .img-wrapper.col-offset-25.col-50
       img(
         ngf-src="providerVm.provider.logotipo"
@@ -74,9 +74,8 @@
         ngf-capture="'camera'"
         accept="image/*"
       )
-    .row
-      .button.button-clear.button-positive.col-offset-25.col-50(
-        ng-click="providerVm.removeImage()"
-      )
+    .button.button-clear.button-positive(
+      ng-click="providerVm.removeImage()"
+    )
         | Quitar imagen
   show-error(array-messages='providerVm.errors.imagen')

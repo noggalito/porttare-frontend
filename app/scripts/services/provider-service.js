@@ -18,7 +18,8 @@
       var options = {
                       method: 'POST',
                       url: ENV.apiHost + '/api/provider/profile',
-                      data: data
+                      data: data,
+                      arrayKey: '[]'
                     };
 
       if(data.logotipo){
