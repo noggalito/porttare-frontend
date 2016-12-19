@@ -23,7 +23,6 @@
   function productCounterController() {
     var pcVm = this,
       options = {},
-      limit = 0,
       actions = {
         subtract: 'subtract',
         add: 'add'
@@ -40,7 +39,7 @@
     function processData(option) {
       if (isInRange(pcVm.itemsCount)) {
         if (option === actions.subtract) {
-          if (pcVm.itemsCount !== limit) {
+          if (pcVm.itemsCount !== options.limit) {
             changeCounter(option);
           }
         } else {
@@ -87,7 +86,8 @@
         onClickMinus: null,
         onClickPlus: null,
         onChangeValue: null,
-        cantidad: 0
+        cantidad: 0,
+        limit: 0
       };
 
       if (!isValidNumber(pcVm.options.priceCents)) {
@@ -102,7 +102,7 @@
     }
 
     function isInRange(value) {
-      return value >= limit;
+      return value >= options.limit;
     }
 
     function getTotal() {

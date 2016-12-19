@@ -11,6 +11,7 @@ ion-modal-view
     .item-image
       img(ng-src="{{cartVm.currentItem.provider_item.imagenes[0]}}")
     product-counter(options="cartVm.counterOptions")
+    show-error(array-messages="cartVm.updateErrors.cantidad")
     .item-comment
       textarea(
         msd-elastic
