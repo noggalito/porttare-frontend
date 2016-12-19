@@ -19,6 +19,5 @@ ion-modal-view
         placeholder='{{ ::("cart.observacionesPlaceholder" | translate)}}'
       )
   ion-footer-bar.bar-stable.item-show-footer.bar-footer--tall
-    button.button.button-outline.button-assertive Eliminar
-    //TODO remove item... @carito22
+    button.button.button-outline.button-assertive(ng-click="cartVm.removeOrderItem()") Eliminar
     button.button.button-outline.button-positive(ng-click="cartVm.updateOrderItem()") Listo

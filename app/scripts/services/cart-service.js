@@ -29,10 +29,10 @@
         });
     }
 
-    function removeOrderItem(orderItemId) {
+    function removeOrderItem(orderItem) {
       return $http({
         method: 'DELETE',
-        url: ENV.apiHost + '/api/customer/cart/items/'+ orderItemId
+        url: ENV.apiHost + '/api/customer/cart/items/'+ orderItem.id
       });
     }
 

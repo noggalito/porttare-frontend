@@ -13,7 +13,6 @@
         settings: '=',
         data: '=',
         onClick: '&'
-
       },
       controller: slickItemController,
       controllerAs: 'sicVm',
