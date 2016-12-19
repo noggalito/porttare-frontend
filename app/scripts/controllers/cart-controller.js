@@ -26,6 +26,7 @@
     cartVm.assignAddress = assignAddress;
     cartVm.messages = {};
     cartVm.clearDeliveryTime = clearDeliveryTime;
+    cartVm.updateOrderItem = updateOrderItem;
     cartVm.checkoutForm = {
       forma_de_pago: 'efectivo' // only method supported ATM
     };
@@ -65,6 +66,7 @@
 
     function init() {
       cartVm.cart = $auth.user.customer_order;
+      console.log(cartVm.cart.provider_profiles[0].customer_order_items);
       cartVm.total = calculateTotal();
       cartVm.billingAddresses = billingAddresses;
       cartVm.addresses = deliveryAddresses;
@@ -182,11 +184,31 @@
     }
 
     function openEditModal(item){
-      cartVm.currentItem = item;
-      console.log(item);
+      cartVm.currentItem = angular.copy(item);
+      cartVm.counterOptions = {
+        cantidad: cartVm.currentItem.cantidad,
+        priceCents: cartVm.currentItem.provider_item_precio_cents, // jshint ignore:line
+        onChangeValue: function (data) {
+          cartVm.currentItem.cantidad = data.itemsCount;
+        }
+      };
       ModalService.showModal({
         parentScope: $scope,
         fromTemplateUrl: 'templates/cart/order-item.html'
+      });
+    }
+
+    function updateOrderItem(){
+      CartService.updateItem(cartVm.currentItem).then(function(response){
+        cartVm.cart = response.customer_order; //jshint ignore:line
+        console.log(cartVm.cart.provider_profiles[0].customer_order_items);
+        cartVm.total = calculateTotal();
+        cartVm.billingAddresses = billingAddresses;
+        cartVm.addresses = deliveryAddresses;
+        getDeliveryMethods();
+        closeModal();
+      }, function(errorResponse){
+        console.console.log(errorResponse);
       });
     }
   }
