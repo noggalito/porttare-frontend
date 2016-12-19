@@ -75,6 +75,8 @@
         accept="image/*"
       )
     .row
-      .button.button-clear.button-positive.col-offset-25.col-50(ng-click="providerVm.removeImage()")
+      .button.button-clear.button-positive.col-offset-25.col-50(
+        ng-click="providerVm.removeImage()"
+      )
         | Quitar imagen
   show-error(array-messages='providerVm.errors.imagen')
