@@ -9,6 +9,7 @@
                               $ionicPopup,
                               $state,
                               $auth,
+                              $filter,
                               $ionicLoading,
                               $ionicScrollDelegate) {
     var providerVm = this;
@@ -21,6 +22,7 @@
     providerVm.matrizProvider = {};
     providerVm.touchedPayments = false;
     providerVm.removeImage = removeImage;
+    // TODO translate:
     providerVm.laborDays = [{
       label: 'Lunes',
       name: 'mon'
@@ -62,6 +64,14 @@
 
     function createOffice(office){
       var newOffice = angular.copy(office);
+      newOffice.hora_de_apertura = $filter('formatDate')(
+        newOffice.hora_de_apertura,
+        'H:m Z'
+      );
+      newOffice.hora_de_cierre = $filter('formatDate')(
+        newOffice.hora_de_cierre,
+        'H:m Z'
+      );
       newOffice.inicio_de_labores = newOffice.inicio_de_labores && newOffice.inicio_de_labores.name;
       newOffice.final_de_labores = newOffice.final_de_labores && newOffice.final_de_labores.name;
       return newOffice;
