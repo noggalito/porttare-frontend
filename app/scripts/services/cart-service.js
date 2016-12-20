@@ -10,7 +10,8 @@
       addItem: addItem,
       getCart: getCart,
       checkout : checkout,
-      updateItem: updateItem
+      updateOrderItem: updateOrderItem,
+      removeOrderItem:removeOrderItem
     };
 
     return service;
@@ -26,6 +27,13 @@
         }, function error(response){
           return $q.reject(response.data);
         });
+    }
+
+    function removeOrderItem(orderItem) {
+      return $http({
+        method: 'DELETE',
+        url: ENV.apiHost + '/api/customer/cart/items/'+ orderItem.id
+      });
     }
 
     function getCart() {
@@ -51,7 +59,7 @@
         });
     }
 
-    function updateItem(cartItem){
+    function updateOrderItem(cartItem){
       return $http({
         method: 'PUT',
         url: ENV.apiHost + '/api/customer/cart/items/' + cartItem.id,

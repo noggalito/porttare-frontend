@@ -9,7 +9,7 @@ ion-modal-view
   ion-content.order-item-modal
     .item-title {{cartVm.currentItem.provider_item.titulo}}
     .item-image
-      img(ng-src="{{cartVm.currentItem.provider_item.imagenes[0]}}")
+      img(ng-src="{{cartVm.currentItem.provider_item.imagenes[0].imagen_url}}")
     product-counter(options="cartVm.counterOptions")
     show-error(array-messages="cartVm.updateErrors.cantidad")
     .item-comment
@@ -19,6 +19,5 @@ ion-modal-view
         placeholder='{{ ::("cart.observacionesPlaceholder" | translate)}}'
       )
   ion-footer-bar.bar-stable.item-show-footer.bar-footer--tall
-    button.button.button-outline.button-assertive Eliminar
-    //TODO remove item... @carito22
+    button.button.button-outline.button-assertive(ng-click="cartVm.removeOrderItem(cartVm.currentItem)") Eliminar
     button.button.button-outline.button-positive(ng-click="cartVm.updateOrderItem()") Listo
