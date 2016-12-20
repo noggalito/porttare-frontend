@@ -21,4 +21,5 @@
   .provider-items-in-cart
     slick-item(settings="cartVm.slickSettings"
                data="providerProfile"
-               on-click="cartVm.openEditModal")
+               on-click="cartVm.openEditModal"
+               ng-if="cartVm.slickFlag")
