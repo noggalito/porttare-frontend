@@ -15,7 +15,6 @@ GEM
     compass-import-once (1.0.5)
       sass (>= 3.2, < 3.5)
     ffi (1.9.10)
-    ffi (1.9.10-x64-mingw32)
     multi_json (1.12.1)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
