@@ -203,7 +203,7 @@
 
     function updateOrderItem() {
       cartVm.slickFlag = false;
-      CartService.updateItem(cartVm.currentItem).then(function (response) {
+      CartService.updateOrderItem(cartVm.currentItem).then(function (response) {
         cartVm.cart = response.customer_order; //jshint ignore:line
         cartVm.total = calculateTotal();
         cartVm.slickFlag = true;
@@ -214,9 +214,11 @@
     }
 
     function removeOrderItem(item){
+      cartVm.slickFlag = false;
       CartService.removeOrderItem(item).then(function success(resp){
         cartVm.cart=resp.data.customer_order;
         cartVm.total= calculateTotal();
+        cartVm.slickFlag = true;
         closeModal();
       });
     }
