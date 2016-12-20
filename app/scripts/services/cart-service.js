@@ -9,7 +9,9 @@
     var service = {
       addItem: addItem,
       getCart: getCart,
-      checkout : checkout
+      checkout : checkout,
+      updateOrderItem: updateOrderItem,
+      removeOrderItem:removeOrderItem
     };
 
     return service;
@@ -27,6 +29,13 @@
         });
     }
 
+    function removeOrderItem(orderItem) {
+      return $http({
+        method: 'DELETE',
+        url: ENV.apiHost + '/api/customer/cart/items/'+ orderItem.id
+      });
+    }
+
     function getCart() {
       return $http({
         method: 'GET',
@@ -42,6 +51,19 @@
         method: 'POST',
         url: ENV.apiHost + '/api/customer/cart/checkout',
         data: cartData
+      })
+        .then(function success(response) {
+          return response.data;
+        }, function error(response) {
+          return $q.reject(response.data);
+        });
+    }
+
+    function updateOrderItem(cartItem){
+      return $http({
+        method: 'PUT',
+        url: ENV.apiHost + '/api/customer/cart/items/' + cartItem.id,
+        data: cartItem
       })
         .then(function success(response) {
           return response.data;

@@ -19,4 +19,9 @@
     span + $1.50
     span {{ ::('cart.shippingCosts' | translate) }}
   .provider-items-in-cart
-    slick-item(settings="cartVm.slickSettings" data="providerProfile")
+    slick-item(settings="cartVm.slickSettings"
+               data="providerProfile"
+               on-click="cartVm.openEditModal"
+               ng-if="cartVm.slickFlag")
+
+

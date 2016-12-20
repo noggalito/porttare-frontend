@@ -4,14 +4,15 @@ slick-wrapper(
   .slick-container(
     ng-repeat="providerItem in sicVm.data.customer_order_items track by $index"
   )
-    .slick-content
+    .slick-content(ng-click="sicVm.onClick()(providerItem)" class="clickeable")
       .img-wrapper
         img(
           data-lazy="{{ ::providerItem.provider_item.imagenes[0].imagen_url }}"
         )
-        
+
       .customer-item-description
         .customer-item--title
           | {{ ::providerItem.provider_item.titulo }}
         .customer-item--value
           | {{ (providerItem.provider_item_precio_cents * providerItem.cantidad) | priceCurrency | currency }} / {{ providerItem.cantidad }} {{ (providerItem.cantidad > 1) ? ('cart.cantidadPlural' | translate) : ('cart.cantidadSingular' | translate) }}
+
