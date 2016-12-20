@@ -217,6 +217,7 @@
       CartService.removeOrderItem(item).then(function success(resp){
         cartVm.cart=resp.data.customer_order;
         cartVm.total= calculateTotal();
+        closeModal();
       });
     }
   }

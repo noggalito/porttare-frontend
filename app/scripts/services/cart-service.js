@@ -10,7 +10,7 @@
       addItem: addItem,
       getCart: getCart,
       checkout : checkout,
-      updateItem: updateItem,
+      updateOrderItem: updateOrderItem,
       removeOrderItem:removeOrderItem
     };
 
@@ -59,7 +59,7 @@
         });
     }
 
-    function updateItem(cartItem){
+    function updateOrderItem(cartItem){
       return $http({
         method: 'PUT',
         url: ENV.apiHost + '/api/customer/cart/items/' + cartItem.id,

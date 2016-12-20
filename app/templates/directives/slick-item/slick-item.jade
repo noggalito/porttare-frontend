@@ -7,12 +7,12 @@ slick-wrapper(
     .slick-content(ng-click="sicVm.onClick()(providerItem)" class="clickeable")
       .img-wrapper
         img(
-          data-lazy="{{ ::providerItem.provider_item.imagenes[0].imagen_url }}"
+          src="{{ providerItem.provider_item.imagenes[0].imagen_url }}"
         )
 
       .customer-item-description
         .customer-item--title
-          | {{ ::providerItem.provider_item.titulo }}
+          | {{ providerItem.provider_item.titulo }}
         .customer-item--value
           | {{ (providerItem.provider_item_precio_cents * providerItem.cantidad) | priceCurrency | currency }} / {{ providerItem.cantidad }} {{ (providerItem.cantidad > 1) ? ('cart.cantidadPlural' | translate) : ('cart.cantidadSingular' | translate) }}
 
