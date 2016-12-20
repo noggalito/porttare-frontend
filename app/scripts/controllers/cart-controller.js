@@ -69,6 +69,7 @@
       cartVm.total = calculateTotal();
       cartVm.billingAddresses = billingAddresses;
       cartVm.addresses = deliveryAddresses;
+      cartVm.slickFlag = true; // https://github.com/devmark/angular-slick-carousel#slide-data
       getDeliveryMethods();
     }
 
@@ -200,10 +201,11 @@
     }
 
     function updateOrderItem(){
+      cartVm.slickFlag = false;
       CartService.updateItem(cartVm.currentItem).then(function(response){
         cartVm.cart = response.customer_order; //jshint ignore:line
         cartVm.total = calculateTotal();
-        getDeliveryMethods();
+        cartVm.slickFlag = true;
         closeModal();
       }, function(errorResponse){
         cartVm.updateErrors = errorResponse.errors;
