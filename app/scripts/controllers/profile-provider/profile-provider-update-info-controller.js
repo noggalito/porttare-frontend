@@ -45,6 +45,7 @@
 
     function showNewModal() {
       providerProfileVm.profileEdit = angular.copy(providerProfileVm.profileProvider);
+      providerProfileVm.paymentMethods = providerProfileVm.profileProvider.formas_de_pago;
       ModalService.showModal({
         parentScope: $scope,
         fromTemplateUrl: 'templates/profile-provider/edit.html'
