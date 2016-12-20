@@ -2,17 +2,17 @@ ion-modal-view
   ion-header-bar.bar-stable.bar.bar-header
     .title.alt-logo
 
-    .ion-nav-buttons(side="left")
-      button.button.ion-chevron-left.button-clear.left(
+    .ion-nav-buttons.buttons(side="primary")
+      button.button.button-clear.button-positive(
         ng-click="providerProfileVm.closeModal()"
       ) {{::('globals.cancel'|translate)}}
 
-  ion-content.resource-form
-    form(
-      name="providerProfileVm.providerProfileForm"
-      ng-submit="providerProfileVm.edit(providerProfileVm.profileEdit)"
-      novalidate
-    )
+  form(
+    name="providerProfileVm.providerProfileForm"
+    ng-submit="providerProfileVm.edit(providerProfileVm.profileEdit)"
+    novalidate
+  )
+    ion-content.resource-form
       .list.list-inset
         legend {{::("provider.updateInfoProvider"|translate)}}
 
@@ -177,9 +177,8 @@ ion-modal-view
             type="text"
             ng-model="providerProfileVm.profileEdit.youtube_handle"
           )
-
-      .bar.bar-footer.bar-stable
-        button.button.button-small.button-outline.button-energized(
-          type="submit"
-          ng-disabled="providerProfileVm.providerProfileForm.$invalid"
-        ) {{::("globals.save"|translate)}}
+    ion-footer-bar.bar.bar-footer.bar-stable
+      button.button.button-outline.button-energized.button-small(
+        type="submit"
+        ng-disabled="providerProfileVm.providerProfileForm.$invalid"
+      ) {{::("globals.save"|translate)}}

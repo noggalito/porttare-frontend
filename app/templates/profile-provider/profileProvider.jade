@@ -1,12 +1,20 @@
-ion-content
-  .profile-page
-    .profile-header.responsive-sm
-      .col.col-offset-25.col-50
-        img.img-profile(src="images/camera.png")
-      .user-name
-        |{{ siteVm.userName() }}
+ion-view(
+  view-title='{{::profile.title|translate}}'
+)
+  ion-nav-title
+    .alt-logo
+  ion-content.has-header.show-profile-page(
+    scroll="false"
+    overflow-scroll="false"
+  )
+    .row
+      .col.profile-header
+        img.img-profile(
+          ng-src="{{ siteVm.getUserImageURL() }}"
+        )
+        .user-name {{ siteVm.userName() }}
     .profile-body
-      ion-tabs.state-tabs
+      ion-tabs.tabs-top.tabs-striped
         ion-tab(
           title="{{::('profile.tabs.info'|translate)}}"
           ui-sref="provider.profile-provider.info"
