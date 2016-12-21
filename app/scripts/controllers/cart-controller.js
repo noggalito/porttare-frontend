@@ -27,6 +27,7 @@
     cartVm.messages = {};
     cartVm.clearDeliveryTime = clearDeliveryTime;
     cartVm.updateOrderItem = updateOrderItem;
+    cartVm.removeOrderItem = removeOrderItem;
     cartVm.checkoutForm = {
       forma_de_pago: 'efectivo' // only method supported ATM
     };
