@@ -110,7 +110,7 @@
           parentScope: $scope,
           fromTemplateUrl: 'templates/profile/addresses/modal-form.html'
         });
-      } else {
+      }else{
         if (cartVm.billingAddresses.length === 0) {
           setTimeout(function () {
             $scope.billingAddressesVm = {
@@ -122,7 +122,7 @@
               fromTemplateUrl: 'templates/billing-addresses/new-edit.html'
             });
           }, 1000);
-        } else {
+        }else{
           setTimeout(function () {
             ModalService.showModal({
               parentScope: $scope,
