@@ -95,7 +95,7 @@
           closeModal();
           showCheckoutModal();
         }, function(error){
-          $scope.pfaVm.messages = error.data.errors;
+          $scope.pfaVm.messages = error.errors;
         });
       }
     }
@@ -110,25 +110,28 @@
           parentScope: $scope,
           fromTemplateUrl: 'templates/profile/addresses/modal-form.html'
         });
-      }else{
+      } else {
         if (cartVm.billingAddresses.length === 0) {
-          $scope.billingAddressesVm = {
-            closeModal: closeModal,
-            submitModal: saveNewBillingAddress
-          };
-          ModalService.showModal({
-            parentScope: $scope,
-            fromTemplateUrl: 'templates/billing-addresses/new-edit.html'
-          });
-        }else{
-          ModalService.showModal({
-            parentScope: $scope,
-            fromTemplateUrl: 'templates/cart/checkout.html'
-          });
+          setTimeout(function () {
+            $scope.billingAddressesVm = {
+              closeModal: closeModal,
+              submitModal: saveNewBillingAddress
+            };
+            ModalService.showModal({
+              parentScope: $scope,
+              fromTemplateUrl: 'templates/billing-addresses/new-edit.html'
+            });
+          }, 1000);
+        } else {
+          setTimeout(function () {
+            ModalService.showModal({
+              parentScope: $scope,
+              fromTemplateUrl: 'templates/cart/checkout.html'
+            });
+          }, 1000);
         }
       }
     }
-
     function closeModal() {
       ModalService.closeModal();
       clearData();
