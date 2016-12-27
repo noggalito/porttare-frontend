@@ -80,8 +80,7 @@
       if ($scope.billingAddressesVm.form.$valid) {
         BillingAddressesService.createBillingAddress($scope.billingAddressesVm.billingAddress).then(function success(resp){
           cartVm.billingAddresses.push(resp.customer_billing_address); //jshint ignore:line
-          closeModal();
-          showCheckoutModal();
+          closeModal().then(showCheckoutModal);
         }, function(error){
           $scope.billingAddressesVm.messages = error.data.errors;
         });
@@ -92,8 +91,7 @@
       if ($scope.pfaVm.addressForm.$valid) {
         ProfileAddressesService.createAddresses($scope.pfaVm.addressFormData).then(function(response){
           cartVm.addresses.push(response.customer_address); //jshint ignore:line
-          closeModal();
-          showCheckoutModal();
+          closeModal().then(showCheckoutModal);
         }, function(error){
           $scope.pfaVm.messages = error.errors;
         });
@@ -112,29 +110,25 @@
         });
       }else{
         if (cartVm.billingAddresses.length === 0) {
-          setTimeout(function () {
-            $scope.billingAddressesVm = {
-              closeModal: closeModal,
-              submitModal: saveNewBillingAddress
-            };
-            ModalService.showModal({
-              parentScope: $scope,
-              fromTemplateUrl: 'templates/billing-addresses/new-edit.html'
-            });
-          }, 1000);
+          $scope.billingAddressesVm = {
+            closeModal: closeModal,
+            submitModal: saveNewBillingAddress
+          };
+          ModalService.showModal({
+            parentScope: $scope,
+            fromTemplateUrl: 'templates/billing-addresses/new-edit.html'
+          });
         }else{
-          setTimeout(function () {
-            ModalService.showModal({
-              parentScope: $scope,
-              fromTemplateUrl: 'templates/cart/checkout.html'
-            });
-          }, 1000);
+          ModalService.showModal({
+            parentScope: $scope,
+            fromTemplateUrl: 'templates/cart/checkout.html'
+          });
         }
       }
     }
     function closeModal() {
-      ModalService.closeModal();
       clearData();
+      return ModalService.closeModal();
     }
 
     function clearData() {
