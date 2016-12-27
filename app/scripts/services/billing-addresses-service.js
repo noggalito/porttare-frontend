@@ -5,12 +5,13 @@
     .module('porttare.services')
     .factory('BillingAddressesService', BillingAddressesService);
 
-  function BillingAddressesService(CommonService) {
+  function BillingAddressesService(CommonService,ErrorHandlerService) {
 
     var service = {
       getBillingAddresses: getBillingAddresses,
       createBillingAddress: createBillingAddress,
-      updateBillingAddress:updateBillingAddress
+      updateBillingAddress:updateBillingAddress,
+      getBillingAddress:getBillingAddress
     };
 
     return service;
@@ -21,6 +22,15 @@
                .then(function (resp){
                  return resp.customer_billing_addresses; //jshint ignore:line
                });
+    }
+
+    function getBillingAddress(id) {
+      return CommonService
+               .getObject('/api/customer/billing_addresses/', id)
+               .then(function (resp){
+                 return resp.customer_billing_address; //jshint ignore:line
+               })
+               .catch(ErrorHandlerService.handleCommonErrorGET);
     }
 
     function createBillingAddress(billingAddress) {
