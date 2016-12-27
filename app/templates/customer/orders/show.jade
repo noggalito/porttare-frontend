@@ -32,7 +32,7 @@ ion-view(
             | {{ ::( '0' | priceCurrency | currency ) }}
         .row.item
           .col.col-75
-            | {{ ::( (customerOrderVm.VAT) + ("order.summary.VAT" |translate) ) }}
+            | {{ ::( (customerOrderVm.VAT*100) + ("order.summary.VAT" |translate) ) }}
           .col.col-25
             | {{ ::( customerOrderVm.customerOrder.subtotalVATCents | priceCurrency | currency ) }}
         .row.table-headers
@@ -67,17 +67,15 @@ ion-view(
           .col.col-100 {{ ::("order.customerInfo"|translate) }}
         .row.item
           .col.col-100 {{ 'SEBASTIAN LOPEZ' }}
-        .row.item(ng-if="customerOrderVm.customerAddress")
-          .col.col-100
-            {{ ::( customerOrderVm.customerAddress.parroquia + ', ' + customerOrderVm.customerAddress.barrio ) }}
-        .row.item(ng-if="customerOrderVm.customerAddress")
-          .col.col-100
-            {{ ::( customerOrderVm.customerAddress.ciudad + ', ' + customerOrderVm.customerAddress.codigo_postal ) }}
+        .row.item(ng-if="customerOrderVm.getAddressLine1()")
+          .col.col-100 {{ ::( customerOrderVm.getAddressLine1()  ) }}
+        .row.item(ng-if="customerOrderVm.getAddressLine2()")
+          .col.col-100 {{ ::( customerOrderVm.getAddressLine2() ) }}
         .row.item
           .col.col-100 {{ 'VISA ***********1234' }}
-        .row.item(ng-if="customerOrderVm.customerBillingAddress")
+        .row.item(ng-if="customerOrderVm.customerBillingAddress.direccion")
           .col.col-100
             {{ ::( customerOrderVm.customerBillingAddress.direccion ) }}
-        .row.item(ng-if="customerOrderVm.customerBillingAddress")
+        .row.item(ng-if="customerOrderVm.customerBillingAddress.ciudad")
           .col.col-100
             {{ ::( customerOrderVm.customerBillingAddress.ciudad ) }}
