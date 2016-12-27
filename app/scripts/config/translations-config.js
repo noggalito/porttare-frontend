@@ -262,8 +262,7 @@
         buttonAddItems: 'Agregar ítems +',
         buttonAddDate: 'Agregar hora y fecha +',
         buttonShare: 'Escoger usuario +',
-        titleSelectItems: 'Seleccionar Items',
-        noItems: 'No se han cargado items al wishlist'
+        titleSelectItems: 'Seleccionar Items'
       },
       office: {
         office: 'Establecimiento',
