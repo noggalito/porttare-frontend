@@ -7,6 +7,8 @@
 
   function CustomerOrderController(customerOrder, ProfileAddressesService, BillingAddressesService) {
     var customerOrderVm = this;
+    customerOrderVm.VAT = 0.12;
+
     customerOrderVm.customerOrder = customerOrder;
     customerOrderVm.customerAddress = null;
     customerOrderVm.customerBillingAdress = null;
@@ -14,6 +16,7 @@
     function init() {
       getAddress();
       getBillingAddress();
+      getSummary();
     }
 
     init();
@@ -43,6 +46,13 @@
                 customerOrderVm.customerBillingAddress = res;
               }
             );
+      }
+    }
+
+    function getSummary(){
+      if(customerOrderVm.customerOrder){
+        customerOrderVm.customerOrder.subtotalVATCents = Math.round( customerOrderVm.customerOrder.subtotal_items_cents*customerOrderVm.VAT ); // jshint ignore:line
+        customerOrderVm.customerOrder.totalCents = customerOrderVm.customerOrder.subtotal_items_cents + customerOrderVm.customerOrder.subtotalVATCents; // jshint ignore:line
       }
     }
   }

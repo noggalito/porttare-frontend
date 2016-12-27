@@ -29,19 +29,19 @@ ion-view(
           .col.col-75
             | {{ ::("order.summary.shippingCosts" |translate) }}
           .col.col-25
-            | {{ ::( '1000' | priceCurrency | currency ) }}
+            | {{ ::( '0' | priceCurrency | currency ) }}
         .row.item
           .col.col-75
-            | {{ ::("order.summary.VAT" |translate) }}
+            | {{ ::( (customerOrderVm.VAT) + ("order.summary.VAT" |translate) ) }}
           .col.col-25
-            | {{ ::( '500' | priceCurrency | currency ) }}
+            | {{ ::( customerOrderVm.customerOrder.subtotalVATCents | priceCurrency | currency ) }}
         .row.table-headers
           .col.col-100
         .row.item
           .col.col-75
             | {{ ::("order.summary.total" |translate) }}
           .col.col-25
-            | {{ ::( '5000' | priceCurrency | currency ) }}
+            | {{ ::( customerOrderVm.customerOrder.totalCents | priceCurrency | currency ) }}
 
     //- not implemented yet
       .resource-collection
