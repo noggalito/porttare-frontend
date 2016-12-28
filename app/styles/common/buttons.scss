@@ -61,13 +61,8 @@
   letter-spacing: -0.5px;
 }
 
-.button-text-yellow {
-  background: transparent;
-  border: none;
-  color: $base-yellow;
-}
 
-.facebook-login,
+.facebook-login
  {
   @extend .common-button;
   background-color: $facebook-blue;
