@@ -12,8 +12,8 @@
     customerOrderVm.customerOrder = customerOrder;
     customerOrderVm.customerAddress = null;
     customerOrderVm.customerBillingAdress = null;
-    customerOrderVm.getAddressLine1 = getAddressLine1;
-    customerOrderVm.getAddressLine2 = getAddressLine2;
+    customerOrderVm.addressLine1 = null;
+    customerOrderVm.addressLine2 = null;
 
     function init() {
       getAddress();
@@ -32,6 +32,9 @@
             .then(
               function(res){
                 customerOrderVm.customerAddress = res;
+
+                customerOrderVm.addressLine1 = getAddressLine1();
+                customerOrderVm.addressLine2 = getAddressLine2();
               }
             );
       }

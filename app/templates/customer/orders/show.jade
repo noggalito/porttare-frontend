@@ -67,10 +67,10 @@ ion-view(
           .col.col-100 {{ ::("order.customerInfo"|translate) }}
         .row.item
           .col.col-100 {{ 'SEBASTIAN LOPEZ' }}
-        .row.item(ng-if="customerOrderVm.getAddressLine1()")
-          .col.col-100 {{ ::( customerOrderVm.getAddressLine1()  ) }}
-        .row.item(ng-if="customerOrderVm.getAddressLine2()")
-          .col.col-100 {{ ::( customerOrderVm.getAddressLine2() ) }}
+        .row.item(ng-if="customerOrderVm.addressLine1")
+          .col.col-100 {{ ::( customerOrderVm.addressLine1 ) }}
+        .row.item(ng-if="customerOrderVm.addressLine2")
+          .col.col-100 {{ ::( customerOrderVm.addressLine2 ) }}
         .row.item
           .col.col-100 {{ 'VISA ***********1234' }}
         .row.item(ng-if="customerOrderVm.customerBillingAddress.direccion")
