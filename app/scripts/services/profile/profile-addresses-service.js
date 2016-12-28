@@ -63,21 +63,14 @@
     }
 
     function getAddress(id) {
-      return $q(function (resolve, reject) {
-        getAddresses().then(function success(customerAddresses) {
-          var selectedAddress = findAddress(customerAddresses, id);
-          resolve(selectedAddress);
-        }, reject);
+      return $http({
+        method: 'GET',
+        url: ENV.apiHost + '/api/customer/addresses/' + id
+      }).then(function success(res) {
+        return res.data.customer_address; //jshint ignore:line
+      }, function error(res) {
+        return $q.reject(res.data);
       });
-    }
-
-    function findAddress(customerAddresses, id) {
-      var parsedId = parseInt(id, 10);
-      if (customerAddresses) {
-        return customerAddresses.find(function(customerAddress) {
-          return customerAddress.id === parsedId;
-        });
-      }
     }
 
     function reditectToList() {
