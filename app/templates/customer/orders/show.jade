@@ -71,8 +71,8 @@ ion-view(
           .col.col-100 {{ ::( customerOrderVm.addressLine1 ) }}
         .row.item(ng-if="customerOrderVm.addressLine2")
           .col.col-100 {{ ::( customerOrderVm.addressLine2 ) }}
-        .row.item
-          .col.col-100 {{ 'VISA ***********1234' }}
+        .row.item(ng-if="customerOrderVm.customerOrder.forma_de_pago")
+          .col.col-100 {{ ::( customerOrderVm.customerOrder.forma_de_pago ) }}
         .row.item(ng-if="customerOrderVm.customerBillingAddress.direccion")
           .col.col-100
             {{ ::( customerOrderVm.customerBillingAddress.direccion ) }}
