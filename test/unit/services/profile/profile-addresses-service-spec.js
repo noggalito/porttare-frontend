@@ -110,7 +110,7 @@
             'referencia': 'Lorem Impusm'
           }
         };
-        var expectedUrl = ENV.apiHost + '/api/customer/addresses/1';
+        var expectedUrl = ENV.apiHost + '/api/customer/addresses/2';
         $httpBackend.expectGET(expectedUrl).respond(resData);
       });
 
