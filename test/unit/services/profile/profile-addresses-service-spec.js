@@ -52,7 +52,7 @@
                                 $httpBackend = _$httpBackend_;
     }));
 
-    describe('Getting data', function () {
+    describe('Get addresses', function () {
       var resData = null;
       beforeEach(function () {
         resData = {
@@ -91,6 +91,29 @@
         });
         $httpBackend.flush();
       });
+    });
+
+    describe('Get address', function () {
+      var resData = null;
+      beforeEach(function () {
+        resData = {
+          'customer_address': {
+            'id': 2,
+            'nombre': 'Casa',
+            'ciudad': 'Quito',
+            'parroquia': 'Quito',
+            'barrio': 'Cumbayá',
+            'direccion_uno': 'Calle Miguel Ángel',
+            'direccion_dos': 'Lorem Impusm',
+            'codigo_postal': '124455',
+            'numero_convencional': '2342-4444',
+            'referencia': 'Lorem Impusm'
+          }
+        };
+        var expectedUrl = ENV.apiHost + '/api/customer/addresses/1';
+        $httpBackend.expectGET(expectedUrl).respond(resData);
+      });
+
       it('should get an address', function () {
         var expectData = {
           'id': 2,
