@@ -65,8 +65,8 @@ ion-view(
       .list.list-inset.list--no-borders.resource-collection-table
         .row.table-headers
           .col.col-100 {{ ::("order.customerInfo"|translate) }}
-        .row.item
-          .col.col-100 {{ 'SEBASTIAN LOPEZ' }}
+        .row.item(ng-if="customerOrderVm.customerAddress.nombre")
+          .col.col-100 {{ ::( customerOrderVm.customerAddress.nombre ) }}
         .row.item(ng-if="customerOrderVm.addressLine1")
           .col.col-100 {{ ::( customerOrderVm.addressLine1 ) }}
         .row.item(ng-if="customerOrderVm.addressLine2")
