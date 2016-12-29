@@ -9,7 +9,7 @@ label.item.item-input.item-stacked-label
 .errors-wrapper
   show-error(array-messages="wishlistsVm.messages.nombre")
 
-label.item.item-input.item-stacked-label
+label.item.item-input.item-stacked-label(ng-if="wishlistsVm.editing")
   span.input-label {{::("wishlist.items"|translate)}}
   .row-wishlist-action
     button(
