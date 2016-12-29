@@ -9,11 +9,12 @@ label.item.item-input.item-stacked-label
 .errors-wrapper
   show-error(array-messages="wishlistsVm.messages.nombre")
 
-label.item.item-input.item-stacked-label(ng-if="wishlistsVm.editing")
+label.item.item-input.item-stacked-label
   span.input-label {{::("wishlist.items"|translate)}}
   .row-wishlist-action
     button(
       ng-click="wishlistsVm.redirectCategories()"
+      ng-disabled="!wishlistsVm.editing"
     ).button.button-clear.button-energized
       | {{::("wishlist.buttonAddItems"|translate)}}
     ion-list(ng-if="wishlistsVm.wishlist.provider_items.length > 0")
