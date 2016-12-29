@@ -36,7 +36,7 @@
       },
       showWishlistItems: {
         parentScope: $scope,
-        fromTemplateUrl: 'templates/wishlist/show.html'
+        fromTemplateUrl: 'templates/wishlist/wishlists.html'
       }
     };
 

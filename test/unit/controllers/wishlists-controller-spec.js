@@ -8,9 +8,8 @@
       $scope,
       $ionicLoading,
       $ionicScrollDelegate,
-      deferGetCategories,
-      deferGetCategoryProviders,
-      ModalServiceMock;
+      ModalServiceMock,
+      $state;
 
     beforeEach(module('porttare.controllers'));
     beforeEach(angular.mock.module(function ($provide) {
@@ -24,27 +23,17 @@
           closeModal: sinon.stub()
         };
       });
-      $provide.factory('CategoriesService', function ($q) {
-        return {
-          getCategoryProviders: function () {
-            deferGetCategoryProviders = $q.defer();
-            return deferGetCategoryProviders.promise;
-          },
-          getCategories: function () {
-            deferGetCategories = $q.defer();
-            return deferGetCategories.promise;
-          }
-        };
-      });
-      $provide.factory('CategoryService', function () {
-        return {};
-      });
       $provide.factory('WishlistsService', function () {
         return {};
       });
       $provide.factory('$ionicPopup', function(){
         return {
           alert: sinon.stub()
+        };
+      });
+      $provide.factory('$state', function(){
+        return {
+          go: sinon.stub()
         };
       });
     }));
@@ -54,10 +43,9 @@
       data,
       APP,
       ModalService,
-      CategoriesService,
-      CategoryService,
       WishlistsService,
-      _$ionicPopup_) {
+      _$ionicPopup_,
+      _$state_) {
       $ionicLoading = {
         show: sinon.stub(),
         hide: sinon.stub()
@@ -68,15 +56,15 @@
       ModalServiceMock = ModalService;
       $scope = _$rootScope_.$new();
       $controller = _$controller_;
+      $state=_$state_;
       dependencies = {
         data: data,
         APP: APP,
         ModalService: ModalServiceMock,
-        CategoriesService: CategoriesService,
-        CategoryService: CategoryService,
         $ionicLoading: $ionicLoading,
         $ionicScrollDelegate: $ionicScrollDelegate,
         $scope: $scope,
+        $state: $state,
         WishlistsService: WishlistsService,
         $ionicPopup: _$ionicPopup_
       };
@@ -85,28 +73,22 @@
 
     describe('Modal events', function () {
       it('Should send the right params', function () {
-        var newWishlist = {
-          parentScope: $scope,
-          fromTemplateUrl: 'templates/wishlist/new.html'
+        ctrl.modalSettings= {
+          newWishlist: {
+            parentScope: $scope,
+            fromTemplateUrl: 'templates/wishlist/new.html'
+          },
+          editWishlist: {
+            parentScope: $scope,
+            fromTemplateUrl: 'templates/wishlist/edit.html'
+          },
+          showWishlistItems: {
+            parentScope: $scope,
+            fromTemplateUrl: 'templates/wishlist/wishlists.html'
+          }
         };
-
-        var editWishlist = {
-          parentScope: $scope,
-          fromTemplateUrl: 'templates/wishlist/edit.html'
-        };
-
-        var showWishlistItems= {
-          parentScope: $scope,
-          fromTemplateUrl: 'templates/wishlist/show.html'
-        };
-
-        ctrl.showModal(newWishlist);
-        sinon.assert.calledWith(ModalServiceMock.showModal, newWishlist);
-        ctrl.showModal(editWishlist);
-        sinon.assert.calledWith(ModalServiceMock.showModal, editWishlist);
-        ctrl.showModal(showWishlistItems);
-        sinon.assert.calledWith(ModalServiceMock.showModal, showWishlistItems);
-
+        ctrl.showModal(ctrl.modalSettings);
+        sinon.assert.calledWith(ModalServiceMock.showModal, ctrl.modalSettings);
       });
 
       it('Should send a ID', function () {
@@ -119,6 +101,7 @@
         expect(ctrl.query).to.equal('');
         expect(ctrl.wishlist).to.equal(null);
         expect(ctrl.messages).to.deep.equal({});
+        expect(ctrl.editing).to.equal(false);
       });
 
       it('Should show the main modal', function () {
