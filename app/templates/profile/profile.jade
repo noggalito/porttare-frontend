@@ -9,9 +9,10 @@ ion-view(
     .row
       .col.profile-header
         img.img-profile(
+          ng-if="siteVm.userImageURL"
           ng-src="{{ siteVm.userImageURL }}"
         )
-        .user-name {{ siteVm.userName }}
+        .user-name(ng-if="siteVm.userName") {{ siteVm.userName }}
 
     .profile-body
       ion-tabs.tabs-top.tabs-striped

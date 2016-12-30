@@ -68,6 +68,10 @@
       });
     });
 
+    $scope.$on('auth:login-success', function(){
+      piVm.user = $auth.user;
+    });
+
     function hasImageFile(user){
       return ProfileService.hasImageFile(user);
     }

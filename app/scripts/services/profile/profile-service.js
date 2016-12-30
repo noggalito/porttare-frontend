@@ -71,10 +71,11 @@
 
     function getUserImageURL(user){ //jshint ignore: line
       /* jshint ignore:start */
-      return user.custom_image_url
+      return user && (
+              user.custom_image_url
               || ( user.custom_image && user.custom_image.url )
               || user.image
-              || APP.defaultProfileImage;
+              || APP.defaultProfileImage );
       /* jshint ignore:end */
     }
 

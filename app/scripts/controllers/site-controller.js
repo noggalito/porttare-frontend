@@ -34,11 +34,13 @@
     });
 
     $rootScope.$on('auth:login-success', function(){
+      currentUser = $auth.user;
       updateProperties();
       updatePropertiesProfileProvider();
     });
 
     $rootScope.$on('auth:validation-success', function(){
+      currentUser = $auth.user;
       updateProperties();
       updatePropertiesProfileProvider();
     });
