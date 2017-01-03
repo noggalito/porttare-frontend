@@ -7,10 +7,9 @@ server "demo.moviggo.com", user: "demo-porttare", roles: %w{app}
 # server "example.com", user: "deploy", roles: %w{app web}, other_property: :other_value
 # server "db.example.com", user: "deploy", roles: %w{db}
 set :deploy_to, '~/demo-porttare-frontend'
-set :rbenv_path, '~/.rbenv'
+set :rbenv_path, '/home/demo-porttare/.rbenv'
 set :nvm_type, :user
 set :nvm_node, 'v0.12.14'
-
 
 # role-based syntax
 # ==================

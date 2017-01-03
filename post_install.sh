@@ -1,6 +1,6 @@
 #!/bin/bash
 gem install bundler -N
-bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
+#bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
 ./node_modules/bower/bin/bower install
 
 # build if there's a Gruntfile for

@@ -4,6 +4,8 @@ lock "3.7.1"
 set :application, "porttare-frontend"
 set :repo_url, 'git@github.com:noggalito/porttare-frontend.git'
 
+set :npm_flags, '--silent --no-progress'
+
 set :slackistrano, {
   channel: '#porttare',
   webhook: 'https://hooks.slack.com/services/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'
@@ -30,6 +32,7 @@ set :branch, ENV['BRANCH'] || 'production'
 # Default value for :linked_files is []
 # append :linked_files, "config/database.yml", "config/secrets.yml"
 append :linked_files, '.env'
+append :linked_files, 'www/cordova.js'
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
@@ -40,3 +43,11 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bund
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
+namespace :deploy do
+  desc 'build'
+  task :build do
+    invoke 'porttare:build'
+  end
+
+  after :publishing, :build
+end
