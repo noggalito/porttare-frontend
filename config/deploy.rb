@@ -1,6 +1,7 @@
 # config valid only for current version of Capistrano
 lock "3.7.1"
 
+set :keep_releases, 3
 set :application, "porttare-frontend"
 set :repo_url, 'git@github.com:noggalito/porttare-frontend.git'
 
