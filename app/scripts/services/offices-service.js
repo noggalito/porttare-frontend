@@ -1,6 +1,8 @@
 (function () {
   'use strict';
 
+  // jshint camelcase:false
+
   angular
     .module('porttare.services')
     .factory('OfficesService', OfficesService);
@@ -48,7 +50,6 @@
 
     function formatWeekdayHours(office){
       angular.forEach(
-        // jshint ignore:start
         office.weekdays_attributes,
         function (weekdayAttributes){
           if (weekdayAttributes.hora_de_apertura) {
@@ -62,7 +63,6 @@
             );
           }
         }
-        //jshint ignore:end
       );
     }
 

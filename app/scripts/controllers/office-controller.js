@@ -39,7 +39,6 @@
         MapsService.renderAddressMarker(map, {
           address: officesVm.officeDetail.direccion,
           componentRestrictions: {
-            country: 'EC',
             locality: officesVm.officeDetail.ciudad
           }
         });
@@ -48,7 +47,7 @@
 
     function showEditOffice() {
       officesVm.office = angular.copy(officesVm.officeDetail);
-      officesVm.office.weekdays_attributes = weekdaysAttributesForEdit();
+      officesVm.office.weekdays_attributes = weekdaysAttributesForEdit();  // jshint ignore:line
       ModalService.showModal({
         parentScope: $scope,
         fromTemplateUrl: 'templates/offices/new-edit.html'
@@ -92,7 +91,9 @@
     function submitOffice(){
       if(officesVm.form.$valid){
         loading('globals.updating');
-        OfficesService.updateOffice(officesVm.office).then(function success(resp){
+        OfficesService.updateOffice(
+          officesVm.office
+        ).then(function success(resp){
           $ionicLoading.hide().then(function(){
             officesVm.officeDetail = resp.provider_office; //jshint ignore:line
             loadOffice();
