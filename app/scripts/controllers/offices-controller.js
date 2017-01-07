@@ -35,17 +35,15 @@
 
     function buildNewOffice(){
       var newOffice = {
-        weekdays_attributes: []
+        weekdays_attributes: buildWeekdays()
       };
-      angular.forEach(APP.weekdays, function (wday){
-        newOffice.weekdays_attributes.push({
-          day: wday
-        });
-      });
-      console.log(newOffice);
-      // TODO why was this here?
-      // newOffice.enabled = false;
       return newOffice;
+    }
+
+    function buildWeekdays(){
+      APP.weekdays.map(function (wday){
+        return { day: wday };
+      });
     }
 
     function closeModal() {
