@@ -302,10 +302,16 @@
         officesAny: 'No dispone de ningún Establecimiento o Sucursal',
         locationNotFound: 'No he encontrado la dirección: ',
         taskInProgress: 'Tarea en progreso',
-        selectHourPlaceholder: 'Seleccionar hora',
         yes: 'Si',
         not: 'No',
-        officeEnabled: 'Establecimiento activo'
+        officeEnabled: 'Establecimiento activo',
+        weekdays: {
+          cerrado: 'Cerrado',
+          selectHourPlaceholder: 'HH:MM',
+          collectionTitle: 'Días laborables',
+          openFromPlaceholder: 'de',
+          openUntilPlaceholder: 'a'
+        }
       },
       password: {
         updatePassword: 'Actualizar contraseña',

@@ -5,12 +5,13 @@
     .module('porttare.controllers')
     .controller('OfficesController', OfficesController);
 
-  function OfficesController(OfficesService,
-                              ModalService,
-                              ErrorHandlerService,
-                              $ionicLoading,
-                              $ionicPopup,
-                              $scope) {
+  function OfficesController($scope,
+                             $ionicPopup,
+                             $ionicLoading,
+                             APP,
+                             OfficesService,
+                             ModalService,
+                             ErrorHandlerService) {
 
     var officesVm = this;
     officesVm.showNewOffice = showNewOffice;
@@ -25,12 +26,26 @@
     }
 
     function showNewOffice() {
-      officesVm.office = {};
-      officesVm.office.enabled = false;
+      officesVm.office = buildNewOffice();
       ModalService.showModal({
         parentScope: $scope,
         fromTemplateUrl: 'templates/offices/new-edit.html'
       });
+    }
+
+    function buildNewOffice(){
+      var newOffice = {
+        weekdays_attributes: []
+      };
+      angular.forEach(APP.weekdays, function (wday){
+        newOffice.weekdays_attributes.push({
+          day: wday
+        });
+      });
+      console.log(newOffice);
+      // TODO why was this here?
+      // newOffice.enabled = false;
+      return newOffice;
     }
 
     function closeModal() {

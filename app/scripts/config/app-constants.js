@@ -11,6 +11,7 @@
     centsInDollar: '100',
     fbAuthScope: ['public_profile', 'email', 'user_birthday'],
     paymentMethods: ['efectivo'],
-    deliveryMethods: ['shipping', 'pickup']
+    deliveryMethods: ['shipping', 'pickup'],
+    weekdays: ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
   });
 })();

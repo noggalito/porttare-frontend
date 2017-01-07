@@ -14,7 +14,9 @@ ion-view(
         .col.col-60 {{::("office.officeAddress"|translate)}}
         .col
       
-      .row.without-items(ng-if="officesVm.offices.length === 0")
+      .row.without-items(
+        ng-if="officesVm.offices.length === 0"
+      )
         p {{::("office.officesAny"|translate)}}
 
       .item.row(
