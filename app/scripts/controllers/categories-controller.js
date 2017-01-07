@@ -27,7 +27,8 @@
     }
 
     function unevenCategories() {
-      return parentScopeCategories().length % 2 !== 0;
+      var categoriesLength = parentScopeCategories().length + 1;
+      return ((categoriesLength % 3) !== 0);
     }
 
     function categoryGridClassFor(index, last) {
