@@ -29,28 +29,45 @@
     }
 
     function createOffice(office) {
-      return CommonService.newObject(office, '/api/provider/offices');
+      var uri = '/api/provider/offices',
+          formattedOffice = formatOffice(office);
+      return CommonService.newObject(formattedOffice, uri);
     }
 
     function updateOffice(office) {
-      var data = convertDateToString(office);
-      return CommonService.editObject(data, '/api/provider/offices/');
+      var uri = '/api/provider/offices/',
+          formattedOffice = formatOffice(office);
+      return CommonService.editObject(formattedOffice, uri);
     }
 
-    function convertDateToString(office){
-      var data = angular.copy(office);
-      // jshint ignore:start
-      data.hora_de_apertura = $filter('formatDate')(
-        office.hora_de_apertura,
-        'HH:mm Z'
-      );
-      data.hora_de_cierre = $filter('formatDate')(
-        office.hora_de_cierre,
-        'HH:mm Z'
-      );
-      // jshint ignore:end
-      return data;
+    function formatOffice(office) {
+      var formattedOffice = angular.copy(office);
+      formatWeekdayHours(formattedOffice);
+      return formattedOffice;
     }
 
+    function formatWeekdayHours(office){
+      angular.forEach(
+        // jshint ignore:start
+        office.weekdays_attributes,
+        function (weekdayAttributes){
+          if (weekdayAttributes.hora_de_apertura) {
+            weekdayAttributes.hora_de_apertura = formatOpeningTimeForApi(
+              weekdayAttributes.hora_de_apertura
+            );
+          }
+          if (weekdayAttributes.hora_de_cierre) {
+            weekdayAttributes.hora_de_cierre = formatOpeningTimeForApi(
+              weekdayAttributes.hora_de_cierre
+            );
+          }
+        }
+        //jshint ignore:end
+      );
+    }
+
+    function formatOpeningTimeForApi(openingTime){
+      return $filter('formatDate')(openingTime, 'timeSchedule');
+    }
   }
 })();

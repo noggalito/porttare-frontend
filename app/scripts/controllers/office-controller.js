@@ -48,9 +48,31 @@
 
     function showEditOffice() {
       officesVm.office = angular.copy(officesVm.officeDetail);
+      officesVm.office.weekdays_attributes = weekdaysAttributesForEdit();
       ModalService.showModal({
         parentScope: $scope,
         fromTemplateUrl: 'templates/offices/new-edit.html'
+      });
+    }
+
+    function weekdaysAttributesForEdit() {
+      return officesVm.office.weekdays.map(function (weekday){
+        var newWeekday = angular.copy(weekday);
+        // jshint ignore:start
+        if (weekday.hora_de_apertura) {
+          newWeekday.hora_de_apertura = $filter('toDate')(
+            weekday.hora_de_apertura,
+            'timeSchedule'
+          ).toDate();
+        }
+        if (weekday.hora_de_cierre) {
+          newWeekday.hora_de_cierre = $filter('toDate')(
+            weekday.hora_de_cierre,
+            'timeSchedule'
+          ).toDate();
+        }
+        // jshint ignore:end
+        return newWeekday;
       });
     }
 
@@ -74,12 +96,7 @@
           $ionicLoading.hide().then(function(){
             officesVm.officeDetail = resp.provider_office; //jshint ignore:line
             loadOffice();
-            closeModal().then(function () {
-              $ionicPopup.alert({
-                title: 'Éxito',
-                template: '{{::("office.officeSuccessUpdate"|translate)}}'
-              });
-            });
+            closeModal();
           });
         }, function(rpta){
           officesVm.messages = rpta.status===422 ? rpta.data.errors:undefined;

@@ -24,35 +24,6 @@
     providerVm.touchedPayments = false;
     providerVm.removeImage = removeImage;
     providerVm.providerCategories = providerCategories;
-    // TODO translate:
-    providerVm.laborDays = [{
-      label: 'Lunes',
-      name: 'mon'
-    },
-    {
-      label: 'Martes',
-      name: 'tue'
-    },
-    {
-      label: 'Miércoles',
-      name: 'wed'
-    },
-    {
-      label: 'Jueves',
-      name: 'thu'
-    },
-    {
-      label: 'Viernes',
-      name: 'fri'
-    },
-    {
-      label: 'Sábado',
-      name: 'sat'
-    },
-    {
-      label: 'Domingo',
-      name: 'sun'
-    }];
 
     function initProvider(){
       providerVm.provider = {};
@@ -64,22 +35,6 @@
       providerVm.provider.logotipo = null;
     }
 
-    // TODO wipe outta here
-    function createOffice(office){
-      var newOffice = angular.copy(office);
-      newOffice.hora_de_apertura = $filter('formatDate')(
-        newOffice.hora_de_apertura,
-        'timeSchedule'
-      );
-      newOffice.hora_de_cierre = $filter('formatDate')(
-        newOffice.hora_de_cierre,
-        'timeSchedule'
-      );
-      newOffice.inicio_de_labores = newOffice.inicio_de_labores && newOffice.inicio_de_labores.name;
-      newOffice.final_de_labores = newOffice.final_de_labores && newOffice.final_de_labores.name;
-      return newOffice;
-    }
-
     function createProvider() {
       $ionicLoading.show({
         template: 'enviando...'
@@ -88,7 +43,6 @@
       var objectToSend = providerVm.provider;
       objectToSend.formas_de_pago = providerVm.paymentMethods;
 
-      objectToSend.offices_attributes = [createOffice(providerVm.matrizProvider)];
       ProviderService.createNewProvider(objectToSend)
         .then(function success(provider) {
           //update auth user
@@ -115,6 +69,5 @@
       providerVm.step += 1;
       $ionicScrollDelegate.scrollTop();
     }
-
   }
 })();

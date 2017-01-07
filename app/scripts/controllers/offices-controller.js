@@ -5,8 +5,7 @@
     .module('porttare.controllers')
     .controller('OfficesController', OfficesController);
 
-  function OfficesController($filter,
-                             $scope,
+  function OfficesController($scope,
                              $ionicPopup,
                              $ionicLoading,
                              APP,
@@ -75,28 +74,6 @@
           $ionicLoading.hide();
         });
       }
-    }
-
-    function formatWeekdayHours(){
-      angular.forEach(
-        officesVm.office.weekdays_attributes, // jshint ignore:line
-        function (weekdayAttributes){
-          if (weekdayAttributes.hora_de_aperturaAccessor) {
-            weekdayAttributes.hora_de_apertura = formatOpeningTimeForApi(
-              weekdayAttributes.hora_de_aperturaAccessor
-            );
-          }
-          if (weekdayAttributes.hora_de_cierreAccessor) {
-            weekdayAttributes.hora_de_cierre = formatOpeningTimeForApi(
-              weekdayAttributes.hora_de_cierreAccessor
-            );
-          }
-        }
-      );
-    }
-
-    function formatOpeningTimeForApi(openingTime){
-      return $filter('formatDate')(openingTime, 'timeSchedule');
     }
   }
 })();

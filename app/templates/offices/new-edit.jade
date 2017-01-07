@@ -92,31 +92,31 @@ ion-modal-view
 
             ion-datetime-picker.datetime-picker(
               time
-              ng-model='officeWeekday.hora_de_aperturaAccessor'
+              ng-model='officeWeekday.hora_de_apertura'
               ng-if="officeWeekday.abierto"
             )
               span.padded
                 | {{ ::("office.weekdays.openFromPlaceholder" | translate) }}
               span.datetime-picker-placeholder(
-                ng-if="!officeWeekday.hora_de_aperturaAccessor"
+                ng-if="!officeWeekday.hora_de_apertura"
               ) {{ ::("office.weekdays.selectHourPlaceholder" | translate) }}
 
               span.datetime-picker-value
-                | {{ officeWeekday.hora_de_aperturaAccessor | date: 'HH:mm a' }}
+                | {{ officeWeekday.hora_de_apertura | date: 'HH:mm a' }}
 
             ion-datetime-picker.datetime-picker(
               time
-              ng-model='officeWeekday.hora_de_cierreAccessor'
+              ng-model='officeWeekday.hora_de_cierre'
               ng-if="officeWeekday.abierto"
             )
               span.padded
                 | {{ ::("office.weekdays.openUntilPlaceholder" | translate) }}
               span.datetime-picker-placeholder(
-                ng-if="!officeWeekday.hora_de_cierreAccessor"
+                ng-if="!officeWeekday.hora_de_cierre"
               ) {{ ::("office.weekdays.selectHourPlaceholder" | translate) }}
 
               span.datetime-picker-value
-                | {{ officeWeekday.hora_de_cierreAccessor | date: 'HH:mm a' }}
+                | {{ officeWeekday.hora_de_cierre | date: 'HH:mm a' }}
 
     .bar.bar-footer.bar-stable
       button.button.button-small.button-outline.button-energized(

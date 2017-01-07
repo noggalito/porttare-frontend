@@ -35,17 +35,17 @@ ion-view(
         .col.col-50.value {{::officesVm.officeDetail.id}}
       .row
         .col.col-50.label {{::("office.ciudad"|translate)}}
-        .col.col-50.value {{::officesVm.officeDetail.ciudad}}
+        .col.col-50.value {{officesVm.officeDetail.ciudad}}
       .row
         .col.col-50.label {{::("office.telefono"|translate)}}
-        .col.col-50.value {{::officesVm.officeDetail.telefono}}
+        .col.col-50.value {{officesVm.officeDetail.telefono}}
 
     .row.details-table-header
       .col {{::("office.weekdays.collectionTitle"|translate)}}
 
     .list.list-inset.list--no-borders.resource-details-table
       .row(
-        ng-repeat="weekday in ::officesVm.officeDetail.weekdays"
+        ng-repeat="weekday in officesVm.officeDetail.weekdays"
       )
         .col.col-50.label
           | {{ ::("globals.dayNames." + weekday.day | translate) }}
@@ -56,6 +56,20 @@ ion-view(
           span(
             ng-if="weekday.abierto"
           )
-            | {{ weekday.hora_de_apertura | toDate:'timeSchedule' | formatDate:'HH:mm' }}
+            span(
+              ng-if="weekday.hora_de_apertura"
+            )
+              | {{ weekday.hora_de_apertura | toDate:'timeSchedule' | formatDate:'HH:mm' }}
+            span(
+              ng-if="!weekday.hora_de_apertura"
+            )
+              | {{ ::("office.weekdays.selectHourPlaceholder" | translate) }}
             | -
-            | {{ weekday.hora_de_cierre | toDate:'timeSchedule' | formatDate:'HH:mm' }}
+            span(
+              ng-if="weekday.hora_de_cierre"
+            )
+              | {{ weekday.hora_de_cierre | toDate:'timeSchedule' | formatDate:'HH:mm' }}
+            span(
+              ng-if="!weekday.hora_de_cierre"
+            )
+              | {{ ::("office.weekdays.selectHourPlaceholder" | translate) }}            
