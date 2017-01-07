@@ -69,58 +69,6 @@ ion-modal-view
               | {{::("form.requiredField"|translate)}}
           show-error(array-messages='officesVm.messages.telefono')
 
-        label.item.item-input.item-select
-          span.input-label {{::("office.officeStart"|translate)}}
-          select(ng-model='officesVm.office.inicio_de_labores')
-            each day in ['mon','tue', 'wed', 'thu', 'fri', 'sat', 'sun']
-              option(value=day)
-                | {{::("globals.dayNames.#{day}"|translate)}}
-
-        label.item.item-input.item-select
-          span.input-label {{::("office.officeFinish"|translate)}}
-          select(ng-model='officesVm.office.final_de_labores')
-            each day in ['mon','tue', 'wed', 'thu', 'fri', 'sat', 'sun']
-              option(value=day)
-                | {{::("globals.dayNames.#{day}"|translate)}}
-
-        ion-datetime-picker.datetime-picker(
-          time
-          ng-model='officesVm.office.hora_de_apertura'
-        )
-          label.item.item-input.item-stacked-label(
-            ng-class="{'item-error': officesVm.messages.hora_de_apertura}"
-          )
-            span.input-label
-              | {{::("office.horaApertura"|translate)}}
-            
-            .datetime-picker-placeholder(
-              ng-if="!officesVm.office.hora_de_apertura"
-            ) {{::("office.selectHourPlaceholder"|translate)}}
-
-            .datetime-picker-value
-              | {{officesVm.office.hora_de_apertura|date: 'HH:mm a'}}
-        .errors-wrapper
-          show-error(array-messages='officesVm.messages.hora_de_apertura')
-
-        ion-datetime-picker.datetime-picker(
-          time
-          ng-model='officesVm.office.hora_de_cierre'
-        )
-          label.item.item-input.item-stacked-label(
-            ng-class="{'item-error': officesVm.messages.hora_de_cierre}"
-          )
-            span.input-label
-              | {{::("office.horaCierre"|translate)}}
-            
-            .datetime-picker-placeholder(
-              ng-if="!officesVm.office.hora_de_cierre"
-            ) {{::("office.selectHourPlaceholder"|translate)}}
-            
-            .datetime-picker-value
-              | {{officesVm.office.hora_de_cierre|date: 'HH:mm a'}}
-        .errors-wrapper
-          show-error(array-messages='officesVm.messages.hora_de_cierre')
-
         legend
           | {{ ::("office.weekdays.collectionTitle" | translate) }}
 
@@ -129,7 +77,7 @@ ion-modal-view
         )
           label.item.item-input.item-stacked-label.item-input--no-borders
             span.input-label
-              | {{ ::("globals.dayNames."+officeWeekday.day | translate)}}
+              | {{ ::("globals.dayNames." + officeWeekday.day | translate)}}
           .weekday-checkbox-wrapper
             label.toggle
               input(
@@ -144,31 +92,31 @@ ion-modal-view
 
             ion-datetime-picker.datetime-picker(
               time
-              ng-model='officeWeekday.hora_de_apertura'
+              ng-model='officeWeekday.hora_de_aperturaAccessor'
               ng-if="officeWeekday.abierto"
             )
               span.padded
                 | {{ ::("office.weekdays.openFromPlaceholder" | translate) }}
               span.datetime-picker-placeholder(
-                ng-if="!officeWeekday.hora_de_apertura"
+                ng-if="!officeWeekday.hora_de_aperturaAccessor"
               ) {{ ::("office.weekdays.selectHourPlaceholder" | translate) }}
 
               span.datetime-picker-value
-                | {{ officeWeekday.hora_de_apertura | date: 'HH:mm a' }}
+                | {{ officeWeekday.hora_de_aperturaAccessor | date: 'HH:mm a' }}
 
             ion-datetime-picker.datetime-picker(
               time
-              ng-model='officeWeekday.hora_de_cierre'
+              ng-model='officeWeekday.hora_de_cierreAccessor'
               ng-if="officeWeekday.abierto"
             )
               span.padded
                 | {{ ::("office.weekdays.openUntilPlaceholder" | translate) }}
               span.datetime-picker-placeholder(
-                ng-if="!officeWeekday.hora_de_cierre"
+                ng-if="!officeWeekday.hora_de_cierreAccessor"
               ) {{ ::("office.weekdays.selectHourPlaceholder" | translate) }}
 
               span.datetime-picker-value
-                | {{ officeWeekday.hora_de_cierre | date: 'HH:mm a' }}
+                | {{ officeWeekday.hora_de_cierreAccessor | date: 'HH:mm a' }}
 
     .bar.bar-footer.bar-stable
       button.button.button-small.button-outline.button-energized(

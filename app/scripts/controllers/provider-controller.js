@@ -64,15 +64,16 @@
       providerVm.provider.logotipo = null;
     }
 
+    // TODO wipe outta here
     function createOffice(office){
       var newOffice = angular.copy(office);
       newOffice.hora_de_apertura = $filter('formatDate')(
         newOffice.hora_de_apertura,
-        'H:m Z'
+        'timeSchedule'
       );
       newOffice.hora_de_cierre = $filter('formatDate')(
         newOffice.hora_de_cierre,
-        'H:m Z'
+        'timeSchedule'
       );
       newOffice.inicio_de_labores = newOffice.inicio_de_labores && newOffice.inicio_de_labores.name;
       newOffice.final_de_labores = newOffice.final_de_labores && newOffice.final_de_labores.name;

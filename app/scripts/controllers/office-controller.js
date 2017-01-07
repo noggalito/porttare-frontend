@@ -33,7 +33,6 @@
     }
 
     function loadOffice(){
-      convertStringToDate();
       MapsService.loadGMaps().then(function(){
         $ionicLoading.hide();
         var map = MapsService.renderMap('office-map');
@@ -45,25 +44,6 @@
           }
         });
       });
-    }
-
-    function convertStringToDate(){
-      var officeDetail = officesVm.officeDetail;
-      officeDetail.hora_de_apertura = scheduleToDate( // jshint ignore:line
-        officeDetail.hora_de_apertura // jshint ignore:line
-      );
-      officeDetail.hora_de_cierre = scheduleToDate( // jshint ignore:line
-        officeDetail.hora_de_cierre // jshint ignore:line
-      );
-    }
-
-    function scheduleToDate(schedule) {
-      var toTime    = $filter('toDate')(schedule, 'timeSchedule'),
-          toDateStr = $filter('formatDate')(
-            toTime,
-            'YYYY/MM/DD HH:mm Z'
-          );
-      return new Date(toDateStr);
     }
 
     function showEditOffice() {

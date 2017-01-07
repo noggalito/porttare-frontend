@@ -29,8 +29,7 @@
     }
 
     function createOffice(office) {
-      var data = convertDateToString(office);
-      return CommonService.newObject(data, '/api/provider/offices');
+      return CommonService.newObject(office, '/api/provider/offices');
     }
 
     function updateOffice(office) {
