@@ -19,7 +19,7 @@
 
     return directive;
 
-    function providerProfileScheduleController($translate,APP) {
+    function providerProfileScheduleController($translate) {
       // jshint validthis:true
       var ppSVm = this;
       ppSVm.getDayText = getDayText;
@@ -30,29 +30,29 @@
         switch (dayOfWeek){
           case 0:
           case 7:
-            dayText = "sun";
+            dayText = 'sun';
             break;
           case 1:
-            dayText = "mon";
+            dayText = 'mon';
             break;
           case 2:
-            dayText = "tue";
+            dayText = 'tue';
             break;
           case 3:
-            dayText = "wed";
+            dayText = 'wed';
             break;
           case 4:
-            dayText = "thu";
+            dayText = 'thu';
             break;
           case 5:
-            dayText = "fri";
+            dayText = 'fri';
             break;
           case 6:
-            dayText = "sat";
+            dayText = 'sat';
             break;
-        };
+        }
         return dayText;
-      };
+      }
 
       if (providerOffices.length > 0) {
         var mainOffice = providerOffices[0];
