@@ -4,9 +4,13 @@ span.office-schedule(
   | {{ ::ppSVm.openingTime | toDate:'timeSchedule' | formatDate:'HH:mm' }}
   | -
   | {{ ::ppSVm.closingTime | toDate:'timeSchedule' | formatDate:'HH:mm' }}
+span.i.icon.ion-android-radio-button-on
+  | {{ ::ppSVm.openStatus }}
 span(
   ng-if="ppSVm.fromDay"
 ) {{ ::ppSVm.fromDay }}-
 span(
   ng-if="ppSVm.toDay"
 ) {{ ::ppSVm.toDay }}
+
+
