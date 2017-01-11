@@ -6,7 +6,6 @@
     .controller('LoginController', LoginController);
 
   function LoginController( $rootScope,
-                            $scope,
                             $state,
                             $ionicLoading,
                             $ionicPopup,
@@ -26,22 +25,24 @@
       $ionicLoading.show({
         template: 'cargando...'
       });
+      $rootScope.$on('auth:login-error', cantLogin);
       $auth.submitLogin(loginVm.loginForm)
-        .then(function () {
-          loginVm.loginForm = {};
-          $state.go(successState);
-        })
-        .catch(function (resp) {
-          loginVm.loginForm.password = null;
+        .then(loggedIn)
+        .finally($ionicLoading.hide);
+    }
 
-          $ionicPopup.alert({
-            title: 'Error',
-            template: resp.errors[0]
-          });
-        })
-        .finally(function(){
-          $ionicLoading.hide();
-        });
+    function loggedIn() {
+      loginVm.loginForm = {};
+      $state.go(successState);
+    }
+
+    function cantLogin(ev, resp) {
+      loginVm.loginForm.password = null;
+
+      $ionicPopup.alert({
+        title: 'Error',
+        template: resp.errors[0]
+      });
     }
 
     function logout() {
