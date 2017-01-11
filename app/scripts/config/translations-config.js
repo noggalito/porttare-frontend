@@ -113,7 +113,11 @@
         rejectOrder: 'Rechazar orden',
         reasonToReject: 'Razón',
         reasonToRejectPlaceholder: 'Especifica una razón',
-        ruc: 'RUC'
+        ruc: 'RUC',
+        schedule: {
+          closed: 'Cerrado',
+          open: 'Abierto'
+        }
       },
       courier: {
         successCourierSave: 'Mensajero guardado éxitosamente',
@@ -176,15 +180,6 @@
           fri: 'Viernes',
           sat: 'Sábado',
           sun: 'Domingo'
-        },
-        shortDayNames: {
-          mon: 'Lun',
-          tue: 'Mar',
-          wed: 'Mié',
-          thu: 'Jue',
-          fri: 'Vie',
-          sat: 'Sáb',
-          sun: 'Dom'
         },
         accept:'Aceptar',
         notifications:'Notificaciones'

@@ -42,7 +42,20 @@
             font-family: Montserrat-Regular;
 
             .office-schedule {
-              margin-right: 5px;
+              .i {
+                display: none;
+              }
+            }
+            .office-status-text {
+              display: none;
+
+              &.closed {
+                display: block;
+
+                .i {
+                  margin-right: 5px;
+                }
+              }
             }
           }
         }

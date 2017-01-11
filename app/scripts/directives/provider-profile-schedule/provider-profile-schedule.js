@@ -8,7 +8,7 @@
   function providerProfileSchedule() {
     var directive = {
       restrict: 'EA',
-      controller: ['$translate', providerProfileScheduleController],
+      controller: providerProfileScheduleController,
       controllerAs: 'ppSVm',
       bindToController: true,
       scope: {
@@ -19,41 +19,38 @@
 
     return directive;
 
-    function providerProfileScheduleController($translate) {
+    function providerProfileScheduleController() {
       // jshint validthis:true
       var ppSVm = this,
-          providerOffices = ppSVm.providerProfile.provider_offices, // jshint ignore:line
-          ppSVm.openStatus = 'Cerrado';
+          providerOffices = ppSVm.providerProfile.provider_offices; // jshint ignore:line
+
+      ppSVm.isOpen = false;
 
       if (providerOffices.length > 0) {
         var mainOffice = providerOffices[0];
-        var dia=moment().locale('en').format('ddd');
+        var dia = getCurrentDay();
 
-        var officeWeekday=mainOffice.weekdays.find(function (wday){
-          return wday.day.toUpperCase()===dia.toUpperCase();
+        var officeWeekday = mainOffice.weekdays.find(function(wday){
+          return wday.day === dia;
         });
 
-        if(officeWeekday){
+        if (officeWeekday) {
+          ppSVm.isOpen = getIsOpen(officeWeekday);
           // jshint ignore:start
           ppSVm.openingTime = officeWeekday.hora_de_apertura;
           ppSVm.closingTime = officeWeekday.hora_de_cierre;
-          // jshint ignore:end}
-          if(officeWeekday.abierto){
-            ppSVm.openStatus='Abierto';
-          }
+          // jshint ignore:end
         }
-
-        $translate(
-          'globals.shortDayNames.' + mainOffice.inicio_de_labores // jshint ignore:line
-        ).then(function (dayName) {
-          ppSVm.fromDay = dayName;
-        });
-        $translate(
-          'globals.shortDayNames.' + mainOffice.final_de_labores // jshint ignore:line
-        ).then(function (dayName) {
-          ppSVm.toDay = dayName;
-        });
       }
+    }
+
+    function getCurrentDay(){
+      return moment().locale('en').format('ddd').toLowerCase();
+    }
+
+    function getIsOpen(officeWeekday) {
+      // TODO it's open if right now it's open
+      return officeWeekday.abierto;
     }
   }
 })();

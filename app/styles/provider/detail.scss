@@ -40,8 +40,11 @@ $gridBgColor: #F2F2F2;
         font-size: 16px;
       }
 
-      .icon, .office-schedule {
-        margin-right: 5px;
+      .office-schedule,
+      .office-status-text {
+        .i {
+          margin-right: 5px;
+        }
       }
     }
   }

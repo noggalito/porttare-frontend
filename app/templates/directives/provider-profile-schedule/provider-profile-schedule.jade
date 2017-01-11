@@ -1,14 +1,18 @@
-span.office-schedule(
-  ng-if="::ppSVm.openingTime"
+.office-schedule(
+  ng-if="::(ppSVm.openingTime && ppSVm.isOpen)"
 )
+  span.i.icon.ion-clock
   | {{ ::ppSVm.openingTime | toDate:'timeSchedule' | formatDate:'HH:mm' }}
   | -
   | {{ ::ppSVm.closingTime | toDate:'timeSchedule' | formatDate:'HH:mm' }}
-span.i.icon.ion-android-radio-button-on
-  | {{ ::ppSVm.openStatus }}
-span(
-  ng-if="ppSVm.fromDay"
-) {{ ::ppSVm.fromDay }}-
-span(
-  ng-if="ppSVm.toDay"
-) {{ ::ppSVm.toDay }}
+
+.office-status-text(
+  ng-if="::ppSVm.isOpen"
+)
+  i.i.icon.ion-record
+  | {{ ::("provider.schedule.open" | translate) }}
+.office-status-text.closed(
+  ng-if="::!ppSVm.isOpen"
+)
+  i.i.icon.ion-ios-circle-outline
+  | {{ ::("provider.schedule.closed" | translate) }}
