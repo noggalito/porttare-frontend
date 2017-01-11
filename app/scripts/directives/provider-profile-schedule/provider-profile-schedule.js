@@ -22,8 +22,8 @@
     function providerProfileScheduleController($translate) {
       // jshint validthis:true
       var ppSVm = this,
-          providerOffices = ppSVm.providerProfile.provider_offices; // jshint ignore:line
-          ppSVm.openStatus='Cerrado';
+          providerOffices = ppSVm.providerProfile.provider_offices, // jshint ignore:line
+          ppSVm.openStatus = 'Cerrado';
 
       if (providerOffices.length > 0) {
         var mainOffice = providerOffices[0];
