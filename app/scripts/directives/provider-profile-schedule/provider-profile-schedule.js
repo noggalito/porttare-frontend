@@ -21,47 +21,16 @@
 
     function providerProfileScheduleController($translate) {
       // jshint validthis:true
-      var ppSVm = this;
-      ppSVm.getDayText = getDayText;
-      var providerOffices = ppSVm.providerProfile.provider_offices; // jshint ignore:line
-
-      function getDayText(dayOfWeek){
-        var dayText = '';
-        switch (dayOfWeek){
-          case 0:
-          case 7:
-            dayText = 'sun';
-            break;
-          case 1:
-            dayText = 'mon';
-            break;
-          case 2:
-            dayText = 'tue';
-            break;
-          case 3:
-            dayText = 'wed';
-            break;
-          case 4:
-            dayText = 'thu';
-            break;
-          case 5:
-            dayText = 'fri';
-            break;
-          case 6:
-            dayText = 'sat';
-            break;
-        }
-        return dayText;
-      }
+      var ppSVm = this,
+          providerOffices = ppSVm.providerProfile.provider_offices; // jshint ignore:line
+          ppSVm.openStatus='Cerrado';
 
       if (providerOffices.length > 0) {
         var mainOffice = providerOffices[0];
-        var fechaActual=new Date();
-        var dia=fechaActual.getDay();
-        var textDay=getDayText(dia);
+        var dia=moment().locale('en').format('ddd');
 
         var officeWeekday=mainOffice.weekdays.find(function (wday){
-          return wday.day===textDay;
+          return wday.day.toUpperCase()===dia.toUpperCase();
         });
 
         if(officeWeekday){
@@ -71,11 +40,7 @@
           // jshint ignore:end}
           if(officeWeekday.abierto){
             ppSVm.openStatus='Abierto';
-          }else{
-            ppSVm.openStatus='Cerrado';
           }
-        }else{
-          ppSVm.openStatus='Cerrado';
         }
 
         $translate(
