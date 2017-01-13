@@ -60,18 +60,16 @@
         var dia=fechaActual.getDay();
         var textDay=getDayText(dia);
 
-        var office=mainOffice.weekdays.filter(function (wday){
-          if(wday.day===textDay){
-            return wday;
-          }
+        var officeWeekday=mainOffice.weekdays.find(function (wday){
+          return wday.day===textDay;
         });
 
-        if(office.length!==0){
+        if(officeWeekday){
           // jshint ignore:start
-          ppSVm.openingTime = office[0].hora_de_apertura;
-          ppSVm.closingTime = office[0].hora_de_cierre;
-          // jshint ignore:end
-          if(office[0].abierto){
+          ppSVm.openingTime = officeWeekday.hora_de_apertura;
+          ppSVm.closingTime = officeWeekday.hora_de_cierre;
+          // jshint ignore:end}
+          if(officeWeekday.abierto){
             ppSVm.openStatus='Abierto';
           }else{
             ppSVm.openStatus='Cerrado';
