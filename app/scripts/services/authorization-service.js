@@ -8,9 +8,9 @@
   function AuthorizationService($auth, $state, $ionicLoading, APP) {
     var service = {
       accessIfUserNotAuth: accessIfUserNotAuth,
-      notShowWelcomeProvider: notShowWelcomeProvider,
+      notShowWelcomeProviderCourier: notShowWelcomeProviderCourier,
       choosePlaceIfNotPresent: choosePlaceIfNotPresent,
-      accessIfUserAuth: accessIfUserAuth
+      accessIfUserAuth: accessIfUserAuth,
     };
 
     return service;
@@ -35,15 +35,22 @@
         });
     }
 
-    function notShowWelcomeProvider() {
+    function notShowWelcomeProviderCourier() {
       return $auth.validateUser()
         .then(function userAuthorized(user) {
-          if (!user.provider_profile) { //jshint ignore:line
+          if (!user.provider_profile && !user.courier_profile) {//jshint ignore:line
             return;
           }else{
-            $state.go('provider.items.index').then(function () {
-              $ionicLoading.hide();
-            });
+            if(user.courier_profile){//jshint ignore:line
+              $state.go('provider.items.index').then(function () {
+                $ionicLoading.hide();
+              });
+            }
+            if(user.provider_profile){//jshint ignore:line
+              $state.go('courier.orders').then(function () {
+                $ionicLoading.hide();
+              });
+            }
           }
         }, function userNotAuthorized() {
           return;

@@ -16,7 +16,7 @@
     function checkIfEnabledProvider() {
       return $auth.validateUser()
       .then(function userAuthorized(user) {
-        if (user.provider_profile.status === 'disabled') { //jshint ignore:line
+        if (user.provider_profile && user.provider_profile.status === 'disabled') { //jshint ignore:line
           $state.go('disabledUserError').then(function () {
             $ionicLoading.hide();
           });
