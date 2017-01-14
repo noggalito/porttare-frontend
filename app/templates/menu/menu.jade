@@ -76,14 +76,14 @@ ion-side-menus(enable-menu-with-back-views='false')
           ng-click='loginVm.logout()'
         )
           .item-content {{::("menu.logout"|translate)}}
-
+            
         ion-item.item-complex.switch-user-role
           .item-content {{::("menu.changeTo"|translate)}}
-        ion-item.user-type(menu-close=''  ui-sref='app.provider.welcome', ng-if='!user.provider_profile')
+        ion-item.user-type(menu-close=''  ui-sref='app.provider.welcome', ng-if='!user.provider_profile && !user.courier_profile')
           | {{::("menu.user.provider"|translate)}}
         ion-item.user-type(menu-close='' ui-sref='provider.items.index', ng-if='user.provider_profile')
           | {{::("menu.user.provider"|translate)}}
-        ion-item.user-type(menu-close='' ui-sref='app.courier.welcome', ng-if='!user.courier_profile')
+        ion-item.user-type(menu-close='' ui-sref='app.courier.welcome', ng-if='!user.provider_profile && !user.courier_profile')
           | {{::("menu.user.courier"|translate)}}
         ion-item.user-type(menu-close='' ui-sref='courier.orders', ng-if='user.courier_profile')
           | {{::("menu.user.courier"|translate)}}
