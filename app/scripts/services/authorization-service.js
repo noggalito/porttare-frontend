@@ -41,13 +41,8 @@
           if (!user.provider_profile && !user.courier_profile) {//jshint ignore:line
             return;
           }else{
-            if(user.courier_profile){//jshint ignore:line
-              $state.go('provider.items.index').then(function () {
-                $ionicLoading.hide();
-              });
-            }
-            if(user.provider_profile){//jshint ignore:line
-              $state.go('courier.orders').then(function () {
+            if(user.courier_profile || user.provider_profile ){//jshint ignore:line
+              $state.go('app.categories.index').then(function () {
                 $ionicLoading.hide();
               });
             }
