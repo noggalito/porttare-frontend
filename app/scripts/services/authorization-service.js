@@ -8,7 +8,7 @@
   function AuthorizationService($auth, $state, $ionicLoading, APP) {
     var service = {
       accessIfUserNotAuth: accessIfUserNotAuth,
-      notShowWelcomeProvider: notShowWelcomeProvider,
+      notShowWelcomeProviderCourier: notShowWelcomeProviderCourier,
       choosePlaceIfNotPresent: choosePlaceIfNotPresent,
       accessIfUserAuth: accessIfUserAuth
     };
@@ -35,7 +35,7 @@
         });
     }
 
-    function notShowWelcomeProvider() {
+    function notShowWelcomeProviderCourier(ruta) {
       return $auth.validateUser()
         .then(function userAuthorized(user) {
           if (user.courier_profile){ //jshint ignore:line
@@ -72,5 +72,6 @@
       }, function userNotAuthorized() {
         $state.go(APP.preloginState);
       });
-  }
+    }
+
 })();

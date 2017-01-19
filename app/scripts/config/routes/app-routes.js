@@ -199,7 +199,7 @@ function appRoutes($stateProvider) {
     },
     resolve: {
       auth: function(AuthorizationService){
-        return AuthorizationService.notShowWelcomeProvider();
+        return AuthorizationService.notShowWelcomeProviderCourier('provider.items.index');
       }
     }
   })
@@ -213,7 +213,7 @@ function appRoutes($stateProvider) {
         controllerAs: 'providerVm',
         resolve: {
           auth: function(AuthorizationService){
-            return AuthorizationService.notShowWelcomeProvider();
+            return AuthorizationService.notShowWelcomeProviderCourier('provider.items.index');
           },
           providerCategories: function (CategoriesService,
                                         ErrorHandlerService){
@@ -254,7 +254,7 @@ function appRoutes($stateProvider) {
         templateUrl: 'templates/courier/welcome.html',
         resolve: {
           auth: function(AuthorizationService){
-            return AuthorizationService.notShowWelcomeCourier();
+            return AuthorizationService.notShowWelcomeProviderCourier('courier.orders');
           }
         }
       }
@@ -269,7 +269,61 @@ function appRoutes($stateProvider) {
         controllerAs: 'courierVm',
         resolve: {
           auth: function(AuthorizationService){
-            return AuthorizationService.notShowWelcomeCourier();
+            return AuthorizationService.notShowWelcomeProviderCourier('courier.orders');
+          }
+        }
+      }
+    }
+  })
+  .state('courier', {
+    url: '/courier',
+    abstract: true,
+    templateUrl: 'templates/menu/menu-courier.html',
+    resolve:{
+      auth: function($auth){
+        $auth.validateUser().then(function userAuthorized(user) {
+          if (user.courier_profile) { //jshint ignore:line
+              return user;
+          }
+        }, function userNotAuthorized() {
+          return;
+        });
+      }
+    }
+  })
+  .state('courier.orders', {
+    url: '/orders',
+    views: {
+      'menuContent@courier': {
+        templateUrl: 'templates/courier/orders.html',
+        controller: 'OrdersController',
+        controllerAs: 'orVm',
+        resolve: {
+          shippingRequests: function (ShippingRequestService) {
+            return ShippingRequestService.getShippingRequestsWithStatus('new');
+          }
+        }
+      }
+    }
+  })
+  .state('courier.order', {
+    url: '/orders/:id',
+    cache: false,
+    params: {
+      order: null
+    },
+    views: {
+      'menuContent@courier': {
+        templateUrl: 'templates/courier/orders/show.html',
+        controller: 'CourierOrderController',
+        controllerAs: 'coVm',
+        resolve: {
+          courierOrder: function ($stateParams, ShippingRequestService) {
+            if ($stateParams.order) {
+              return $stateParams.order;
+            } else {
+              return ShippingRequestService.getShippingRequest($stateParams.id);
+            }
           }
         }
       }
