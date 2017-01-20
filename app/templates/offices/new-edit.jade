@@ -41,8 +41,7 @@ ion-modal-view
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': officesVm.form.direccion.$touched && officesVm.form.direccion.$invalid}"
         )
-          span.input-label {{::("office.direccion"|translate)}}
-            abbr *
+          span.input-label.required {{::("office.direccion"|translate)}}
           input(
             type='text'
             name='direccion'
@@ -62,8 +61,7 @@ ion-modal-view
         label.item.item-input.item-stacked-label(
           ng-class="{'item-error': officesVm.form.telefono.$touched && officesVm.form.telefono.$invalid}"
           )
-          span.input-label {{::("office.telefono"|translate)}}
-            abbr *
+          span.input-label.required {{::("office.telefono"|translate)}}
           input(
             type='text'
             name='telefono'

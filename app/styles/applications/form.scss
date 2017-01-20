@@ -16,3 +16,7 @@
     }
   }
 }
+
+.input-label.required:after{
+  content : " *";
+}
