@@ -36,7 +36,8 @@
     pcVm.itemsCount = options.cantidad;
     pcVm.currencyCode = options.currencyCode;
     pcVm.canIncrement = getCanIncrement();
-    pcVm.disableButtons = getDisableButtons();
+    pcVm.disableButtonPlus = getDisableButton();
+    pcVm.disableButtonMinus = getDisableButton();
     pcVm.priceTotalCents = getTotal();
 
     function processData(option) {
@@ -59,6 +60,7 @@
       }
       pcVm.priceTotalCents = getTotal();
       pcVm.canIncrement = getCanIncrement();
+      getDisableButton();
       if (options.onChangeValue && angular.isFunction(options.onChangeValue)) {
         var data = {
           itemsCount: pcVm.itemsCount,
@@ -86,6 +88,7 @@
 
     function init() {
       var defaultOptions = {
+        update: false,
         priceCents: 0,
         onClickMinus: null,
         onClickPlus: null,
@@ -114,14 +117,31 @@
       return pcVm.itemsCount * (options.priceCents);
     }
 
-    function getDisableButtons(){
-      return !CartService.canAddItem(options.cartItem, 1, options.providerItem);
-    }
+    function getDisableButton(){
 
+      if (!pcVm.canIncrement){
+        pcVm.disableButtonMinus = false;
+        pcVm.disableButtonPlus = true;
+      }else{
+        if (pcVm.itemsCount !== 1){
+          pcVm.disableButtonMinus = false;
+          pcVm.disableButtonPlus = false;
+        }
+        else{
+          pcVm.disableButtonMinus = true;
+          pcVm.disableButtonPlus = false;
+        }
+      }
+    }
 
     function getCanIncrement() {
-      return CartService.canAddItem(options.cartItem, pcVm.itemsCount + 1, options.providerItem);
+      
+      return CartService.canAddItem(
+        options.cartItem,
+        pcVm.itemsCount + 1,
+        options.providerItem,
+        options.update
+      );
     }
-
   }
 })();

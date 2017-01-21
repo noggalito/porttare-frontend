@@ -2,14 +2,14 @@
   .actions-panel
     .button-minus-container
       button.button-icon.icon.ion-ios-minus-outline.button-minus(
-        ng-disabled="pcVm.disableButtons"
+        ng-disabled="pcVm.disableButtonMinus"
         ng-click="pcVm.handleClickMinus()"
       )
     .counter-container
       | {{ ::('item.cantidadPrefix' | translate) }}{{pcVm.itemsCount}}
     .button-plus-container
       button.button-icon.icon.ion-ios-plus-outline.button-plus(
-        ng-disabled="pcVm.disableButtons || !pcVm.canIncrement"
+        ng-disabled="pcVm.disableButtonPlus || !pcVm.canIncrement"
         ng-click="pcVm.handleClickPlus()"
       )
 

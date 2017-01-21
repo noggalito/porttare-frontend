@@ -27,6 +27,7 @@
     productVm.clearData = clearData;
     // jshint ignore:start
     productVm.counterOptions = {
+      update: false,
       cantidad: productVm.item.cantidad,
       cartItem: productVm.cartItem,
       providerItem: productVm.product,
@@ -202,8 +203,7 @@
     //jshint ignore:end
 
     function getCanAdd(){
-      return CartService.canAddItem(productVm.cartItem, productVm.item.cantidad , productVm.product);
+      return CartService.canAddItem(productVm.cartItem, productVm.item.cantidad , productVm.product, false);
     }
-
   }
 })();
