@@ -8,7 +8,7 @@
   function AuthorizationService($auth, $state, $ionicLoading, APP) {
     var service = {
       accessIfUserNotAuth: accessIfUserNotAuth,
-      notShowWelcomeProviderCourier: notShowWelcomeProviderCourier,
+      notShowWelcome: notShowWelcome,
       choosePlaceIfNotPresent: choosePlaceIfNotPresent,
       accessIfUserAuth: accessIfUserAuth
     };
@@ -35,7 +35,7 @@
         });
     }
 
-    function notShowWelcomeProviderCourier(ruta) {
+    function notShowWelcome(route) {
       return $auth.validateUser()
         .then(function userAuthorized(user) {
           if (user.courier_profile){ //jshint ignore:line

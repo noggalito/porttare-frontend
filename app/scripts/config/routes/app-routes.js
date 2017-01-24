@@ -199,7 +199,7 @@ function appRoutes($stateProvider) {
     },
     resolve: {
       auth: function(AuthorizationService){
-        return AuthorizationService.notShowWelcomeProviderCourier('provider.items.index');
+        return AuthorizationService.notShowWelcome('provider.items.index');
       }
     }
   })
@@ -213,7 +213,7 @@ function appRoutes($stateProvider) {
         controllerAs: 'providerVm',
         resolve: {
           auth: function(AuthorizationService){
-            return AuthorizationService.notShowWelcomeProviderCourier('provider.items.index');
+            return AuthorizationService.notShowWelcome('provider.items.index');
           },
           providerCategories: function (CategoriesService,
                                         ErrorHandlerService){
@@ -254,7 +254,7 @@ function appRoutes($stateProvider) {
         templateUrl: 'templates/courier/welcome.html',
         resolve: {
           auth: function(AuthorizationService){
-            return AuthorizationService.notShowWelcomeProviderCourier('courier.orders');
+            return AuthorizationService.notShowWelcome('courier.orders');
           }
         }
       }
@@ -269,7 +269,7 @@ function appRoutes($stateProvider) {
         controllerAs: 'courierVm',
         resolve: {
           auth: function(AuthorizationService){
-            return AuthorizationService.notShowWelcomeProviderCourier('courier.orders');
+            return AuthorizationService.notShowWelcome('courier.orders');
           }
         }
       }
