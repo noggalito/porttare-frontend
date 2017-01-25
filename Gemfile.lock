@@ -34,7 +34,6 @@ GEM
     compass-import-once (1.0.5)
       sass (>= 3.2, < 3.5)
     ffi (1.9.10)
-    ffi (1.9.10-x64-mingw32)
     i18n (0.7.0)
     multi_json (1.12.1)
     net-scp (1.2.1)
@@ -51,7 +50,6 @@ GEM
 
 PLATFORMS
   ruby
-  x64-mingw32
 
 DEPENDENCIES
   capistrano (~> 3.7)
@@ -62,4 +60,4 @@ DEPENDENCIES
   compass
 
 BUNDLED WITH
-   1.13.7
+   1.13.6
