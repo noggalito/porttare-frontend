@@ -27,7 +27,6 @@
     productVm.clearData = clearData;
     // jshint ignore:start
     productVm.counterOptions = {
-      update: false,
       cantidad: productVm.item.cantidad,
       cartItem: productVm.cartItem,
       providerItem: productVm.product,
@@ -203,7 +202,11 @@
     //jshint ignore:end
 
     function getCanAdd(){
-      return CartService.canAddItem(productVm.cartItem, productVm.item.cantidad , productVm.product, false);
+      var count = productVm.cartItem ? productVm.cartItem.cantidad : 0;
+      var responseCount = (count + productVm.item.cantidad <= productVm.product.cantidad);
+
+      return responseCount;
+
     }
   }
 })();

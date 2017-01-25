@@ -98,20 +98,11 @@
       return orderItem;
     }
 
-    function canAddItem(orderItem, addCount, providerItem, update){
+    function canAddItem(orderItem, addCount, providerItem){
       var canAdd = null;
 
-      if (update){
-        addCount = addCount-1;
-        if (addCount !== providerItem.cantidad){
-          canAdd = true;
-        }else{
-          canAdd = false;
-        }
-      }else{
-        var currentCount = orderItem ? orderItem.cantidad : 0;
-        canAdd = ( currentCount + addCount <= providerItem.cantidad);
-      }
+      var currentCount = orderItem ? orderItem.cantidad : 1;
+      canAdd = ( currentCount + addCount  <= providerItem.cantidad);
 
       return canAdd;
     }

@@ -297,11 +297,11 @@
     function openEditModal(item){
       cartVm.currentItem = angular.copy(item);
       // jshint ignore:start
+
       cartVm.counterOptions = {
-        update: true,
         limit: 1,
         cantidad: cartVm.currentItem.cantidad,
-        cartItem: cartVm.currentItem,
+        cartItem: null,
         providerItem: cartVm.currentItem.provider_item,
         priceCents: cartVm.currentItem.provider_item_precio_cents,
         currencyCode: cartVm.currentItem.provider_item_precio_currency,
