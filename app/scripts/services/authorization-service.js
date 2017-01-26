@@ -8,7 +8,7 @@
   function AuthorizationService($auth, $state, $ionicLoading, APP) {
     var service = {
       accessIfUserNotAuth: accessIfUserNotAuth,
-      notShowWelcomeProvider: notShowWelcomeProvider,
+      notShowWelcome: notShowWelcome,
       choosePlaceIfNotPresent: choosePlaceIfNotPresent,
       accessIfUserAuth: accessIfUserAuth
     };
@@ -35,18 +35,16 @@
         });
     }
 
-    function notShowWelcomeProvider() {
+    function notShowWelcome(route) {
       return $auth.validateUser()
         .then(function userAuthorized(user) {
-          if (!user.provider_profile) { //jshint ignore:line
+          if (!user.provider_profile && !user.courier_profile){ //jshint ignore:line
             return;
-          }else{
-            $state.go('provider.items.index').then(function () {
-              $ionicLoading.hide();
-            });
           }
-        }, function userNotAuthorized() {
-          return;
+
+          $state.go(route).then(function () {
+            $ionicLoading.hide();
+          });
         });
     }
   }
@@ -65,5 +63,6 @@
       }, function userNotAuthorized() {
         $state.go(APP.preloginState);
       });
-  }
+    }
+
 })();
