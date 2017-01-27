@@ -64,7 +64,11 @@
 
     function addToCart() {
       CartService.addItem(productVm.item)
-        .then(onAddSuccess, onError);
+        .then(function(resp) {
+            onBuyNowSuccess(resp);
+        }, function(rpta){
+          productVm.messages = rpta.errors.cantidad[0];
+        });
     }
 
     function getWishlists() {
@@ -202,11 +206,12 @@
     //jshint ignore:end
 
     function getCanAdd(){
-      var count = productVm.cartItem ? productVm.cartItem.cantidad : 0;
-      var responseCount = (count + productVm.item.cantidad <= productVm.product.cantidad);
 
-      return responseCount;
-
+      if(productVm.cartItem){
+        return CartService.canAddItem(productVm.cartItem, productVm.item.cantidad , productVm.product);
+      }else{
+        return CartService.canAddItem(productVm.cartItem, productVm.item.cantidad -1, productVm.product);
+      }
     }
   }
 })();

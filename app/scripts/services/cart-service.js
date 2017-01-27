@@ -99,10 +99,8 @@
     }
 
     function canAddItem(orderItem, addCount, providerItem){
-      var canAdd = null;
-
       var currentCount = orderItem ? orderItem.cantidad : 1;
-      canAdd = ( currentCount + addCount  <= providerItem.cantidad);
+      var canAdd = ( currentCount + addCount  <= providerItem.cantidad);
 
       return canAdd;
     }

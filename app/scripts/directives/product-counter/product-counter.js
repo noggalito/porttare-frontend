@@ -32,7 +32,8 @@
     pcVm.handleClickPlus = handleClickPlus;
 
     init();
-
+    pcVm.cartItem = options.cartItem;
+    pcVm.providerItem = options.providerItem;
     pcVm.itemsCount = options.cantidad;
     pcVm.currencyCode = options.currencyCode;
     pcVm.canIncrement = getCanIncrement();
@@ -117,9 +118,9 @@
     function getCanIncrement() {
 
       return CartService.canAddItem(
-        options.cartItem,
+        pcVm.cartItem,
         pcVm.itemsCount,
-        options.providerItem
+        pcVm.providerItem
       );
     }
   }

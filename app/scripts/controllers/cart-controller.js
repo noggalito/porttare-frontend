@@ -301,7 +301,6 @@
       cartVm.counterOptions = {
         limit: 1,
         cantidad: cartVm.currentItem.cantidad,
-        cartItem: null,
         providerItem: cartVm.currentItem.provider_item,
         priceCents: cartVm.currentItem.provider_item_precio_cents,
         currencyCode: cartVm.currentItem.provider_item_precio_currency,
