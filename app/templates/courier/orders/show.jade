@@ -14,6 +14,13 @@ ion-view(
       .status-text
         | {{ ("shippingRequest.status." + coVm.order.status | translate) }}
 
+    .list.list-inset.list--no-borders.resource-details-table(
+      ng-if="coVm.order.estimated_time_mins"
+    )
+      | {{ ::("courier.deliveryETA" | translate) }}:
+      |  {{ ::coVm.order.estimated_time_mins }}
+      |  {{ ::("courier.deliveryETAUnit" | translate) }}
+
     .list.list-inset.list--no-borders.resource-details-table
       p.resource-detail-title
         | {{::("dispatchers.dispatchersData"|translate)}}
@@ -27,13 +34,13 @@ ion-view(
       .row
         .col.col-50.label {{::("courier.ordersNumber"|translate)}}
         .col.col-50.value {{coVm.order.id}}
-      .row.row--without-border
+      .row
         .col.col-50.label {{ ::("shippingRequest.providerName" | translate) }}
         .col.col-50.value {{ coVm.provider.nombre_establecimiento }}
       .row-wrapper.narrow-row-wrapper(
         ng-repeat="routeLeg in coVm.routeLegs"
       )
-        .row.row--top-border
+        .row
           .col.col-50.label
             | {{ ::("shippingRequest.routeLegs." + coVm.order.kind + ".leg" + $index | translate) }}
           .col.col-50.value

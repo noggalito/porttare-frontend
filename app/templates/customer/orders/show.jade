@@ -37,12 +37,27 @@ ion-view(
         span
         //- some spacing
 
-        .item.row.strong.narrow
+        .item.row.strong
           .col {{ ("order.delivery.status." + providerProfile.customer_order_delivery.status | translate) }}
         .item.row.strong(
           ng-if="providerProfile.customer_order_delivery.reason"
         )
           .col {{ providerProfile.customer_order_delivery.reason }}
+
+        span
+        //- some spacing
+
+        .item.row
+          .col
+            span {{ ::("order.delivery.deliveryETA" | translate) }}:
+            span(
+              ng-if="!providerProfile.customer_order_delivery.delivery_at"
+            )  {{ ::("order.delivery.deliveryETAUnknown" | translate) }}
+            span(
+              ng-if="providerProfile.customer_order_delivery.delivery_at"
+            )
+              | {{ ::(providerProfile.customer_order_delivery.delivery_at) }}
+              | TODO momentize
 
       .list.list-inset.list--no-borders.resource-collection-table.text-right
         .row.item
