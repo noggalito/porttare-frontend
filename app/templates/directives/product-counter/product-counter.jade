@@ -2,7 +2,7 @@
   .actions-panel
     .button-minus-container
       button.button-icon.icon.ion-ios-minus-outline.button-minus(
-        ng-disabled="pcVm.itemsCount === pcVm.options.limit"
+        ng-disabled="pcVm.disabledButtonMinus"
         ng-click="pcVm.handleClickMinus()"
       )
     .counter-container

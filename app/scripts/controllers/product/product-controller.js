@@ -27,7 +27,6 @@
     productVm.clearData = clearData;
     // jshint ignore:start
     productVm.counterOptions = {
-      limit: 0,
       cantidad: productVm.item.cantidad,
       cartItem: productVm.cartItem,
       providerItem: productVm.product,

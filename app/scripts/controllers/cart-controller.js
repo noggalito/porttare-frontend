@@ -299,7 +299,6 @@
       // jshint ignore:start
 
       cartVm.counterOptions = {
-        limit: 1,
         cantidad: cartVm.currentItem.cantidad,
         providerItem: cartVm.currentItem.provider_item,
         priceCents: cartVm.currentItem.provider_item_precio_cents,

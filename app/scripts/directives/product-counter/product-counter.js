@@ -37,6 +37,7 @@
     pcVm.currencyCode = options.currencyCode;
     pcVm.canIncrement = getCanIncrement();
     pcVm.priceTotalCents = getTotal();
+    pcVm.disabledButtonMinus = disabledMinus();
 
     function processData(option) {
       if (isInRange(pcVm.itemsCount)) {
@@ -58,6 +59,7 @@
       }
       pcVm.priceTotalCents = getTotal();
       pcVm.canIncrement = getCanIncrement();
+      pcVm.disabledButtonMinus = disabledMinus();
       if (options.onChangeValue && angular.isFunction(options.onChangeValue)) {
         var data = {
           itemsCount: pcVm.itemsCount,
@@ -91,7 +93,7 @@
         onClickPlus: null,
         onChangeValue: null,
         cantidad: 0,
-        limit: 0,
+        limit: 1,
         currencyCode: 'USD'
       };
 
@@ -115,12 +117,15 @@
     }
 
     function getCanIncrement() {
-
       return CartService.canAddItem(
         pcVm.options.cartItem,
         pcVm.itemsCount,
         pcVm.options.providerItem
       );
+    }
+
+    function disabledMinus(){
+      return pcVm.itemsCount === options.limit;
     }
   }
 })();
