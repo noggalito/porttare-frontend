@@ -48,16 +48,18 @@ ion-view(
         //- some spacing
 
         .item.row
-          .col
+          .col.delivery-at-wrapper
             span {{ ::("order.delivery.deliveryETA" | translate) }}:
             span(
               ng-if="!providerProfile.customer_order_delivery.delivery_at"
-            )  {{ ::("order.delivery.deliveryETAUnknown" | translate) }}
-            span(
+            ) {{ ::("order.delivery.deliveryETAUnknown" | translate) }}
+            strong(
               ng-if="providerProfile.customer_order_delivery.delivery_at"
             )
-              | {{ ::(providerProfile.customer_order_delivery.delivery_at) }}
-              | TODO momentize
+              humanized-countdown-time(
+                time="providerProfile.customer_order_delivery.delivery_at"
+              )
+              span {{ ::(providerProfile.customer_order_delivery.delivery_at | toDate | formatDate) }}
 
       .list.list-inset.list--no-borders.resource-collection-table.text-right
         .row.item

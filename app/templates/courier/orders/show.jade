@@ -18,8 +18,15 @@ ion-view(
       ng-if="coVm.order.estimated_time_mins"
     )
       | {{ ::("courier.deliveryETA" | translate) }}:
-      |  {{ ::coVm.order.estimated_time_mins }}
-      |  {{ ::("courier.deliveryETAUnit" | translate) }}
+      div
+        strong
+          humanized-countdown-time(
+            show-past="true"
+            time="coVm.order.estimated_delivery_at"
+          )
+        span  (
+        span {{ coVm.order.estimated_delivery_at | toDate | formatDate }}
+        span )
 
     .list.list-inset.list--no-borders.resource-details-table
       p.resource-detail-title
