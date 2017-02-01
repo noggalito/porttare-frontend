@@ -27,6 +27,7 @@
   function humanizedCountdownTimeController($timeout){
     var timeoutId,
         interval = 10 * 60 * 60,
+        // jshint validthis:true
         countdownTimeVM = this;
     countdownTimeVM.computeTimeStr = computeTimeStr;
     countdownTimeVM.clearComputeTimeout = clearComputeTimeout;
@@ -55,12 +56,9 @@
   }
 
   function humanizedCountdownTimeLink(scope, el, attrs, controller){
-    scope.$watch(
-      'countdownTimeVM.time',
-      function(newValue, oldValue) {
-        controller.computeTimeStr();
-      }
-    );
+    scope.$watch('countdownTimeVM.time', function(){
+      controller.computeTimeStr();
+    });
 
     el.on('$destroy', controller.clearComputeTimeout);
   }
