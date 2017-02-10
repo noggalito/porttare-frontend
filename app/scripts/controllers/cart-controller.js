@@ -297,10 +297,9 @@
     function openEditModal(item){
       cartVm.currentItem = angular.copy(item);
       // jshint ignore:start
+
       cartVm.counterOptions = {
-        limit: 1,
         cantidad: cartVm.currentItem.cantidad,
-        cartItem: cartVm.currentItem,
         providerItem: cartVm.currentItem.provider_item,
         priceCents: cartVm.currentItem.provider_item_precio_cents,
         currencyCode: cartVm.currentItem.provider_item_precio_currency,
@@ -320,6 +319,7 @@
     function updateOrderItem(){
       cartVm.slickFlag = false;
       CartService.updateOrderItem(cartVm.currentItem).then(function(response){
+        $auth.user.customer_order = response.customer_order; //jshint ignore:line
         cartVm.cart = response.customer_order; //jshint ignore:line
         cartVm.total = calculateTotal();
         cartVm.slickFlag = true;
@@ -332,11 +332,10 @@
     function removeOrderItem(item){
       cartVm.slickFlag = false;
       CartService.removeOrderItem(item).then(function success(resp){
-        $auth.user.customer_order=resp.data.customer_order;
+        $auth.user.customer_order = resp.data.customer_order;  //jshint ignore:line
         cartVm.cart=resp.data.customer_order;
         cartVm.total= calculateTotal();
         cartVm.slickFlag = true;
-        $auth.user.customer_order = resp.data.customer_order; //jshint ignore:line
         $scope.$emit('update-number');
         closeModal();
         if( CartService.isCartEmpty(cartVm.cart) ){

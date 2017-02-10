@@ -81,7 +81,6 @@
 
     function findCartItem(customerOrder, providerItem){
       var orderItem = null;
-
       if( !isCartEmpty(customerOrder) ){
         var orderItems = [];
         var providerProfile = customerOrder.provider_profiles //jshint ignore:line
@@ -93,15 +92,16 @@
         }
         orderItem = orderItems
                       .find(function(item){
-                        return item.id === providerItem.id;
+                        return item.provider_item.id === providerItem.id;//jshint ignore:line
                       });
       }
       return orderItem;
     }
 
     function canAddItem(orderItem, addCount, providerItem){
-      var currentCount = orderItem ? orderItem.cantidad : 0;
-      var canAdd = ( currentCount + addCount <= providerItem.cantidad);
+      var currentCount = orderItem ? orderItem.cantidad : 1;
+      var canAdd = ( currentCount + addCount  <= providerItem.cantidad);
+
       return canAdd;
     }
   }

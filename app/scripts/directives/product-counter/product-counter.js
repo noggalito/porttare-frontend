@@ -36,8 +36,8 @@
     pcVm.itemsCount = options.cantidad;
     pcVm.currencyCode = options.currencyCode;
     pcVm.canIncrement = getCanIncrement();
-    pcVm.disableButtons = getDisableButtons();
     pcVm.priceTotalCents = getTotal();
+    pcVm.disabledButtonMinus = disabledMinus();
 
     function processData(option) {
       if (isInRange(pcVm.itemsCount)) {
@@ -59,6 +59,7 @@
       }
       pcVm.priceTotalCents = getTotal();
       pcVm.canIncrement = getCanIncrement();
+      pcVm.disabledButtonMinus = disabledMinus();
       if (options.onChangeValue && angular.isFunction(options.onChangeValue)) {
         var data = {
           itemsCount: pcVm.itemsCount,
@@ -85,13 +86,14 @@
     }
 
     function init() {
+
       var defaultOptions = {
         priceCents: 0,
         onClickMinus: null,
         onClickPlus: null,
         onChangeValue: null,
         cantidad: 0,
-        limit: 0,
+        limit: 1,
         currencyCode: 'USD'
       };
 
@@ -114,14 +116,16 @@
       return pcVm.itemsCount * (options.priceCents);
     }
 
-    function getDisableButtons(){
-      return !CartService.canAddItem(options.cartItem, 1, options.providerItem);
-    }
-
-
     function getCanIncrement() {
-      return CartService.canAddItem(options.cartItem, pcVm.itemsCount + 1, options.providerItem);
+      return CartService.canAddItem(
+        pcVm.options.cartItem,
+        pcVm.itemsCount,
+        pcVm.options.providerItem
+      );
     }
 
+    function disabledMinus(){
+      return pcVm.itemsCount === options.limit;
+    }
   }
 })();
