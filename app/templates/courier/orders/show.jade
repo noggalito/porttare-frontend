@@ -6,6 +6,17 @@ ion-view(
   ion-content.shipping-request-show-page.courier-shipping-request-common(
     ng-class="{'has-footer':coVm.order.status !== 'delivered'}"
   )
+    .row
+      .col.col-60.label {{::("courier.deliveryETA"|translate)}}
+      .col.col-40.resource-form
+        .item-selectize
+          input(selectizecouriertime
+            config ="{create:true, maxItems:1}"
+            time= "coVm.takeRequestTime"
+            placeholder='Seleccione tiempo de entrega'
+            ng-model = "coVm.takeRequestTime"
+          )
+
     .map-view(ng-hide="coVm.mapIsHidden")
       #order-map(data-tap-disabled="true")
 
@@ -128,7 +139,7 @@ ion-view(
   )
     button.button.button-outline.button-energized.button-small(
       ng-if="coVm.order.status === 'new'"
-      ng-click="coVm.showTakeRequestModal()"
+      ng-click="coVm.takeRequest()"
     )
       | {{ ::("shippingRequest.takeRequest" | translate) }}
     button.button.button-outline.button-energized.button-small(
