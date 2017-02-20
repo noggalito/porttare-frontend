@@ -9,9 +9,12 @@
                                    customerOrder,
                                    ProfileAddressesService,
                                    BillingAddressesService,
-                                   PusherService) {
+                                   PusherService,
+                                   CustomerOrdersService,
+                                   $ionicLoading) {
     var customerOrderVm = this;
     customerOrderVm.customerOrder = customerOrder;
+    customerOrderVm.cancelOrder = cancelOrder;
     init();
 
     function init() {
@@ -61,6 +64,20 @@
         total += (item.provider_item_precio_cents * item.cantidad); // jshint ignore:line
         return total;
       }, 0);
+    }
+
+    function cancelOrder(providerCustomerOrderDeliveryId){
+      $ionicLoading.show({
+        template: '{{::("order.canceling"|translate)}}'
+      });
+      CustomerOrdersService.cancelCustomerOrderDelivery(customerOrderVm.customerOrder.id,providerCustomerOrderDeliveryId).then(function (resp){
+        var index=customerOrderVm.customerOrder.provider_profiles.findIndex(function(element){ // jshint ignore:line
+                    return element.customer_order_delivery.id===providerCustomerOrderDeliveryId; // jshint ignore:line
+                  });
+        customerOrderVm.customerOrder.provider_profiles[index]=resp; // jshint ignore:line
+      }).finally(function () {
+        $ionicLoading.hide();
+      });
     }
 
   }

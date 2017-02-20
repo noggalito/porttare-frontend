@@ -92,6 +92,11 @@ ion-view(
             price(amount="{{ ::providerProfile.totalCentsOrderProvider }}"
                   currency="{{customerOrderVm.customerOrder.subtotal_items_currency}}")
 
+      .list.list--centered.text-center(ng-if="providerProfile.customer_order_delivery.status !== 'canceled'")
+        button.button.button-outline.button-assertive(
+        ng-click="customerOrderVm.cancelOrder({{ ::providerProfile.customer_order_delivery.id}})"
+        ) {{::("order.cancelCustomerOrder"|translate)}}
+
     //- not implemented yet
       .resource-collection
         .list.list-inset.list--no-borders.resource-collection-table

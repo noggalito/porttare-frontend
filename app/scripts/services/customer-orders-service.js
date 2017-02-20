@@ -8,7 +8,8 @@
   function CustomerOrdersService($http, ENV, ErrorHandlerService) {
     var service = {
       getCustomerOrders: getCustomerOrders,
-      getCustomerOrder: getCustomerOrder
+      getCustomerOrder: getCustomerOrder,
+      cancelCustomerOrderDelivery: cancelCustomerOrderDelivery
     };
 
     return service;
@@ -31,6 +32,18 @@
       }).catch(
         ErrorHandlerService.handleCommonErrorGET
       );
+    }
+
+    function cancelCustomerOrderDelivery(customerOrderId,CustomerOrderDeliveryId){
+      return $http({
+        method: 'POST',
+        url: ENV.apiHost + '/api/customer/orders/' + customerOrderId + '/deliveries/'+ CustomerOrderDeliveryId +'/cancel',
+        })
+        .then(function (response) {
+          return response.data; // jshint ignore:line
+        }).catch(
+          ErrorHandlerService.handleCommonErrorGET
+        );
     }
 
   }
