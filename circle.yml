@@ -3,8 +3,3 @@ machine:
     version: 2.1.4
   node:
     version: 0.12.0
-deployment:
-  demo:
-    branch: production
-    commands:
-      - bundle exec cap demo deploy
