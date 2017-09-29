@@ -6,6 +6,10 @@
     .factory('$exceptionHandler', exceptionHandler);
 
   function exceptionHandler($log, $localStorage, ENV) {
+    if (!ENV.airbrakeProjectId) {
+      return logToConsole; // do nothing if it's not set
+    }
+
     var airbrake = new airbrakeJs.Client({
       projectId: ENV.airbrakeProjectId,
       projectKey: ENV.airbrakeProjectKey,
@@ -27,6 +31,10 @@
           'auth_headers': $localStorage.getItem('auth_headers') // jshint ignore:line
         }
       });
+      logToConsole(exception);
+    }
+
+    function logToConsole(exception) {
       $log.error(exception);
     }
 

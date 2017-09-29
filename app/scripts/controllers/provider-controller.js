@@ -50,8 +50,8 @@
           $ionicLoading.hide();
           $state.go(stateRedirect).then(function(){
             $ionicPopup.alert({
-              title: 'Alerta',
-              template: 'Proveedor creado satisfactoriamente'
+              title: '¡felicidades, te hemos registrado!',
+              template: 'Tu perfil será revisado. Te notificaremos cuando activemos tu perfil.'
             });
           });
         },

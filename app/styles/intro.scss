@@ -14,12 +14,14 @@
     background-size: contain;
 
     &.above {
-      height: 110px;
+      height: 180px;
     }
 
     &.below {
-      height: 120px;
-      margin-top: 30px;
+      height: 60px;
+      position: absolute;
+      top: 140px;
+      right: -73px;
     }
 
     @media (min-height: $grid-responsive-sm-break) {
@@ -29,22 +31,31 @@
   }
 
   .logo-compra {
-    @include background-centered('../images/logo_compra.png');
+    // @include background-centered('../images/logo_compra.png');
+    @include background-centered('../images/brand/vilcabamba-white.png');
   }
   .logo-bolsa {
     @include background-centered('../images/bag.png');
   }
   .logo-envia {
-    @include background-centered('../images/logo_envia.png');
+    // @include background-centered('../images/logo_envia.png');
+    @include background-centered('../images/brand/vilcabamba-white.png');
   }
   .logo-cohete {
     @include background-centered('../images/rocket.png');
   }
   .logo-vende {
-    @include background-centered('../images/logo_vende.png');
+    // @include background-centered('../images/logo_vende.png');
+    @include background-centered('../images/brand/vilcabamba-white.png');
   }
   .logo-precio {
     @include background-centered('../images/price_tag.png');
+  }
+
+  .intro-title-copytext {
+    width: 100%;
+    color: $white;
+    font-size: 3.4em;
   }
 
   .intro-copytext {
@@ -73,10 +84,15 @@
   background-image: none;
   margin-bottom: 5%;
   margin-top: 5%;
+
   .common-button {
     width: 70%;
     margin: auto;
     font-size: 12pt;
+
+    &:hover {
+      color: white;
+    }
   }
 }
 
@@ -122,7 +138,7 @@
 @media (orientation: portrait) and
        (max-height: 400px) {
   .intro-copytext-wrapper {
-    top: 160px;
+    top: 180px;
     bottom: initial;
   }
   .list-logo.below {
@@ -132,7 +148,7 @@
 @media (orientation: landscape) and
        (max-height: 300px) {
   .intro-copytext-wrapper {
-    top: 110px;
+    top: 120px;
     bottom: initial;
   }
   .slider-pager {

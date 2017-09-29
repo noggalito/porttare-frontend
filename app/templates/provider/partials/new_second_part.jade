@@ -61,7 +61,8 @@
     ngf-capture="'camera'"
     accept="image/*"
   )
-    .img-placeholder
+    .icon-placeholder-wrapper
+      i.icon.ion-camera
     .img-placeholder--legend {{::("item.addImages"|translate)}}
 
   .images-previews.text-center(ng-if="providerVm.provider.logotipo")

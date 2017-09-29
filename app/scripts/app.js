@@ -17,7 +17,8 @@
     'ngMessages',
     'ion-datetime-picker',
     'monospaced.elastic',
-    'validation.match'
+    'validation.match',
+    'porttare.templates'
   ])
 
   .run(function($ionicPlatform) {
@@ -43,4 +44,5 @@
   angular.module('porttare.services', []);
   angular.module('porttare.filters', []);
   angular.module('porttare.fake-storage', []);
+  angular.module('porttare.templates', []);
 })();

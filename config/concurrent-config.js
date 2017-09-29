@@ -13,28 +13,28 @@
       'copy:styles',
       'copy:vendor',
       'copy:fonts',
-      'jade'
+      'jadengtemplatecache'
     ],
     test: [
       'compass:test',
       'copy:styles',
       'copy:vendor',
       'copy:fonts',
-      'jade:test'
+      'jadengtemplatecache'
     ],
     dist: [
       'compass:dist',
       'copy:styles',
       'copy:vendor',
       'copy:fonts',
-      'jade'
+      'jadengtemplatecache'
     ],
     staging: [
       'compass:staging',
       'copy:styles',
       'copy:vendor',
       'copy:fonts',
-      'jade:staging'
+      'jadengtemplatecache'
     ]
   };
 

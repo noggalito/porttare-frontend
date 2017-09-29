@@ -13,6 +13,7 @@ function courierRoutes($stateProvider) {
   })
   .state('courier.orders', {
     url: '/orders',
+    cache: false,
     views: {
       'menuContent@courier': {
         templateUrl: 'templates/courier/orders.html',

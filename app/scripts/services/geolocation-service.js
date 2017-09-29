@@ -26,16 +26,16 @@
           return res;
         }, function error(err) {
           // TODO translate me?
-          var message = 'Imposible acceder a la geolocalización.';
+          var message = 'Imposible obtener la ubicación del usuario.';
           switch (err.code) {
             case 1:
-              message += ' Denegada la peticion de Geolocalización.';
+              message += '\nLa solicitud de geolocalización fue denegada.';
               break;
             case 2:
-              message += ' No se ha encontrado la ubicación del dispositivo.';
+              message += '\nNo se pudo ubicar este dispositivo.';
               break;
             case 3:
-              message += ' La petición caducó.';
+              message += '\nLa petición de geolocalización caducó.';
               break;
           }
           return $q.reject(message);

@@ -4,19 +4,19 @@
     padding: 20px 0;
     margin: 10px 0;
 
-    .img-placeholder {
-      width: 90px;
-      height: 70px;
-      margin: auto;
-      background-repeat: no-repeat;
-      background-size: contain;
-      background-image: url('../images/camera.png');
+    .img-placeholder--legend {
+      margin-top: 15px;
+      text-align: center;
+      color: $base-orange;
+      font-family: Montserrat-Regular;
+    }
 
-      &--legend {
-        margin-top: 15px;
-        text-align: center;
-        color: $base-yellow;
-        font-family: Montserrat-Regular;
+    .icon-placeholder-wrapper {
+      text-align: center;
+
+      .icon {
+        color: $base-orange;
+        font-size: 80px;
       }
     }
   }

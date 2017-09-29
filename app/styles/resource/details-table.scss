@@ -39,7 +39,7 @@
     .col {
       padding-top: 10px;
       padding-bottom: 10px;
-      border-bottom: 1px solid $base-yellow;
+      border-bottom: 1px solid $base-orange;
 
       &.label {
         padding-right: 5px;
@@ -48,7 +48,7 @@
 
       &.value {
         padding-left: 5px;
-        border-left: 1px solid $base-yellow;
+        border-left: 1px solid $base-orange;
       }
     }
 
@@ -78,11 +78,11 @@
 
   .row--top-border {
     padding-top: 0;
-    border-top: 1px solid $base-yellow;
+    border-top: 1px solid $base-orange;
   }
 
   .row--bottom-border {
-    border-bottom: 1px solid $base-yellow;
+    border-bottom: 1px solid $base-orange;
   }
 }
 

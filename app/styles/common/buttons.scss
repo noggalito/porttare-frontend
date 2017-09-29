@@ -13,7 +13,7 @@
   font-family: Montserrat-Light;
   color: $white;
   width: 100%;
-  background-color: $base-yellow;
+  background-color: $base-orange;
   -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
@@ -21,6 +21,15 @@
 
 .button {
   font-family: Montserrat-Light;
+}
+
+.button-default-action.button-outline {
+  border-color: $base-orange;
+  color: $base-orange;
+
+  &.activated {
+    background-color: $base-orange;
+  }
 }
 
 .button-primary,
@@ -39,9 +48,14 @@
   text-transform: uppercase;
 }
 
-.button-energized {
-  border-color: $base-yellow;
-  color: $base-yellow;
+.button.button-energized,
+.button.button-energized.button-outline {
+  border-color: $base-orange;
+  color: $base-orange;
+
+  &.activated {
+    background-color: $base-orange;
+  }
 }
 
 .button-energized,
@@ -107,4 +121,11 @@
   padding-right: 10px;
   line-height: 22px;
   min-height: initial;
+}
+
+// for bar-header
+.bar-stable .button.activated,
+.bar-stable .button.active {
+  border-color: transparent;
+  background-color: initial;
 }

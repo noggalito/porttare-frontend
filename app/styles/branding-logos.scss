@@ -1,11 +1,12 @@
 .moviggo-logo-1 {
-  @include background-centered('../images/brand/moviggo-1.png');
-  height: 125px;
+  @include background-centered('../images/brand/vilcabamba-1.png');
+  height: 180px;
+  background-size: contain;
 }
 
 .moviggo-logo-2 {
   background-size: contain;
   height: 100px;
-  max-width: 240px;
-  @include background-centered('../images/brand/moviggo-2.png');
+  max-width: 280px;
+  @include background-centered('../images/brand/vilcabamba-2.png');
 }

@@ -5,7 +5,10 @@
     .module('porttare.controllers')
     .controller('SiteController', SiteController);
 
-  function SiteController($rootScope, $ionicLoading, $auth, ProfileService) {// jshint ignore:line
+  function SiteController($rootScope,
+                          $ionicLoading,
+                          $auth,
+                          ProfileService) {
     var siteVm = this,
         currentUser = null;
 
@@ -13,11 +16,11 @@
     siteVm.userImageURL = null;
     siteVm.providerImageURL = null;
 
-    init();
+    $rootScope.$on('auth:login-success', userLoggedIn);
+    $rootScope.$on('auth:validation-success', userLoggedIn);
 
-    function init() {
-      currentUser = $auth.user;
-    }
+    $rootScope.$on('$stateChangeSuccess', finishedLoading);
+    $rootScope.$on('$stateChangeError', finishedLoading);
 
     $rootScope.$on('$stateChangeStart', function(){
       $ionicLoading.show({
@@ -25,25 +28,25 @@
       });
     });
 
-    $rootScope.$on('$stateChangeSuccess', function () {
-      $ionicLoading.hide();
-    });
-
-    $rootScope.$on('$stateChangeError', function(){
-      $ionicLoading.hide();
-    });
-
-    $rootScope.$on('auth:login-success', function(){
-      currentUser = $auth.user;
+    $rootScope.$on('currentUserUpdated',function(event, updatedCurrentUser){
+      currentUser = updatedCurrentUser;
       updateProperties();
+    });
+
+    $rootScope.$on('currentProfileProviderUpdated',function(event, updatedCurrentProfileProvider){
+      currentUser.provider_profile = updatedCurrentProfileProvider;//jshint ignore:line
       updatePropertiesProfileProvider();
     });
 
-    $rootScope.$on('auth:validation-success', function(){
+    function finishedLoading(){
+      return $ionicLoading.hide();
+    }
+
+    function userLoggedIn(){
       currentUser = $auth.user;
       updateProperties();
       updatePropertiesProfileProvider();
-    });
+    }
 
     function userName () {
       if (currentUser) {
@@ -70,16 +73,6 @@
     function getUserImageURL(){
       return ProfileService.getUserImageURL(currentUser);
     }
-
-    $rootScope.$on('currentUserUpdated',function(event, updatedCurrentUser){
-      currentUser = updatedCurrentUser;
-      updateProperties();
-    });
-
-    $rootScope.$on('currentProfileProviderUpdated',function(event, updatedCurrentProfileProvider){
-      currentUser.provider_profile = updatedCurrentProfileProvider;//jshint ignore:line
-      updatePropertiesProfileProvider();
-    });
 
     function updateProperties(){
       siteVm.userName = userName();

@@ -26,7 +26,8 @@ ion-modal-view
           ngf-capture="'camera'"
           accept="image/*"
         )
-          .img-placeholder
+          .icon-placeholder-wrapper
+            i.icon.ion-camera
           .img-placeholder--legend {{::("client.addImage"|translate)}}
 
         .images-previews(

@@ -42,9 +42,6 @@
     cartVm.editCustomerOrderDeliveryAddress = editCustomerOrderDeliveryAddress;
     cartVm.customerOrderDeliverySelectPickup = customerOrderDeliverySelectPickup;
     cartVm.currentCurrency = getCurrentCurrency();
-    cartVm.checkoutForm = {
-      forma_de_pago: 'efectivo' // only method supported ATM
-    };
     cartVm.openEditModal = openEditModal;
     cartVm.slickSettings = {
       infinite: false,
@@ -164,10 +161,22 @@
       if (needsToAddDeliveryAddress()) {
         customerOrderDeliveryNewAddress();
       } else {
+        prepareForModal();
         ModalService.showModal({
           parentScope: $scope,
           fromTemplateUrl: 'templates/cart/checkout.html'
         });
+      }
+    }
+
+    function prepareForModal(){
+      cartVm.checkoutForm = {
+        forma_de_pago: 'efectivo' // only method supported ATM
+      };
+      if (cartVm.billingAddresses.length === 0) {
+        chooseAnonBillingAddress();
+      } else if (cartVm.billingAddresses.length === 1) {
+        assignBillingAddress(cartVm.billingAddresses[0]);
       }
     }
 

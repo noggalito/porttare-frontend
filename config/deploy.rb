@@ -3,13 +3,13 @@ lock "3.7.1"
 
 set :keep_releases, 3
 set :application, "porttare-frontend"
-set :repo_url, 'git@github.com:noggalito/porttare-frontend.git'
+set :repo_url, 'git@github.com:vilcabamba/porttare-frontend.git'
 
 set :npm_flags, '--silent --no-progress'
 
 set :slackistrano, {
   channel: '#porttare',
-  webhook: 'https://hooks.slack.com/services/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'
+  webhook: 'https://hooks.slack.com/services/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'
 }
 
 set :rbenv_ruby, '2.3.0'
@@ -36,7 +36,7 @@ append :linked_files, '.env'
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
-append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads'
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads', 'node_modules', 'app/bower_components'
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }

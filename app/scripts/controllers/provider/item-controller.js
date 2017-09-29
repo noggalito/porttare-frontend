@@ -10,6 +10,7 @@
                                   $translate,
                                   $ionicPopup,
                                   $ionicLoading,
+                                  APP,
                                   apiResources,
                                   ModalService,
                                   ItemsService,
@@ -74,6 +75,7 @@
       modalScope.modalVm = providerItemVm;
       // unfortunately item is the providerItem we'll edit
       modalScope.modalVm.item = angular.copy(providerItemVm.providerItem);
+      modalScope.modalVm.item.precio = modalScope.modalVm.item.precio_cents / APP.centsInDollar; // jshint ignore:line
       modalScope.modalVm.closeModal = closeModal;
       modalScope.modalVm.submitProcess = editItem;
       modalScope.modalVm.concatImages = concatImages;

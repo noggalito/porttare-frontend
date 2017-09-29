@@ -37,7 +37,7 @@
     function notShowWelcome(route) {
       return $auth.validateUser()
         .then(function userAuthorized(user) {
-          if (!user.provider_profile && !user.courier_profile){ //jshint ignore:line
+          if (!user.provider_profile || !user.courier_profile){ //jshint ignore:line
             return;
           }
 

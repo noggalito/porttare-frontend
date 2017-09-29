@@ -10,9 +10,8 @@
         dest: '<%= yeoman.dist %>',
         src: [
           '<%= yeoman.images %>/**/*.{png,jpg,jpeg,gif,webp,svg}',
-          '*.html',
-          'templates/**/*.html',
-          'fonts/*'
+          'fonts/*',
+          '.well-known/**'
         ]
       }, {
         expand: true,
@@ -46,7 +45,9 @@
       src: [
         '**/*',
         '!**/*.jade',
-        '!**/*.(scss,sass,css)'
+        '!**/*.html',
+        '!**/*.(scss,sass,css)',
+        'index.html'
       ]
     },
     tmp: {

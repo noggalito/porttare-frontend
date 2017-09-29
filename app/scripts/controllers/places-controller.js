@@ -36,7 +36,7 @@
         finishedPerforming();
         $ionicPopup.alert({
           title: 'Error',
-          template: error
+          template: '<span class="text-pre-line">' + error + '</span>'
         });
       });
     }

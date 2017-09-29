@@ -1,7 +1,7 @@
 # porttare-frontend
 
-[![CircleCI](https://circleci.com/gh/noggalito/porttare-frontend/tree/master.svg?style=svg)](https://circleci.com/gh/noggalito/porttare-frontend/tree/master)
-[![Code Climate](https://codeclimate.com/github/noggalito/porttare-frontend/badges/gpa.svg)](https://codeclimate.com/github/noggalito/porttare-frontend)
+[![CircleCI](https://circleci.com/gh/vilcabamba/porttare-frontend/tree/master.svg?style=svg)](https://circleci.com/gh/vilcabamba/porttare-frontend/tree/master)
+[![Code Climate](https://codeclimate.com/github/vilcabamba/porttare-frontend/badges/gpa.svg)](https://codeclimate.com/github/vilcabamba/porttare-frontend)
 
 ### requirements
 
@@ -10,7 +10,7 @@
 
 ### getting started
 
-- `git clone https://github.com/noggalito/porttare-frontend.git`
+- `git clone https://github.com/vilcabamba/porttare-frontend.git`
 - `npm install -g cordova grunt grunt-cli bower`
 - `cd porttare-frontend`
 - `npm install && bower install`

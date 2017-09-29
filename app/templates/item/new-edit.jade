@@ -66,7 +66,7 @@ ion-modal-view.item-form
             span(ng-message="required" class="message-error") {{::("globals.isRequired"|translate)}}
           show-error(array-messages='modalVm.messages.unidad_medida')
 
-        label.item.item-input.item-stacked-label(
+        .label.item.item-input.item-stacked-label(
           ng-class="{'item-error': modalVm.itemForm.precio.$touched && modalVm.itemForm.precio.$invalid}"
         )
           span.input-label
@@ -134,7 +134,8 @@ ion-modal-view.item-form
           accept="image/*"
           multiple
         )
-          .img-placeholder
+          .icon-placeholder-wrapper
+            i.icon.ion-camera
           .img-placeholder--legend {{::("item.addImages"|translate)}}
 
         .row.images-previews

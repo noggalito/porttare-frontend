@@ -12,8 +12,9 @@
                                       $ionicPopup,
                                       $ionicLoading,
                                       $auth) {
-    var billingAddressesVm= this;
+    var billingAddressesVm = this;
     var billingAddressesIndex;
+
     billingAddressesVm.showNewModal = showNewModal;
     billingAddressesVm.showEditModal = showEditModal;
     billingAddressesVm.closeModal = closeModal;

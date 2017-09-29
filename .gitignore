@@ -12,6 +12,7 @@ undefined
 *.swo
 *.log
 *.DS_Store
+app/scripts/templates.js
 
 app/scripts/config/constants-config.js
 app/templates/**/*.html

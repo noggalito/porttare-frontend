@@ -13,18 +13,35 @@ function InterceptorsService($injector, $q) {
   return service;
 
   function responseError(rejection) {
-    if (rejection.status === 401 && !rejection.config.url.match('api/auth/user/sign_in')) {
+    if (rejection.status === 401 && !isIgnoredUrl(rejection.config.url)) {
       clearHistory();
       closeCurrentAlert();
-      createAlert();
+      createAlert(rejection.data);
     }
     return $q.reject(rejection);
   }
 
-  function createAlert() {
+  function isIgnoredUrl(url){
+    var ignoredURIs = [
+      'api/auth/user/sign_in',
+      'api/auth/user/validate_token'
+    ];
+    return ignoredURIs.some(function(ignoredURI){
+      return url.match(ignoredURI);
+    });
+  }
+
+  function createAlert(data) {
+    var errorsStr;
+    if (data.errors) {
+      errorsStr = data.errors.join(', ');
+    }
+
+    $injector.get('$ionicHistory').clearHistory();
+
     currentAlert = $injector.get('$ionicPopup').alert({
       title: 'Ups!',
-      template: 'No tienes permisos para realizar eso!'
+      template: errorsStr || '{{ ::("globals.somethingWentWrong" | translate)}}'
     });
     currentAlert.then(dismissedAlert);
   }
@@ -47,7 +64,7 @@ function InterceptorsService($injector, $q) {
     unsetCurrentAlert();
     $injector.get('$auth').validateUser().then(function(){
       $injector.get('$state').go('app.categories.index');
-    }).catch(function(){
+    }, function(){
       $injector.get('$state').go('prelogin');
     });
   }
